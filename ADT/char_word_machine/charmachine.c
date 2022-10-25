@@ -3,6 +3,7 @@
 
 #include <stdio.h>
 #include "charmachine.h"
+#include "makanan.c"
 
 char currentChar;
 boolean EOP;
@@ -105,10 +106,44 @@ void READPETA(Matrix *m, char * filename)
 void READMAKANAN(Matrix *m)
 {
     /* Algoritma */
-    FILE *fp = fopen("peta_test.txt", "r");
+    FILE *fp = fopen("makanan_test.txt", "r");
     char cc = fgetc(fp);
-    while (cc != EOF)
-    {
+    int n_makanan = 0;
+    int looper = 0;
+    boolean read_n = false;
+    while (cc != '\n') {
+        n_makanan *= 10;
+        n_makanan = ((int) cc) - 48;
+        cc = fgetc(fp);
+    }
+    // cc == '\n'
+    Makanan container_makanan[n_makanan];
+    Makanan makanan;
+    // Data makanan
+    int id = 0;
+    string nama_makanan;
+    string aksi;
+    TIME expired;
+    TIME delivery;
+
+    // Looping data ke - n
+    int counter = 0;
+    while (looper < n_makanan && cc != EOF)
+    {   
+        cc = fgetc(fp);
+        // Retrieve ID
+        if (counter % 5 == 0) {
+            id *= 10;
+            id += ((int) cc) -  48;
+        }
+        // Get name
+        if (counter % 5 == 1) {
+            
+        }
+
+
+        looper++;
+        
     }
     fclose(fp);
 }
@@ -118,6 +153,8 @@ void READRESEP(Matrix *m)
     /* Algoritma */
     FILE *fp = fopen("peta_test.txt", "r");
     char cc = fgetc(fp);
+    
+
     while (cc != EOF)
     {
     }
