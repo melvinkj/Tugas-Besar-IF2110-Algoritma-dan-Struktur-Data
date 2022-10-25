@@ -2,6 +2,9 @@
     "files.associations": {
         "stdio.h": "c",
         "time.h": "c",
-        "prioqueue.h": "c"
+        "prioqueue.h": "c",
+        "makanan.h": "c",
+        "waktu.h": "c",
+        "charmachine.h": "c"
     }
 }
