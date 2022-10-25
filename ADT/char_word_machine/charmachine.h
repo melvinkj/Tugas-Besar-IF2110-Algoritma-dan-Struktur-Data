@@ -5,6 +5,9 @@
 #define __MESIN_KAR_H_
 
 #include "boolean.h"
+#include "../sederhana/makanan.h"
+#include "string.h"
+#include "../sederhana/waktu.h"
 
 #define MARK '\n'
 /* State Mesin */
@@ -46,7 +49,7 @@ void READPETA(Matrix * m, char * filename);
           Akses matrix dari elemen baris 1 kolom 1 hingga baris ke rowEff + 1 kolom colEff + 1*/
 
 
-void READMAKANAN(Matrix * m);
+ListMakanan READMAKANAN();
 
 
 void READRESEP(Matrix * m);

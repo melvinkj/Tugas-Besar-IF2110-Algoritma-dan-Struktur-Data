@@ -16,11 +16,18 @@ string createStringFromArr(char arr[], int arr_length) {
         new_str = appendCCtoStr(new_str, arr[i]);
     }
         result = new_str;
+        printf("%d\n", result.Length);
     return result;
 }
 
 string appendCCtoStr(string str, char cc) {
-    char * container = malloc ((str.Length + 1)*sizeof(char));
+    int extra_size = 1;
+    int current_len = str.Length;
+    while (current_len > 4) {
+        current_len -= 16;
+        extra_size++;
+    }
+    char * container = malloc ((str.Length + extra_size)*sizeof(char));
     char * ptr = container;
     char * s = str.content;
     while (*s != '\0') {

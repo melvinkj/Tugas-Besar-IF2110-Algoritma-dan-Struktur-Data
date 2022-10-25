@@ -7,14 +7,17 @@
 #include "point.h"
 #include "waktu.h"
 #include <stdio.h>
+#include "../char_word_machine/string.h"
+
 
 #define UNDEF_WAKTU -1
+#define MAX_LISTMAKANAN_CAP 101
 /* dipasangkan ke waktu jika bukan perishable item */
 
-typedef struct{
-    char * content; /* container character */
-    int Length;
-} string;
+// typedef struct{
+//     char * content; /* container character */
+//     int Length;
+// } string;
 
 typedef struct makanan {
   int id; /* ID makanan */
@@ -23,6 +26,12 @@ typedef struct makanan {
   string lokasi_aksi;  /* lokasi aksi */
   TIME lama_pengiriman; /* waktu yang diperlukan saat berkurang waktu perishable item */
 } Makanan;
+
+typedef struct
+{
+  Makanan arr[MAX_LISTMAKANAN_CAP];
+} ListMakanan;
+
 
 /* SELEKTOR */
 #define ID_MAKANAN(x) (x).id
