@@ -74,7 +74,7 @@ boolean TGT(TIME T1, TIME T2);
 TIME NextMenit(TIME T);
     /* Mengirim 1 menit setelah T dalam bentuk TIME */
  
-TIME NextMenit(TIME T, int N);
+TIME NextNMenit(TIME T, int N);
     /* Mengirim N menit setelah T dalam bentuk TIME */
 
 TIME PrevMenit(TIME T);

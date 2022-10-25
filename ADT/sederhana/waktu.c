@@ -88,7 +88,7 @@ TIME NextMenit(TIME T)
     /* Mengirim 1 menit setelah T dalam bentuk TIME */
     return MenitToTIME(TIMEToMenit(T) + 1);
 }
-TIME NextMenit(TIME T, int N)
+TIME NextNMenit(TIME T, int N)
 {
     /* Mengirim N menit setelah T dalam bentuk TIME */
     return MenitToTIME(TIMEToMenit(T) + N);
