@@ -7,9 +7,10 @@
 #define WAKTU_KEDALUWARSA(x) (x).waktu_kedaluwarsa
 #define LOKASI_AKSI(x) (x).lokasi_aksi
 #define LAMA_PENGIRIMAN(x) (x).lama_pengiriman
+#define LAMA_PEMROSESAN(x) (x).lama_pemrosesan
 
 /* KONSTRUKTOR */
-Makanan CreateMakanan(int id, string nama, TIME kedaluwarsa, string lokasi, TIME pengiriman){
+Makanan CreateMakanan(int id, string nama, TIME kedaluwarsa, string lokasi, TIME pengiriman, TIME pemrosesan){
 /* Membentuk makanan dari komponen-komponennya */
     Makanan m;
     
@@ -18,6 +19,7 @@ Makanan CreateMakanan(int id, string nama, TIME kedaluwarsa, string lokasi, TIME
     WAKTU_KEDALUWARSA(m) = kedaluwarsa;
     LOKASI_AKSI(m) = lokasi;
     LAMA_PENGIRIMAN(m) = pengiriman;
+    LAMA_PEMROSESAN(m) = pemrosesan;
 
     return m;
 }

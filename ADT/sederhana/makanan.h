@@ -25,6 +25,7 @@ typedef struct makanan {
   TIME waktu_kedaluwarsa; /* waktu kedaluwarsa*/
   string lokasi_aksi;  /* lokasi aksi */
   TIME lama_pengiriman; /* waktu yang diperlukan saat berkurang waktu perishable item */
+  TIME lama_pemrosesan; /* waktu yang diperlukan untuk memproses makanan */
 } Makanan;
 
 typedef struct
@@ -39,9 +40,10 @@ typedef struct
 #define WAKTU_KEDALUWARSA(x) (x).waktu_kedaluwarsa
 #define LOKASI_AKSI(x) (x).lokasi_aksi
 #define LAMA_PENGIRIMAN(x) (x).lama_pengiriman
+#define LAMA_PEMROSESAN(x) (x).lama_pemrosesan
 
 /* KONSTRUKTOR */
-Makanan CreateMakanan(int id, string nama, TIME kedaluwarsa, string lokasi, TIME pengiriman);
+Makanan CreateMakanan(int id, string nama, TIME kedaluwarsa, string lokasi, TIME pengiriman, TIME pemrosesan);
 /* Membentuk makanan dari komponen-komponennya */
 
 
