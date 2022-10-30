@@ -62,11 +62,11 @@ void Enqueue (PrioQueue * Q, infotype X){
         InfoTail(*Q) = X;
     } else{
         int i = Tail(*Q);
-        while (Time(X) < Time(Elmt(*Q, i))){
+        while (TLT(Time(X),Time(Elmt(*Q, i)))){
             Elmt(*Q, (i + 1) % MaxEl(*Q)) = Elmt(*Q, i);
-            i--;
+            i--;            
         }
-        if (Time(X) >= Time(Elmt(*Q, i))){
+        if (TGT(Time(X),Time(Elmt(*Q, i))) || TEQ(Time(X),Time(Elmt(*Q, i)))){
             Elmt(*Q, (i + 1) % MaxEl(*Q)) = X;
         } else{
             Elmt(*Q, (i % MaxEl(*Q))) = X;
@@ -103,7 +103,8 @@ void PrintPrioQueue (PrioQueue Q){
     while (!IsPrioQueueEmpty(Q)){
         infotype X;
         Dequeue(&Q, &X);
-        printf("%d %c\n", Time(X), Info(X));
+        TulisTIME(Time(X));
+        printf(" %s\n", Info(X));
     }
     printf("#\n");
 }
@@ -112,10 +113,10 @@ void PrintPrioQueue (PrioQueue Q){
 
 void Remove (PrioQueue * Q, infotype X){
     int i = Head(*Q);
-    while (i != Tail(*Q) && !(Info(Elmt(*Q, i)) == Info(X) && Time(Elmt(*Q, i)) == Time(X))){
+    while (i != Tail(*Q) && !(Info(Elmt(*Q, i)) == Info(X) && TEQ(Time(Elmt(*Q, i)),Time(X)))){
         i = (i + 1)%MaxEl(*Q);
     }
-    if (Info(Elmt(*Q, i)) == Info(X) && Time(Elmt(*Q, i)) == Time(X)){
+    if (Info(Elmt(*Q, i)) == Info(X) && TEQ(Time(Elmt(*Q, i)),Time(X))){
         while (i != Tail(*Q)){
             Elmt(*Q, i) = Elmt(*Q, (i + 1)%MaxEl(*Q));
             i = (i + 1)%MaxEl(*Q);
