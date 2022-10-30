@@ -6,7 +6,7 @@
 #ifndef prioqueue_H
 #define prioqueue_H
 
-#include "boolean.h"
+#include "../sederhana/boolean.h"
 
 #define Nil -1
 /* Konstanta untuk mendefinisikan address tak terdefinisi */

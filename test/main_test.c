@@ -15,16 +15,13 @@ void processCommand(string command) {
 }
 
 /* *** Operasi-operasi *** */
-void move() {
-// Mengupdate posisi S pada peta
 
-}
 
 /* *** Main *** */
 int main () {
     // Splash screen ...
     char scanf_bug;
-
+    int dum;
     // START & EXIT option
     // Start Validate
     Word input;
@@ -39,12 +36,12 @@ int main () {
         printf("bool : %d\n", cmpStrType2(checker, invalid));
         printf("Succesfully read: %s\n", checker);
     } else {
-    // Jika hasilnya invalid maka re-looop input
+    // Jika hasilnya invalid maka re-loop input
     while (!valid_command) {
         printf("Please enter a valid command.");
-        scanf("%c", &scanf_bug);
+        // scanf("%d", &scanf_bug);
         scanWord(&input, "\nEnter Command (START/EXIT): ");
-        scanf("%c", &scanf_bug);
+        // scanf("%c", &scanf_bug);
         // printf("\n");
         checker = commandOptions(input);
         // printf("Read : %s\n", checker);

@@ -272,9 +272,9 @@ void READRESEP(Matrix *m)
 
     while (cc != EOF)
     {
+
+
         
-
-
 
 
 
