@@ -1,16 +1,36 @@
-#include "../stack_queue/prioqueue.h"
-#include "point.h"
+
 #include "simulator.h"
 
 
-Simulator CreateSimulator(string nama, POINT posisi, TIME waktu, PrioQueue inventory, PrioQueue delivery, ListStatik kulkas){
+void CreateSimulator(Simulator s, Matrix peta){
 /* Membentuk Simulator dari komponen-komponennya */
-    Simulator s;
+    string nama;
+    boolean found;
+    int i, j;
 
+    char * str;
+
+    // scanf("%s", nama.content);
     Nama(s) = nama;
-    Posisi(s) = posisi;
-    Waktu(s) = waktu;
-    Inventory(s) = inventory;
-    Delivery(s) = delivery;
-    Kulkas(s) = kulkas;
+
+    found = false;
+    i = 0;
+
+    while(i<ROW_EFF(peta) && found == false){
+        j = 0;
+        while(j<COL_EFF(peta) && found == false){
+            if(ELMT(peta, i, j) =='S'){
+                CreatePoint(&Posisi(s), i, j);
+                found = true;
+            } 
+            j++;       
+        }
+        i++;
+    }
+
+
+    CreateTime(&Waktu(s), 0, 0, 0);
+    MakeEmpty(&Inventory(s), 100);
+    MakeEmpty(&Delivery(s), 100);
+    createMatrix(10, 20, &Kulkas(s));
 }

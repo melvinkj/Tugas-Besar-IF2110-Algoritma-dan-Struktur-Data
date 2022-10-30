@@ -5,7 +5,7 @@
 
 /* *** IMPLEMENTASI *** */
 /* *** Konstruktor membentuk POINT *** */
-void CreatePoint(POINT *P, float X, float Y)
+void CreatePoint(POINT *P, int X, int Y)
 {
     /* Membentuk sebuah POINT dari komponen-komponennya */
     Absis(*P) = X;
@@ -35,7 +35,7 @@ void TulisPOINT(POINT P)
     */
     /* I.S. P terdefinisi */
     /* F.S. P tertulis di layar dengan format "(X,Y)" */
-    printf("(%.2f,%.2f)", Absis(P), Ordinat(P));
+    printf("(%d,%d)", Absis(P), Ordinat(P));
 }
 
 /* *** Kelompok operasi relasional terhadap POINT *** */
