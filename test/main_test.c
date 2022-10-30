@@ -15,7 +15,39 @@ void processCommand(string command) {
 }
 
 /* *** Operasi-operasi *** */
+POINT LocateS (Matrix peta) {
+    POINT S;
+    for (int i = 0; i < peta.rowEff; i++) {
+        for (int j = 0; j < peta.colEff; j++) {
+            if (peta.mem[i][j] == 'S'){
+                CreatePoint(&S, i, j);
+                break;
+            }
+        }
+    }
+    return S;
+}
 
+boolean checkAdjacent(char cc, Matrix peta) {
+    // Posisi S
+    POINT S = LocateS(peta);
+    // Adjacent S
+    int start_check_x = (S.X - 1) >= 0 ? S.X-1 : 0;
+    int end_check_x = (S.X + 1) <= peta.rowEff - 1 ? S.X + 1 : S.X;
+    int start_check_y = (S.Y - 1) >= 0 ? S.Y-1 : 0;
+    int end_check_y = (S.Y + 1) <= peta.colEff - 1 ? S.Y + 1 : S.Y;
+
+    // Result
+    boolean found = false;
+    for (int i = start_check_x; i < end_check_x; i++){
+        for (int j = start_check_y; j < end_check_y; j++){
+            if (peta.mem[i][j] == cc) {
+                found = true;
+            }
+        }
+    }
+    return found;
+}
 
 /* *** Main *** */
 int main () {

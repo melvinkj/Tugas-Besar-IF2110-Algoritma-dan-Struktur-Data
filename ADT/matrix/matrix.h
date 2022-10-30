@@ -132,7 +132,6 @@ void pTranspose(Matrix *m);
 /* I.S. m terdefinisi dan IsSquare(m) */
 /* F.S. m "di-transpose", yaitu setiap elemen m(i,j) ditukar nilainya dengan elemen m(j,i) */
 
-POINT LocateS (Matrix peta);
-boolean checkAdjacent(char cc, Matrix peta);
+
 
 #endif
