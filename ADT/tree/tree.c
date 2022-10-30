@@ -141,27 +141,27 @@ void printTree(tree t, int max){
         for(i = 0; i < max - height(t); i++){
             printf("  ");
         }
-        printf("%c\n", ROOT(t));
+        printf("%d\n", ROOT(t));
     }
     else if (NEXTNODE(t) == NIL){ // punys child dan tidak punya next
         for(i = 0; i < max - height(t); i++){
             printf("  ");
         }
-        printf("%c\n", ROOT(t));
+        printf("%d\n", ROOT(t));
         printTree(CHILDNODE(t), max);
     }
     else if (CHILDNODE(t) == NIL) { // tidak punya child dan punya next
         for(i = 0; i < max - height(t); i++){
             printf("  ");
         }
-        printf("%c\n", ROOT(t));
+        printf("%d\n", ROOT(t));
         printTree(NEXTNODE(t), max);
     }
     else{ // punya child dan punya next (utamakan print child)
         for(i = 0; i < max - height(t); i++){
             printf("  ");
         }
-        printf("%c\n", ROOT(t));
+        printf("%d\n", ROOT(t));
         printTree(CHILDNODE(t), max);
         printTree(NEXTNODE(t), max - 1);
     }
