@@ -4,8 +4,9 @@
 #ifndef __MESINKATA_H__
 #define __MESINKATA_H__
 
-#include "boolean.h"
+#include "../sederhana/boolean.h"
 #include "charmachine.h"
+#include "string.h"
 
 #define NMax 50
 #define BLANK ' '
@@ -16,11 +17,6 @@ typedef struct
     int Length;
 } Word;
 
-typedef struct
-{
-    char * content; /* container character */
-    int Length;
-} string;
 
 /* State Mesin Word */
 extern boolean endWord;
@@ -70,5 +66,7 @@ boolean IsWordSame (Word word_1, Word word_2);
 boolean cmpWord(Word word, string commands);
 
 char * commandOptions(Word word);
+
+string convertWordToStr(Word word);
 
 #endif

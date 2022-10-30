@@ -3,7 +3,6 @@
 
 #include "wordmachine.h"
 #include "charmachine.h"
-#include "boolean.h"
 #include <stdio.h>
 
 // Init machinechar
@@ -97,6 +96,9 @@ void displayWord(Word word)
 
 void scanWord(Word *command, char * args)
 {
+    Word whitespace;
+    whitespace.TabWord[0] = ' ';
+    whitespace.Length = 1;
     command->Length = 0;
     printf(args);
     STARTWORD();
@@ -105,8 +107,10 @@ void scanWord(Word *command, char * args)
         int i;
         concatWord(command, currentWord);
         ADVWORD();
+        concatWord(command, whitespace);
     }
     // displayWord(*command);
+    command->Length--; // clear extra space
 }
 
 boolean IsWordSame(Word word_1, Word word_2)
@@ -162,14 +166,14 @@ char * commandOptions(Word word)
     string buy = { .content = "BUY", .Length = 3 };
     string fry = { .content = "FRY", .Length = 3 };
     string delivery = { .content = "DELIVERY", .Length = 8 };
-    string move_north = { .content = "MOVENORTH", .Length = 9 };
-    string move_east = { .content = "MOVEEAST", .Length = 8 };
-    string move_west = { .content = "MOVEWEST", .Length = 8 };
-    string move_south = { .content = "MOVESOUTH", .Length = 9 };
+    string move_north = { .content = "MOVE NORTH", .Length = 10 };
+    string move_east = { .content = "MOVE EAST", .Length = 9 };
+    string move_west = { .content = "MOVE WEST", .Length = 9 };
+    string move_south = { .content = "MOVE SOUTH", .Length = 10 };
     string mix = { .content = "MIX", .Length = 3 };
     string chop = { .content = "CHOP", .Length = 4 };
     string boil = { .content = "BOIL", .Length = 4 };
-    string wait_x_y = { .content = "WAITxy", .Length = 6 };
+    string wait_x_y = { .content = "WAIT x y", .Length = 8 };
     string undo = { .content = "UNDO", .Length = 4 };
     string redo = { .content = "REDO", .Length = 4 };
     string catalog = { .content = "CATALOG", .Length = 7 };
@@ -195,6 +199,6 @@ char * commandOptions(Word word)
     else if (cmpWord(word, cookbook)) return result = "COOKBOOK";
     else
     {
-        return result = "INVALID COMMAND";
+        return result = "INVALID";
     }
 }

@@ -1,0 +1,1 @@
+gcc string.c driverstring.c -o a
