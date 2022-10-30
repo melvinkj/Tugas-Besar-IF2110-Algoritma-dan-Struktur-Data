@@ -13,5 +13,18 @@ int main() {
     result = createStringFromArr(arr, 20);
     printf("%s\n", str.content);
     printf("%s\n", result.content);
+
+    string str_cmp1, str_cmp2;
+    createString(&str_cmp1);
+    createString(&str_cmp2);
+    str_cmp1.content = "test";
+    str_cmp2.content = "test";
+
+    if (cmpStrType1(str_cmp1, str_cmp2)){
+        printf("same\n");
+    } else {
+        printf("not same");
+    }
+
     return 0;
 }

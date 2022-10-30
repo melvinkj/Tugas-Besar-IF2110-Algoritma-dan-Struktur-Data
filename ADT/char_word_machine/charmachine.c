@@ -33,7 +33,7 @@ void ADV()
 }
 
 // Parser Peta
-void READPETA(Matrix *m, char *filename)
+void READPETA(Matrix *m)
 {
     /* Algoritma */
     FILE *fp = fopen("../../test/peta_test.txt", "r");
@@ -136,6 +136,7 @@ ListMakanan READMAKANAN()
     TIME delivery;
     int D_delivery = 0, H_delivery = 0, M_delivery = 0;
     string aksi;
+    int size_x = 0, size_y = 0;
     createString(&aksi);
 
     // Looping data ke - n
@@ -156,12 +157,12 @@ ListMakanan READMAKANAN()
                 id += ((int)cc) - 48;
             }
             // Get name
-            if (counter % 5 == 1)
+            if (counter % 7 == 1)
             {
                 nama_makanan = appendCCtoStr(nama_makanan, cc);
             }
             // Get expiry time
-            if (counter % 5 == 2)
+            if (counter % 7 == 2)
             {
                 if (cc != ' ')
                 {
@@ -188,7 +189,7 @@ ListMakanan READMAKANAN()
             }
 
             // Get delivery time
-            if (counter % 5 == 3)
+            if (counter % 7 == 3)
             {
                 if (cc != ' ')
                 {
@@ -215,14 +216,27 @@ ListMakanan READMAKANAN()
             }
 
             // Get Aksi
-            if (counter % 5 == 4)
+            if (counter % 7 == 4)
             {
                 aksi = appendCCtoStr(aksi, cc);
             }
+            
+            // Get size x
+            if (counter % 7 == 5) {
+                size_x *= 10;
+                size_x += ((int)cc) - 48;
+            }
+
+            // Get size y
+            if (counter % 7 == 6) {
+                size_y *= 10;
+                size_y += ((int)cc) - 48;
+            }
+
         }
         else
         {
-            if (counter < 4)
+            if (counter < 6)
             {
                 counter++;
             }
@@ -237,8 +251,12 @@ ListMakanan READMAKANAN()
                 container_makanan.arr[current_makanan].waktu_kedaluwarsa = expired;
                 container_makanan.arr[current_makanan].lokasi_aksi = aksi;
                 container_makanan.arr[current_makanan].lama_pengiriman = delivery;
+                container_makanan.arr[current_makanan].size_x = size_x;
+                container_makanan.arr[current_makanan].size_y = size_y;
                 current_makanan++;
                 id = 0;
+                size_x = 0;
+                size_y = 0;
                 createString(&nama_makanan);
                 createString(&aksi);
                 D_expired = 0;
@@ -258,17 +276,44 @@ ListMakanan READMAKANAN()
     container_makanan.arr[current_makanan].waktu_kedaluwarsa = expired;
     container_makanan.arr[current_makanan].lokasi_aksi = aksi;
     container_makanan.arr[current_makanan].lama_pengiriman = delivery;
+    container_makanan.arr[current_makanan].size_x = size_x;
+    container_makanan.arr[current_makanan].size_y = size_y;
     // MARK
     container_makanan.arr[current_makanan + 1].id = -9999;
     fclose(fp);
     return container_makanan;
 }
+// Helper
+void CreateListDin(ListDin *l, int capacity){
+   l->buffer = (int*) malloc (capacity*sizeof(int));
+   l->nEff = 0;
+   l->capacity = capacity;
+}
+
+void insertLast(ListDin *l, int child_ID){
+   l->buffer[l->nEff] = child_ID;
+   l->nEff++;    
+}
+
+void createResep (Resep * resep) {
+    CreateListDin(&resep->child_ID, 100);
+}
 
 void READRESEP(Matrix *m)
 {
     /* Algoritma */
-    FILE *fp = fopen("peta_test.txt", "r");
+    FILE *fp = fopen("../../test/resep_test.txt", "r");
     char cc = fgetc(fp);
+    int n_resep = 0;
+    while (cc != '\n')
+    {
+        n_resep *= 10;
+        n_resep = ((int)cc) - 48;
+        cc = fgetc(fp);
+    }
+    
+
+    
 
     while (cc != EOF)
     {

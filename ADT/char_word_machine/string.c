@@ -15,7 +15,7 @@ string createStringFromArr(char arr[], int arr_length) {
         new_str = appendCCtoStr(new_str, arr[i]);
     }
         result = new_str;
-        printf("%d\n", result.Length);
+        // printf("%d\n", result.Length);
     return result;
 }
 

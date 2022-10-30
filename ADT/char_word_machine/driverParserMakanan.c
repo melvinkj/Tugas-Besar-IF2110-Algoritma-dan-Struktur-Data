@@ -19,6 +19,10 @@ int main() {
             TulisTIME(ans.arr[i].lama_pengiriman);
             printf("\n");
             printf("Aksi : %s\n", ans.arr[i].lokasi_aksi.content);
+            printf("Ukuran x : %d", ans.arr[i].size_x);
+            printf("\n");
+            printf("Ukuran y : %d", ans.arr[i].size_y);
+            printf("\n");
             printf("\n");
         i++;
     }
