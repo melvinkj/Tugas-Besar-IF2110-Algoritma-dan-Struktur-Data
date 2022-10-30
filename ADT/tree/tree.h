@@ -8,10 +8,11 @@
 #include <stdlib.h>
 #include <math.h>
 #include "boolean.h"
+#include "../sederhana/makanan.h"
 
 
 /* Definisi Tipe Node*/
-typedef char infotype;
+typedef Makanan infotype;
 typedef struct tNode *AddressTree;
 typedef struct tNode {
     infotype infoNode; // nilai node

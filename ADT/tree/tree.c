@@ -5,6 +5,7 @@
 #include <stdlib.h>
 #include <math.h>
 #include "tree.h"
+#include "../sederhana/makanan.h"
 
 /* KONSTRUKTOR */
 AddressTree newNode(infotype x){
