@@ -12,7 +12,7 @@
 
 
 /* Definisi Tipe Node*/
-typedef Makanan infotype;
+typedef int infotype;
 typedef struct tNode *AddressTree;
 typedef struct tNode {
     infotype infoNode; // nilai node
