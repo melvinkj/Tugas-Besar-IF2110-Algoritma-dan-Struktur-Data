@@ -14,7 +14,7 @@
 /* Definisi elemen dan address */
 typedef struct {
     int time;  /* [1..100], waktu dengan nilai 1..100 (1 adalah waktu adalah terendah) */
-    char info;  /* elemen karakter */
+    char info[100];  /* elemen karakter */
 } infotype;
 typedef int address;   /* indeks tabel */
 /* Contoh deklarasi variabel bertype PrioQueue : */
@@ -91,4 +91,6 @@ void Remove (PrioQueue * Q, infotype X);
 /* I.S. Q tidak mungkin kosong */
 /* F.S. Elemen X terhapus dari Queue Q dan Q mungkin kosong */
 
+
+/* */
 #endif
