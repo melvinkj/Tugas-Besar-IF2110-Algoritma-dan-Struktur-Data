@@ -55,13 +55,13 @@ void copyMatrix(Matrix mIn, Matrix *mOut)
     createMatrix(ROW_EFF(mIn), COL_EFF(mIn), mOut);
     *mOut = mIn;
 
-    // for (i =0; i< ROW_EFF(mIn); i++){
-    //     for (j=0; i< COL_EFF(mIn); j++){
-    //         ELMT(*mOut, i, j) = ELMT(mIn, i, j);
-    //     }
-    // }
-    // ROW_EFF(*mOut) = ROW_EFF(mIn);
-    // COL_EFF(*mOut) = COL_EFF(mIn);
+    for (i =0; i< ROW_EFF(mIn); i++){
+        for (j=0; i< COL_EFF(mIn); j++){
+            ELMT(*mOut, i, j) = ELMT(mIn, i, j);
+        }
+    }
+    ROW_EFF(*mOut) = ROW_EFF(mIn);
+    COL_EFF(*mOut) = COL_EFF(mIn);
 }
 
 /* ********** KELOMPOK BACA/TULIS ********** */
@@ -366,8 +366,6 @@ float determinant(Matrix m)
 
 }
 
-
-
 Matrix transpose(Matrix m)
 /* I.S. m terdefinisi dan IsSquare(m) */
 /* F.S. menghasilkan salinan transpose dari m, yaitu setiap elemen m(i,j) ditukar nilainya dengan elemen m(j,i) */
@@ -400,3 +398,4 @@ void pTranspose(Matrix *m)
         }
     }
 }
+

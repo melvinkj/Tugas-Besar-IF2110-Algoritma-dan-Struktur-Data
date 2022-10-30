@@ -7,7 +7,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <math.h>
-#include "boolean.h"
+#include "../sederhana/boolean.h"
 #include "../sederhana/makanan.h"
 
 

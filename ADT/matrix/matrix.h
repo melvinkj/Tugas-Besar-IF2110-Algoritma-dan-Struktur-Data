@@ -4,13 +4,14 @@
 #define MATRIX_H
 
 #include "../sederhana/boolean.h"
+#include "../sederhana/point.h"
 
 /* Ukuran maksimum baris dan kolom */
 #define ROW_CAP 100
 #define COL_CAP 100
 
 typedef int IdxType; /* Index baris, kolom */
-typedef int ElType;
+typedef char ElType;
 typedef struct
 {
    ElType mem[ROW_CAP][COL_CAP];
@@ -130,5 +131,7 @@ Matrix transpose(Matrix m);
 void pTranspose(Matrix *m);
 /* I.S. m terdefinisi dan IsSquare(m) */
 /* F.S. m "di-transpose", yaitu setiap elemen m(i,j) ditukar nilainya dengan elemen m(j,i) */
+
+
 
 #endif

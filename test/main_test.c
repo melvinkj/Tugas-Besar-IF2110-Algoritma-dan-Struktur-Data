@@ -15,16 +15,45 @@ void processCommand(string command) {
 }
 
 /* *** Operasi-operasi *** */
-void move() {
-// Mengupdate posisi S pada peta
+POINT LocateS (Matrix peta) {
+    POINT S;
+    for (int i = 0; i < peta.rowEff; i++) {
+        for (int j = 0; j < peta.colEff; j++) {
+            if (peta.mem[i][j] == 'S'){
+                CreatePoint(&S, i, j);
+                break;
+            }
+        }
+    }
+    return S;
+}
 
+boolean checkAdjacent(char cc, Matrix peta) {
+    // Posisi S
+    POINT S = LocateS(peta);
+    // Adjacent S
+    int start_check_x = (S.X - 1) >= 0 ? S.X-1 : 0;
+    int end_check_x = (S.X + 1) <= peta.rowEff - 1 ? S.X + 1 : S.X;
+    int start_check_y = (S.Y - 1) >= 0 ? S.Y-1 : 0;
+    int end_check_y = (S.Y + 1) <= peta.colEff - 1 ? S.Y + 1 : S.Y;
+
+    // Result
+    boolean found = false;
+    for (int i = start_check_x; i < end_check_x; i++){
+        for (int j = start_check_y; j < end_check_y; j++){
+            if (peta.mem[i][j] == cc) {
+                found = true;
+            }
+        }
+    }
+    return found;
 }
 
 /* *** Main *** */
 int main () {
     // Splash screen ...
     char scanf_bug;
-
+    int dum;
     // START & EXIT option
     // Start Validate
     Word input;
@@ -39,12 +68,12 @@ int main () {
         printf("bool : %d\n", cmpStrType2(checker, invalid));
         printf("Succesfully read: %s\n", checker);
     } else {
-    // Jika hasilnya invalid maka re-looop input
+    // Jika hasilnya invalid maka re-loop input
     while (!valid_command) {
         printf("Please enter a valid command.");
-        scanf("%c", &scanf_bug);
+        // scanf("%d", &scanf_bug);
         scanWord(&input, "\nEnter Command (START/EXIT): ");
-        scanf("%c", &scanf_bug);
+        // scanf("%c", &scanf_bug);
         // printf("\n");
         checker = commandOptions(input);
         // printf("Read : %s\n", checker);
