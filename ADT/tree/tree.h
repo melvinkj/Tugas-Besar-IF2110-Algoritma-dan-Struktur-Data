@@ -12,7 +12,7 @@
 
 
 /* Definisi Tipe Node*/
-typedef Makanan infotype;
+typedef int infotype;
 typedef struct tNode *AddressTree;
 typedef struct tNode {
     infotype infoNode; // nilai node
@@ -60,6 +60,10 @@ int height(tree t);
 boolean searchNode(tree t, infotype x);
 /* Mengirimkan true jika x ada di tree */
 
+void printTree(tree t, int max);
+/* Menampilkan tree */
 
+void printTreeFin(tree t);
+/* Print tree tanpa perlu argumen max */
 
 #endif
