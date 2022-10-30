@@ -2,7 +2,6 @@
 #include <stdlib.h>
 #include <stdio.h>
 
-
 void createString (string * str) {
     str->content = "";
     str->Length = 0;
@@ -40,4 +39,21 @@ string appendCCtoStr(string str, char cc) {
     new_str.Length = str.Length + 1;
     return new_str;
 }
+// Compare direct string
+boolean cmpStrType1(string str1 ,string str2) {
+    return (str1.content == str2.content);
+}
 
+//Compare string of char * type
+boolean cmpStrType2(char * str1, char * str2) {
+    while (*str1 != '\0' || *str2 != '\0'){
+        if (*str1 == *str2) {
+            str1++;
+            str2++;
+        }
+        else if ((*str1 == '\0' && *str2 != '\n') || (*str1 != '\0' && *str2 == '\n') || (*str1 != *str2)) {
+            return false;
+        }
+    }
+    return true;
+}

@@ -4,18 +4,18 @@
 
 /* ********* Prototype ********* */
 /* Mengirim true jika Q kosong: lihat definisi di atas */
-boolean IsEmpty (PrioQueue Q){
+boolean IsPrioQueueEmpty (PrioQueue Q){
     return (Head(Q) == Nil && Tail(Q) == Nil);
 }
 /* Mengirim true jika tabel penampung elemen Q sudah penuh */
 /* yaitu mengandung elemen sebanyak MaxEl */
-boolean IsFull (PrioQueue Q){
+boolean IsPrioQueueFull (PrioQueue Q){
     return (Tail(Q) % MaxEl(Q) == Head(Q) - 1);
 }
 
 /* Mengirimkan banyaknya elemen queue. Mengirimkan 0 jika Q kosong. */
 int NBElmt (PrioQueue Q){
-    if (IsEmpty(Q)){
+    if (IsPrioQueueEmpty(Q)){
         return 0;
     } else if (Head(Q) <= Tail(Q)){
         return (Tail(Q) - Head(Q) + 1);
@@ -56,7 +56,7 @@ void Enqueue (PrioQueue * Q, infotype X){
 /* I.S. Q mungkin kosong, tabel penampung elemen Q TIDAK penuh */
 /* F.S. X disisipkan pada posisi yang tepat sesuai dengan prioritas,
         TAIL "maju" dengan mekanisme circular buffer; */
-    if (IsEmpty(*Q)){
+    if (IsPrioQueueEmpty(*Q)){
         Head(*Q) = 0;
         Tail(*Q) = 0;
         InfoTail(*Q) = X;
@@ -100,7 +100,7 @@ void Dequeue (PrioQueue * Q, infotype * X){
 #
 */
 void PrintPrioQueue (PrioQueue Q){
-    while (!IsEmpty(Q)){
+    while (!IsPrioQueueEmpty(Q)){
         infotype X;
         Dequeue(&Q, &X);
         printf("%d %c\n", Time(X), Info(X));

@@ -36,7 +36,7 @@ void ADV()
 void READPETA(Matrix *m, char *filename)
 {
     /* Algoritma */
-    FILE *fp = fopen(filename, "r");
+    FILE *fp = fopen("../../test/peta_test.txt", "r");
     char cc = fgetc(fp);
     int char_to_int = 0;
     int looper = 0;
@@ -115,7 +115,7 @@ void READPETA(Matrix *m, char *filename)
 ListMakanan READMAKANAN()
 {
     /* Algoritma */
-    FILE *fp = fopen("makanan_test.txt", "r");
+    FILE *fp = fopen("../../test/makanan_test.txt", "r");
     char cc = fgetc(fp);
     int n_makanan = 0;
     // Get N
@@ -272,6 +272,13 @@ void READRESEP(Matrix *m)
 
     while (cc != EOF)
     {
+        
+
+
+
+
+
+
     }
     fclose(fp);
 }

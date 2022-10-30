@@ -4,27 +4,16 @@
 #ifndef __MESIN_KAR_H_
 #define __MESIN_KAR_H_
 
-#include "boolean.h"
+#include "../sederhana/boolean.h"
 #include "../sederhana/makanan.h"
 #include "string.h"
 #include "../sederhana/waktu.h"
+#include "../matrix/matrix.h"
 
 #define MARK '\n'
 /* State Mesin */
 extern char currentChar;
 extern boolean EOP;
-
-/* Dummy Typedef Matrix */
-/* Ukuran maksimum baris dan kolom */
-#define ROW_CAP 100
-#define COL_CAP 100
-typedef char ElType;
-typedef struct
-{
-   ElType mem[ROW_CAP][COL_CAP];
-   int rowEff; /* banyaknya/ukuran baris yg terdefinisi */
-   int colEff; /* banyaknya/ukuran kolom yg terdefinisi */
-} Matrix;
 
 void START();
 /* Mesin siap dioperasikan. Pita disiapkan untuk dibaca.

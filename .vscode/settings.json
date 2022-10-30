@@ -5,6 +5,9 @@
         "prioqueue.h": "c",
         "makanan.h": "c",
         "waktu.h": "c",
-        "charmachine.h": "c"
+        "charmachine.h": "c",
+        "string.h": "c",
+        "wordmachine.h": "c",
+        "boolean.h": "c"
     }
 }
