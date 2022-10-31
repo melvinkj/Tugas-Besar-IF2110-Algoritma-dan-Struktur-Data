@@ -98,7 +98,7 @@ void mix(Simulator *s, ListStatikResep resep, ListMakanan listmakanan){
                 printf("%d. %s", i+1, NAMA_MAKANAN(mi).content);
             }
         }
-        // jika dapat dibuat, iterasi tiap childhood untuk dikurangkan di inventory
+        // jika dapat dibuat, iterasi tiap childnode untuk dikurangkan di inventory
         else{
             int x;
             int i = 0;
@@ -107,7 +107,7 @@ void mix(Simulator *s, ListStatikResep resep, ListMakanan listmakanan){
                 x = INFO(p);
                 while (i < Tail(Inventory(*s))){
                     if (ID_MAKANAN(Elmt(Inventory(*s),i)) == x){
-                        
+
                     }
 
                     i++;
