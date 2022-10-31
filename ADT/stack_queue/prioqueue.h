@@ -90,4 +90,17 @@ void Remove (PrioQueue * Q, infotype X);
 /* I.S. Q tidak mungkin kosong */
 /* F.S. Elemen X terhapus dari Queue Q dan Q mungkin kosong */
 /* */
+
+/* Operasi Tambahan */
+void PrintInventory (PrioQueue Q);
+/* Mencetak isi queue Q ke layar */
+/* I.S. Q terdefinisi, mungkin kosong */
+/* F.S. Q tercetak ke layar dengan format:
+    List Makanan di Inventory
+    (nama - waktu sisa kedaluwarsa)
+    Ayam Goreng - 2 menit
+    Ayam Goreng - 5 menit
+    Cabai - 3 menit
+    Bawang - 1 menit
+*/
 #endif

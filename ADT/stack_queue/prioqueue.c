@@ -132,3 +132,26 @@ void Remove (PrioQueue * Q, infotype X){
 /* Tail maju dengan mekanisme circular buffer */
 /* I.S. Q tidak mungkin kosong */
 /* F.S. Elemen X terhapus dari Queue Q dan Q mungkin kosong */
+
+/* Operasi Tambahan */
+/* Mencetak isi queue Q ke layar */
+/* I.S. Q terdefinisi, mungkin kosong */
+/* F.S. Q tercetak ke layar dengan format:
+    List Makanan di Inventory
+    (nama - waktu sisa kedaluwarsa)
+    Ayam Goreng - 2 menit
+    Ayam Goreng - 5 menit
+    Cabai - 3 menit
+    Bawang - 1 menit
+*/
+void PrintInventory (PrioQueue Q){
+    int i=1;
+    while (!IsPrioQueueEmpty(Q)){
+        infotype X;
+        Dequeue(&Q, &X);
+        printf("%d. %s - ", i, Info(X));
+        TulisTIME(Time(X));
+        printf("\n");
+    }
+}
+
