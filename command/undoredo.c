@@ -39,6 +39,6 @@ Simulator redo(){
     Simulator X;
     Pop(&RedoStack, &X);
     addUndo(X);
-    return InfoTop(RedoStack);
+    return InfoTop(UndoStack);
 }
     
