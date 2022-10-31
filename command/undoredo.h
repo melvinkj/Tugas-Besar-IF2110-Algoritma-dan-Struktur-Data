@@ -15,12 +15,12 @@ void CreateEmptyUndoRedo();
 
 /* *** Operasi UndoRedo *** */
 
-void addUndo(infotype S);
+void addUndo(Simulator S);
 /* Menambahkan state ke UndoStack */
 /* I.S. undo bisa kosong dan S terdefinisi */
 /* F.S. undo bertambah satu elemen */
 
-void addRedo(infotype S);
+void addRedo(Simulator S);
 /* Menambahkan state ke RedoStack */
 /* I.S. redo bisa kosong */
 /* F.S. redo bertambah satu elemen */

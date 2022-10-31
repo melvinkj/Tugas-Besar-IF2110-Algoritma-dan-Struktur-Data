@@ -8,11 +8,11 @@ void CreateEmptyUndoRedo(){
     CreateEmpty(&RedoStack);
 }
 
-void addUndo(infotype S){
+void addUndo(InfoType S){
     Push(&UndoStack, S);
 }
 
-void addRedo(infotype S){
+void addRedo(InfoType S){
     Push(&RedoStack, S);
 }
 
@@ -29,14 +29,14 @@ boolean isUndoRedoEmpty(){
 }
 
 Simulator undo(){
-    infotype X;
+    InfoType X;
     Pop(&UndoStack, &X);
     addRedo(X);
     return InfoTop(UndoStack);
 }
 
 Simulator redo(){
-    infotype X;
+    InfoType X;
     Pop(&RedoStack, &X);
     addUndo(X);
     return InfoTop(RedoStack);
