@@ -57,7 +57,9 @@ void LowerCase();
 
 void concatWord(Word* new_word, Word word);
 
-void scanWord();
+void scanWord(string * input);
+
+void clearTabWord (Word * word);
 
 void displayWord (Word word);
 
@@ -65,7 +67,7 @@ boolean IsWordSame (Word word_1, Word word_2);
 
 boolean cmpWord(Word word, string commands);
 
-char * commandOptions(Word word);
+char * commandOptions(string input);
 
 string convertWordToStr(Word word);
 

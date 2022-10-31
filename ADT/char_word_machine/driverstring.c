@@ -4,9 +4,9 @@
 // Run Path : gcc string.c driverstring.c -o a
 
 int main() {
-    string str = { .content = "hello worl" , .Length = 9 };
-    char arr[40] = {'h','e','l','l','o','h','e','l','l','o','h','e','l','l','o','h','e','l','l','o'};
-    char cc = 'd';
+    string str = { .content = "hello ther" , .Length = 9 };
+    char arr[40] = {'h','e','l','l','o','h','e','l','l','o'};
+    char cc = 'e';
     str = appendCCtoStr(str, cc);
     string result;
     createString(&result);
@@ -18,7 +18,11 @@ int main() {
     createString(&str_cmp1);
     createString(&str_cmp2);
     str_cmp1.content = "test";
-    str_cmp2.content = "test";
+    str_cmp2.content = "VALID";
+
+    string appendArrToStrVar = appendArrToStr(str, arr, 10);
+
+    printf("word: %s\n", appendArrToStrVar.content);
 
     if (cmpStrType1(str_cmp1, str_cmp2)){
         printf("same\n");

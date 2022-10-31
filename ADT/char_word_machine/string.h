@@ -15,6 +15,8 @@ void createString (string * str);
 /* Convert Array of char to string */
 string createStringFromArr(char arr[], int arr_length);
 
+string appendArrToStr (string str, char arr[], int arr_length);
+
 /* Append char to given string */
 string appendCCtoStr(string str, char cc);
 

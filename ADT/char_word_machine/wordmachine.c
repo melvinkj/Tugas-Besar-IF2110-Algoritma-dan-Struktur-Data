@@ -4,6 +4,7 @@
 #include "wordmachine.h"
 #include "charmachine.h"
 #include <stdio.h>
+#include "../sederhana/boolean.h"
 
 // Init machinechar
 char currentChar;
@@ -24,7 +25,7 @@ void IgnoreBlanks()
 void STARTWORD()
 {
     START();
-    IgnoreBlanks();
+    // IgnoreBlanks();
     if (currentChar == MARK)
     {
         endWord = true;
@@ -83,7 +84,6 @@ void concatWord(Word *new_word, Word word)
         i++;
     }
     new_word->Length += word.Length;
-    // new_word->TabWord[new_word->Length] = cc;
 }
 
 void displayWord(Word word)
@@ -94,23 +94,30 @@ void displayWord(Word word)
     }
 }
 
-void scanWord(Word *command, char * args)
+void scanWord(string * input)
 {
-    Word whitespace;
-    whitespace.TabWord[0] = ' ';
-    whitespace.Length = 1;
-    command->Length = 0;
-    printf(args);
+    string new_str;
+    createString(&new_str);
+
     STARTWORD();
     while (!endWord)
     {
-        int i;
-        concatWord(command, currentWord);
+        for (int i = 0; i < currentWord.Length; i++){
+            new_str = appendCCtoStr(new_str, currentWord.TabWord[i]);
+        }
+        new_str = appendCCtoStr(new_str, ' ');
         ADVWORD();
-        concatWord(command, whitespace);
     }
-    // displayWord(*command);
-    command->Length--; // clear extra space
+    new_str.content[new_str.Length-1] = '\0';
+    new_str.Length--;
+    *input = new_str;
+}
+
+void clearTabWord (Word * word){
+    for (int i = 0; i < word->Length; i++) {
+        word->TabWord[i] = '\0';
+    }
+    word->Length = 0;
 }
 
 boolean IsWordSame(Word word_1, Word word_2)
@@ -157,7 +164,7 @@ boolean cmpWord(Word word, string commands)
     }
 }
 
-char * commandOptions(Word word)
+char * commandOptions(string input)
 {
     char * result;
     // All Available Commands
@@ -173,30 +180,29 @@ char * commandOptions(Word word)
     string mix = { .content = "MIX", .Length = 3 };
     string chop = { .content = "CHOP", .Length = 4 };
     string boil = { .content = "BOIL", .Length = 4 };
-    string wait_x_y = { .content = "WAIT x y", .Length = 8 };
+    // string wait_x_y = { .content = "WAIT x y", .Length = 8 };
     string undo = { .content = "UNDO", .Length = 4 };
     string redo = { .content = "REDO", .Length = 4 };
     string catalog = { .content = "CATALOG", .Length = 7 };
     string cookbook = { .content = "COOKBOOK", .Length = 8 };
 
 
-    if (cmpWord(word, start)) return result = "START";
-    else if (cmpWord(word, exit)) return result = "EXIT";
-    else if (cmpWord(word, buy)) return result = "BUY";
-    else if (cmpWord(word, fry)) return result = "FRY";
-    else if (cmpWord(word, delivery)) return result = "DELIVERY";
-    else if (cmpWord(word, move_north)) return result = "MOVE NORTH";
-    else if (cmpWord(word, move_east)) return result = "MOVE EAST";
-    else if (cmpWord(word, move_west)) return result = "MOVE WEST";
-    else if (cmpWord(word, move_south)) return result = "MOVE SOUTH";
-    else if (cmpWord(word, mix)) return result = "MIX";
-    else if (cmpWord(word, chop)) return result = "CHOP";
-    else if (cmpWord(word, boil)) return result = "BOIL";
-    else if (cmpWord(word, wait_x_y)) return result = "WAIT x y";
-    else if (cmpWord(word, undo)) return result = "UNDO";
-    else if (cmpWord(word, redo)) return result = "REDO";
-    else if (cmpWord(word, catalog)) return result = "CATALOG";
-    else if (cmpWord(word, cookbook)) return result = "COOKBOOK";
+    if (cmpStrType2(input.content, start.content)) return "VALID";
+    else if (cmpStrType2(input.content, exit.content)) return "VALID";
+    else if (cmpStrType2(input.content, buy.content)) return "VALID";
+    else if (cmpStrType2(input.content, fry.content)) return "VALID";
+    else if (cmpStrType2(input.content, delivery.content)) return "VALID";
+    else if (cmpStrType2(input.content, move_north.content)) return "VALID";
+    else if (cmpStrType2(input.content, move_east.content)) return "VALID";
+    else if (cmpStrType2(input.content, move_west.content)) return "VALID";
+    else if (cmpStrType2(input.content, move_south.content)) return "VALID";
+    else if (cmpStrType2(input.content, mix.content)) return "VALID";
+    else if (cmpStrType2(input.content, chop.content)) return "VALID";
+    else if (cmpStrType2(input.content, boil.content)) return "VALID";
+    else if (cmpStrType2(input.content, undo.content)) return "VALID";
+    else if (cmpStrType2(input.content, redo.content)) return "VALID";
+    else if (cmpStrType2(input.content, catalog.content)) return "VALID";
+    else if (cmpStrType2(input.content, cookbook.content)) return "VALID";
     else
     {
         return result = "INVALID";
