@@ -295,11 +295,11 @@ void insertLast(ListDin *l, int child_ID){
    l->nEff++;    
 }
 
-void createResep (Resep * resep) {
-    CreateListDin(&resep->child_ID, 100);
+void createResep (Resep * resep, int cap) {
+    CreateListDin(&resep->child_ID, cap);
 }
 
-void READRESEP(Matrix *m)
+ListResep READRESEP()
 {
     /* Algoritma */
     FILE *fp = fopen("../../test/resep_test.txt", "r");
@@ -308,22 +308,77 @@ void READRESEP(Matrix *m)
     while (cc != '\n')
     {
         n_resep *= 10;
-        n_resep = ((int)cc) - 48;
+        n_resep = ((int) cc) - 48;
         cc = fgetc(fp);
     }
-    
-
-    
-
+    // cc = fgetc(fp);
+    ListResep l_resep;
+    int parent_ID = 0;
+    int child_ID = 0;
+    int space_count = 0;
+    int n_child = 0;
+    int current_index = 0;
+    int last_child_ID = 0;
+    int looper = 1;
+    boolean first = true;
     while (cc != EOF)
     {
+        cc = fgetc(fp);
+        if (cc == ' ') {
+            space_count++;
+        }
+        // Get ID parent
+        if (cc != '\n') {
+            if (space_count == 0){
+                parent_ID *= 10;
+                parent_ID += ((int) cc) - 48;
+            }
+            if (space_count == 1 && cc != ' ') {
+                n_child *= 10;
+                n_child += ((int) cc) - 48;
+                // printf("%d", n_child);
+            }
+            if (space_count > 1){
+                if (space_count == 2 && cc == ' '){
+                    createResep(&l_resep.arr[current_index], n_child);
+                }
+                else {
+                    if (cc != ' ' && ((int) cc) != -1){
+                        child_ID *= 10;
+                        child_ID += ((int) cc) - 48;
+                    } else {
+                        if (((int) cc) != -1){
+                            insertLast(&l_resep.arr[current_index].child_ID, child_ID);
+                            child_ID = 0;
+                        }
+                    }
+                }
 
-
-        
-
-
-
-
+            }
+        }
+        // cc == '\n'
+        else {
+            insertLast(&l_resep.arr[current_index].child_ID, child_ID);
+            child_ID = 0;
+            l_resep.arr[current_index].parent_ID = parent_ID;
+            parent_ID = 0;
+            space_count = 0;
+            current_index++;
+            n_child = 0;
+            looper++;
+        }
+        // cc = fgetc(fp);
     }
+    // last index
+    insertLast(&l_resep.arr[current_index].child_ID, child_ID);
+    child_ID = 0;
+    l_resep.arr[current_index].parent_ID = parent_ID;
+    parent_ID = 0;
+    space_count = 0;
+    current_index++;
+    n_child = 0;
+    l_resep.arr[current_index].parent_ID = -9999;
+    
     fclose(fp);
+    return l_resep;
 }

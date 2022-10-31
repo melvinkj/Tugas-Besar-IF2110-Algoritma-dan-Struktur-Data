@@ -12,6 +12,7 @@
 #include "../tree/tree.h"
 
 #define MARK '\n'
+#define MAX_CAP_RESEP 100
 /* State Mesin */
 extern char currentChar;
 extern boolean EOP;
@@ -27,10 +28,10 @@ typedef struct {
    ListDin child_ID;
 } Resep;
 
-// typedef struct
-// {
-   
-// };
+typedef struct
+{
+   Resep arr[MAX_CAP_RESEP];
+} ListResep;
 
 
 void START();
@@ -58,9 +59,9 @@ void READPETA(Matrix * m);
 
 ListMakanan READMAKANAN();
 
-void READRESEP(Matrix * m);
+ListResep READRESEP();
 
-void createResep (Resep * resep);
+void createResep (Resep * resep, int cap);
 
 void CreateListDin(ListDin *l, int capacity);
 

@@ -1,0 +1,1 @@
+gcc charmachine.c string.c ../sederhana/makanan.c ../sederhana/waktu.c driverParserResep.c -o a
