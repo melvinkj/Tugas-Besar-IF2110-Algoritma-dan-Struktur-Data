@@ -15,7 +15,7 @@
 typedef int infotype;
 typedef struct tNode *AddressTree;
 typedef struct tNode {
-    infotype infoNode; // nilai node
+    int infoNode; // nilai node
     AddressTree nextNode; // next node dalam 1 root
     AddressTree childNode; // node child
 } Node;
@@ -59,6 +59,9 @@ int height(tree t);
 
 boolean searchNode(tree t, infotype x);
 /* Mengirimkan true jika x ada di tree */
+
+AddressTree addrSearch(tree t, int x);
+/* Mengirimkan address node x di tree jika ada */
 
 void printTree(tree t, int max);
 /* Menampilkan tree */
