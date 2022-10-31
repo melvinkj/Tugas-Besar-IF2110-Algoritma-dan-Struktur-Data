@@ -7,7 +7,7 @@
 // Run Path : gcc charmachine.c string.c ../sederhana/makanan.c ../sederhana/waktu.c driverParserMakanan.c -o a
 
 int main() {
-    ListMakanan ans = READMAKANAN();
+    ListMakanan ans = READMAKANAN("../../test/makanan_test.txt");
     int i = 0;
     while (ans.arr[i].id != -9999) {
             printf("id : %d\n", ans.arr[i].id);

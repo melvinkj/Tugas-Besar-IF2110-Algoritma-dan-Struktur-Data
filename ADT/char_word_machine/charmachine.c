@@ -33,10 +33,10 @@ void ADV()
 }
 
 // Parser Peta
-void READPETA(Matrix *m)
+void READPETA(Matrix *m, char * filename)
 {
     /* Algoritma */
-    FILE *fp = fopen("../../test/peta_test.txt", "r");
+    FILE *fp = fopen(filename, "r");
     char cc = fgetc(fp);
     int char_to_int = 0;
     int looper = 0;
@@ -45,6 +45,7 @@ void READPETA(Matrix *m)
     if (fp == NULL)
     {
         printf("Filename not found!");
+        exit(0);
     }
     else
     {
@@ -112,10 +113,15 @@ void READPETA(Matrix *m)
 }
 
 // Parser Makanan
-ListMakanan READMAKANAN()
+ListMakanan READMAKANAN(char * filename)
 {
     /* Algoritma */
-    FILE *fp = fopen("../../test/makanan_test.txt", "r");
+    FILE *fp = fopen(filename, "r");
+    if (fp == NULL)
+    {
+        printf("Filename not found!");
+        exit(0);
+    } else {
     char cc = fgetc(fp);
     int n_makanan = 0;
     // Get N
@@ -282,6 +288,7 @@ ListMakanan READMAKANAN()
     container_makanan.arr[current_makanan + 1].id = -9999;
     fclose(fp);
     return container_makanan;
+    }
 }
 // Helper
 void CreateListDin(ListDin *l, int capacity){
@@ -299,10 +306,15 @@ void createResep (Resep * resep, int cap) {
     CreateListDin(&resep->child_ID, cap);
 }
 
-ListResep READRESEP()
+ListResep READRESEP(char * filename)
 {
     /* Algoritma */
-    FILE *fp = fopen("../../test/resep_test.txt", "r");
+    FILE *fp = fopen(filename, "r");
+    if (fp == NULL)
+    {
+        printf("Filename not found!");
+        exit(0);
+    } else {
     char cc = fgetc(fp);
     int n_resep = 0;
     while (cc != '\n')
@@ -381,4 +393,5 @@ ListResep READRESEP()
     
     fclose(fp);
     return l_resep;
+    }
 }

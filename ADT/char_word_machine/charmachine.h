@@ -49,7 +49,7 @@ void ADV();
           currentChar mungkin = MARK
           Jika  currentChar = MARK maka EOP akan menyala (true) */
 
-void READPETA(Matrix * m);
+void READPETA(Matrix *m, char * filename);
 /* Membaca file dan dimasukkan ke dalam matrix.
    I.S. : Matrix sembarang.
    F.S. : Matrix terisi dengan elemen efektif sebanyak rowEff dan colEff.
@@ -57,9 +57,9 @@ void READPETA(Matrix * m);
           Akses matrix dari elemen baris 1 kolom 1 hingga baris ke rowEff + 1 kolom colEff + 1*/
 
 
-ListMakanan READMAKANAN();
+ListMakanan READMAKANAN(char * filename);
 
-ListResep READRESEP();
+ListResep READRESEP(char * filename);
 
 void createResep (Resep * resep, int cap);
 

@@ -4,7 +4,7 @@
 
 int main () {
     ListResep l_resep;
-    l_resep = READRESEP();
+    l_resep = READRESEP("../../test/resep_test.txt");
     int i = 0;
     while (l_resep.arr[i].parent_ID != -9999) {
         printf("Parent ID: %d", l_resep.arr[i].parent_ID);
