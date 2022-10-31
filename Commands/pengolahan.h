@@ -20,13 +20,13 @@ void use(Simulator *s, int ID);
 void mix(Simulator *s, ListStatikResep resep, ListMakanan listmakanan);
 /* Mencampurkan beberapa bahan menjadi makanan baru */
 
-void chop(Simulator *s, ListStatikResep resep);
+void chop(Simulator *s, ListStatikResep resep, ListMakanan listmakanan);
 /* Memotong satu bahan makanan menjadi makanan baru */
 
-void fry(Simulator *s, ListStatikResep resep);
+void fry(Simulator *s, ListStatikResep resep, ListMakanan listmakanan);
 /* Menggoreng satu atau lebih makanan menjadi makanan baru */
 
-void boil(Simulator *s, ListStatikResep resep);
+void boil(Simulator *s, ListStatikResep resep, ListMakanan listmakanan);
 /* Merebus satu bahan makanan */
 
 
