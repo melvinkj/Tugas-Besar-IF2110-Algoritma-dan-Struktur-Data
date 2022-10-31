@@ -21,6 +21,31 @@ boolean inInventory(PrioQueue q, int ID){
     return found;
 }
 
+void use(Simulator *s, int ID){
+/* Mengurangkan makanan yang digunakan */
+    // iterasi inventory sampai mendapatkan bahan makanan
+    int i = Head(Inventory(*s));
+    boolean found = false;
+
+    while (i < Tail(Inventory(*s)) && !found){
+        if (ID_MAKANAN(Elmt(Inventory(*s),i)) == ID){ // jika makanan sudah ketemu
+            if (NBElmt(Inventory(*s)) == 1){
+                Head(Inventory(*s)) = Nil;
+                Tail(Inventory(*s)) = Nil;
+            }
+            else{
+                int j;
+                for(j = i; j < Tail(Inventory(*s)); j++){
+                    Elmt(Inventory(*s),j) = Elmt(Inventory(*s),j+1);
+                }
+                Tail(Inventory(*s))--;
+            }
+            found = true;
+        }
+        i++;
+    }
+}
+
 void mix(Simulator *s, ListStatikResep resep, ListMakanan listmakanan){
 /* Mencampurkan beberapa bahan menjadi makanan baru */
     // Mengecek bahan makanan yang dapat dimix
@@ -58,61 +83,59 @@ void mix(Simulator *s, ListStatikResep resep, ListMakanan listmakanan){
         int pil;
         printf("Enter command: ");
         scanf("%d", &pil);
-        while (pil <= 0 || pil > NEFF(pilihan)){
+        while (pil < 0 || pil > NEFF(pilihan)){
             printf("Enter command: ");
         scanf("%d", &pil);
         }
 
-        // cek apakah bahan ada di inventory atau tidak
-        IDsearch = ELMT(pilihan,pil-1);
-        m = SearchById(IDsearch, listmakanan); // makanan
+        if (pil != 0){
+            // cek apakah bahan ada di inventory atau tidak
+            IDsearch = ELMT(pilihan,pil-1);
+            m = SearchById(IDsearch, listmakanan); // makanan
 
-        // cari tree ID makanan di list resep
-        boolean found = false;
-        int i = 0;
-        addr = NULL;
-        while (!found && i < listLengthResep(resep)){
-            addr = addrSearch(ELMTR(resep,i),IDsearch);
-            if (addr == NULL){
-                i++;
-            }
-        }
-        // addr berisi address makanan yang ingin dibuat
-
-        
-        ListDin kosong; // list bahan yang tidak ada
-
-        // iterasi semua bahan child makanan dan list makanan yang tidak ada
-        p = CHILDNODE(addr);
-        while (p != NULL){
-            if (!inInventory(Inventory(*s),INFO(p))){
-                insertLast(&kosong, INFO(p));
-            }
-        }
-
-        // print makanan yang tidak dapat dibuat
-        if (!isEmpty(kosong)){
-            printf("Gagal membuat %s karena kamu tidak memiliki bahan berikut:\n", NAMA_MAKANAN(m).content);
-            for(i = 0; i < NEFF(kosong); i++){
-                mi = SearchById(ELMT(kosong,i), listmakanan);
-                printf("%d. %s", i+1, NAMA_MAKANAN(mi).content);
-            }
-        }
-        // jika dapat dibuat, iterasi tiap childnode untuk dikurangkan di inventory
-        else{
-            int x;
+            // cari tree ID makanan di list resep
+            boolean found = false;
             int i = 0;
-            p = CHILDNODE(addr);
-            while (p != NULL){
-                x = INFO(p);
-                while (i < Tail(Inventory(*s))){
-                    if (ID_MAKANAN(Elmt(Inventory(*s),i)) == x){
-
-                    }
-
+            addr = NULL;
+            while (!found && i < listLengthResep(resep)){
+                addr = addrSearch(ELMTR(resep,i),IDsearch);
+                if (addr == NULL){
                     i++;
                 }
-                p = NEXT(p);
+            }
+            // addr berisi address makanan yang ingin dibuat
+
+        
+            ListDin kosong; // list bahan yang tidak ada
+
+            // iterasi semua bahan child makanan dan list makanan yang tidak ada
+            p = CHILDNODE(addr);
+            while (p != NULL){
+                if (!inInventory(Inventory(*s),INFO(p))){
+                    insertLast(&kosong, INFO(p));
+                }
+            }
+
+            // print makanan yang tidak dapat dibuat
+            if (!isEmpty(kosong)){
+                printf("Gagal membuat %s karena kamu tidak memiliki bahan berikut:\n", NAMA_MAKANAN(m).content);
+                for(i = 0; i < NEFF(kosong); i++){
+                    mi = SearchById(ELMT(kosong,i), listmakanan);
+                    printf("%d. %s", i+1, NAMA_MAKANAN(mi).content);
+                }
+            }
+            // jika dapat dibuat, iterasi tiap childnode untuk dikurangkan di inventory
+            else{
+                int x;
+                int i = 0;
+                p = CHILDNODE(addr);
+                while (p != NULL){
+                    x = INFO(p); // ID makanan yang akan dikurangkan
+                    use(s,x);
+                    p = NEXT(p);
+                }
+
+                printf("%s selesai dibuat dan sudah masuk ke inventory!", NAMA_MAKANAN(m).content);
             }
         }
     }

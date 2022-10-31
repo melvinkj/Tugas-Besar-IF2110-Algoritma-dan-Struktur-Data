@@ -14,6 +14,9 @@
 boolean inInventory(PrioQueue q, int ID);
 /* Mencari apakah ID makanan berada di inventory atau tidak */
 
+void use(Simulator *s, int ID);
+/* Mengurangkan makanan yang digunakan */
+
 void mix(Simulator *s, ListStatikResep resep, ListMakanan listmakanan);
 /* Mencampurkan beberapa bahan menjadi makanan baru */
 
