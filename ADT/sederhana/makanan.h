@@ -42,12 +42,18 @@ typedef struct
 #define WAKTU_KEDALUWARSA(x) (x).waktu_kedaluwarsa
 #define LOKASI_AKSI(x) (x).lokasi_aksi
 #define LAMA_PENGIRIMAN(x) (x).lama_pengiriman
-#define LAMA_PEMROSESAN(x) (x).lama_pemrosesan
+#define SIZE_X(x) (x).size_x;
+#define SIZE_Y(y) (x).size_y;
+
 
 /* KONSTRUKTOR */
-Makanan CreateMakanan(int id, string nama, TIME kedaluwarsa, string lokasi, TIME pengiriman, TIME pemrosesan);
+Makanan CreateMakanan(int id, string nama, TIME kedaluwarsa, string lokasi, TIME pengiriman, int size_x, int size_y);
 /* Membentuk makanan dari komponen-komponennya */
 
+void CreateListMakanan(ListMakanan *l);
 
+int listLength(ListMakanan l);
+
+Makanan SearchById(int id, ListMakanan makanan);
 
 #endif

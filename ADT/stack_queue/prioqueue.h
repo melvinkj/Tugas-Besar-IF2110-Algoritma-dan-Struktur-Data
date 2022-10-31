@@ -7,15 +7,14 @@
 #define prioqueue_H
 
 #include "../sederhana/boolean.h"
+#include "../sederhana/makanan.h"
+#include "../sederhana/waktu.h"
 
 #define Nil -1
 /* Konstanta untuk mendefinisikan address tak terdefinisi */
 
 /* Definisi elemen dan address */
-typedef struct {
-    int time;  /* [1..100], waktu dengan nilai 1..100 (1 adalah waktu adalah terendah) */
-    char info[100];  /* elemen karakter */
-} infotype;
+typedef Makanan infotype; /* type infotype sesuai pada makanan */
 typedef int address;   /* indeks tabel */
 /* Contoh deklarasi variabel bertype PrioQueue : */
 /* Versi I : tabel dinamik, Head dan Tail eksplisit, ukuran disimpan */
@@ -30,8 +29,8 @@ typedef struct {
 
 /* ********* AKSES (Selektor) ********* */
 /* Jika e adalah infotype dan Q adalah PrioQueue, maka akses elemen : */
-#define Time(e)     (e).time
-#define Info(e)     (e).info
+#define Time(e)     (e).waktu_kedaluwarsa
+#define Info(e)     (e).nama.content
 #define Head(Q)     (Q).HEAD
 #define Tail(Q)     (Q).TAIL
 #define InfoHead(Q) (Q).T[(Q).HEAD]
@@ -90,7 +89,5 @@ void Remove (PrioQueue * Q, infotype X);
 /* Proses: Menghapus X pada Q dengan aturan priority queue, terurut membesar berdasarkan time */
 /* I.S. Q tidak mungkin kosong */
 /* F.S. Elemen X terhapus dari Queue Q dan Q mungkin kosong */
-
-
 /* */
 #endif

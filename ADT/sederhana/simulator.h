@@ -2,6 +2,7 @@
 #include "../list_statik/liststatik.h"
 #include "point.h"
 #include "waktu.h"
+#include "../matrix/matrix.h"
 
 typedef struct{
     char * content; /* container character */
@@ -14,7 +15,7 @@ typedef struct simulator {
     TIME waktu;
     PrioQueue inventory;
     PrioQueue delivery;
-    ListStatik kulkas;
+    Matrix kulkas;
 
 } Simulator;
 
@@ -25,5 +26,5 @@ typedef struct simulator {
 #define Delivery(s) (s).delivery
 #define Kulkas(s) (s).kulkas
 
-Simulator CreateSimulator(string nama, POINT posisi, TIME waktu, PrioQueue inventory, PrioQueue delivery, ListStatik kulkas);
+void CreateSimulator(Simulator s, Matrix peta);
 /* Membentuk Simulator dari komponen-komponennya */
