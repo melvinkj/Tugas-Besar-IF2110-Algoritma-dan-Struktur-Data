@@ -134,6 +134,17 @@ void Remove (PrioQueue * Q, infotype X){
 /* F.S. Elemen X terhapus dari Queue Q dan Q mungkin kosong */
 
 /* Operasi Tambahan */
+void PrintInventory (PrioQueue Q){
+    int i=1;
+    while (!IsPrioQueueEmpty(Q)){
+        infotype X;
+        Dequeue(&Q, &X);
+        printf("%d. %s - ", i, Info(X));
+        i++;
+        TulisTIME(Time(X));
+        printf("\n");
+    }
+}
 /* Mencetak isi queue Q ke layar */
 /* I.S. Q terdefinisi, mungkin kosong */
 /* F.S. Q tercetak ke layar dengan format:
@@ -144,14 +155,26 @@ void Remove (PrioQueue * Q, infotype X){
     Cabai - 3 menit
     Bawang - 1 menit
 */
-void PrintInventory (PrioQueue Q){
+
+void PrintDelivery(PrioQueue Q){
     int i=1;
     while (!IsPrioQueueEmpty(Q)){
         infotype X;
         Dequeue(&Q, &X);
         printf("%d. %s - ", i, Info(X));
-        TulisTIME(Time(X));
+        i++;
+        TulisTIME(Time_Delivery(X));
         printf("\n");
     }
 }
+/* Mencetak isi queue Q ke layar */
+/* I.S. Q terdefinisi, mungkin kosong */
+/* F.S. Q tercetak ke layar dengan format:
+    List Makanan di Delivery
+    (nama - waktu sisa delivery)
+    Ayam Goreng - 2 menit
+    Ayam Goreng - 5 menit
+    Cabai - 3 menit
+    Bawang - 1 menit
+*/
 

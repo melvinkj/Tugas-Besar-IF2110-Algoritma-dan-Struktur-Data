@@ -29,15 +29,16 @@ typedef struct {
 
 /* ********* AKSES (Selektor) ********* */
 /* Jika e adalah infotype dan Q adalah PrioQueue, maka akses elemen : */
-#define Time(e)     (e).waktu_kedaluwarsa
-#define Info(e)     (e).nama.content
-#define Head(Q)     (Q).HEAD
-#define Tail(Q)     (Q).TAIL
-#define InfoHead(Q) (Q).T[(Q).HEAD]
-#define InfoTail(Q) (Q).T[(Q).TAIL]
-#define MaxEl(Q)    (Q).MaxEl
-#define Elmt(Q,i)   (Q).T[(i)]
-
+#define Time(e)             (e).waktu_kedaluwarsa
+#define Time_Delivery(e)    (e).lama_pengiriman
+#define Info(e)             (e).nama.content
+#define Head(Q)             (Q).HEAD
+#define Tail(Q)             (Q).TAIL
+#define InfoHead(Q)         (Q).T[(Q).HEAD]
+#define InfoTail(Q)         (Q).T[(Q).TAIL]
+#define MaxEl(Q)            (Q).MaxEl
+#define Elmt(Q,i)           (Q).T[(i)]
+        
 /* ********* Prototype ********* */
 boolean IsPrioQueueEmpty (PrioQueue Q);
 /* Mengirim true jika Q kosong: lihat definisi di atas */
@@ -98,6 +99,18 @@ void PrintInventory (PrioQueue Q);
 /* F.S. Q tercetak ke layar dengan format:
     List Makanan di Inventory
     (nama - waktu sisa kedaluwarsa)
+    Ayam Goreng - 2 menit
+    Ayam Goreng - 5 menit
+    Cabai - 3 menit
+    Bawang - 1 menit
+*/
+
+void PrintDelivery(PrioQueue Q);
+/* Mencetak isi queue Q ke layar */
+/* I.S. Q terdefinisi, mungkin kosong */
+/* F.S. Q tercetak ke layar dengan format:
+    List Makanan di Delivery
+    (nama - waktu sisa delivery)
     Ayam Goreng - 2 menit
     Ayam Goreng - 5 menit
     Cabai - 3 menit

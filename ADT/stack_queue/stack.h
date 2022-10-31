@@ -6,12 +6,13 @@
 #define stackt_H
 
 #include "../sederhana/boolean.h"
+#include "../sederhana/simulator.h"
 
 #define Nil -1
 #define MaxEl 100
 /* Nil adalah stack dengan elemen kosong . */
 
-typedef int infotype;
+typedef Simulator infotype;
 typedef int address;   /* indeks tabel */
 
 /* Contoh deklarasi variabel bertype stack dengan ciri TOP : */
