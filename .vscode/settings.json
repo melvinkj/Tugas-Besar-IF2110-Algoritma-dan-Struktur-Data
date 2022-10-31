@@ -8,6 +8,7 @@
         "charmachine.h": "c",
         "string.h": "c",
         "wordmachine.h": "c",
-        "boolean.h": "c"
+        "boolean.h": "c",
+        "inventory_delivery.h": "c"
     }
 }

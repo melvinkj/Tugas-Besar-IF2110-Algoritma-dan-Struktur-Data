@@ -133,6 +133,61 @@ boolean searchNode(tree t, infotype x){
     return found;
 }
 
+AddressTree addrSearch(tree t, int x){
+/* Mengirimkan address node x di tree jika ada */
+    boolean found = false;
+    AddressTree addr;
+
+    if ((CHILDNODE(t) == NIL) && NEXTNODE(t) == NIL && !found){ // tidak punya child dan tidak punya next
+        if (ROOT(t) == x){
+            addr = t;
+            found = true;
+            return addr;
+        }
+    }
+    else if ((NEXTNODE(t) == NIL) && !found){ // punya child, tidak punya next
+        if (ROOT(t) == x){
+            addr = t;
+            found = true;
+        }
+        if (!found){
+            return addrSearch(CHILDNODE(t),x);
+        }
+        else{
+            return addr;
+        }
+    }
+    else if (CHILDNODE(t) == NIL){ // tidak punya child, punya next
+        if (ROOT(t) == x){
+            addr = t;
+            found = true;
+        }
+        if (!found){
+            return addrSearch(NEXTNODE(t),x);
+        }
+        else{
+            return addr;
+        }
+    }
+    else{ // punya child, punya next
+        if (ROOT(t) == x){
+            addr = t;
+            found = true;
+        }
+        if(!found){
+            if (addrSearch(CHILDNODE(t),x) == NULL){
+                return addrSearch(NEXTNODE(t),x);
+            }
+            else{
+                return addrSearch(CHILDNODE(t),x);
+            }
+        }
+        else{
+            return addr;
+        }
+    }
+}
+
 void printTree(tree t, int max){
 /* Menampilkan tree */
 /* Mengutamakan print child terlebih dahulu lalu next */

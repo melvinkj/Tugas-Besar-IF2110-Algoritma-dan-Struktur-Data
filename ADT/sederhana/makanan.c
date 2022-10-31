@@ -43,7 +43,7 @@ Makanan SearchById(int id, ListMakanan l){
     boolean found = false;
     while(i < listLength(l) && found == false){
         if(l.arr[i].id == id){
-            found == true;
+            found = true;
         } else {
             i++;
         }     
