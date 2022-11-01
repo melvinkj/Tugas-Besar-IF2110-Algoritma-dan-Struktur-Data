@@ -28,7 +28,7 @@ void CreateListMakanan(ListMakanan *l){
     }
 }
 
-int listLength(ListMakanan l){
+int listMakananLength(ListMakanan l){
     int i = 0;
     int panjang = 0;
     while (l.arr[i].id != -9999 && panjang < MAX_LISTMAKANAN_CAP){
@@ -41,7 +41,7 @@ int listLength(ListMakanan l){
 Makanan SearchById(int id, ListMakanan l){
     int i = 0;
     boolean found = false;
-    while(i < listLength(l) && found == false){
+    while(i < listMakananLength(l) && found == false){
         if(l.arr[i].id == id){
             found = true;
         } else {

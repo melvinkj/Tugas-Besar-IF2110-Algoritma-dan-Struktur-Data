@@ -3,11 +3,8 @@
 #include "point.h"
 #include "waktu.h"
 #include "../matrix/matrix.h"
+#include "../char_word_machine/string.h"
 
-typedef struct{
-    char * content; /* container character */
-    int Length;
-} string;
 
 typedef struct simulator {
     string nama;
