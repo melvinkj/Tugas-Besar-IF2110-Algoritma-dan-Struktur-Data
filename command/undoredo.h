@@ -50,6 +50,9 @@ void redo(Simulator *S);
 /* I.S. RedoStack tidak kosong */
 /* F.S. RedoStack berkurang satu elemen, UndoStack bertambah satu elemen */
 
+void printstackundo();
+/* Menampilkan stack undo */
+
 void notification();
 /* Menampilkan notifikasi perbandingan state sebelum dan sesudah */
 /* I.S. Semua stack terdefinisi */

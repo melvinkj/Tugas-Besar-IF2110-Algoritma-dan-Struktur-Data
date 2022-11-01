@@ -116,4 +116,10 @@ void PrintDelivery(PrioQueue Q);
     Cabai - 3 menit
     Bawang - 1 menit
 */
+
+void copyPrioQueue(PrioQueue Q1, PrioQueue *Q2);
+/* I.S. Q1 terdefinisi, mungkin kosong */
+/* F.S. Q2 terdefinisi, mungkin kosong */
+/* Proses: Mengcopy isi Q1 ke Q2 */
+
 #endif

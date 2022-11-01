@@ -57,4 +57,8 @@ int main(){
     PrintPrioQueue(inventory);
     kurang_waktu_inv(&inventory);
     PrintPrioQueue(inventory);
+    kurang_waktu_inv(&inventory);
+    PrintPrioQueue(inventory);
+    kurang_waktu_inv(&inventory);
+    PrintPrioQueue(inventory);
 }

@@ -23,5 +23,25 @@ typedef struct simulator {
 #define Delivery(s) (s).delivery
 #define Kulkas(s) (s).kulkas
 
+/* *** konstruktor *** */
 void CreateSimulator(Simulator s, Matrix peta);
 /* Membentuk Simulator dari komponen-komponennya */
+/* I.S. peta terdefinisi */
+/* F.S. Simulator terbentuk */
+
+void createSimulator(Simulator *s);
+/* Membentuk Simulator kosong */
+/* I.S. sembarang */
+/* F.S. Simulator terbentuk */
+
+/* *** dealokasi *** */
+void dealokasiSimulator(Simulator *s);
+/* Mendealokasi Simulator */
+/* I.S. s terdefinisi */
+/* F.S. s terdealokasi */
+
+/* *** Operasi Lain *** */
+void copySimulator(Simulator *s1, Simulator s2);
+/* Menyalin Simulator s2 ke s1 */
+/* I.S. s1 sembarang, s2 terdefinisi */
+/* F.S. s1 terdefinisi */

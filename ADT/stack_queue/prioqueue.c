@@ -113,18 +113,20 @@ void PrintPrioQueue (PrioQueue Q){
 
 void Remove (PrioQueue * Q, infotype X){
     int i = Head(*Q);
-    while (i != Tail(*Q) && !(Info(Elmt(*Q, i)) == Info(X) && TEQ(Time(Elmt(*Q, i)),Time(X)))){
-        i = (i + 1)%MaxEl(*Q);
-    }
-    if (Info(Elmt(*Q, i)) == Info(X) && TEQ(Time(Elmt(*Q, i)),Time(X))){
+    if(NBElmt(*Q) == 1 && (Info(Elmt(*Q, i)) == Info(X) && TEQ(Time(Elmt(*Q, i)),Time(X)))){
+        Head(*Q) = Nil;
+        Tail(*Q) = Nil;
+    } else{
         while (i != Tail(*Q)){
-            Elmt(*Q, i) = Elmt(*Q, (i + 1)%MaxEl(*Q));
-            i = (i + 1)%MaxEl(*Q);
-        }
-        if (Tail(*Q)==0){
-            Tail(*Q) = MaxEl(*Q)-1;
-        } else{
-            Tail(*Q)--;
+            if (Info(Elmt(*Q, i)) == Info(X) && TEQ(Time(Elmt(*Q, i)),Time(X))){
+                while (i != Tail(*Q)){
+                    Elmt(*Q, i) = Elmt(*Q, (i + 1) % MaxEl(*Q));
+                    i = (i + 1) % MaxEl(*Q);
+                }
+                Tail(*Q) = (Tail(*Q) - 1) % MaxEl(*Q);
+                break;
+            }
+            i = (i + 1) % MaxEl(*Q);
         }
     }
 }
@@ -177,4 +179,12 @@ void PrintDelivery(PrioQueue Q){
     Cabai - 3 menit
     Bawang - 1 menit
 */
+
+void copyPrioQueue(PrioQueue Q, PrioQueue *Q2){
+    while (!IsPrioQueueEmpty(Q)){
+        infotype X;
+        Dequeue(&Q, &X);
+        Enqueue(Q2, X);
+    }
+}
 

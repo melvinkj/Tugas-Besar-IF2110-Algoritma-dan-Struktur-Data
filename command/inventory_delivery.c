@@ -23,6 +23,8 @@ void kurang_waktu_inv(PrioQueue *inventory){
     }
     /* i = tail*/
     if (Elmt(*inventory, i).waktu_kedaluwarsa.DD == 0 && Elmt(*inventory, i).waktu_kedaluwarsa.HH == 0 && Elmt(*inventory, i).waktu_kedaluwarsa.MM == 0){
+        printf("%d. %s kedaluwarsa.. :(\n", j, Elmt(*inventory, i).nama.content);
+        j++;
         Remove(inventory, Elmt(*inventory, i));
     } 
 }

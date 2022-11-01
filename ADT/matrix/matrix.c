@@ -41,6 +41,8 @@ ElType getElmtDiagonal(Matrix m, IdxType i)
 {
     if (isIdxEff(m, i, i)){
         return ELMT(m, i, i);
+    }else{
+        return -1;
     }
 }
 

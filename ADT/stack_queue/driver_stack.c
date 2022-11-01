@@ -4,6 +4,10 @@
 int main(){
     Stack s;
     CreateEmpty(&s);
-    infotype x;
-    Push(&s, 1);
+    int x;
+    x = 1;
+    int *p = &x;
+    *p = *p-1;
+    Pop(&s, &x);
+    printf("%d", x);
 }

@@ -1,4 +1,6 @@
 #include "stack.h"
+#include <stdio.h>
+
 /* *** Konstruktor/Kreator *** */
 void CreateEmpty(Stack *S){
     Top(*S) = Nil;
@@ -20,8 +22,11 @@ boolean IsStackFull(Stack S){
 
 /* ************ Menambahkan sebuah elemen ke Stack ************ */
 void Push(Stack * S, Simulator X){
+    Simulator s;
+    createSimulator(&s);
+    copySimulator(&s, X);
     Top(*S)++;
-    InfoTop(*S) = X;
+    InfoTop(*S) = s;
 }
 /* Menambahkan X sebagai elemen Stack S. */
 /* I.S. S mungkin kosong, tabel penampung elemen stack TIDAK penuh */
@@ -30,8 +35,16 @@ void Push(Stack * S, Simulator X){
 /* ************ Menghapus sebuah elemen Stack ************ */
 void Pop(Stack * S, Simulator* X){
     *X = InfoTop(*S);
+    dealokasiSimulator(&InfoTop(*S));
     Top(*S)--;
 }
 /* Menghapus X dari Stack S. */
 /* I.S. S  tidak mungkin kosong */
 /* F.S. X adalah nilai elemen TOP yang lama, TOP berkurang 1 */
+
+void printstack(Stack S){
+    int i;
+    for(i=Top(S);i>=0;i--){
+        PrintPrioQueue(S.T[i].inventory);
+    }
+}   

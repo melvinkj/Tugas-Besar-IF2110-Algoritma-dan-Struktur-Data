@@ -56,4 +56,7 @@ void Pop(Stack * S, Simulator* X);
 /* I.S. S  tidak mungkin kosong */
 /* F.S. X adalah nilai elemen TOP yang lama, TOP berkurang 1 */
 
+void printstack(Stack S);
+/* I.S. S terdefinisi */
+/* F.S. S tercetak ke layar */
 #endif
