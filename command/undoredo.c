@@ -28,17 +28,4 @@ boolean isUndoRedoEmpty(){
     return isUndoEmpty() && isRedoEmpty();
 }
 
-Simulator undo(){
-    Simulator X;
-    Pop(&UndoStack, &X);
-    addRedo(X);
-    return InfoTop(UndoStack);
-}
-
-Simulator redo(){
-    Simulator X;
-    Pop(&RedoStack, &X);
-    addUndo(X);
-    return InfoTop(UndoStack);
-}
     
