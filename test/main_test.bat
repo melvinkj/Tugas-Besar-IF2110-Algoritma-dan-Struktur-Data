@@ -1,1 +1,1 @@
-gcc ../ADT/char_word_machine/charmachine.c ../ADT/char_word_machine/string.c ../ADT/char_word_machine/wordmachine.c ../ADT/matrix/matrix.c ../ADT/sederhana/makanan.c ../ADT/sederhana/point.c ../ADT/sederhana/waktu.c main_test.c -o a
+gcc ../ADT/char_word_machine/charmachine.c ../ADT/char_word_machine/string.c ../ADT/char_word_machine/wordmachine.c ../ADT/matrix/matrix.c ../ADT/sederhana/makanan.c ../ADT/sederhana/point.c ../ADT/sederhana/waktu.c ../ADT/stack_queue/prioqueue.c main_test.c -o a

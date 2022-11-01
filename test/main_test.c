@@ -330,12 +330,25 @@ int main()
     {
         printf("Starting Program...\n");
         boolean running_state = true;
+        string nama;
+        printf("Nama simulator: ");
+        scanWord(&nama);
+        printf("\n");
+
+        // Init peta
+        Matrix peta;
+        READPETA(&peta, "./peta_test.txt");
         while (running_state)
         {
             // Validate every command
+            printf("%s di posisi: (0,0)\n", nama.content);
+            printf("Waktu : \n");
+            printf("Notifikasi : -\n");
+            displayMatrix(peta);
+            printf("\n");
             do
             {
-                printf("COMMAND : ");
+                printf("Enter COMMAND : ");
                 scanWord(&input);
                 checker.content = commandOptions(input);
                 if (cmpStrType2(checker.content, valid.content))
