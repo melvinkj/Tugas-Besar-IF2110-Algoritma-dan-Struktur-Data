@@ -71,4 +71,6 @@ char * commandOptions(string input);
 
 string convertWordToStr(Word word);
 
+void processWaitCommand(string wait_cmd ,int * extra_h, int * extra_m);
+
 #endif

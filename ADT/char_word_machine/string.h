@@ -24,4 +24,6 @@ boolean cmpStrType1(string str1 ,string str2);
 
 boolean cmpStrType2(char * str1, char * str2);
 
+boolean hasSubstring (string sub, string str);
+
 #endif

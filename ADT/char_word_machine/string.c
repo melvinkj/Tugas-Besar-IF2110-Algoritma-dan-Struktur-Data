@@ -67,3 +67,16 @@ boolean cmpStrType2(char * str1, char * str2) {
     }
     return true;
 }
+
+// Check if substring
+boolean hasSubstring (string sub, string str) {
+    while (*sub.content != 0) {
+        if (*sub.content == *str.content){
+            sub.content++;
+            str.content++;
+        } else if (*sub.content != *str.content) {
+            return false;
+        }
+    }
+    return true;
+}

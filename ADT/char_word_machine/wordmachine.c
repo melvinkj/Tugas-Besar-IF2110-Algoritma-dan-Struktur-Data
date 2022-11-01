@@ -164,6 +164,31 @@ boolean cmpWord(Word word, string commands)
     }
 }
 
+void processWaitCommand(string wait_cmd ,int * extra_h, int * extra_m) {
+    // wait_cmd valid
+    int h = 0, m = 0, process_dum = 0;
+    boolean counted_h = false;
+    while (*wait_cmd.content != '\0') {
+        if (!counted_h && *wait_cmd.content != ' ' && ((int) *wait_cmd.content) >= 48 && ((int) *wait_cmd.content) <= 57) {
+            h *= 10;
+            h += ((int) *wait_cmd.content) - 48;
+            process_dum = 1;
+        }
+        if (*wait_cmd.content == ' ' && process_dum == 1){
+            counted_h = true;
+        }
+        if (counted_h && *wait_cmd.content != ' ' && ((int) *wait_cmd.content) >= 48 && ((int) *wait_cmd.content) <= 57) {
+            m *= 10;
+            m += ((int) *wait_cmd.content) - 48;
+        }
+        *wait_cmd.content++;
+    }
+    *extra_h = h;
+    *extra_m = m;
+}
+
+
+
 char * commandOptions(string input)
 {
     char * result;
@@ -180,11 +205,34 @@ char * commandOptions(string input)
     string mix = { .content = "MIX", .Length = 3 };
     string chop = { .content = "CHOP", .Length = 4 };
     string boil = { .content = "BOIL", .Length = 4 };
-    // string wait_x_y = { .content = "WAIT x y", .Length = 8 };
     string undo = { .content = "UNDO", .Length = 4 };
     string redo = { .content = "REDO", .Length = 4 };
     string catalog = { .content = "CATALOG", .Length = 7 };
     string cookbook = { .content = "COOKBOOK", .Length = 8 };
+    string wait_x_y = { .content = "WAIT", .Length = 4 };
+    // For Wait x y Command
+    if (hasSubstring(wait_x_y, input)) {
+        int h = 0;
+        int m = 0;
+        int i = 4;
+        boolean invalid = false;
+        while (input.content[i] != '\0' && !invalid) {
+            if (input.content[i] != ' ') {
+                if (((int) input.content[i]) < 48 || ((int) input.content[i]) > 57){
+                    invalid = true;
+                }
+            }
+            i++;
+        }
+        
+        if (invalid) {
+            return "INVALID";
+        } else {
+            return "VALID";
+        }
+
+    }
+
 
 
     if (cmpStrType2(input.content, start.content)) return "VALID";

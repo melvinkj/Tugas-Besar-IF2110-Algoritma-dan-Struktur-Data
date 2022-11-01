@@ -207,62 +207,86 @@ void processCommand(string command)
     string redo_cmd = {.content = "REDO", .Length = 4};
     string catalog_cmd = {.content = "CATALOG", .Length = 7};
     string cookbook_cmd = {.content = "COOKBOOK", .Length = 8};
+    string wait_x_y_cmd = {.content = "WAIT", .Length = 4};
 
     // Start Processing
-    if (cmpStrType2(command.content, exit_cmd.content))
+    if (hasSubstring(wait_x_y_cmd, command))
     {
-        printf("Exiting Program....\n");
-        exit(0);
+        int hour;
+        int minute;
+        processWaitCommand(command, &hour, &minute);
+        printf("Extra Hour : %d\n", hour);
+        printf("Extra Minute : %d\n", minute);
     }
-    if (cmpStrType2(command.content, start_cmd.content))
+    else
     {
-        printf("The Program is Running!\n");
-    }
-    if (cmpStrType2(command.content, catalog_cmd.content))
-    {
-        Catalog();
-        printf("\n");
-    }
-    if (cmpStrType2(command.content, cookbook_cmd.content))
-    {
-        CookBook();
-        printf("\n");
-    }
-    if (cmpStrType2(command.content, buy_cmd.content)) {
-        return;
-    }
-    if (cmpStrType2(command.content, fry_cmd.content)) {
-        return;
-    }
-    if (cmpStrType2(command.content, delivery_cmd.content)) {
-        return;
-    }
-    if (cmpStrType2(command.content, move_north_cmd.content)) {
-        return;
-    }
-    if (cmpStrType2(command.content, move_east_cmd.content)) {
-        return;
-    }
-    if (cmpStrType2(command.content, move_west_cmd.content)) {
-        return;
-    }
-    if (cmpStrType2(command.content, move_south_cmd.content)) {
-        return;
-    }
-    if (cmpStrType2(command.content, mix_cmd.content)) {
-        return;
-    }
-    if (cmpStrType2(command.content, chop_cmd.content)) {
-        return;
-    }
-    if (cmpStrType2(command.content, boil_cmd.content)) {
-        return;
-    }
-    if (cmpStrType2(command.content, undo_cmd.content)) {
-        return;
-    }
-    if (cmpStrType2(command.content, redo_cmd.content)) {
-        return;
+        if (cmpStrType2(command.content, exit_cmd.content))
+        {
+            printf("Exiting Program....\n");
+            exit(0);
+        }
+        if (cmpStrType2(command.content, start_cmd.content))
+        {
+            printf("The Program is Running!\n");
+        }
+        if (cmpStrType2(command.content, catalog_cmd.content))
+        {
+            Catalog();
+            printf("\n");
+        }
+        if (cmpStrType2(command.content, cookbook_cmd.content))
+        {
+            CookBook();
+            printf("\n");
+        }
+        if (cmpStrType2(command.content, buy_cmd.content))
+        {
+            return;
+        }
+        if (cmpStrType2(command.content, fry_cmd.content))
+        {
+            return;
+        }
+        if (cmpStrType2(command.content, delivery_cmd.content))
+        {
+            return;
+        }
+        if (cmpStrType2(command.content, move_north_cmd.content))
+        {
+            return;
+        }
+        if (cmpStrType2(command.content, move_east_cmd.content))
+        {
+            return;
+        }
+        if (cmpStrType2(command.content, move_west_cmd.content))
+        {
+            return;
+        }
+        if (cmpStrType2(command.content, move_south_cmd.content))
+        {
+            return;
+        }
+        if (cmpStrType2(command.content, mix_cmd.content))
+        {
+            return;
+        }
+        if (cmpStrType2(command.content, chop_cmd.content))
+        {
+            return;
+        }
+        if (cmpStrType2(command.content, boil_cmd.content))
+        {
+            return;
+        }
+        if (cmpStrType2(command.content, undo_cmd.content))
+        {
+            return;
+        }
+        if (cmpStrType2(command.content, redo_cmd.content))
+        {
+            return;
+        }
     }
 }
 
@@ -284,7 +308,6 @@ int main()
     string input;
     do
     {
-        // printf("Please enter a valid command!\n");
         printf("COMMAND (START/EXIT): ");
         scanWord(&input);
         checker.content = commandOptions(input);
@@ -296,6 +319,10 @@ int main()
                 exit(0);
             }
         }
+        else
+        {
+            printf("Please enter a valid command!\n");
+        }
     } while (cmpStrType2(checker.content, invalid.content));
 
     // Pass validation & not EXIT
@@ -304,7 +331,7 @@ int main()
         printf("Starting Program...\n");
         boolean running_state = true;
         while (running_state)
-        {   
+        {
             // Validate every command
             do
             {
@@ -318,6 +345,10 @@ int main()
                     {
                         exit(0);
                     }
+                }
+                else
+                {
+                    printf("Please enter a valid command!\n");
                 }
             } while (cmpStrType2(checker.content, invalid.content));
             // input valid

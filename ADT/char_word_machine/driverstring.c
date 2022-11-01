@@ -20,15 +20,15 @@ int main() {
     str_cmp1.content = "test";
     str_cmp2.content = "VALID";
 
-    string appendArrToStrVar = appendArrToStr(str, arr, 10);
+    // string appendArrToStrVar = appendArrToStr(str, arr, 10);
 
-    printf("word: %s\n", appendArrToStrVar.content);
+    // printf("word: %s\n", appendArrToStrVar.content);
 
-    if (cmpStrType1(str_cmp1, str_cmp2)){
-        printf("same\n");
-    } else {
-        printf("not same");
-    }
+    // if (cmpStrType1(str_cmp1, str_cmp2)){
+    //     printf("same\n");
+    // } else {
+    //     printf("not same");
+    // }
 
     return 0;
 }
