@@ -52,7 +52,7 @@ Makanan CreateMakanan(int id, string nama, TIME kedaluwarsa, string lokasi, TIME
 
 void CreateListMakanan(ListMakanan *l);
 
-int listLength(ListMakanan l);
+int listMakananLength(ListMakanan l);
 
 Makanan SearchById(int id, ListMakanan makanan);
 
