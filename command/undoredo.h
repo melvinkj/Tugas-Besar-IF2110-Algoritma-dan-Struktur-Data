@@ -40,6 +40,19 @@ boolean isUndoRedoEmpty();
 /* I.S. Semua stack terdefinisi */
 /* F.S. Semua stack tidak berubah */
 
-void undo(Simulator S*);
+void undo(Simulator *S);
+/* Mengembalikan state sebelumnya */
+/* I.S. UndoStack tidak kosong */
+/* F.S. UndoStack berkurang satu elemen, RedoStack bertambah satu elemen */
+
+void redo(Simulator *S);
+/* Mengembalikan state selanjutnya */
+/* I.S. RedoStack tidak kosong */
+/* F.S. RedoStack berkurang satu elemen, UndoStack bertambah satu elemen */
+
+void notification();
+/* Menampilkan notifikasi perbandingan state sebelum dan sesudah */
+/* I.S. Semua stack terdefinisi */
+/* F.S. Semua stack tidak berubah */
 
 #endif
