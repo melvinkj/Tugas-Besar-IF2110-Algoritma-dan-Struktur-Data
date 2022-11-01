@@ -29,6 +29,4 @@ int main(){
     PrintInventory(S.inventory);
     kurang_waktu_inv(&S.inventory);
     PrintInventory(S.inventory);
-
-    
 }

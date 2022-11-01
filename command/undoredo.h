@@ -25,7 +25,6 @@ void addRedo(Simulator S);
 /* I.S. redo bisa kosong */
 /* F.S. redo bertambah satu elemen */
 
-
 boolean isUndoEmpty();
 /* Mengembalikan true jika UndoStack kosong */
 /* I.S. UndoStack terdefinisi */
@@ -41,13 +40,13 @@ boolean isUndoRedoEmpty();
 /* I.S. Semua stack terdefinisi */
 /* F.S. Semua stack tidak berubah */
 
-Simulator undo();
+void undo(Simulator S*);
 /* Mengembalikan state sebelumnya */
 /* I.S. UndoStack tidak kosong */
 /* F.S. State sebelumnya dipanggil */
 /*      State sebelumnya dimasukkan ke RedoStack */
 
-Simulator redo();
+void redo(Simulator S*);
 /* Mengembalikan state selanjutnya */
 /* I.S. RedoStack tidak kosong */
 /* F.S. State selanjutnya dipanggil */
