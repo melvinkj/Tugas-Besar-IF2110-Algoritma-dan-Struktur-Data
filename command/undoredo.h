@@ -53,7 +53,7 @@ void redo(Simulator *S);
 void printstackundo();
 /* Menampilkan stack undo */
 
-void notification();
+void notification(Simulator S);
 /* Menampilkan notifikasi perbandingan state sebelum dan sesudah */
 /* I.S. Semua stack terdefinisi */
 /* F.S. Semua stack tidak berubah */
