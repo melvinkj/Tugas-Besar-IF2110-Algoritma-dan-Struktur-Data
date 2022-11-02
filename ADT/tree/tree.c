@@ -8,7 +8,7 @@
 #include "../sederhana/makanan.h"
 
 /* KONSTRUKTOR */
-AddressTree newNode(infotype x){
+AddressTree newNode(type x){
 /* Mengalokasikan memori untuk node baru */
     AddressTree adr;
 
@@ -31,7 +31,7 @@ void createTree(tree *t){
     *t = NIL;
 }
 
-void insertFirstNode(tree *t, infotype val){
+void insertFirstNode(tree *t, type val){
 /* Tree harus kosong */
 /* Menambahkan node pertama yang baru */
     Node *n = newNode(val);
@@ -44,7 +44,7 @@ void insertFirstNode(tree *t, infotype val){
     *t = n;
 }
 
-void insertChild(tree *t, infotype val){
+void insertChild(tree *t, type val){
 /* Menambahkan node ke child tree */
     Node *n = newNode(val);
 
@@ -113,7 +113,7 @@ int height(tree t){
     return h;
 }
 
-boolean searchNode(tree t, infotype x){
+boolean searchNode(tree t, type x){
 /* Mengirimkan true jika x ada di tree */
     boolean found = false;
 

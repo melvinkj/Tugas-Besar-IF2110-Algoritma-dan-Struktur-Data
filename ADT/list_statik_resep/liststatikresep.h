@@ -6,7 +6,7 @@
 #ifndef LISTSTATIKRESEP_H
 #define LISTSTATIKRESEP_H
 
-#include "boolean.h"
+#include "../sederhana/boolean.h"
 #include "../tree/tree.h"
 
 /*  Kamus Umum */

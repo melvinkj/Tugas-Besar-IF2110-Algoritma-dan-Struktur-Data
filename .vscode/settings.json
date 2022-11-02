@@ -10,6 +10,7 @@
         "wordmachine.h": "c",
         "boolean.h": "c",
         "inventory_delivery.h": "c",
-        "__locale": "c"
+        "__locale": "c",
+        "liststatikresep.h": "c"
     }
 }

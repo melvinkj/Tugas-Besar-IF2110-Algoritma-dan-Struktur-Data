@@ -12,7 +12,7 @@
 
 
 /* Definisi Tipe Node*/
-typedef int infotype;
+typedef int type;
 typedef struct tNode *AddressTree;
 typedef struct tNode {
     int infoNode; // nilai node
@@ -28,7 +28,7 @@ typedef AddressTree tree;
 
 
 /* KONSTRUKTOR */
-AddressTree newNode(infotype x);
+AddressTree newNode(type x);
 /* Mengalokasikan memori untuk node baru */
 
 void deallocateNode(AddressTree adr);
@@ -37,10 +37,10 @@ void deallocateNode(AddressTree adr);
 void createTree(tree *t);
 /* Membuat tree kosong*/
 
-void insertFirstNode(tree *t, infotype val);
+void insertFirstNode(tree *t, type val);
 /* Menambahkan node pertama yang baru */
 
-void insertChild(tree *t, infotype val);
+void insertChild(tree *t, type val);
 /* Menambahkan node ke tree */
 
 
@@ -57,7 +57,7 @@ int nChild(tree t);
 int height(tree t);
 /* Mengirimkan kedalaman tree */
 
-boolean searchNode(tree t, infotype x);
+boolean searchNode(tree t, type x);
 /* Mengirimkan true jika x ada di tree */
 
 AddressTree addrSearch(tree t, int x);

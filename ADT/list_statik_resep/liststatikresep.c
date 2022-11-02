@@ -1,5 +1,5 @@
 #include "liststatikresep.h"
-#include "boolean.h"
+#include "../sederhana/boolean.h"
 #include <stdio.h>
 /* ********** KONSTRUKTOR ********** */
 /* Konstruktor : create List kosong  */
