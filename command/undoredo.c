@@ -57,7 +57,7 @@ void redo(Simulator *S){
     }
 }
 
-void notification(Simulator S){
+void notification(Simulator S, ListStatikResep resep){
  Simulator sekarang,sebelum;
  createSimulator(&sekarang);
  createSimulator(&sebelum);
@@ -66,20 +66,18 @@ void notification(Simulator S){
 
  /* *** Cek Delivery **** */
  if(NBElmt(sekarang.delivery) > NBElmt(sebelum.delivery)){
-
-     /* delivery sekarang lebih besar, setelah melakukan buy */
-     /* cari elemen yang tidak jadi dibeli */
-
-    }else if (NBElmt(sekarang.delivery) < NBElmt(sebelum.delivery)){
-        
-        /* delivery sekarang lebih kecil, waktu habis berpindah ke inventory */
-        /* cari elemen yang tidak jadi dimasukan ke inventory */
-
+    tidakjadibeli(sebelum.delivery,sekarang.delivery);
+    /* delivery sekarang lebih besar, setelah melakukan buy */
+    /* cari elemen yang tidak jadi dibeli */
+}else if (NBElmt(sekarang.delivery) < NBElmt(sebelum.delivery)){
+    kembalikedelivery(sebelum.delivery,sekarang.delivery);
+    /* delivery sekarang lebih kecil, waktu habis berpindah ke inventory */
+    /* cari elemen yang tidak jadi dimasukan ke inventory */
     }
-
 /* cek inventory */
-if(NBElmt(sekarang.inventory) < NBElmt(sebelum.inventory)){
-
+ if(NBElmt(sekarang.inventory) < NBElmt(sebelum.inventory)){
+    tidakjadipengolahan(sebelum.inventory,sekarang.inventory,resep);
+    kembalikeinventory(sebelum.inventory,sekarang.inventory);
     /* inventory sekarang lebih kecil, setelah melakukan pengolahan atau expired */
     /* cari elemen yang tidak jadi diolah atau expired */
     /* *** abstraksi *** */
@@ -87,8 +85,8 @@ if(NBElmt(sekarang.inventory) < NBElmt(sebelum.inventory)){
     /* remove elemen di inventory sebelum yang merupakan child dari elemen inventory sekarang*/
     /* elemen yang tersisa di inventory sebelum adalah elemen yang expired jika tidak ada di elemen inventroy sekarang */
 
-}else if (NBElmt(sekarang.inventory) == NBElmt(sekarang.delivery)){
-
+ }else if (NBElmt(sekarang.inventory) == NBElmt(sekarang.delivery)){
+    tidakjadipengolahan(sebelum.inventory,sekarang.inventory,resep);
     /* inventory sekarang sama dengan delivery sekarang, tidak ada perubahan atau elemen melakukan pengolahan */
     /* cari elemen yang tidak jadi diolah */
     /* *** abstraksi *** */

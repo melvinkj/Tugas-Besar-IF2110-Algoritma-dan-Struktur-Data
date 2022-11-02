@@ -187,4 +187,4 @@ void copyPrioQueue(PrioQueue Q, PrioQueue *Q2){
         Enqueue(Q2, X);
     }
 }
-
+/* Proses: Mengcopy isi queue Q ke Q2 */

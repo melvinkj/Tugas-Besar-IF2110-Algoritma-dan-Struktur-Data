@@ -9,6 +9,7 @@
         "string.h": "c",
         "wordmachine.h": "c",
         "boolean.h": "c",
-        "inventory_delivery.h": "c"
+        "inventory_delivery.h": "c",
+        "__locale": "c"
     }
 }

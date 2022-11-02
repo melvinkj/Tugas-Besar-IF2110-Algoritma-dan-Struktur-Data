@@ -122,4 +122,5 @@ void copyPrioQueue(PrioQueue Q1, PrioQueue *Q2);
 /* F.S. Q2 terdefinisi, mungkin kosong */
 /* Proses: Mengcopy isi Q1 ke Q2 */
 
+
 #endif
