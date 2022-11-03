@@ -32,7 +32,7 @@ void createMatrix(int nRows, int nCols, Matrix *m);
 /* *** Selektor *** */
 #define ROW_EFF(M) (M).rowEff
 #define COL_EFF(M) (M).colEff
-#define ELMT(M, i, j) (M).mem[(i)][(j)]
+#define ELMTX(M, i, j) (M).mem[(i)][(j)]
 
 /* *** Selektor "Dunia Matrix" *** */
 boolean isMatrixIdxValid(int i, int j);
@@ -43,10 +43,7 @@ IdxType getLastIdxRow(Matrix m);
 /* Mengirimkan Index baris terbesar m */
 IdxType getLastIdxCol(Matrix m);
 /* Mengirimkan Index kolom terbesar m */
-boolean isIdxEff(Matrix m, IdxType i, IdxType j);
-/* Mengirimkan true jika i, j adalah Index efektif bagi m */
-ElType getElmtDiagonal(Matrix m, IdxType i);
-/* Mengirimkan elemen m(i,i) */
+
 
 /* ********** Assignment  Matrix ********** */
 void copyMatrix(Matrix mIn, Matrix *mOut);
@@ -84,11 +81,7 @@ Matrix subtractMatrix(Matrix m1, Matrix m2);
 Matrix multiplyMatrix(Matrix m1, Matrix m2);
 /* Prekondisi : Ukuran kolom efektif m1 = ukuran baris efektif m2 */
 /* Mengirim hasil perkalian matriks: salinan m1 * m2 */
-Matrix multiplyByConst(Matrix m, ElType x);
-/* Mengirim hasil perkalian setiap elemen m dengan x */
-void pMultiplyByConst(Matrix *m, ElType k);
-/* I.S. m terdefinisi, k terdefinisi */
-/* F.S. Mengalikan setiap elemen m dengan k */
+
 
 /* ********** KELOMPOK OPERASI RELASIONAL TERHADAP Matrix ********** */
 boolean isMatrixEqual(Matrix m1, Matrix m2);
