@@ -1,5 +1,5 @@
 /* Implementasi listdin*/
-
+#include <stdio.h>
 #include "listdin.h"
 
 /* ********** KONSTRUKTOR ********** */
@@ -193,7 +193,7 @@ void extremeValuesD(ListDin l, ElTypeD *max, ElTypeD *min){
 
 /* ********** OPERASI LAIN ********** */
 void copyList(ListDin lIn, ListDin *lOut){
-   CreateListDin(lOut,CAPACITY(lIn));
+   CreateListDin(lOut,CAPACITYD(lIn));
    NEFF(*lOut)=NEFF(lIn);
    int i;
    for (i=0;i<NEFF(lIn);i++){
