@@ -3,7 +3,7 @@
 #include <stdio.h>
 /* ********** KONSTRUKTOR ********** */
 /* Konstruktor : create List kosong  */
-void CreateListStatik(ListStatikResep *l){
+void CreateListStatikResep(ListStatikResep *l){
     int i;
     for (i = 0; i < CAPACITY ; i++) {
         ELMTR(*l, i) = MARK;
@@ -102,7 +102,7 @@ void printListResep(ListStatikResep l){
 
 /* ********** SEARCHING ********** */
 /* ***  Perhatian : List boleh kosong!! *** */
-int indexOfResep(ListStatikResep l, ElType val){
+int indexOfResep(ListStatikResep l, elType val){
     int index = 0;
     while (ELMTR(l,index) != val && index<listLengthResep(l)){
         index++;
@@ -120,7 +120,7 @@ int indexOfResep(ListStatikResep l, ElType val){
 
 /* ********** MENAMBAH ELEMEN ********** */
 /* *** Menambahkan elemen terakhir *** */
-void insertFirstResep(ListStatikResep *l, ElType val){
+void insertFirstResep(ListStatikResep *l, elType val){
     int i;
     for (i=getLastIdxResep(*l)+1;i>0;i--){
         ELMTR(*l,i)=ELMTR(*l,i-1);
@@ -131,7 +131,7 @@ void insertFirstResep(ListStatikResep *l, ElType val){
 /* I.S. List l boleh kosong, tetapi tidak penuh */
 /* F.S. val adalah elemen pertama l yang baru */
 /* *** Menambahkan elemen pada index tertentu *** */
-void insertAtResep(ListStatikResep *l, ElType val, IdxType idx){
+void insertAtResep(ListStatikResep *l, elType val, IdxType idx){
     int i;
     for (i=getLastIdxResep(*l)+1;i>idx;i--){
         ELMTR(*l,i)=ELMTR(*l,i-1);
@@ -142,7 +142,7 @@ void insertAtResep(ListStatikResep *l, ElType val, IdxType idx){
 /* I.S. List l tidak kosong dan tidak penuh, idx merupakan index yang valid di l */
 /* F.S. val adalah elemen yang disisipkan pada index idx l */
 /* *** Menambahkan elemen terakhir *** */
-void insertLastResep(ListStatikResep *l, ElType val){
+void insertLastResep(ListStatikResep *l, elType val){
     ELMTR(*l,listLengthResep(*l))=val;
 }
 /* Proses: Menambahkan val sebagai elemen terakhir List */
@@ -151,7 +151,7 @@ void insertLastResep(ListStatikResep *l, ElType val){
 
 /* ********** MENGHAPUS ELEMEN ********** */
 /* *** Menghapus elemen pertama *** */
-void deleteFirstResep(ListStatikResep *l, ElType *val){
+void deleteFirstResep(ListStatikResep *l, elType *val){
     *val=ELMTR(*l,0);
     int i;
 
@@ -166,7 +166,7 @@ void deleteFirstResep(ListStatikResep *l, ElType *val){
 /*      Banyaknya elemen List berkurang satu */
 /*      List l mungkin menjadi kosong */
 /* *** Menghapus elemen pada index tertentu *** */
-void deleteAtResep(ListStatikResep *l, ElType *val, IdxType idx){
+void deleteAtResep(ListStatikResep *l, elType *val, IdxType idx){
     *val=ELMTR(*l,idx);
     int i;
 
@@ -181,7 +181,7 @@ void deleteAtResep(ListStatikResep *l, ElType *val, IdxType idx){
 /*      Banyaknya elemen List berkurang satu */
 /*      List l mungkin menjadi kosong */
 /* *** Menghapus elemen terakhir *** */
-void deleteLastResep(ListStatikResep *l, ElType *val){
+void deleteLastResep(ListStatikResep *l, elType *val){
     *val=ELMTR(*l,listLengthResep(*l)-1);
     ELMTR(*l,listLengthResep(*l)-1)=MARK;
 }
