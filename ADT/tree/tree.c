@@ -2,10 +2,7 @@
    Implementasi ADT Tree*/
 
 #include <stdio.h>
-#include <stdlib.h>
-#include <math.h>
 #include "tree.h"
-#include "../sederhana/makanan.h"
 
 /* KONSTRUKTOR */
 AddressTree newNode(type x){

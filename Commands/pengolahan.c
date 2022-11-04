@@ -3,12 +3,6 @@
 // gcc pengolahan.c ../ADT/tree/tree.c ../ADT/sederhana/makanan.c ../ADT/sederhana/simulator.c ../ADT/stack_queue/prioqueue.c ../ADT/list_statik_resep/liststatikresep.c ../ADT/listdin/listdin.c
 
 #include <stdio.h>
-#include "../ADT/tree/tree.h"
-#include "../ADT/sederhana/makanan.h"
-#include "../ADT/sederhana/simulator.h"
-#include "../ADT/stack_queue/prioqueue.h"
-#include "../ADT/list_statik_resep/liststatikresep.h"
-#include "../ADT/listdin/listdin.h"
 #include "pengolahan.h"
 
 boolean inInventory(PrioQueue q, int ID){
