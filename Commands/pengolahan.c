@@ -107,8 +107,8 @@ void mix(Simulator *s, ListStatikResep resep, ListMakanan listmakanan){
             // iterasi semua bahan child makanan dan list makanan yang tidak ada
             p = CHILDNODE(addr);
             while (p != NULL){
-                if (!inInventory(Inventory(*s),INFO(p))){
-                    insertLastD(&kosong, INFO(p));
+                if (!inInventory(Inventory(*s),ROOT(p))){
+                    insertLastD(&kosong, ROOT(p));
                 }
             }
 
@@ -126,9 +126,9 @@ void mix(Simulator *s, ListStatikResep resep, ListMakanan listmakanan){
                 int i = 0;
                 p = CHILDNODE(addr);
                 while (p != NULL){
-                    x = INFO(p); // ID makanan yang akan dikurangkan
+                    x = ROOT(p); // ID makanan yang akan dikurangkan
                     use(s,x);
-                    p = NEXT(p);
+                    p = NEXTNODE(p);
                 }
 
                 printf("%s selesai dibuat dan sudah masuk ke inventory!", NAMA_MAKANAN(m).content);
@@ -203,8 +203,8 @@ void chop(Simulator *s, ListStatikResep resep, ListMakanan listmakanan){
             // iterasi semua bahan child makanan dan list makanan yang tidak ada
             p = CHILDNODE(addr);
             while (p != NULL){
-                if (!inInventory(Inventory(*s),INFO(p))){
-                    insertLastD(&kosong, INFO(p));
+                if (!inInventory(Inventory(*s),ROOT(p))){
+                    insertLastD(&kosong, ROOT(p));
                 }
             }
 
@@ -222,9 +222,9 @@ void chop(Simulator *s, ListStatikResep resep, ListMakanan listmakanan){
                 int i = 0;
                 p = CHILDNODE(addr);
                 while (p != NULL){
-                    x = INFO(p); // ID makanan yang akan dikurangkan
+                    x = ROOT(p); // ID makanan yang akan dikurangkan
                     use(s,x);
-                    p = NEXT(p);
+                    p = NEXTNODE(p);
                 }
 
                 printf("%s selesai dibuat dan sudah masuk ke inventory!", NAMA_MAKANAN(m).content);
@@ -298,8 +298,8 @@ void fry(Simulator *s, ListStatikResep resep, ListMakanan listmakanan){
             // iterasi semua bahan child makanan dan list makanan yang tidak ada
             p = CHILDNODE(addr);
             while (p != NULL){
-                if (!inInventory(Inventory(*s),INFO(p))){
-                    insertLastD(&kosong, INFO(p));
+                if (!inInventory(Inventory(*s),ROOT(p))){
+                    insertLastD(&kosong, ROOT(p));
                 }
             }
 
@@ -317,9 +317,9 @@ void fry(Simulator *s, ListStatikResep resep, ListMakanan listmakanan){
                 int i = 0;
                 p = CHILDNODE(addr);
                 while (p != NULL){
-                    x = INFO(p); // ID makanan yang akan dikurangkan
+                    x = ROOT(p); // ID makanan yang akan dikurangkan
                     use(s,x);
-                    p = NEXT(p);
+                    p = NEXTNODE(p);
                 }
 
                 printf("%s selesai dibuat dan sudah masuk ke inventory!", NAMA_MAKANAN(m).content);
@@ -393,8 +393,8 @@ void boil(Simulator *s, ListStatikResep resep, ListMakanan listmakanan){
             // iterasi semua bahan child makanan dan list makanan yang tidak ada
             p = CHILDNODE(addr);
             while (p != NULL){
-                if (!inInventory(Inventory(*s),INFO(p))){
-                    insertLastD(&kosong, INFO(p));
+                if (!inInventory(Inventory(*s),ROOT(p))){
+                    insertLastD(&kosong, ROOT(p));
                 }
             }
 
@@ -412,9 +412,9 @@ void boil(Simulator *s, ListStatikResep resep, ListMakanan listmakanan){
                 int i = 0;
                 p = CHILDNODE(addr);
                 while (p != NULL){
-                    x = INFO(p); // ID makanan yang akan dikurangkan
+                    x = ROOT(p); // ID makanan yang akan dikurangkan
                     use(s,x);
-                    p = NEXT(p);
+                    p = NEXTNODE(p);
                 }
 
                 printf("%s selesai dibuat dan sudah masuk ke inventory!", NAMA_MAKANAN(m).content);

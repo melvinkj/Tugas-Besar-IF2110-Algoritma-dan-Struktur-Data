@@ -7,6 +7,7 @@
 #ifndef LISTDIN_H
 #define LISTDIN_H
 
+#include <stdlib.h>
 #include "../sederhana/boolean.h"
 
 /*  Kamus Umum */
@@ -126,7 +127,7 @@ IdxType indexOfD(ListDin l, ElTypeD val);
 /* Skema Searching yang digunakan bebas */
 
 /* ********** NILAI EKSTREM ********** */
-void extremeValuesD(ListDin l, ElTypeD *max, ElType *min);
+void extremeValuesD(ListDin l, ElTypeD *max, ElTypeD *min);
 /* I.S. List l tidak kosong */
 /* F.S. max berisi nilai maksimum l;
         min berisi nilai minimum l */
