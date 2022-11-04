@@ -36,7 +36,7 @@ IdxType getFirstIdxD(ListDin l){
 /* Prekondisi : List l tidak kosong */
 /* Mengirimkan indeks elemen l pertama */
 IdxType getLastIdxD(ListDin l){
-   return listLength(l)-1;
+   return listLengthD(l)-1;
 }
 /* Prekondisi : List l tidak kosong */
 /* Mengirimkan indeks elemen l terakhir */
@@ -229,8 +229,8 @@ int countVal(ListDin l, ElTypeD val){
 /* ********** SORTING ********** */
 void sort(ListDin *l, boolean asc){
    int i, j, temp;
-   for (i = 0; i < listLength(*l)-1; i++){
-        for (j = 0; j < listLength(*l)-i-1; j++){
+   for (i = 0; i < listLengthD(*l)-1; i++){
+        for (j = 0; j < listLengthD(*l)-i-1; j++){
             if (asc) {
                 if (ELMT(*l,j) > ELMT(*l,j+1)){
                     temp = ELMT(*l,j);
