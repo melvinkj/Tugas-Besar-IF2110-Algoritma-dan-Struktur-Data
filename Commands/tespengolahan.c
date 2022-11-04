@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include "pengolahan.h"
-// gcc tespengolahan.c pengolahan.c ../ADT/tree/tree.c ../ADT/sederhana/makanan.c ../ADT/sederhana/simulator.c ../ADT/stack_queue/prioqueue.c ../ADT/list_statik_resep/liststatikresep.c ../ADT/listdin/listdin.c
+// gcc tespengolahan.c pengolahan.c ../ADT/tree/tree.c ../ADT/sederhana/makanan.c ../ADT/sederhana/simulator.c ../ADT/stack_queue/prioqueue.c ../ADT/list_statik_resep/liststatikresep.c ../ADT/listdin/listdin.c ../ADT/matrix/matrix.c ../ADT/char_word_machine/string.c ../ADT/sederhana/waktu.c ../ADT/sederhana/point.c
 int main(){
     // buat time t misalnya 1 jam
     TIME t;
@@ -24,8 +24,8 @@ int main(){
     createString(&M);
     createString(&F);
     T.content = "T";
-    M.content = "M";
-    F.content = "F";
+    M.content = "MIX";
+    F.content = "FRY";
 
     // buat makanan, misalnya ayam, sambel, ayam sambel, minyak, ayam goreng
     Makanan m_ayam,m_sambel,m_ayam_sambel,m_minyak,m_ayam_goreng;
@@ -65,5 +65,6 @@ int main(){
     Enqueue(&Inventory(s), m_ayam);
     Enqueue(&Inventory(s), m_sambel);
 
-    chop(&s, lr, lm);
+    mix(&s, lr, lm);
+    
 }
