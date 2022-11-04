@@ -4,17 +4,17 @@
 
 /* ********** KONSTRUKTOR ********** */
 /* Konstruktor : create list kosong  */
-void CreateListDin(ListDin *l, int capacity){
-   BUFFER(*l)=(ElTypeD*) malloc (capacity*sizeof(ElTypeD));
+void CreateListDin(ListDin *l, ElTypeD capacityd){
+   BUFFER(*l)=(ElTypeD*) malloc (capacityd*sizeof(ElTypeD));
    NEFF(*l)=0;
-   CAPACITY(*l)=capacity;
+   CAPACITYD(*l)=capacityd;
 }
 /* I.S. l sembarang, capacity > 0 */
 /* F.S. Terbentuk list dinamis l kosong dengan kapasitas capacity */
 
 void dealocateList(ListDin *l){
    free(BUFFER(*l));
-   CAPACITY(*l)=0;
+   CAPACITYD(*l)=0;
    NEFF(*l)=0;
 }
 /* I.S. l terdefinisi; */
@@ -43,7 +43,7 @@ IdxType getLastIdxD(ListDin l){
 
 /* ********** Test Indeks yang valid ********** */
 boolean isIdxValidD(ListDin l, IdxType i){
-   return (i>=0 && i<CAPACITY(l));
+   return (i>=0 && i<CAPACITYD(l));
 }
 /* Mengirimkan true jika i adalah indeks yang valid utk kapasitas list l */
 /* yaitu antara indeks yang terdefinisi utk container*/
@@ -61,7 +61,7 @@ boolean isEmptyD(ListDin l){
 /* Mengirimkan true jika list l kosong, mengirimkan false jika tidak */
 /* *** Test list penuh *** */
 boolean isFullD(ListDin l){
-   return (NEFF(l)==CAPACITY(l));
+   return (NEFF(l)==CAPACITYD(l));
 }
 /* Mengirimkan true jika list l penuh, mengirimkan false jika tidak */
 
@@ -70,7 +70,7 @@ boolean isFullD(ListDin l){
 void readListD(ListDin *l){
    int N;
    scanf("%d",&N);
-   while (N<0||N>CAPACITY(*l)){
+   while (N<0||N>CAPACITYD(*l)){
       scanf("%d",&N);
    }
    int i;
@@ -113,7 +113,7 @@ void printListD(ListDin l){
 /* *** Aritmatika list : Penjumlahan, pengurangan, perkalian, ... *** */
 ListDin plusMinusListD(ListDin l1, ListDin l2, boolean plus){
    ListDin l;
-   CreateListDin(&l,CAPACITY(l1));
+   CreateListDin(&l,CAPACITYD(l1));
    if (plus){
       int i;
       for (i=0;i<NEFF(l1);i++){
@@ -256,7 +256,7 @@ void sort(ListDin *l, boolean asc){
 
 /* ********** MENAMBAH DAN MENGHAPUS ELEMEN DI AKHIR ********** */
 /* *** Menambahkan elemen terakhir *** */
-void insertLast(ListDin *l, ElTypeD val){
+void insertLastD(ListDin *l, ElTypeD val){
    ELMT(*l,NEFF(*l)) = val;
    NEFF(*l)++;    
 }
@@ -264,7 +264,7 @@ void insertLast(ListDin *l, ElTypeD val){
 /* I.S. List l boleh kosong, tetapi tidak penuh */
 /* F.S. val adalah elemen terakhir l yang baru */
 /* ********** MENGHAPUS ELEMEN ********** */
-void deleteLast(ListDin *l, ElTypeD *val){
+void deleteLastD(ListDin *l, ElTypeD *val){
    *val = ELMT(*l,NEFF(*l)-1);
    NEFF(*l)--;
 }
@@ -277,9 +277,9 @@ void deleteLast(ListDin *l, ElTypeD *val){
 /* ********* MENGUBAH UKURAN ARRAY ********* */
 void expandList(ListDin *l, int num){
     ListDin temp;
-    int newcapacity = CAPACITY(*l) + num ;
+    int newcapacity = CAPACITYD(*l) + num ;
     copyList(*l, &temp) ;
-    CAPACITY(temp) = newcapacity;
+    CAPACITYD(temp) = newcapacity;
     dealocateList(l);
     copyList(temp, l);
 }
@@ -289,9 +289,9 @@ void expandList(ListDin *l, int num){
 
 void shrinkList(ListDin *l, int num){
     ListDin temp;
-    int newcapacity = CAPACITY(*l) - num ;
+    int newcapacity = CAPACITYD(*l) - num ;
     copyList(*l, &temp) ;
-    CAPACITY(temp) = newcapacity;
+    CAPACITYD(temp) = newcapacity;
     dealocateList(l);
     copyList(temp, l);
 }
@@ -303,7 +303,7 @@ void compressList(ListDin *l){
     ListDin temp;
     int newcapacity = NEFF(*l);
     copyList(*l, &temp) ;
-    CAPACITY(temp) = newcapacity;
+    CAPACITYD(temp) = newcapacity;
     dealocateList(l);
     copyList(temp, l);
 }
