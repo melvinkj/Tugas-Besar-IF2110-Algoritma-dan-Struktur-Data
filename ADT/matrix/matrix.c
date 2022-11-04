@@ -59,7 +59,7 @@ void copyMatrix(Matrix mIn, Matrix *mOut)
 
     for (i =0; i< ROW_EFF(mIn); i++){
         for (j=0; i< COL_EFF(mIn); j++){
-            ELMT(*mOut, i, j) = ELMT(mIn, i, j);
+            ELMTX(*mOut, i, j) = ELMT(mIn, i, j);
         }
     }
     ROW_EFF(*mOut) = ROW_EFF(mIn);
@@ -86,7 +86,7 @@ void readMatrix(Matrix *m, int nRow, int nCol)
     for (i = 0; i < nRow; i++){
         for (j=0; j < nCol;j++){
             scanf("%d", &val);
-            ELMT(*m, i, j) = val;
+            ELMTX(*m, i, j) = val;
         }
     }
 }
@@ -153,8 +153,8 @@ void swapRow(Matrix *m, int ridx1, int ridx2)
     int temp;
     for (i = 0; i < COL_EFF(*m); i++){
         temp = ELMT(*m, ridx1, i);
-        ELMT(*m, ridx1, i) = ELMT(*m, ridx2, i);
-        ELMT(*m, ridx2, i) = temp;
+        ELMTX(*m, ridx1, i) = ELMTX(*m, ridx2, i);
+        ELMTX(*m, ridx2, i) = temp;
     }
 }
 
@@ -169,7 +169,7 @@ Matrix transpose(Matrix m)
 
     for (i = 0; i < ROW_EFF(m); i++){
         for (j=0 ; j < COL_EFF(m); j++){
-            ELMT(mNew, i,j ) = ELMT(m, j, i);
+            ELMTX(mNew, i,j ) = ELMTX(m, j, i);
         }
     }
     return mNew;
@@ -186,7 +186,7 @@ void pTranspose(Matrix *m)
     int j;
     for (i = 0; i < ROW_EFF(*m); i++){
         for (j=0 ; j < COL_EFF(*m); j++){
-            ELMT(*m, i,j ) = ELMT(mNew, j, i);
+            ELMTX(*m, i,j ) = ELMTX(mNew, j, i);
         }
     }
 }

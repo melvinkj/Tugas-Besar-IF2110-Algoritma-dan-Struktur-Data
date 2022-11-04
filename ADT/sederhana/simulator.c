@@ -18,7 +18,7 @@ void CreateSimulator(Simulator s, Matrix peta){
     while(i<ROW_EFF(peta) && found == false){
         j = 0;
         while(j<COL_EFF(peta) && found == false){
-            if(ELMT(peta, i, j) =='S'){
+            if(ELMTX(peta, i, j) =='S'){
                 CreatePoint(&Posisi(s), i, j);
                 found = true;
             } 
