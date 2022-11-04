@@ -61,12 +61,12 @@ void mix(Simulator *s, ListStatikResep resep, ListMakanan listmakanan){
         ID = ROOT(ELMTR(resep,i));
         m = SearchById(ID, listmakanan);
         if (cmpStrType2(LOKASI_AKSI(m).content, MIX.content)){
-            insertLast(&pilihan, ID_MAKANAN(m)); // simpan ID makanan di pilihan
+            insertLastD(&pilihan, ID_MAKANAN(m)); // simpan ID makanan di pilihan
         }
     }
 
     // print list kemungkinan makanan
-    if (isEmpty(pilihan)){
+    if (isEmptyD(pilihan)){
         printf("Tidak ada makanan yang bisa dibuat.\n");
     }
     else{
@@ -108,12 +108,12 @@ void mix(Simulator *s, ListStatikResep resep, ListMakanan listmakanan){
             p = CHILDNODE(addr);
             while (p != NULL){
                 if (!inInventory(Inventory(*s),INFO(p))){
-                    insertLast(&kosong, INFO(p));
+                    insertLastD(&kosong, INFO(p));
                 }
             }
 
             // print makanan yang tidak dapat dibuat
-            if (!isEmpty(kosong)){
+            if (!isEmptyD(kosong)){
                 printf("Gagal membuat %s karena kamu tidak memiliki bahan berikut:\n", NAMA_MAKANAN(m).content);
                 for(i = 0; i < NEFF(kosong); i++){
                     mi = SearchById(ELMT(kosong,i), listmakanan);
@@ -157,12 +157,12 @@ void chop(Simulator *s, ListStatikResep resep, ListMakanan listmakanan){
         ID = ROOT(ELMTR(resep,i));
         m = SearchById(ID, listmakanan);
         if (cmpStrType2(LOKASI_AKSI(m).content, CHOP.content)){
-            insertLast(&pilihan, ID_MAKANAN(m)); // simpan ID makanan di pilihan
+            insertLastD(&pilihan, ID_MAKANAN(m)); // simpan ID makanan di pilihan
         }
     }
 
     // print list kemungkinan makanan
-    if (isEmpty(pilihan)){
+    if (isEmptyD(pilihan)){
         printf("Tidak ada makanan yang bisa dibuat.\n");
     }
     else{
@@ -204,12 +204,12 @@ void chop(Simulator *s, ListStatikResep resep, ListMakanan listmakanan){
             p = CHILDNODE(addr);
             while (p != NULL){
                 if (!inInventory(Inventory(*s),INFO(p))){
-                    insertLast(&kosong, INFO(p));
+                    insertLastD(&kosong, INFO(p));
                 }
             }
 
             // print makanan yang tidak dapat dibuat
-            if (!isEmpty(kosong)){
+            if (!isEmptyD(kosong)){
                 printf("Gagal membuat %s karena kamu tidak memiliki bahan berikut:\n", NAMA_MAKANAN(m).content);
                 for(i = 0; i < NEFF(kosong); i++){
                     mi = SearchById(ELMT(kosong,i), listmakanan);
@@ -252,12 +252,12 @@ void fry(Simulator *s, ListStatikResep resep, ListMakanan listmakanan){
         ID = ROOT(ELMTR(resep,i));
         m = SearchById(ID, listmakanan);
         if (cmpStrType2(LOKASI_AKSI(m).content, FRY.content)){
-            insertLast(&pilihan, ID_MAKANAN(m)); // simpan ID makanan di pilihan
+            insertLastD(&pilihan, ID_MAKANAN(m)); // simpan ID makanan di pilihan
         }
     }
 
     // print list kemungkinan makanan
-    if (isEmpty(pilihan)){
+    if (isEmptyD(pilihan)){
         printf("Tidak ada makanan yang bisa dibuat.\n");
     }
     else{
@@ -299,12 +299,12 @@ void fry(Simulator *s, ListStatikResep resep, ListMakanan listmakanan){
             p = CHILDNODE(addr);
             while (p != NULL){
                 if (!inInventory(Inventory(*s),INFO(p))){
-                    insertLast(&kosong, INFO(p));
+                    insertLastD(&kosong, INFO(p));
                 }
             }
 
             // print makanan yang tidak dapat dibuat
-            if (!isEmpty(kosong)){
+            if (!isEmptyD(kosong)){
                 printf("Gagal membuat %s karena kamu tidak memiliki bahan berikut:\n", NAMA_MAKANAN(m).content);
                 for(i = 0; i < NEFF(kosong); i++){
                     mi = SearchById(ELMT(kosong,i), listmakanan);
@@ -347,12 +347,12 @@ void boil(Simulator *s, ListStatikResep resep, ListMakanan listmakanan){
         ID = ROOT(ELMTR(resep,i));
         m = SearchById(ID, listmakanan);
         if (cmpStrType2(LOKASI_AKSI(m).content, BOIL.content)){
-            insertLast(&pilihan, ID_MAKANAN(m)); // simpan ID makanan di pilihan
+            insertLastD(&pilihan, ID_MAKANAN(m)); // simpan ID makanan di pilihan
         }
     }
 
     // print list kemungkinan makanan
-    if (isEmpty(pilihan)){
+    if (isEmptyD(pilihan)){
         printf("Tidak ada makanan yang bisa dibuat.\n");
     }
     else{
@@ -394,12 +394,12 @@ void boil(Simulator *s, ListStatikResep resep, ListMakanan listmakanan){
             p = CHILDNODE(addr);
             while (p != NULL){
                 if (!inInventory(Inventory(*s),INFO(p))){
-                    insertLast(&kosong, INFO(p));
+                    insertLastD(&kosong, INFO(p));
                 }
             }
 
             // print makanan yang tidak dapat dibuat
-            if (!isEmpty(kosong)){
+            if (!isEmptyD(kosong)){
                 printf("Gagal membuat %s karena kamu tidak memiliki bahan berikut:\n", NAMA_MAKANAN(m).content);
                 for(i = 0; i < NEFF(kosong); i++){
                     mi = SearchById(ELMT(kosong,i), listmakanan);
