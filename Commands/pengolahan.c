@@ -7,9 +7,9 @@
 
 boolean inInventory(PrioQueue q, int ID){
 /* Mencari apakah ID makanan berada di inventory atau tidak */
-    int i = HEAD(q);
+    int i = Head(q);
     boolean found = false;
-    while (i < TAIL(q) && !found){
+    while (i < Tail(q) && !found){
         if (ID_MAKANAN(q.T[i]) == ID){
             found = true;
         }
