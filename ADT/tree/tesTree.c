@@ -5,10 +5,10 @@
 int main(){
     tree t;
     createTree(&t);
-    infotype a = 'A';
-    infotype b = 'B';
-    infotype c = 'C';
-    infotype d = 'D';
+    type a = 0;
+    type b = 1;
+    type c = 2;
+    type d = 3;
 
     insertFirstNode(&t, a);
     insertChild(&t, b);
