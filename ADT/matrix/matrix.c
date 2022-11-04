@@ -40,7 +40,7 @@ ElType getElmtDiagonal(Matrix m, IdxType i)
 /* Mengirimkan elemen m(i,i) */
 {
     if (isIdxEff(m, i, i)){
-        return ELMT(m, i, i);
+        return ELMTX(m, i, i);
     }else{
         return -1;
     }
@@ -59,7 +59,7 @@ void copyMatrix(Matrix mIn, Matrix *mOut)
 
     for (i =0; i< ROW_EFF(mIn); i++){
         for (j=0; i< COL_EFF(mIn); j++){
-            ELMTX(*mOut, i, j) = ELMT(mIn, i, j);
+            ELMTX(*mOut, i, j) = ELMTX(mIn, i, j);
         }
     }
     ROW_EFF(*mOut) = ROW_EFF(mIn);
@@ -136,7 +136,7 @@ boolean isSymmetric(Matrix m)
         int j;
         for (i = 0 ; i < ROW_EFF(m) ; i++){
             for (j = 0 ; j < COL_EFF(m) ; j++){
-                if (ELMT(m, i, j) != ELMT(m, j, i)){
+                if (ELMTX(m, i, j) != ELMTX(m, j, i)){
                     return false;
                 }
             }
@@ -152,7 +152,7 @@ void swapRow(Matrix *m, int ridx1, int ridx2)
     int i;
     int temp;
     for (i = 0; i < COL_EFF(*m); i++){
-        temp = ELMT(*m, ridx1, i);
+        temp = ELMTX(*m, ridx1, i);
         ELMTX(*m, ridx1, i) = ELMTX(*m, ridx2, i);
         ELMTX(*m, ridx2, i) = temp;
     }
