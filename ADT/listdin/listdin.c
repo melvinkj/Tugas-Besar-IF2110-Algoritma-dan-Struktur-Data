@@ -1,7 +1,6 @@
 /* Implementasi listdin*/
 
 #include "listdin.h"
-#include "boolean.h"
 #include <stdio.h>
 #include <stdlib.h>
 /*  Kamus Umum */
