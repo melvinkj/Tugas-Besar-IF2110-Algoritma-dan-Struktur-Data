@@ -1,6 +1,8 @@
 #include <stdio.h>
 #include "matrix.h"
 #include <math.h>
+#include "../sederhana/point.h"
+#include "../char_word_machine/string.h"
 
 /* ********** DEFINISI PROTOTIPE PRIMITIF ********** */
 /* *** Konstruktor membentuk Matrix *** */
@@ -12,40 +14,6 @@ void createMatrix(int nRows, int nCols, Matrix *m)
     ROW_EFF(*m) = nRows;
     COL_EFF(*m) = nCols;
 }
-
-/* *** Selektor "Dunia Matrix" *** */
-boolean isMatrixIdxValid(int i, int j)
-/* Mengirimkan true jika i, j adalah index yang valid untuk matriks apa pun */
-{
-    return ( (i >= 0 && i < ROW_CAP) && (j >= 0 && j < COL_CAP));
-}
-
-/* *** Selektor: Untuk sebuah matriks m yang terdefinisi: *** */
-IdxType getLastIdxRow(Matrix m)
-/* Mengirimkan Index baris terbesar m */
-{
-    return ROW_EFF(m)-1;
-}
-IdxType getLastIdxCol(Matrix m)
-/* Mengirimkan Index kolom terbesar m */
-{
-    return COL_EFF(m)-1;
-}
-boolean isIdxEff(Matrix m, IdxType i, IdxType j)
-/* Mengirimkan true jika i, j adalah Index efektif bagi m */
-{
-    return ( (i >= 0 && i < ROW_EFF(m)) && (j >= 0 && j < COL_EFF(m)));
-}
-ElType getElmtDiagonal(Matrix m, IdxType i)
-/* Mengirimkan elemen m(i,i) */
-{
-    if (isIdxEff(m, i, i)){
-        return ELMTX(m, i, i);
-    }else{
-        return -1;
-    }
-}
-
 /* ********** Assignment  Matrix ********** */
 void copyMatrix(Matrix mIn, Matrix *mOut)
 /* Melakukan assignment mOut <- mIn */
@@ -64,31 +32,6 @@ void copyMatrix(Matrix mIn, Matrix *mOut)
     }
     ROW_EFF(*mOut) = ROW_EFF(mIn);
     COL_EFF(*mOut) = COL_EFF(mIn);
-}
-
-/* ********** KELOMPOK BACA/TULIS ********** */
-void readMatrix(Matrix *m, int nRow, int nCol)
-/* I.S. isIdxValid(nRow,nCol) */
-/* F.S. m terdefinisi nilai elemen efektifnya, berukuran nRow x nCol */
-/* Proses: Melakukan CreateMatrix(m,nRow,nCol) dan mengisi nilai efektifnya */
-/* Selanjutnya membaca nilai elemen per baris dan kolom */
-/* Contoh: Jika nRow = 3 dan nCol = 3, maka contoh cara membaca isi matriks :
-1 2 3
-4 5 6
-8 9 10
-*/
-{
-    int i;
-    int j;
-    int val;
-
-    createMatrix(nRow, nCol, m);
-    for (i = 0; i < nRow; i++){
-        for (j=0; j < nCol;j++){
-            scanf("%d", &val);
-            ELMTX(*m, i, j) = val;
-        }
-    }
 }
 
 void displayMatrix(Matrix m)
@@ -117,45 +60,6 @@ int countElmt(Matrix m)
 /* Mengirimkan banyaknya elemen m */
 {
     return (ROW_EFF(m) * COL_EFF(m));
-}
-
-/* ********** KELOMPOK TEST TERHADAP Matrix ********** */
-boolean isSquare(Matrix m)
-/* Mengirimkan true jika m adalah matriks dg ukuran baris dan kolom sama */
-{
-    return (ROW_EFF(m) == COL_EFF(m));
-}
-boolean isSymmetric(Matrix m)
-/* Mengirimkan true jika m adalah matriks simetri : isSquare(m)
-   dan untuk setiap elemen m, m(i,j)=m(j,i) */
-{
-    if (!isSquare(m)){
-        return false;
-    } else {
-        int i;
-        int j;
-        for (i = 0 ; i < ROW_EFF(m) ; i++){
-            for (j = 0 ; j < COL_EFF(m) ; j++){
-                if (ELMTX(m, i, j) != ELMTX(m, j, i)){
-                    return false;
-                }
-            }
-        }
-        return true;
-    }
-}
-
-void swapRow(Matrix *m, int ridx1, int ridx2)
-// I.S. m terdefinisi
-// F.S. m dengan posisi row idx1 dan row idx2 tertukar
-{
-    int i;
-    int temp;
-    for (i = 0; i < COL_EFF(*m); i++){
-        temp = ELMTX(*m, ridx1, i);
-        ELMTX(*m, ridx1, i) = ELMTX(*m, ridx2, i);
-        ELMTX(*m, ridx2, i) = temp;
-    }
 }
 
 Matrix transpose(Matrix m)
@@ -187,6 +91,158 @@ void pTranspose(Matrix *m)
     for (i = 0; i < ROW_EFF(*m); i++){
         for (j=0 ; j < COL_EFF(*m); j++){
             ELMTX(*m, i,j ) = ELMTX(mNew, j, i);
+        }
+    }
+}
+
+/* ********** Operasi MOVE ********** */
+POINT LocateS(Matrix Peta)
+{
+    POINT S;
+    for (int i = 0; i < Peta.rowEff; i++)
+    {
+        for (int j = 0; j < Peta.colEff; j++)
+        {
+            if (Peta.mem[i][j] == 'S')
+            {
+                CreatePoint(&S, j, i);
+                break;
+            }
+        }
+    }
+    return S;
+}
+
+boolean checkAdjacent(char cc, Matrix Peta, POINT S)
+{
+    // Mengecek area 3x3 dengan S sebagai pusat
+    // cc = Karakter yang akan dicek ('T','M','C','F','B')
+    // Adjacent S
+    // Result
+    boolean found = false;
+    for (int i = S.Y - 1; i <= S.Y + 1; i++)
+    {
+        for (int j = S.X - 1; j <= S.X + 1; j++)
+        {
+            if (Peta.mem[i][j] == cc)
+            {
+                found = true;
+            }
+        }
+    }
+    return found;
+}
+
+boolean validateMove(POINT S, Matrix Peta ,boolean West, boolean North, boolean East, boolean South) {
+    // Restriction Place
+    char arr[7] = {'*','X','T','M','C','F','B'};
+    // Set default return
+    boolean valid = true;
+    // get current coordinate
+    int y = S.X, x = S.Y;
+
+    int i = 0;
+    // Check if move west
+    if (West) {
+        while (i < 7 && valid) {
+            if (Peta.mem[x][y - 1] == arr[i]){
+                valid = false;
+            }
+            i++;
+        }    
+    }
+    // Check if move east
+    if (East) {
+        while (i < 7 && valid) {
+            if (Peta.mem[x][y + 1] == arr[i]){
+                valid = false;
+            }
+            i++;
+        }    
+    }
+    // Check if move north
+    if (North) {
+        while (i < 7 && valid) {
+            if (Peta.mem[x - 1][y] == arr[i]){
+                valid = false;
+            }
+            i++;
+        }    
+    }
+    // Check if move south
+    if (South) {
+        while (i < 7 && valid) {
+            if (Peta.mem[x + 1][y] == arr[i]){
+                valid = false;
+            }
+            i++;
+        }    
+    }
+    return valid;
+}
+
+void Move(POINT *S, string direction, Matrix *Peta) {
+    POINT dummyS;
+    // Move commands
+    string move_north_cmd = {.content = "MOVE NORTH", .Length = 10};
+    string move_east_cmd = {.content = "MOVE EAST", .Length = 9};
+    string move_west_cmd = {.content = "MOVE WEST", .Length = 9};
+    string move_south_cmd = {.content = "MOVE SOUTH", .Length = 10};
+
+    // get coordinate
+    int x = S->Y, y = S->X;
+
+    // Process direction
+    if (cmpStrType2(move_north_cmd.content, direction.content)){
+        // Check North
+        if(validateMove(*S, *Peta, false, true, false, false)){
+            Peta->mem[x][y] = ' ';
+            (S->Y)--;
+            x = S->Y;
+            Peta->mem[x][y] = 'S';
+        }
+        else {
+            printf("Tidak bisa Move North (ada obstacle).\n");
+            printf("Posisi S: (%d, %d).\n", S->X, S->Y);
+        }
+    }
+    if (cmpStrType2(move_east_cmd.content, direction.content)){
+        // Check East
+        if(validateMove(*S, *Peta, false, false, true, false)){
+            Peta->mem[x][y] = ' ';
+            (S->X)++;
+            y = S->X;
+            Peta->mem[x][y] = 'S';
+        }
+        else {
+            printf("Tidak bisa Move East (ada obstacle).\n");
+            printf("Posisi S: (%d, %d).\n", S->X, S->Y);
+        }
+    }
+    if (cmpStrType2(move_west_cmd.content, direction.content)){
+        // Check West
+        if(validateMove(*S, *Peta, true, false, false, false)){
+            Peta->mem[x][y] = ' ';
+            (S->X)--;
+            y = S->X;
+            Peta->mem[x][y] = 'S';
+        }
+        else {
+            printf("Tidak bisa Move West (ada obstacle).\n");
+            printf("Posisi S: (%d, %d).\n", S->X, S->Y);
+        }
+    }
+    if (cmpStrType2(move_south_cmd.content, direction.content)){
+        // Check South
+        if(validateMove(*S, *Peta, false, false, false, true)){
+            Peta->mem[x][y] = ' ';
+            (S->Y)++;
+            x = S->Y;
+            Peta->mem[x][y] = 'S';
+        }
+        else {
+            printf("Tidak bisa Move South (ada obstacle).\n");
+            printf("Posisi S: (%d, %d).\n", S->X, S->Y);
         }
     }
 }
