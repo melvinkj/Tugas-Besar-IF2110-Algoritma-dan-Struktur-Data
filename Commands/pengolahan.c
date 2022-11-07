@@ -55,12 +55,13 @@ void mix(Simulator *s, ListStatikResep resep, ListMakanan listmakanan){
     string MIX;
     createString(&MIX);
     MIX.content = "MIX";
-
     // iterasi lokasi aksi tiap resep
     for (int i = 0; i < listLengthResep(resep); i++){
         ID = ROOT(ELMTR(resep,i));
+        printf("%d ", ID);
         m = SearchById(ID, listmakanan);
         if (cmpStrType2(LOKASI_AKSI(m).content, MIX.content)){
+            printf("%d", ID_MAKANAN(m));
             insertLastD(&pilihan, ID_MAKANAN(m)); // simpan ID makanan di pilihan
         }
     }
@@ -72,14 +73,16 @@ void mix(Simulator *s, ListStatikResep resep, ListMakanan listmakanan){
     else{
         printf("List bahan makanan yang bisa dibuat: \n");
         for (int i = 0; i < NEFF(pilihan); i++){
-            printf("%d. %s", i+1, NAMA_MAKANAN(m).content);
+            printf("%d. %d %s\n", i+1, ID_MAKANAN(m), NAMA_MAKANAN(m).content);
         }
-
+        
         // pilih makanan
         int pil;
+        printf("\n");
         printf("Enter command: ");
         scanf("%d", &pil);
         while (pil < 0 || pil > NEFF(pilihan)){
+            printf("\n");
             printf("Enter command: ");
         scanf("%d", &pil);
         }
@@ -117,7 +120,7 @@ void mix(Simulator *s, ListStatikResep resep, ListMakanan listmakanan){
                 printf("Gagal membuat %s karena kamu tidak memiliki bahan berikut:\n", NAMA_MAKANAN(m).content);
                 for(i = 0; i < NEFF(kosong); i++){
                     mi = SearchById(ELMT(kosong,i), listmakanan);
-                    printf("%d. %s", i+1, NAMA_MAKANAN(mi).content);
+                    printf("%d. %s\n", i+1, NAMA_MAKANAN(mi).content);
                 }
             }
             // jika dapat dibuat, iterasi tiap childnode untuk dikurangkan di inventory

@@ -6,7 +6,7 @@
 void CreateListStatikResep(ListStatikResep *l){
     int i;
     for (i = 0; i < CAPACITY ; i++) {
-        ROOT(ELMTR(*l, i)) = MARK;
+        ELMTR(*l, i) = newNode(MARK);
     }
 }
 /* I.S. l sembarang */

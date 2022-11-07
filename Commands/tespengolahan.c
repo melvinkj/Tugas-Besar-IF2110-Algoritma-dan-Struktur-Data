@@ -54,8 +54,8 @@ int main(){
     // buat list resep misalnya masukkan ayam sambel dan ayam goreng
     ListStatikResep lr;
     CreateListStatikResep(&lr);
-    insertLastResep(&lr, ayam_sambel);
-    insertLastResep(&lr, ayam_goreng);
+    insertAtResep(&lr, ayam_sambel, 0);
+    insertAtResep(&lr, ayam_goreng, 1);
 
     // buat simulator
     Simulator s;
@@ -65,6 +65,7 @@ int main(){
     Enqueue(&Inventory(s), m_ayam);
     Enqueue(&Inventory(s), m_sambel);
 
-    mix(&s, lr, lm);
+    fry(&s, lr, lm);
     
+    return 0;
 }
