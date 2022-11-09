@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include "pengolahan.h"
-// gcc tespengolahan.c pengolahan.c ../ADT/tree/tree.c ../ADT/sederhana/makanan.c ../ADT/sederhana/simulator.c ../ADT/stack_queue/prioqueue.c ../ADT/list_statik_resep/liststatikresep.c ../ADT/listdin/listdin.c ../ADT/matrix/matrix.c ../ADT/char_word_machine/string.c ../ADT/sederhana/waktu.c ../ADT/sederhana/point.c
+// gcc tespengolahan.c pengolahan.c ../ADT/tree/tree.c ../ADT/sederhana/makanan.c ../ADT/sederhana/simulator.c ../ADT/stack_queue/prioqueue.c ../ADT/list_statik_resep/liststatikresep.c ../ADT/listdin/listdin.c ../ADT/list_statik/liststatik.c ../ADT/matrix/matrix.c ../ADT/char_word_machine/string.c ../ADT/sederhana/waktu.c ../ADT/sederhana/point.c
 int main(){
     // buat time t misalnya 1 jam
     TIME t;
@@ -54,9 +54,16 @@ int main(){
     // buat list resep misalnya masukkan ayam sambel dan ayam goreng
     ListStatikResep lr;
     CreateListStatikResep(&lr);
-    insertAtResep(&lr, ayam_sambel, 0);
-    insertAtResep(&lr, ayam_goreng, 1);
-
+    insertLastResep(&lr, ayam_sambel);
+    insertLastResep(&lr, ayam_goreng);
+/*
+    int ID;
+    for (int i = 0; i < listLengthResep(lr); i++){
+        ID = ROOT(ELMTR(lr,i));
+        printf("%d\n", ID);
+    }
+    printf("\n");
+*/
     // buat simulator
     Simulator s;
     createSimulator(&s);
@@ -65,7 +72,7 @@ int main(){
     Enqueue(&Inventory(s), m_ayam);
     Enqueue(&Inventory(s), m_sambel);
 
-    fry(&s, lr, lm);
+    mix(&s, lr, lm);
     
     return 0;
 }

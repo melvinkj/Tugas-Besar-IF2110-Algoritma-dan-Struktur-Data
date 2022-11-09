@@ -6,6 +6,9 @@
 #include "../ADT/char_word_machine/wordmachine.h"
 #include "../ADT/matrix/matrix.h"
 #include "../ADT/sederhana/point.h"
+#include "../ADT/stack_queue/stack.h"
+#include "../Commands/pengolahan.h"
+#include "../command/undoredo.h"
 
 /* *** Operasi-operasi *** */
 void Catalog()
@@ -185,6 +188,7 @@ void processCommand(string command, POINT *S, Matrix *Peta)
         }
         if (cmpStrType2(command.content, start_cmd.content))
         {
+            
             printf("The Program is Running!\n");
         }
         if (cmpStrType2(command.content, catalog_cmd.content))
@@ -198,10 +202,6 @@ void processCommand(string command, POINT *S, Matrix *Peta)
             printf("\n");
         }
         if (cmpStrType2(command.content, buy_cmd.content))
-        {
-            return;
-        }
-        if (cmpStrType2(command.content, fry_cmd.content))
         {
             return;
         }
@@ -227,22 +227,40 @@ void processCommand(string command, POINT *S, Matrix *Peta)
         }
         if (cmpStrType2(command.content, mix_cmd.content))
         {
-            return;
+            ListResep l_resep = READRESEP("./resep_test.txt");
+            ListMakanan l_makanan = READMAKANAN("./makanan_test.txt");
+
+            mix(S, l_resep, l_makanan);
         }
         if (cmpStrType2(command.content, chop_cmd.content))
         {
-            return;
+            ListResep l_resep = READRESEP("./resep_test.txt");
+            ListMakanan l_makanan = READMAKANAN("./makanan_test.txt");
+
+            chop(S, l_resep, l_makanan);
+        }
+        if (cmpStrType2(command.content, fry_cmd.content))
+        {
+            ListResep l_resep = READRESEP("./resep_test.txt");
+            ListMakanan l_makanan = READMAKANAN("./makanan_test.txt");
+
+            fry(S, l_resep, l_makanan);
         }
         if (cmpStrType2(command.content, boil_cmd.content))
         {
-            return;
+            ListResep l_resep = READRESEP("./resep_test.txt");
+            ListMakanan l_makanan = READMAKANAN("./makanan_test.txt");
+
+            boil(S, l_resep, l_makanan);
         }
         if (cmpStrType2(command.content, undo_cmd.content))
         {
+            undo(&S);
             return;
         }
         if (cmpStrType2(command.content, redo_cmd.content))
         {
+            redo(&S);
             return;
         }
     }
@@ -254,7 +272,22 @@ int main()
 
     // Splash Screen
     // -------------
-
+    printf("░▄░░░░█▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀█░░░░░░");
+    printf("░█░░░░█░▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄░█░░░░▄░");
+    printf("░█░░░░█░█░░░░░░░░░░░░░░█░█░░░░█░");
+    printf("░█░░░░█░█░░░▀░░░░░░▀░░░█░█░░░░█░");
+    printf("░▀█░░░█░█░░░░▄▄▄▄▄▄░░░░█░█░░░░█░");
+    printf("░░█▄░░█░█░░░░█▄░░▄█░░░░█░█░░▄█▀░");
+    printf("░░░▀█░█░█░░░░░▀▀▀▀░░░░░█░█▄█▀░░░");
+    printf("░░░░░▀█░▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀░█▀░░░░░");
+    printf("░░░░░░█░████████░░░▄░░▀░░█░░░░░░");
+    printf("░░░░░░█░░░▄░░░░░░▄███▄░░░█░░░░░░");
+    printf("░░░░░░█░▄▄█▄▄░░░░░░░░░▄▄░█░░░░░░");
+    printf("░░░░░░█░░░█░░░░░░░░░▄░▀▀░█░░░░░░");
+    printf("░░░░░░█░░░░░░░░░░░▄███▄░░█░░░░░░");
+    printf("░░░░░░█░███░███░░░░▀█▀░░░█░░░░░░");
+    printf("░░░░░░█▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄█░░░░░░");
+    printf("░░░░░░░░░░░░█░░░░░░█░░░░░░░░░░░░");
     // INISIASI
     // Init valid & invalid state
     string invalid = {.content = "INVALID", .Length = 7};
@@ -294,15 +327,23 @@ int main()
         scanWord(&nama);
         printf("\n");
 
+        // Init simulator
+        Simulator S;
+        createSimulator(&S);
+        S.nama = nama;
+
         // Init peta
         Matrix peta;
         READPETA(&peta, "./peta_test.txt");
         POINT S = LocateS(peta);
 
+        // Init stack undo redo
+        CreateEmptyUndoRedo();
+
         while (running_state)
         {
             // Validate every command
-            printf("%s di posisi: (%d,%d)\n", nama.content, S.X, S.Y);
+            printf("%s di posisi: (%d,%d)\n", nama.content, S.posisi.X, S.posisi.Y);
             printf("Waktu : \n");
             printf("Notifikasi : -\n");
             displayMatrix(peta);

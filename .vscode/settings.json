@@ -11,6 +11,7 @@
         "boolean.h": "c",
         "inventory_delivery.h": "c",
         "__locale": "c",
-        "liststatikresep.h": "c"
+        "liststatikresep.h": "c",
+        "liststatik.h": "c"
     }
 }
