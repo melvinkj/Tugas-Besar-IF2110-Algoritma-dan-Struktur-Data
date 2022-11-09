@@ -24,10 +24,6 @@ typedef struct simulator {
 #define Kulkas(s) (s).kulkas
 
 /* *** konstruktor *** */
-void CreateSimulator(Simulator s, Matrix peta);
-/* Membentuk Simulator dari komponen-komponennya */
-/* I.S. peta terdefinisi */
-/* F.S. Simulator terbentuk */
 
 void createSimulator(Simulator *s);
 /* Membentuk Simulator kosong */
