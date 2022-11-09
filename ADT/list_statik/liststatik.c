@@ -84,7 +84,7 @@ void readList(ListStatik *l){
 void printList(ListStatik l){
     int i;
     printf("[");
-	for (i = 0; isIdxEff(l,i) ; i++) {
+	for (i = 0; isIdxEffList(l,i) ; i++) {
 		if (i != 0) {
 			printf(",");
 		}
@@ -159,7 +159,7 @@ void extremeValues(ListStatik l, ElTypeList *max, ElTypeList *min){
     *min = ELMTLIST(l, 0);
     *max = ELMTLIST(l, 0);
     int i;
-    for (i=1;isIdxEff(l,i);i++){
+    for (i=1;isIdxEffList(l,i);i++){
         if (ELMTLIST(l,i) > *max) {
             *max = ELMTLIST(l,i);
         }

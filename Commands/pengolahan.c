@@ -1,6 +1,6 @@
 /* Implementasi pengolahan makanan */
 
-// gcc pengolahan.c ../ADT/tree/tree.c ../ADT/sederhana/makanan.c ../ADT/sederhana/simulator.c ../ADT/stack_queue/prioqueue.c ../ADT/list_statik_resep/liststatikresep.c ../ADT/listdin/listdin.c ../ADT/matrix/matrix.c ../ADT/char_word_machine/string.c ../ADT/sederhana/waktu.c ../ADT/sederhana/point.c
+// gcc pengolahan.c ../ADT/tree/tree.c ../ADT/sederhana/makanan.c ../ADT/sederhana/simulator.c ../ADT/stack_queue/prioqueue.c ../ADT/list_statik_resep/liststatikresep.c ../ADT/listdin/listdin.c ../ADT/list_statik/liststatik.c ../ADT/matrix/matrix.c ../ADT/char_word_machine/string.c ../ADT/sederhana/waktu.c ../ADT/sederhana/point.c
 
 #include <stdio.h>
 #include "pengolahan.h"
@@ -48,9 +48,9 @@ void mix(Simulator *s, ListStatikResep resep, ListMakanan listmakanan){
     int count = 0;
     int ID, IDsearch;
     Makanan m,mi;
-    ListDin pilihan;
+    ListStatik pilihan;
     AddressTree addr,p;
-    CreateListDin(&pilihan, 20);
+    CreateListStatik(&pilihan);
 
     string MIX;
     createString(&MIX);
@@ -58,21 +58,19 @@ void mix(Simulator *s, ListStatikResep resep, ListMakanan listmakanan){
     // iterasi lokasi aksi tiap resep
     for (int i = 0; i < listLengthResep(resep); i++){
         ID = ROOT(ELMTR(resep,i));
-        printf("%d ", ID);
         m = SearchById(ID, listmakanan);
         if (cmpStrType2(LOKASI_AKSI(m).content, MIX.content)){
-            printf("%d", ID_MAKANAN(m));
-            insertLastD(&pilihan, ID_MAKANAN(m)); // simpan ID makanan di pilihan
+            insertLast(&pilihan, ID_MAKANAN(m)); // simpan ID makanan di pilihan
         }
     }
 
     // print list kemungkinan makanan
-    if (isEmptyD(pilihan)){
+    if (isEmpty(pilihan)){
         printf("Tidak ada makanan yang bisa dibuat.\n");
     }
     else{
         printf("List bahan makanan yang bisa dibuat: \n");
-        for (int i = 0; i < NEFF(pilihan); i++){
+        for (int i = 0; i < listLength(pilihan); i++){
             printf("%d. %d %s\n", i+1, ID_MAKANAN(m), NAMA_MAKANAN(m).content);
         }
         
@@ -81,7 +79,7 @@ void mix(Simulator *s, ListStatikResep resep, ListMakanan listmakanan){
         printf("\n");
         printf("Enter command: ");
         scanf("%d", &pil);
-        while (pil < 0 || pil > NEFF(pilihan)){
+        while (pil < 0 || pil > listLength(pilihan)){
             printf("\n");
             printf("Enter command: ");
         scanf("%d", &pil);
@@ -89,7 +87,8 @@ void mix(Simulator *s, ListStatikResep resep, ListMakanan listmakanan){
 
         if (pil != 0){
             // cek apakah bahan ada di inventory atau tidak
-            IDsearch = ELMT(pilihan,pil-1);
+            IDsearch = ELMTLIST(pilihan,pil-1);
+            printf("%d", IDsearch);
             m = SearchById(IDsearch, listmakanan); // makanan
 
             // cari tree ID makanan di list resep
@@ -176,9 +175,11 @@ void chop(Simulator *s, ListStatikResep resep, ListMakanan listmakanan){
 
         // pilih makanan
         int pil;
+        printf("\n");
         printf("Enter command: ");
         scanf("%d", &pil);
         while (pil < 0 || pil > NEFF(pilihan)){
+            printf("\n");
             printf("Enter command: ");
         scanf("%d", &pil);
         }
@@ -271,9 +272,11 @@ void fry(Simulator *s, ListStatikResep resep, ListMakanan listmakanan){
 
         // pilih makanan
         int pil;
+        printf("\n");
         printf("Enter command: ");
         scanf("%d", &pil);
         while (pil < 0 || pil > NEFF(pilihan)){
+            printf("\n");
             printf("Enter command: ");
         scanf("%d", &pil);
         }
@@ -366,9 +369,11 @@ void boil(Simulator *s, ListStatikResep resep, ListMakanan listmakanan){
 
         // pilih makanan
         int pil;
+        printf("\n");
         printf("Enter command: ");
         scanf("%d", &pil);
         while (pil < 0 || pil > NEFF(pilihan)){
+            printf("\n");
             printf("Enter command: ");
         scanf("%d", &pil);
         }
