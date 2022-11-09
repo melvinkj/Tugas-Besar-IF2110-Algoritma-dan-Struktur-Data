@@ -115,21 +115,25 @@ POINT LocateS(Matrix Peta)
 
 boolean checkAdjacent(char cc, Matrix Peta, POINT S)
 {
-    // Mengecek area 3x3 dengan S sebagai pusat
+    // Mengecek area 4 kotak (hanya north,west,east,south) dengan S sebagai pusat
     // cc = Karakter yang akan dicek ('T','M','C','F','B')
     // Adjacent S
     // Result
     boolean found = false;
-    for (int i = S.Y - 1; i <= S.Y + 1; i++)
-    {
-        for (int j = S.X - 1; j <= S.X + 1; j++)
-        {
-            if (Peta.mem[i][j] == cc)
-            {
-                found = true;
-            }
-        }
-    }
+    if (S.Y + 1 == cc) found = true;
+    if (S.Y - 1 == cc) found = true;
+    if (S.X + 1 == cc) found = true;
+    if (S.X - 1 == cc) found = true;
+    // for (int i = S.Y - 1; i <= S.Y + 1; i++)
+    // {
+    //     for (int j = S.X - 1; j <= S.X + 1; j++)
+    //     {
+    //         if (Peta.mem[i][j] == cc)
+    //         {
+    //             found = true;
+    //         }
+    //     }
+    // }
     return found;
 }
 
