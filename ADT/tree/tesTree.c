@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include "tree.h"
+#include "tree.c"
 
 int main(){
     tree t;
@@ -16,6 +16,7 @@ int main(){
     insertChild(&t, a);
     insertChild(&CHILDNODE(t),d);
     insertChild(&CHILDNODE(t),d);
+    printf("%d\n", ROOT(addrSearch(t,4)));
 
     printf("%d\n", height(t));
 
