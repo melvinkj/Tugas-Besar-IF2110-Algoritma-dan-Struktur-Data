@@ -217,7 +217,7 @@ void processCommand(string command, Simulator *S, Matrix *Peta, ListMakanan LM)
         }
         if (cmpStrType2(command.content, buy_cmd.content))
         {
-            buy(&S, LM);
+            buy(S, LM);
             return;
         }
         if (cmpStrType2(command.content, delivery_cmd.content))
@@ -266,12 +266,12 @@ void processCommand(string command, Simulator *S, Matrix *Peta, ListMakanan LM)
         }
         if (cmpStrType2(command.content, undo_cmd.content))
         {
-            undo(&S);
+            undo(S);
             return;
         }
         if (cmpStrType2(command.content, redo_cmd.content))
         {
-            redo(&S);
+            redo(S);
             return;
         }
     }
