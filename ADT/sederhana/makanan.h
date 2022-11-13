@@ -25,7 +25,7 @@ typedef struct makanan {
   TIME waktu_kedaluwarsa; /* waktu kedaluwarsa*/
   string lokasi_aksi;  /* lokasi aksi */
   TIME lama_pengiriman; /* waktu yang diperlukan saat berkurang waktu perishable item */
-  TIME lama_pemrosesan; /* waktu yang diperlukan untuk memproses makanan */
+  // TIME lama_pemrosesan; /* waktu yang diperlukan untuk memproses makanan */
   int size_x;
   int size_y;
 } Makanan;
