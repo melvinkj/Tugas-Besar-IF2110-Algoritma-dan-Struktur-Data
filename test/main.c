@@ -8,6 +8,7 @@
 #include "../ADT/sederhana/point.h"
 #include "../ADT/stack_queue/stack.h"
 #include "../Commands/pengolahan.h"
+#include "../Commands/pemesanan.h"
 #include "../command/undoredo.h"
 
 /* *** Operasi-operasi *** */
@@ -147,7 +148,7 @@ void CookBook()
 }
 
 /* *** Command Reader *** */
-void processCommand(string command, POINT *S, Matrix *Peta)
+void processCommand(string command, POINT *S, Matrix *Peta, ListMakanan LM)
 {
     // Pathway untuk ke fungsi lain
 
@@ -203,6 +204,7 @@ void processCommand(string command, POINT *S, Matrix *Peta)
         }
         if (cmpStrType2(command.content, buy_cmd.content))
         {
+            buy(&S, LM);
             return;
         }
         if (cmpStrType2(command.content, delivery_cmd.content))
@@ -228,30 +230,26 @@ void processCommand(string command, POINT *S, Matrix *Peta)
         if (cmpStrType2(command.content, mix_cmd.content))
         {
             ListResep l_resep = READRESEP("./resep_test.txt");
-            ListMakanan l_makanan = READMAKANAN("./makanan_test.txt");
 
-            mix(S, l_resep, l_makanan);
+            mix(S, l_resep, LM);
         }
         if (cmpStrType2(command.content, chop_cmd.content))
         {
             ListResep l_resep = READRESEP("./resep_test.txt");
-            ListMakanan l_makanan = READMAKANAN("./makanan_test.txt");
 
-            chop(S, l_resep, l_makanan);
+            chop(S, l_resep, LM);
         }
         if (cmpStrType2(command.content, fry_cmd.content))
         {
             ListResep l_resep = READRESEP("./resep_test.txt");
-            ListMakanan l_makanan = READMAKANAN("./makanan_test.txt");
 
-            fry(S, l_resep, l_makanan);
+            fry(S, l_resep, LM);
         }
         if (cmpStrType2(command.content, boil_cmd.content))
         {
             ListResep l_resep = READRESEP("./resep_test.txt");
-            ListMakanan l_makanan = READMAKANAN("./makanan_test.txt");
 
-            boil(S, l_resep, l_makanan);
+            boil(S, l_resep, LM);
         }
         if (cmpStrType2(command.content, undo_cmd.content))
         {
@@ -372,7 +370,7 @@ int main()
             // input valid
             
             // testing new func
-            processCommand(input, &S, &peta);
+            processCommand(input, &S, &peta, LM);
             // displayMatrix(peta);
             
         }
