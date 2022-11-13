@@ -112,7 +112,7 @@ void kembalikedelivery(PrioQueue sebelum, PrioQueue sekarang){
     }
 }
 
-void tidakjadipengolahan(PrioQueue sebelum, PrioQueue sekarang, ListStatikResep resep){
+void tidakjadipengolahan(PrioQueue sebelum, PrioQueue sekarang, ListResep resep){
     /* NBELMT sebelum > NBElmt sekarang */
 
     PrioQueue temp1,temp2;

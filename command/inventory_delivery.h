@@ -2,7 +2,7 @@
 #define INVENTORY_DELIVERY_H
 #include "../ADT/stack_queue/prioqueue.h"
 #include "../ADT/tree/tree.h"
-#include "../ADT/list_statik_resep/liststatikresep.h"
+#include "../ADT/char_word_machine/charmachine.h"
 
 /* *** Operasi Inventory *** */
 void kurang_waktu_inv(PrioQueue *inventory);
@@ -26,7 +26,7 @@ void kembalikedelivery(PrioQueue sebelum, PrioQueue sekarang);
 /* I.S. sebelum dan sesudah terdefinisi */
 /* F.S. makanan yang tidak jadi masuk ke inventory akan ditampilkan */
 
-void tidakjadipengolahan(PrioQueue sebelum, PrioQueue sekarang, ListStatikResep resep);
+void tidakjadipengolahan(PrioQueue sebelum, PrioQueue sekarang, ListResep resep);
 /* Mengeluarkan makanan yang tidak jadi diproses */
 /* I.S. sebelum dan sesudah terdefinisi */
 /* F.S. makanan yang tidak jadi diproses akan ditampilkan */

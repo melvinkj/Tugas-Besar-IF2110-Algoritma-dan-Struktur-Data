@@ -57,7 +57,7 @@ void redo(Simulator *S){
     }
 }
 
-void notification(Simulator S, ListStatikResep resep){
+void notification(Simulator S, ListResep resep){
  Simulator sekarang,sebelum;
  createSimulator(&sekarang);
  createSimulator(&sebelum);
