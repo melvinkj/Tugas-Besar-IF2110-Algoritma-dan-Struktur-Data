@@ -10,6 +10,19 @@
 #include "../Commands/pengolahan.h"
 #include "../Commands/pemesanan.h"
 #include "../command/undoredo.h"
+#include "../ADT/list_statik/liststatik.h"
+#include "../ADT/list_statik_resep/liststatikresep.h"
+#include "../ADT/listdin/listdin.h"
+#include "../ADT/sederhana/makanan.h"
+#include "../ADT/sederhana/simulator.h"
+#include "../ADT/sederhana/waktu.h"
+#include "../ADT/stack_queue/prioqueue.h"
+#include "../ADT/tree/listResepToTree.h"
+#include "../ADT/tree/tree.h"
+#include "../command/inventory_delivery.h"
+#include "../command/undoredo.h"
+#include "../Commands/pemesanan.h"
+#include "../Commands/pengolahan.h"
 
 /* *** Operasi-operasi *** */
 void Catalog()

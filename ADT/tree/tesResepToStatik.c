@@ -8,18 +8,18 @@ int main(){
     l_resep = READRESEP("../../test/resep_test.txt");
 
     int i = 0;
-    while (l_resep.arr[i].parent_ID != -9999) {
-        printf("Parent ID: %d", l_resep.arr[i].parent_ID);
-        printf("\n");
-        printf("Child ID: ");
-        int j;
-        for (j = 0; j < l_resep.arr[i].child_ID.nEff; j++){
-            printf("%d ", l_resep.arr[i].child_ID.buffer[j]);
-        }
-        printf(", total child = %d", j);
-        printf("\n");
-        i++;
-    }
+    // while (l_resep.arr[i].parent_ID != -9999) {
+    //     printf("Parent ID: %d", l_resep.arr[i].parent_ID);
+    //     printf("\n");
+    //     printf("Child ID: ");
+    //     int j;
+    //     for (j = 0; j < l_resep.arr[i].child_ID.nEff; j++){
+    //         printf("%d ", l_resep.arr[i].child_ID.buffer[j]);
+    //     }
+    //     printf(", total child = %d", j);
+    //     printf("\n");
+    //     i++;
+    // }
 
     ListStatikResep lr;
     CreateListStatikResep(&lr);
