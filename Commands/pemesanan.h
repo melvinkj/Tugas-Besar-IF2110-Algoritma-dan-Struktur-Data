@@ -9,4 +9,5 @@
 #include "../ADT/list_statik/liststatik.h"
 
 
-void buy (ListMakanan LM, Simulator *s);
+void buy(ListMakanan LM, Simulator *s);
+/* Membeli makanan dan memasukannya ke dalam delivery queue*/
