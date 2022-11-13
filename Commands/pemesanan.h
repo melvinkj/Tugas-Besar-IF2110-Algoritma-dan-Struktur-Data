@@ -8,6 +8,11 @@
 #include "../ADT/listdin/listdin.h"
 #include "../ADT/list_statik/liststatik.h"
 
+#ifndef PEMESANAN_H
+#define PEMESANAN_H
+
 
 void buy (Simulator *s, ListMakanan LM);
 /* Membeli makanan dan memasukannya ke dalam delivery queue*/
+
+#endif
