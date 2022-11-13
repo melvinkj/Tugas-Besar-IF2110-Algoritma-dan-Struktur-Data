@@ -148,7 +148,7 @@ void CookBook()
 }
 
 /* *** Command Reader *** */
-void processCommand(string command, POINT *S, Matrix *Peta, ListMakanan LM)
+void processCommand(string command, Simulator *S, Matrix *Peta, ListMakanan LM)
 {
     // Pathway untuk ke fungsi lain
 
@@ -213,43 +213,43 @@ void processCommand(string command, POINT *S, Matrix *Peta, ListMakanan LM)
         }
         if (cmpStrType2(command.content, move_north_cmd.content))
         {
-            Move(S, command, Peta);
+            Move(&S->posisi, command, Peta);
         }
         if (cmpStrType2(command.content, move_east_cmd.content))
         {
-            Move(S, command, Peta);
+            Move(&S->posisi, command, Peta);
         }
         if (cmpStrType2(command.content, move_west_cmd.content))
         {
-            Move(S, command, Peta);
+            Move(&S->posisi, command, Peta);
         }
         if (cmpStrType2(command.content, move_south_cmd.content))
         {
-            Move(S, command, Peta);
+            Move(&S->posisi, command, Peta);
         }
         if (cmpStrType2(command.content, mix_cmd.content))
         {
             ListResep l_resep = READRESEP("./resep_test.txt");
 
-            mix(S, l_resep, LM);
+            // mix(S, l_resep, LM);
         }
         if (cmpStrType2(command.content, chop_cmd.content))
         {
             ListResep l_resep = READRESEP("./resep_test.txt");
 
-            chop(S, l_resep, LM);
+            // chop(S, l_resep, LM);
         }
         if (cmpStrType2(command.content, fry_cmd.content))
         {
             ListResep l_resep = READRESEP("./resep_test.txt");
 
-            fry(S, l_resep, LM);
+            // fry(S, l_resep, LM);
         }
         if (cmpStrType2(command.content, boil_cmd.content))
         {
             ListResep l_resep = READRESEP("./resep_test.txt");
 
-            boil(S, l_resep, LM);
+            // boil(S, l_resep, LM);
         }
         if (cmpStrType2(command.content, undo_cmd.content))
         {
@@ -333,7 +333,7 @@ int main()
         // Init peta
         Matrix peta;
         READPETA(&peta, "./peta_test.txt");
-        POINT S = LocateS(peta);
+        S.posisi = LocateS(peta);
 
         // Init stack undo redo
         CreateEmptyUndoRedo();
@@ -368,10 +368,8 @@ int main()
                 }
             } while (cmpStrType2(checker.content, invalid.content));
             // input valid
-            
-            // testing new func
             processCommand(input, &S, &peta, LM);
-            // displayMatrix(peta);
+            // Passing input to functions / procedures
             
         }
     }
