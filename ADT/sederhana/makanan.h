@@ -42,8 +42,8 @@ typedef struct
 #define WAKTU_KEDALUWARSA(x) (x).waktu_kedaluwarsa
 #define LOKASI_AKSI(x) (x).lokasi_aksi
 #define LAMA_PENGIRIMAN(x) (x).lama_pengiriman
-#define SIZE_X(x) (x).size_x;
-#define SIZE_Y(y) (x).size_y;
+#define SIZE_X(x) (x).size_x
+#define SIZE_Y(x) (x).size_y
 
 
 /* KONSTRUKTOR */
