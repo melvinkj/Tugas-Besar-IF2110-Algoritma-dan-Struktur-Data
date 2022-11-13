@@ -340,6 +340,9 @@ int main()
         // Init stack undo redo
         CreateEmptyUndoRedo();
 
+        // Init list makanan
+        ListMakanan LM = READMAKANAN("./makanan_test.txt");
+
         while (running_state)
         {
             // Validate every command
