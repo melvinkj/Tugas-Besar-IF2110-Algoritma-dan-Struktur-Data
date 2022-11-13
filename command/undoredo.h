@@ -2,6 +2,7 @@
 #define UNDOREDO_H
 
 #include "../ADT/stack_queue/stack.h"
+#include "../ADT/char_word_machine/charmachine.h"
 
 /* **** UndoRedo adalah ADT yang menyimpan perintah-perintah yang telah dilakukan *** */
 
@@ -53,7 +54,7 @@ void redo(Simulator *S);
 void printstackundo();
 /* Menampilkan stack undo */
 
-void notification(Simulator S);
+void notification(Simulator S, ListStatikResep resep);
 /* Menampilkan notifikasi perbandingan state sebelum dan sesudah */
 /* I.S. Semua stack terdefinisi */
 /* F.S. Semua stack tidak berubah */
