@@ -67,27 +67,28 @@ void buy (Simulator *s, ListMakanan LM){
         }
     } while(valid==false);
 
-    id = ELMTLIST(idContainer,c-1);
-    
-    makanan = SearchById(id, LM);
-    TIME deliveryMakanan = makanan.lama_pengiriman;
-    string namaMakanan= {.content = makanan.nama.content, .Length = makanan.nama.Length};
+    if(c!=0){
+        id = ELMTLIST(idContainer,c-1);
+        
+        makanan = SearchById(id, LM);
+        TIME deliveryMakanan = makanan.lama_pengiriman;
+        string namaMakanan= {.content = makanan.nama.content, .Length = makanan.nama.Length};
 
-    Enqueue(&Delivery(s), makanan);
+        Enqueue(&Delivery(s), makanan);
 
-    printf("Berhasil memesan %s. %s akan diantar dalam ", namaMakanan, namaMakanan);
-    if (deliveryMakanan.DD != 0)
-    {
-        printf("%d hari ", deliveryMakanan.DD);
+        printf("Berhasil memesan %s. %s akan diantar dalam ", namaMakanan, namaMakanan);
+        if (deliveryMakanan.DD != 0)
+        {
+            printf("%d hari ", deliveryMakanan.DD);
+        }
+        if (deliveryMakanan.HH != 0)
+        {
+            printf("%d jam ", deliveryMakanan.HH);
+        }
+        if (deliveryMakanan.MM != 0)
+        {
+            printf("%d menit", deliveryMakanan.MM);
+        }
+        printf(".\n");
     }
-    if (deliveryMakanan.HH != 0)
-    {
-        printf("%d jam ", deliveryMakanan.HH);
-    }
-    if (deliveryMakanan.MM != 0)
-    {
-        printf("%d menit", deliveryMakanan.MM);
-    }
-    printf(".\n");
-
 }
