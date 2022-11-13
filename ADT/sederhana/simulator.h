@@ -5,6 +5,8 @@
 #include "../matrix/matrix.h"
 #include "../char_word_machine/string.h"
 
+#ifndef simulator_H
+#define simulator_H
 
 typedef struct simulator {
     string nama;
@@ -41,3 +43,4 @@ void copySimulator(Simulator *s1, Simulator s2);
 /* Menyalin Simulator s2 ke s1 */
 /* I.S. s1 sembarang, s2 terdefinisi */
 /* F.S. s1 terdefinisi */
+#endif
