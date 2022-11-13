@@ -2,7 +2,7 @@
 #include "../ADT/list_statik/liststatik.h"
 
 
-void buy (ListMakanan LM, Simulator *s){
+void buy (Simulator *s, ListMakanan LM){
     int i = 0, nomor = 1, len, delivery;
     int c, id;
     boolean valid;
