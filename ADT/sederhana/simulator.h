@@ -21,9 +21,9 @@ typedef struct simulator {
 #define Nama(s) (s).nama
 #define Posisi(s) (s).posisi
 #define Waktu(s) (s).waktu
-#define Inventory(s) (s)->inventory
-#define Delivery(s) (s)->delivery
-#define Kulkas(s) (s)->kulkas
+#define Inventory(s) (s).inventory
+#define Delivery(s) (s).delivery
+#define Kulkas(s) (s).kulkas
 
 /* *** konstruktor *** */
 
