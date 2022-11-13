@@ -6,7 +6,7 @@
 void CreateListStatikResep(ListStatikResep *l){
     int i;
     for (i = 0; i < CAPACITY ; i++) {
-        ELMTR(*l, i) = newNode(MARK);
+        ELMTR(*l, i) = newNode(MARKR);
     }
 }
 /* I.S. l sembarang */
@@ -17,7 +17,7 @@ void CreateListStatikResep(ListStatikResep *l){
 /* *** Banyaknya elemen *** */
 int listLengthResep(ListStatikResep l){
     int panjang = 0;
-    while (ROOT(ELMTR(l,panjang)) != MARK && panjang < CAPACITY){
+    while (ROOT(ELMTR(l,panjang)) != MARKR && panjang < CAPACITY){
         panjang++;
     }
     return panjang;
@@ -158,7 +158,7 @@ void deleteFirstResep(ListStatikResep *l, elType *val){
     for(i=0;i<listLengthResep(*l)-1;i++){
         ELMTR(*l,i)=ELMTR(*l,i+1);
     }
-    ROOT(ELMTR(*l,listLengthResep(*l)-1))=MARK;
+    ROOT(ELMTR(*l,listLengthResep(*l)-1))=MARKR;
 }
 /* Proses : Menghapus elemen pertama List */
 /* I.S. List tidak kosong */
@@ -173,7 +173,7 @@ void deleteAtResep(ListStatikResep *l, elType *val, IdxType idx){
     for(i=idx;i<listLengthResep(*l)-1;i++){
         ELMTR(*l,i)=ELMTR(*l,i+1);
     }
-    ROOT(ELMTR(*l,listLengthResep(*l)-1))=MARK;
+    ROOT(ELMTR(*l,listLengthResep(*l)-1))=MARKR;
 }
 /* Proses : Menghapus elemen pada index idx List */
 /* I.S. List tidak kosong, idx adalah index yang valid di l */
@@ -183,7 +183,7 @@ void deleteAtResep(ListStatikResep *l, elType *val, IdxType idx){
 /* *** Menghapus elemen terakhir *** */
 void deleteLastResep(ListStatikResep *l, elType *val){
     *val=ELMTR(*l,listLengthResep(*l)-1);
-    ROOT(ELMTR(*l,listLengthResep(*l)-1))=MARK;
+    ROOT(ELMTR(*l,listLengthResep(*l)-1))=MARKR;
 }
 /* Proses : Menghapus elemen terakhir List */
 /* I.S. List tidak kosong */

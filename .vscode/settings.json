@@ -12,6 +12,7 @@
         "inventory_delivery.h": "c",
         "__locale": "c",
         "liststatikresep.h": "c",
-        "liststatik.h": "c"
+        "liststatik.h": "c",
+        "listreseptotree.h": "c"
     }
 }

@@ -25,7 +25,7 @@ void ADV()
 {
     /* Algoritma */
     retval = fscanf(pita, "%c", &currentChar);
-    EOP = (currentChar == MARK);
+    EOP = (currentChar == MARKCM);
     if (EOP)
     {
         // fclose(pita);
@@ -292,19 +292,19 @@ ListMakanan READMAKANAN(char * filename)
     }
 }
 // Helper
-void CreateListDin(ListDin *l, int capacity){
+void CreateListDinParser(ListDinParser *l, int capacity){
    l->buffer = (int*) malloc (capacity*sizeof(int));
    l->nEff = 0;
    l->capacity = capacity;
 }
 
-void insertLast(ListDin *l, int child_ID){
+void insertLastParser(ListDinParser *l, int child_ID){
    l->buffer[l->nEff] = child_ID;
    l->nEff++;    
 }
 
-void createResep (Resep * resep, int cap) {
-    CreateListDin(&resep->child_ID, cap);
+void createResepParser(Resep * resep, int cap) {
+    CreateListDinParser(&resep->child_ID, cap);
 }
 
 ListResep READRESEP(char * filename)
@@ -353,7 +353,7 @@ ListResep READRESEP(char * filename)
             }
             if (space_count > 1){
                 if (space_count == 2 && cc == ' '){
-                    createResep(&l_resep.arr[current_index], n_child);
+                    createResepParser(&l_resep.arr[current_index], n_child);
                 }
                 else {
                     if (cc != ' ' && ((int) cc) != -1){
@@ -361,7 +361,7 @@ ListResep READRESEP(char * filename)
                         child_ID += ((int) cc) - 48;
                     } else {
                         if (((int) cc) != -1){
-                            insertLast(&l_resep.arr[current_index].child_ID, child_ID);
+                            insertLastParser(&l_resep.arr[current_index].child_ID, child_ID);
                             child_ID = 0;
                         }
                     }
@@ -371,7 +371,7 @@ ListResep READRESEP(char * filename)
         }
         // cc == '\n'
         else {
-            insertLast(&l_resep.arr[current_index].child_ID, child_ID);
+            insertLastParser(&l_resep.arr[current_index].child_ID, child_ID);
             child_ID = 0;
             l_resep.arr[current_index].parent_ID = parent_ID;
             parent_ID = 0;
@@ -383,7 +383,7 @@ ListResep READRESEP(char * filename)
         // cc = fgetc(fp);
     }
     // last index
-    insertLast(&l_resep.arr[current_index].child_ID, child_ID);
+    insertLastParser(&l_resep.arr[current_index].child_ID, child_ID);
     child_ID = 0;
     l_resep.arr[current_index].parent_ID = parent_ID;
     parent_ID = 0;

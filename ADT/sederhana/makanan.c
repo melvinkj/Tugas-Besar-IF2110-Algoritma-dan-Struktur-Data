@@ -18,6 +18,8 @@ Makanan CreateMakanan(int id, string nama, TIME kedaluwarsa, string lokasi, TIME
     WAKTU_KEDALUWARSA(m) = kedaluwarsa;
     LOKASI_AKSI(m) = lokasi;
     LAMA_PENGIRIMAN(m) = pengiriman;
+    SIZE_X(m) = size_x;
+    SIZE_Y(m) = size_y;
 
     return m;
 }
