@@ -31,7 +31,7 @@ void toStatikResep(ListStatikResep *lr, ListResep ld){
     int i = 0;
     while (ld.arr[i].parent_ID != -9999){
         ID = ld.arr[i].parent_ID; // ID int
-    
+        printf("%d\n", ld.arr[i].child_ID.buffer[i]);
         for (int ii = 0; ii < listLengthResep(*lr); ii++){
             // jika makanan belum ada di liststatik, buat tree baru
             if (addrSearch(ELMTR(*lr,ii), ID) == NULL){
@@ -55,6 +55,19 @@ void toStatikResep(ListStatikResep *lr, ListResep ld){
         }
         i++;
         printf(".\n");
+    }
+    i = 0;
+    while (ld.arr[i].parent_ID != -9999) {
+        printf("Parent ID: %d", ld.arr[i].parent_ID);
+        printf("\n");
+        printf("Child ID: ");
+        int j;
+        for (j = 0; j < ld.arr[i].child_ID.nEff; j++){
+            printf("%d ", ld.arr[i].child_ID.buffer[j]);
+        }
+        printf(", total child = %d", j);
+        printf("\n");
+        i++;
     }
 }
 

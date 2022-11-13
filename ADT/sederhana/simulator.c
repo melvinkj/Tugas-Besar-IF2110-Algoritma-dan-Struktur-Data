@@ -1,4 +1,3 @@
-
 #include "simulator.h"
 
 void createSimulator(Simulator *s){
