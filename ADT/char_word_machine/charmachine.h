@@ -11,7 +11,7 @@
 #include "../matrix/matrix.h"
 #include "../tree/tree.h"
 
-#define MARK '\n'
+#define MARKCM '\n'
 #define MAX_CAP_RESEP 100
 /* State Mesin */
 extern char currentChar;
@@ -21,11 +21,11 @@ typedef struct
    int *buffer; /* memori tempat penyimpan elemen (container) */
    int nEff;       /* >=0, banyaknya elemen efektif */
    int capacity;   /* ukuran elemen */
-} ListDin;
+} ListDinParser;
 
 typedef struct {
    int parent_ID;
-   ListDin child_ID;
+   ListDinParser child_ID;
 } Resep;
 
 typedef struct
@@ -61,11 +61,11 @@ ListMakanan READMAKANAN(char * filename);
 
 ListResep READRESEP(char * filename);
 
-void createResep (Resep * resep, int cap);
+void createResepParser(Resep * resep, int cap);
 
-void CreateListDin(ListDin *l, int capacity);
+void CreateListDinParser(ListDinParser *l, int capacity);
 
-void insertLast(ListDin *l, int child_ID);
+void insertLastParser(ListDinParser *l, int child_ID);
 
 
 #endif
