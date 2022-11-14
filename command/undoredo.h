@@ -3,6 +3,7 @@
 
 #include "../ADT/stack_queue/stack.h"
 #include "../ADT/char_word_machine/charmachine.h"
+#include "../ADT/list_statik_resep/liststatikresep.h"
 
 /* **** UndoRedo adalah ADT yang menyimpan perintah-perintah yang telah dilakukan *** */
 
