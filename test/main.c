@@ -6,6 +6,7 @@
 #include "../ADT/char_word_machine/wordmachine.h"
 #include "../ADT/matrix/matrix.h"
 #include "../ADT/sederhana/point.h"
+#include "../ADT/sederhana/boolean.h"
 #include "../ADT/stack_queue/stack.h"
 #include "../Commands/pengolahan.h"
 #include "../Commands/pemesanan.h"
