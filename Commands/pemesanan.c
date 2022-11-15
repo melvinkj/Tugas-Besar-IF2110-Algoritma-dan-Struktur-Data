@@ -1,10 +1,12 @@
 #include "pemesanan.h"
 #include "../ADT/list_statik/liststatik.h"
-
+// #include "../ADT/char_word_machine/string.h"
+// #include "../ADT/char_word_machine/"
 
 void buy (Simulator *s, ListMakanan LM){
     int i = 0, nomor = 1, len, delivery;
-    int c, id;
+    int id;
+    char inputChar;
     boolean valid;
     string nama, aksi;
     char *buy = "Buy";
@@ -56,10 +58,13 @@ void buy (Simulator *s, ListMakanan LM){
     }
 
     valid  = false;
+    int c;
     do {
         printf("Kirim 0 untuk exit.\n");
         printf("Enter Command: ");
-        scanf("%d", &c);
+        scanf("%c%n", &inputChar);
+        getchar();
+        c = ((int) inputChar) - 48;
         if(c>listLength(idContainer)){
             printf("Input tidak valid. Silakan ulangi.\n");
         } else {
@@ -76,7 +81,7 @@ void buy (Simulator *s, ListMakanan LM){
 
         Enqueue(&Delivery(*s), makanan);
 
-        printf("Berhasil memesan %s. %s akan diantar dalam ", namaMakanan, namaMakanan);
+        printf("Berhasil memesan %s. %s akan diantar dalam ", namaMakanan.content, namaMakanan.content);
         if (deliveryMakanan.DD != 0)
         {
             printf("%d hari ", deliveryMakanan.DD);

@@ -165,7 +165,7 @@ void CookBook()
 void processCommand(string command, Simulator *S, Matrix *Peta, ListMakanan LM)
 {
     // Pathway untuk ke fungsi lain
-
+    
     // ALL COMMANDS
     string exit_cmd = {.content = "EXIT", .Length = 4};
     string start_cmd = {.content = "START", .Length = 5};
@@ -219,7 +219,6 @@ void processCommand(string command, Simulator *S, Matrix *Peta, ListMakanan LM)
         if (cmpStrType2(command.content, buy_cmd.content))
         {
             buy(S, LM);
-            return;
         }
         if (cmpStrType2(command.content, delivery_cmd.content))
         {
@@ -314,12 +313,16 @@ int main()
     {
         printf("COMMAND (START/EXIT): ");
         scanWord(&input);
-        // checker.content = commandOptions(input);
+        if (cmpStrType2(input.content, exit_cmd.content)) {
+            printf("Bye... See you next time!\n");
+            exit(0);
+        }
         if (cmpStrType2(input.content, start_cmd.content))
         {
             validate = true;
             if (cmpStrType2(input.content, exit_cmd.content))
             {
+                printf("Bye... See you next time!\n");
                 exit(0);
             }
         }
@@ -373,6 +376,7 @@ int main()
                     validate = true;
                     if (cmpStrType2(input.content, exit_cmd.content))
                     {
+                        printf("Bye... See you next time!\n");
                         exit(0);
                     }
                 }
@@ -383,6 +387,7 @@ int main()
             } while (cmpStrType2(checker.content, invalid.content));
             // input valid
             processCommand(input, &S, &peta, LM);
+            printf("\n");
             // Passing input to functions / procedures
             
         }
