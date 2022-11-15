@@ -8,8 +8,8 @@
 #include "string.h"
 #include "../sederhana/waktu.h"
 
-char currentChar;
-boolean EOP;
+// char currentChar;
+// boolean EOP;
 
 static FILE *pita;
 static int retval;
