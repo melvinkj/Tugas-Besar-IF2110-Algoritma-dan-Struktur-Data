@@ -1,0 +1,1 @@
+gcc tesResepToStatik.c listResepToTree.c ../char_word_machine/charmachine.c ../list_statik_resep/liststatikresep.c ../tree/tree.c ../sederhana/waktu.c ../char_word_machine/string.c -o a
