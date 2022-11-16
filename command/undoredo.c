@@ -31,8 +31,32 @@ boolean isUndoRedoEmpty(){
     return isUndoEmpty() && isRedoEmpty();
 }
 
+boolean isUndoOneElmt(){
+    Simulator temp;
+    Pop(&UndoStack, &temp);
+    if (IsStackEmpty(UndoStack)){
+        Push(&UndoStack, temp);
+        return true;
+    } else {
+        Push(&UndoStack, temp);
+        return false;
+    }
+}
+
+boolean isRedoOneElmt(){
+    Simulator temp;
+    Pop(&RedoStack, &temp);
+    if (IsStackEmpty(RedoStack)){
+        Push(&RedoStack, temp);
+        return true;
+    } else {
+        Push(&RedoStack, temp);
+        return false;
+    }
+}
+
 void undo(Simulator *S){
-    if(!isUndoEmpty()){
+    if(!isUndoOneElmt()){
         Simulator temp;
         Pop(&UndoStack, &temp);
         Push(&RedoStack, temp);

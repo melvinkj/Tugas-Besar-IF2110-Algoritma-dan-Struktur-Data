@@ -204,6 +204,7 @@ void Move(POINT *S, string direction, Matrix *Peta) {
             (S->Y)--;
             x = S->Y;
             Peta->mem[x][y] = 'S';
+
         }
         else {
             printf("Tidak bisa Move North (ada obstacle).\n");

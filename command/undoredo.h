@@ -37,6 +37,12 @@ boolean isRedoEmpty();
 /* I.S. RedoStack terdefinisi */
 /* F.S. RedoStack tidak berubah */
 
+boolean isUndoOneElmt();
+/* Mengembalikan true jika UndoStack hanya berisi satu elemen */
+
+boolean isRedoOneElmt();
+/* Mengembalikan true jika RedoStack hanya berisi satu elemen */
+
 boolean isUndoRedoEmpty();
 /* Mengembalikan true jika UndoStack dan RedoStack kosong */
 /* I.S. Semua stack terdefinisi */

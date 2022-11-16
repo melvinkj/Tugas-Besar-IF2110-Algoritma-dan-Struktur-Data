@@ -36,4 +36,7 @@ void kembalikeinventory(PrioQueue sebelum, PrioQueue sekarang);
 /* I.S. sebelum dan sesudah terdefinisi */
 /* F.S. makanan yang tidak jadi expired akan ditampilkan */
 
+boolean isEmptyPriorityQueue(PrioQueue P);
+/* Mengembalikan true jika PrioQueue kosong */
+
 #endif

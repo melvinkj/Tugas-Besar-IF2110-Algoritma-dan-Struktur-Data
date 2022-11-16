@@ -222,23 +222,29 @@ void processCommand(string command, Simulator *S, Matrix *Peta, ListMakanan LM)
         }
         if (cmpStrType2(command.content, delivery_cmd.content))
         {
+            PrintDelivery(S->delivery);
             return;
         }
         if (cmpStrType2(command.content, move_north_cmd.content))
         {
             Move(&S->posisi, command, Peta);
+            addUndo(*S);
         }
         if (cmpStrType2(command.content, move_east_cmd.content))
         {
             Move(&S->posisi, command, Peta);
+            addUndo(*S);
         }
         if (cmpStrType2(command.content, move_west_cmd.content))
         {
             Move(&S->posisi, command, Peta);
+            addUndo(*S);
         }
         if (cmpStrType2(command.content, move_south_cmd.content))
         {
             Move(&S->posisi, command, Peta);
+            addUndo(*S);
+
         }
         if (cmpStrType2(command.content, mix_cmd.content))
         {
@@ -354,6 +360,7 @@ int main()
 
         // Init stack undo redo
         CreateEmptyUndoRedo();
+        addUndo(S);
 
         // Init list makanan
         ListMakanan LM = READMAKANAN("./makanan_test.txt");
