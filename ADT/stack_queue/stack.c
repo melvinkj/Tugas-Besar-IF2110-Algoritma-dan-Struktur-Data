@@ -24,7 +24,12 @@ boolean IsStackFull(Stack S){
 void Push(Stack * S, Simulator X){
     Simulator s;
     createSimulator(&s);
-    copySimulator(&s, X);
+    s.nama = X.nama;
+    s.posisi = X.posisi;
+    s.waktu = X.waktu;
+    copyPrioQueue(X.inventory,&s.inventory);
+    copyPrioQueue(X.delivery,&s.delivery);
+    s.kulkas = X.kulkas;
     Top(*S)++;
     InfoTop(*S) = s;
 }
@@ -35,7 +40,6 @@ void Push(Stack * S, Simulator X){
 /* ************ Menghapus sebuah elemen Stack ************ */
 void Pop(Stack * S, Simulator* X){
     *X = InfoTop(*S);
-    dealokasiSimulator(&InfoTop(*S));
     Top(*S)--;
 }
 /* Menghapus X dari Stack S. */

@@ -57,7 +57,7 @@ void redo(Simulator *S){
     }
 }
 
-void notification(Simulator S, ListStatikResep resep){
+void notification(Simulator S, ListResep resep){
  Simulator sekarang,sebelum;
  createSimulator(&sekarang);
  createSimulator(&sebelum);
@@ -76,7 +76,7 @@ void notification(Simulator S, ListStatikResep resep){
     }
 /* cek inventory */
  if(NBElmt(sekarang.inventory) < NBElmt(sebelum.inventory)){
-    tidakjadipengolahan(sebelum.inventory,sekarang.inventory,resep);
+    // tidakjadipengolahan(sebelum.inventory,sekarang.inventory,resep);
     kembalikeinventory(sebelum.inventory,sekarang.inventory);
     /* inventory sekarang lebih kecil, setelah melakukan pengolahan atau expired */
     /* cari elemen yang tidak jadi diolah atau expired */
@@ -86,7 +86,7 @@ void notification(Simulator S, ListStatikResep resep){
     /* elemen yang tersisa di inventory sebelum adalah elemen yang expired jika tidak ada di elemen inventroy sekarang */
 
  }else if (NBElmt(sekarang.inventory) == NBElmt(sekarang.delivery)){
-    tidakjadipengolahan(sebelum.inventory,sekarang.inventory,resep);
+    // tidakjadipengolahan(sebelum.inventory,sekarang.inventory,resep);
     /* inventory sekarang sama dengan delivery sekarang, tidak ada perubahan atau elemen melakukan pengolahan */
     /* cari elemen yang tidak jadi diolah */
     /* *** abstraksi *** */
