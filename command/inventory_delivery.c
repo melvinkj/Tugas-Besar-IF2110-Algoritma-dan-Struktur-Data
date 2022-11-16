@@ -112,48 +112,48 @@ void kembalikedelivery(PrioQueue sebelum, PrioQueue sekarang){
     }
 }
 
-void tidakjadipengolahan(PrioQueue sebelum, PrioQueue sekarang, ListResep resep){
-    /* NBELMT sebelum > NBElmt sekarang */
+// void tidakjadipengolahan(PrioQueue sebelum, PrioQueue sekarang, ListResep resep){
+//     /* NBELMT sebelum > NBElmt sekarang */
 
-    PrioQueue temp1,temp2;
-    temp1 = sebelum;
-    temp2 = sekarang;
-    int i,j, NBElmtsebelum = 0, NBElmtsekarang = 0;
-    i = Head(temp1);
-    j = Head(temp2);
-    boolean found = false;
-    for (NBElmtsekarang = 0; NBElmtsekarang < NBElmt(temp2); NBElmtsekarang++){
-        int id = Elmt(temp2, j).id;
-        int k  = 0;
-        /* Mencari id pada resep untuk mendapatkan alamat rootnya */
-        for (k = 0;k< listLengthResep(resep);k++){
-            if (id == ROOT(ELMTR(resep, k))){
-                break;
-            }
-        }
-        /* jika ada maka kurangi child yang ada pada queue sebelum */
-        /* dipastikan ada child untuk setiap root di queue sebelum */
-        /* karena jika tidak ada child, tidak mungkin terbentuk root pada queue sekarang */
-        if (k < listLengthResep(resep)){
-            AddressTree last = CHILDNODE(ELMTR(resep, k));
-            while (last != NIL){
-                for (NBElmtsebelum = 0; NBElmtsebelum < NBElmt(temp1); NBElmtsebelum++){
-                    if (Elmt(temp1, i).id == ROOT(last)){
-                        found = true;
-                        Remove(&temp1, Elmt(temp1, i));
-                        i = Head(temp1);
-                        break;
-                    }else{
-                        i = (i+1)%MaxEl(temp1);
-                    }
-                }
-                last = NEXTNODE(last);
-            }
-            printf("%s tidak jadi diproses di %s :(\n", Elmt(temp2, j).nama.content, Elmt(temp2,j).lokasi_aksi.content);   
-        }
-        j = (j+1)%MaxEl(temp2);
-    }
-}
+//     PrioQueue temp1,temp2;
+//     temp1 = sebelum;
+//     temp2 = sekarang;
+//     int i,j, NBElmtsebelum = 0, NBElmtsekarang = 0;
+//     i = Head(temp1);
+//     j = Head(temp2);
+//     boolean found = false;
+//     for (NBElmtsekarang = 0; NBElmtsekarang < NBElmt(temp2); NBElmtsekarang++){
+//         int id = Elmt(temp2, j).id;
+//         int k  = 0;
+//         /* Mencari id pada resep untuk mendapatkan alamat rootnya */
+//         for (k = 0;k< listLengthResep(resep);k++){
+//             if (id == ROOT(ELMTR(resep, k))){
+//                 break;
+//             }
+//         }
+//         /* jika ada maka kurangi child yang ada pada queue sebelum */
+//         /* dipastikan ada child untuk setiap root di queue sebelum */
+//         /* karena jika tidak ada child, tidak mungkin terbentuk root pada queue sekarang */
+//         if (k < listLengthResep(resep)){
+//             AddressTree last = CHILDNODE(ELMTR(resep, k));
+//             while (last != NIL){
+//                 for (NBElmtsebelum = 0; NBElmtsebelum < NBElmt(temp1); NBElmtsebelum++){
+//                     if (Elmt(temp1, i).id == ROOT(last)){
+//                         found = true;
+//                         Remove(&temp1, Elmt(temp1, i));
+//                         i = Head(temp1);
+//                         break;
+//                     }else{
+//                         i = (i+1)%MaxEl(temp1);
+//                     }
+//                 }
+//                 last = NEXTNODE(last);
+//             }
+//             printf("%s tidak jadi diproses di %s :(\n", Elmt(temp2, j).nama.content, Elmt(temp2,j).lokasi_aksi.content);   
+//         }
+//         j = (j+1)%MaxEl(temp2);
+//     }
+// }
 
 void kembalikeinventory(PrioQueue sebelum, PrioQueue sekarang){
     /* NBElmt sebelum > NBELMT sekarang */

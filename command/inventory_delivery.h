@@ -26,7 +26,7 @@ void kembalikedelivery(PrioQueue sebelum, PrioQueue sekarang);
 /* I.S. sebelum dan sesudah terdefinisi */
 /* F.S. makanan yang tidak jadi masuk ke inventory akan ditampilkan */
 
-void tidakjadipengolahan(PrioQueue sebelum, PrioQueue sekarang, ListResep resep);
+// void tidakjadipengolahan(PrioQueue sebelum, PrioQueue sekarang, ListResep resep);
 /* Mengeluarkan makanan yang tidak jadi diproses */
 /* I.S. sebelum dan sesudah terdefinisi */
 /* F.S. makanan yang tidak jadi diproses akan ditampilkan */

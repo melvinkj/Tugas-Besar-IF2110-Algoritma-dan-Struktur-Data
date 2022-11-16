@@ -13,7 +13,6 @@ int main(){
     X.waktu_kedaluwarsa = T;
     X.lokasi_aksi.content = "kitchen";
     X.lama_pengiriman = T;
-    X.lama_pemrosesan = T;
     Enqueue(&Q, X);
     PrintPrioQueue(Q);
     Enqueue(&Q, X);
