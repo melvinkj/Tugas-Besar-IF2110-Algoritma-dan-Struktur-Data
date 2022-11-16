@@ -52,8 +52,8 @@ void buy (Simulator *s, ListMakanan LM){
             }
             insertLast(&idContainer, id);
             nomor++;
+            printf(")\n");
         }
-        printf(")\n");
         i++;
     }
 
