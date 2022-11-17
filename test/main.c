@@ -24,6 +24,7 @@
 #include "../command/undoredo.h"
 #include "../Commands/pemesanan.h"
 #include "../Commands/pengolahan.h"
+#include "../Commands/moves.h"
 
 /* *** Operasi-operasi *** */
 void Catalog()
@@ -227,22 +228,22 @@ void processCommand(string command, Simulator *S, Matrix *Peta, ListMakanan LM)
         }
         if (cmpStrType2(command.content, move_north_cmd.content))
         {
-            Move(&S->posisi, command, Peta);
+            Move(&S->posisi, command, Peta, S);
             addUndo(*S);
         }
         if (cmpStrType2(command.content, move_east_cmd.content))
         {
-            Move(&S->posisi, command, Peta);
+            Move(&S->posisi, command, Peta, S);
             addUndo(*S);
         }
         if (cmpStrType2(command.content, move_west_cmd.content))
         {
-            Move(&S->posisi, command, Peta);
+            Move(&S->posisi, command, Peta, S);
             addUndo(*S);
         }
         if (cmpStrType2(command.content, move_south_cmd.content))
         {
-            Move(&S->posisi, command, Peta);
+            Move(&S->posisi, command, Peta, S);
             addUndo(*S);
 
         }

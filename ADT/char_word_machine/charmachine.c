@@ -251,6 +251,7 @@ ListMakanan READMAKANAN(char * filename)
             else
             {
                 counter = 0;
+                appendCCtoStr(nama_makanan, '0');
                 CreateTime(&expired, D_expired, H_expired, M_expired);
                 CreateTime(&delivery, D_delivery, H_delivery, M_delivery);
                 container_makanan.arr[current_makanan].id = id;

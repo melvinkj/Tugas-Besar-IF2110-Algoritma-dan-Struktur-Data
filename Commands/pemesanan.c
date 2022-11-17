@@ -26,11 +26,10 @@ void buy (Simulator *s, ListMakanan LM){
         TIME expiry_time = LM.arr[i].waktu_kedaluwarsa;
         TIME delivery_time = LM.arr[i].lama_pengiriman;
         string aksi = {.content = LM.arr[i].lokasi_aksi.content, .Length = LM.arr[i].lokasi_aksi.Length};
- 
+
         if (cmpStrType2(aksi.content, buy))
         {
             printf("\t%d. %s (", nomor, nama.content);
-
             if (delivery_time.DD != 0)
             {
                 printf("%d hari ", delivery_time.DD);
@@ -52,19 +51,18 @@ void buy (Simulator *s, ListMakanan LM){
             }
             insertLast(&idContainer, id);
             nomor++;
+            printf(")\n");
         }
-        printf(")\n");
         i++;
     }
-
     valid  = false;
     int c;
+    string inputs;
     do {
         printf("Kirim 0 untuk exit.\n");
         printf("Enter Command: ");
-        scanf("%c%n", &inputChar);
-        getchar();
-        c = ((int) inputChar) - 48;
+        scanWord(&inputs);
+        c = ((int) inputs.content[0]) - 48;
         if(c>listLength(idContainer)){
             printf("Input tidak valid. Silakan ulangi.\n");
         } else {

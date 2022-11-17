@@ -1,12 +1,12 @@
+#ifndef simulator_H
+#define simulator_H
+
 #include "../stack_queue/prioqueue.h"
 #include "../list_statik/liststatik.h"
 #include "point.h"
 #include "waktu.h"
 #include "../matrix/matrix.h"
 #include "../char_word_machine/string.h"
-
-#ifndef simulator_H
-#define simulator_H
 
 typedef struct simulator {
     string nama;
@@ -15,7 +15,6 @@ typedef struct simulator {
     PrioQueue inventory;
     PrioQueue delivery;
     Matrix kulkas;
-
 } Simulator;
 
 #define Nama(s) (s).nama
