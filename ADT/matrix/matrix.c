@@ -4,6 +4,7 @@
 #include "../sederhana/point.h"
 #include "../char_word_machine/string.h"
 
+
 /* ********** DEFINISI PROTOTIPE PRIMITIF ********** */
 /* *** Konstruktor membentuk Matrix *** */
 void createMatrix(int nRows, int nCols, Matrix *m)
