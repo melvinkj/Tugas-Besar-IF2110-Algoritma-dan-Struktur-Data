@@ -61,17 +61,4 @@ Matrix transpose(Matrix m);
 void pTranspose(Matrix *m);
 /* I.S. m terdefinisi dan IsSquare(m) */
 /* F.S. m "di-transpose", yaitu setiap elemen m(i,j) ditukar nilainya dengan elemen m(j,i) */
-
-POINT LocateS(Matrix Peta);
-// Memberikan lokasi Simulator sekarang
-
-boolean checkAdjacent(char cc, Matrix Peta, POINT S);
-// Mengecek apakah ada 'cc' di sekitar Simulator
-
-boolean validateMove(POINT S, Matrix Peta ,boolean West, boolean North, boolean East, boolean South);
-// Memvalidasi move Simulator tiap dipanggil
-
-void Move(POINT *S, string direction, Matrix *Peta);
-// Prosedur Move Simulator
-
 #endif
