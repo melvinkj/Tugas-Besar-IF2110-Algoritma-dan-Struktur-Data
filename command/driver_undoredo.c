@@ -3,6 +3,16 @@
 #include <stdio.h>
 
 int main(){
+    ListStatikResep LSR;
+    CreateListStatikResep(&LSR);
+    tree T;
+    createTree(&T);
+    insertFirstNode(&T, 1);
+    insertChild(&T,2);
+    insertChild(&T,3);
+    insertFirstResep(&LSR,T);
+
+
     CreateEmptyUndoRedo();
     Stack UndoStack;
     CreateEmpty(&UndoStack);
@@ -38,11 +48,16 @@ int main(){
     s.posisi = p1;
     TulisPOINT(s.posisi);
     addUndo(s);
+    PrintPrioQueue(s.inventory);
+    undo(&s,LSR);
+    PrintPrioQueue(s.inventory);
+    redo(&s);
+    undo(&s,LSR);
+    PrintPrioQueue(s.inventory);
     BacaPOINT(&p1);
     s.posisi = p1;
     TulisPOINT(s.posisi);
     addUndo(s);
-    undo(&s);
     TulisPOINT(s.posisi);
     redo(&s);
     TulisPOINT(s.posisi);

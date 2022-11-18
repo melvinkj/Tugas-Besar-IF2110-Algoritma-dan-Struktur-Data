@@ -55,12 +55,13 @@ boolean isRedoOneElmt(){
     }
 }
 
-void undo(Simulator *S){
+void undo(Simulator *S, ListStatikResep resep){
     if(!isUndoOneElmt()){
         Simulator temp;
         Pop(&UndoStack, &temp);
         Push(&RedoStack, temp);
         *S = InfoTop(UndoStack);
+        notification(temp, resep);
     }else{
         printf("Undo tidak bisa dilakukan karena tidak ada perintah yang bisa diundo\n");
     }
@@ -81,10 +82,17 @@ void redo(Simulator *S){
     }
 }
 
-void notification(Simulator S, ListResep resep){
+void notification(Simulator S, ListStatikResep resep){
  Simulator sekarang,sebelum;
  createSimulator(&sekarang);
  createSimulator(&sebelum);
+
+//  sekarang.nama = S.nama;
+//  sekarang.posisi = S.posisi;
+//  sekarang.waktu = S.waktu;
+//    copyPrioQueue(S.inventory,&sekarang.inventory);
+//    copyPrioQueue(S.delivery,&sekarang.delivery);
+//    sekarang.kulkas = S.kulkas;
  copySimulator(&sekarang,S);
  copySimulator(&sebelum,InfoTop(UndoStack));
 
@@ -99,9 +107,9 @@ void notification(Simulator S, ListResep resep){
     /* cari elemen yang tidak jadi dimasukan ke inventory */
     }
 /* cek inventory */
- if(NBElmt(sekarang.inventory) < NBElmt(sebelum.inventory)){
+ if(NBElmt(sekarang.inventory) <= NBElmt(sebelum.inventory)){
     // tidakjadipengolahan(sebelum.inventory,sekarang.inventory,resep);
-    kembalikeinventory(sebelum.inventory,sekarang.inventory);
+    tidakjadipengolahan(sebelum.inventory,sekarang.inventory,resep);
     /* inventory sekarang lebih kecil, setelah melakukan pengolahan atau expired */
     /* cari elemen yang tidak jadi diolah atau expired */
     /* *** abstraksi *** */
@@ -109,14 +117,6 @@ void notification(Simulator S, ListResep resep){
     /* remove elemen di inventory sebelum yang merupakan child dari elemen inventory sekarang*/
     /* elemen yang tersisa di inventory sebelum adalah elemen yang expired jika tidak ada di elemen inventroy sekarang */
 
- }else if (NBElmt(sekarang.inventory) == NBElmt(sekarang.delivery)){
-    // tidakjadipengolahan(sebelum.inventory,sekarang.inventory,resep);
-    /* inventory sekarang sama dengan delivery sekarang, tidak ada perubahan atau elemen melakukan pengolahan */
-    /* cari elemen yang tidak jadi diolah */
-    /* *** abstraksi *** */
-    /* cari elemen di inventory sekarang dengan lokasi dan child yang ada di inventory sebelum */
-    /* remove elemen di inventory sebelum yang merupakan child dari elemen inventory sekarang*/
-
-}
+ }
 
 }

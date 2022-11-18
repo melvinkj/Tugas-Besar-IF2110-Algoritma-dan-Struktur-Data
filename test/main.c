@@ -166,6 +166,15 @@ void CookBook()
 /* *** Command Reader *** */
 void processCommand(string command, Simulator *S, Matrix *Peta, ListMakanan LM)
 {
+    /* dummy list resep */
+    ListStatikResep dummy;
+    CreateListStatikResep(&dummy);
+    tree T;
+    createTree(&T);
+    insertFirstNode(&T, 1);
+    insertChild(&T,2);
+    insertChild(&T,3);
+    insertFirstResep(&dummy,T);
     // Pathway untuk ke fungsi lain
     
     // ALL COMMANDS
@@ -221,8 +230,8 @@ void processCommand(string command, Simulator *S, Matrix *Peta, ListMakanan LM)
         if (cmpStrType2(command.content, buy_cmd.content))
         {
             if(checkAdjacent('T', *Peta, Posisi(*S))){
-                addUndo(*S);
                 buy(S, LM);
+                addUndo(*S);
                 NextMenit(S->waktu);
             } else {
                 printf("%d, %d", S->posisi.X,S->posisi.Y);
@@ -232,7 +241,6 @@ void processCommand(string command, Simulator *S, Matrix *Peta, ListMakanan LM)
         if (cmpStrType2(command.content, delivery_cmd.content))
         {
             PrintDelivery(S->delivery);
-            return;
         }
         if (cmpStrType2(command.content, move_north_cmd.content))
         {
@@ -296,7 +304,7 @@ void processCommand(string command, Simulator *S, Matrix *Peta, ListMakanan LM)
         }
         if (cmpStrType2(command.content, undo_cmd.content))
         {
-            undo(S);
+            undo(S,dummy);
             return;
         }
         if (cmpStrType2(command.content, redo_cmd.content))
