@@ -192,7 +192,23 @@ void processCommand(string command, Simulator *S, Matrix *Peta, ListMakanan LM)
     {
         int hour;
         int minute;
+        TIME T;
+        long T1;
+        int i;
         processWaitCommand(command, &hour, &minute);
+        
+        CreateTime(&T, 0, hour, minute);
+
+        T1 = TIMEToMenit(T);
+        addUndo(*S);
+        
+
+        for(i=0; i < (int)T1; i++){
+            S->waktu = NextMenit(S->waktu);
+            kurang_waktu_deliv(&Delivery(*S), &Inventory(*S));
+            kurang_waktu_inv(&Inventory(*S));
+        }
+
         printf("Extra Hour : %d\n", hour);
         printf("Extra Minute : %d\n", minute);
     }
@@ -223,7 +239,7 @@ void processCommand(string command, Simulator *S, Matrix *Peta, ListMakanan LM)
             if(checkAdjacent('T', *Peta, Posisi(*S))){
                 addUndo(*S);
                 buy(S, LM);
-                NextMenit(S->waktu);
+                S->waktu = NextMenit(S->waktu);
             } else {
                 printf("%d, %d", S->posisi.X,S->posisi.Y);
                 printf("%s tidak berada di area telepon!\n", Nama(*S));
@@ -256,7 +272,7 @@ void processCommand(string command, Simulator *S, Matrix *Peta, ListMakanan LM)
             if(checkAdjacent('M', *Peta, Posisi(*S))){
                  addUndo(*S);
                 // mix(S, l_resep, LM);
-                NextMenit(S->waktu);
+                S->waktu = NextMenit(S->waktu);
             } else {
                 printf("%s tidak berada di area mixer!\n", Nama(*S));
             }
@@ -268,6 +284,7 @@ void processCommand(string command, Simulator *S, Matrix *Peta, ListMakanan LM)
             if(checkAdjacent('C', *Peta, Posisi(*S))){
                 addUndo(*S);
                 // chop(S, l_resep, LM);
+                S->waktu = NextMenit(S->waktu);
             } else {
                 printf("%s tidak berada di area choper!\n", Nama(*S));
             }
@@ -279,6 +296,7 @@ void processCommand(string command, Simulator *S, Matrix *Peta, ListMakanan LM)
             if(checkAdjacent('F', *Peta, Posisi(*S))){
                 addUndo(*S);
                 // fry(S, l_resep, LM);
+                S->waktu = NextMenit(S->waktu);
             } else {
                 printf("%c tidak berada di area fryer!\n", Nama(*S));
             }
@@ -290,6 +308,7 @@ void processCommand(string command, Simulator *S, Matrix *Peta, ListMakanan LM)
             if(checkAdjacent('B', *Peta, Posisi(*S))){
                 addUndo(*S);
                 // boil(S, l_resep, LM);
+                S->waktu = NextMenit(S->waktu);
             } else {
                 printf("%s tidak berada di area boiler!\n", Nama(*S));
             }
