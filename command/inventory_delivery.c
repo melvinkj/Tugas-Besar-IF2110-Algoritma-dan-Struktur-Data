@@ -115,7 +115,7 @@ void jadibeli(PrioQueue sebelum, PrioQueue sekarang){
         }
         if (!found){
             printf("%s  dibeli \n", Elmt(temp2, j).nama.content);
-            // printf("id = %d  tidak jadi dibeli :(\n", Elmt(temp2, j).id);
+            // printf("id = %d  jadi dibeli :(\n", Elmt(temp2, j).id);
         }
         found = false;
         i = Head(temp1);
@@ -175,7 +175,7 @@ void keluardelivery(PrioQueue sebelum, PrioQueue sekarang){
         }
         if (!found){
             printf("%s masuk ke inventory\n", Elmt(temp1, i).nama.content);
-            // printf("id = %d kembali ke delivery :(\n", Elmt(temp1, i).id);
+            // printf("id = %d masuk ke inventory :(\n", Elmt(temp1, i).id);
         }
         found = false;
         j = Head(temp2);
@@ -266,7 +266,7 @@ void jadipengolahan(PrioQueue sebelum, PrioQueue sekarang, ListStatikResep resep
                 last = NEXTNODE(last);
             }
             printf("%s diproses di %s :(\n", Elmt(temp2, j).nama.content, Elmt(temp2,j).lokasi_aksi.content);   
-            printf("id = %d jadi diproses di %s :(\n", Elmt(temp2, j).id, Elmt(temp2,j).lokasi_aksi.content);   
+            // printf("id = %d jadi diproses di %s :(\n", Elmt(temp2, j).id, Elmt(temp2,j).lokasi_aksi.content);   
         }
         j = (j+1)%MaxEl(temp2);
     }
@@ -325,7 +325,7 @@ void keluarinventory(PrioQueue sebelum, PrioQueue sekarang){
         }
         if (!found){
             printf("%s expired :(\n", Elmt(temp1, i).nama.content);
-            printf("id = %d expired :)\n", Elmt(temp1, i).id);
+            // printf("id = %d expired :)\n", Elmt(temp1, i).id);
         }
         found = false;
         j = Head(temp2);
