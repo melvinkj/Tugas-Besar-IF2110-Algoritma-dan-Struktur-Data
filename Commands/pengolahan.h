@@ -8,6 +8,7 @@
 #include "../ADT/list_statik_resep/liststatikresep.h"
 #include "../ADT/listdin/listdin.h"
 #include "../ADT/list_statik/liststatik.h"
+#include "../command/inventory_delivery.h"
 
 #ifndef PENGOLAHAN_H
 #define PENGOLAHAN_H
