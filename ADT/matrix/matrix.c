@@ -35,26 +35,7 @@ void copyMatrix(Matrix mIn, Matrix *mOut)
     COL_EFF(*mOut) = COL_EFF(mIn);
 }
 
-void displayMatrix(Matrix m)
-{
-    /* I.S. m terdefinisi */
-    /* F.S. Nilai m(i,j) ditulis ke layar per baris per kolom, masing-masing elemen per baris
-       dipisahkan sebuah spasi. Baris terakhir tidak diakhiri dengan newline */
-    /* Proses: Menulis nilai setiap elemen m ke layar dengan traversal per baris dan per kolom */
-    int i, j;
-    for (i = 0; i < m.rowEff+2; i++)
-    {
-        for (j = 0; j < m.colEff+2; j++)
-        {
-            printf("%c", m.mem[i][j]);
-            if (j != (m.colEff + 1))
-            {
-                printf(" ");
-            }
-        }
-        printf("\n");
-    }
-}
+
 
 /* ********** Operasi lain ********** */
 int countElmt(Matrix m)

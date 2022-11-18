@@ -380,8 +380,9 @@ int main()
         // Init peta
         Matrix peta;
         READPETA(&peta, "./peta_test.txt");
-        S.posisi = LocateS(peta);
 
+        S.posisi = LocateS(peta);
+        updatePeta(&peta, S);
         // Init stack undo redo
         CreateEmptyUndoRedo();
         addUndo(S);
@@ -395,7 +396,7 @@ int main()
             printf("%s di posisi: (%d,%d)\n", nama.content, S.posisi.X, S.posisi.Y);
             printf("Waktu : %d.%d\n", Waktu(S).HH, Waktu(S).MM);
             printf("Notifikasi : -\n");
-            displayMatrix(peta);
+            displayPeta(peta, S);
             printf("\n");
             do
             {
