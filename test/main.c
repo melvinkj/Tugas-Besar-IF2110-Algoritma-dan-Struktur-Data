@@ -227,7 +227,7 @@ void processCommand(string command, Simulator *S, Matrix *Peta, ListMakanan LM)
         }
         if (cmpStrType2(command.content, inventory_cmd.content))
         {
-            
+            PrintInventory(S->inventory);
             return;
         }
         if (cmpStrType2(command.content, catalog_cmd.content))
