@@ -9,6 +9,7 @@
 #include "../ADT/listdin/listdin.h"
 #include "../ADT/list_statik/liststatik.h"
 #include "../command/inventory_delivery.h"
+#include "../ADT/char_word_machine/wordmachine.h"
 
 #ifndef PENGOLAHAN_H
 #define PENGOLAHAN_H

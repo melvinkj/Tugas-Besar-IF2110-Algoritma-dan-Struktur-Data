@@ -78,9 +78,12 @@ void mix(Simulator *s, ListStatikResep resep, ListMakanan listmakanan){
         
         // pilih makanan
         int pil;
+        string inputs;
         printf("\n");
         printf("Enter command: ");
-        scanf("%d", &pil);
+        // scanf("%d", &pil);
+        scanWord(&inputs);
+        pil = ((int) inputs.content[0]) - 48;
         while (pil < 0 || pil > listLength(pilihan)){
             printf("\n");
             printf("Enter command: ");

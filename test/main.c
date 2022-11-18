@@ -185,6 +185,7 @@ void processCommand(string command, Simulator *S, Matrix *Peta, ListMakanan LM)
     string redo_cmd = {.content = "REDO", .Length = 4};
     string catalog_cmd = {.content = "CATALOG", .Length = 7};
     string cookbook_cmd = {.content = "COOKBOOK", .Length = 8};
+    string inventory_cmd = {.content = "INVENTORY", .Length = 9};
     string wait_x_y_cmd = {.content = "WAIT", .Length = 4};
 
     // Start Processing
@@ -223,6 +224,11 @@ void processCommand(string command, Simulator *S, Matrix *Peta, ListMakanan LM)
         {
             
             printf("The Program is Running!\n");
+        }
+        if (cmpStrType2(command.content, inventory_cmd.content))
+        {
+            
+            return;
         }
         if (cmpStrType2(command.content, catalog_cmd.content))
         {
