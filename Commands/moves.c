@@ -1,5 +1,6 @@
 #include "moves.h"
 #include "../command/inventory_delivery.h"
+#include "../command/undoredo.h"
 
 /* ********** Operasi MOVE ********** */
 POINT LocateS(Matrix Peta)
@@ -12,11 +13,17 @@ POINT LocateS(Matrix Peta)
             if (Peta.mem[i][j] == 'S')
             {
                 CreatePoint(&S, j, i);
+                Peta.mem[i][j] == ' ';
                 break;
             }
         }
     }
     return S;
+}
+
+void updatePeta(Matrix *Peta, Simulator S) {
+    POINT currPoint = { .X = S.posisi.X, .Y = S.posisi.Y };
+    Peta->mem[currPoint.Y][currPoint.X] = ' ';
 }
 
 boolean checkAdjacent(char cc, Matrix Peta, POINT S)
@@ -26,20 +33,10 @@ boolean checkAdjacent(char cc, Matrix Peta, POINT S)
     // Adjacent S
     // Result
     boolean found = false;
-    if (S.Y + 1 == cc) found = true;
-    if (S.Y - 1 == cc) found = true;
-    if (S.X + 1 == cc) found = true;
-    if (S.X - 1 == cc) found = true;
-    // for (int i = S.Y - 1; i <= S.Y + 1; i++)
-    // {
-    //     for (int j = S.X - 1; j <= S.X + 1; j++)
-    //     {
-    //         if (Peta.mem[i][j] == cc)
-    //         {
-    //             found = true;
-    //         }
-    //     }
-    // }
+    if (Peta.mem[S.Y + 1][S.X] == cc) found = true;
+    if (Peta.mem[S.Y - 1][S.X] == cc) found = true;
+    if (Peta.mem[S.Y][S.X + 1] == cc) found = true;
+    if (Peta.mem[S.Y][S.X - 1] == cc) found = true;
     return found;
 }
 
@@ -106,12 +103,14 @@ void Move(POINT *S, string direction, Matrix *Peta, Simulator *sim) {
     if (cmpStrType2(move_north_cmd.content, direction.content)){
         // Check North
         if(validateMove(*S, *Peta, false, true, false, false)){
-            Peta->mem[x][y] = ' ';
+            // Peta->mem[x][y] = ' ';
             (S->Y)--;
-            x = S->Y;
-            Peta->mem[x][y] = 'S';
+            // x = S->Y;
+            // Peta->mem[x][y] = 'S';
+            addUndo(*sim);
             kurang_waktu_deliv(&Delivery(*sim), &Inventory(*sim));
             kurang_waktu_inv(&Inventory(*sim));
+            sim->waktu = NextMenit(sim->waktu);
         }
         else {
             printf("Tidak bisa Move North (ada obstacle).\n");
@@ -121,12 +120,14 @@ void Move(POINT *S, string direction, Matrix *Peta, Simulator *sim) {
     if (cmpStrType2(move_east_cmd.content, direction.content)){
         // Check East
         if(validateMove(*S, *Peta, false, false, true, false)){
-            Peta->mem[x][y] = ' ';
+            // Peta->mem[x][y] = ' ';
             (S->X)++;
-            y = S->X;
-            Peta->mem[x][y] = 'S';
+            // y = S->X;
+            // Peta->mem[x][y] = 'S';
+            addUndo(*sim);
             kurang_waktu_deliv(&Delivery(*sim), &Inventory(*sim));
             kurang_waktu_inv(&Inventory(*sim));
+            sim->waktu = NextMenit(sim->waktu);
         }
         else {
             printf("Tidak bisa Move East (ada obstacle).\n");
@@ -136,12 +137,14 @@ void Move(POINT *S, string direction, Matrix *Peta, Simulator *sim) {
     if (cmpStrType2(move_west_cmd.content, direction.content)){
         // Check West
         if(validateMove(*S, *Peta, true, false, false, false)){
-            Peta->mem[x][y] = ' ';
+            // Peta->mem[x][y] = ' ';
             (S->X)--;
-            y = S->X;
-            Peta->mem[x][y] = 'S';
+            // y = S->X;
+            // Peta->mem[x][y] = 'S';
+            addUndo(*sim);
             kurang_waktu_deliv(&Delivery(*sim), &Inventory(*sim));
             kurang_waktu_inv(&Inventory(*sim));
+            sim->waktu = NextMenit(sim->waktu);
         }
         else {
             printf("Tidak bisa Move West (ada obstacle).\n");
@@ -151,12 +154,14 @@ void Move(POINT *S, string direction, Matrix *Peta, Simulator *sim) {
     if (cmpStrType2(move_south_cmd.content, direction.content)){
         // Check South
         if(validateMove(*S, *Peta, false, false, false, true)){
-            Peta->mem[x][y] = ' ';
+            // Peta->mem[x][y] = ' ';
             (S->Y)++;
-            x = S->Y;
-            Peta->mem[x][y] = 'S';
+            // x = S->Y;
+            // Peta->mem[x][y] = 'S';
+            addUndo(*sim);
             kurang_waktu_deliv(&Delivery(*sim), &Inventory(*sim));
             kurang_waktu_inv(&Inventory(*sim));
+            sim->waktu = NextMenit(sim->waktu);
         }
         else {
             printf("Tidak bisa Move South (ada obstacle).\n");
@@ -165,3 +170,28 @@ void Move(POINT *S, string direction, Matrix *Peta, Simulator *sim) {
     }
 }
 
+void displayPeta(Matrix m, Simulator S)
+{
+    /* I.S. m terdefinisi */
+    /* F.S. Nilai m(i,j) ditulis ke layar per baris per kolom, masing-masing elemen per baris
+       dipisahkan sebuah spasi. Baris terakhir tidak diakhiri dengan newline */
+    /* Proses: Menulis nilai setiap elemen m ke layar dengan traversal per baris dan per kolom */
+    int i, j;
+    POINT currS = { .X = S.posisi.X , .Y = S.posisi.Y};
+    for (i = 0; i < m.rowEff+2; i++)
+    {
+        for (j = 0; j < m.colEff+2; j++)
+        {
+            if (i == currS.Y && j == currS.X) {
+                printf("S ");    
+            } else {
+                printf("%c", m.mem[i][j]);
+                if (j != (m.colEff + 1))
+                {
+                    printf(" ");
+                }
+            }
+        }
+        printf("\n");
+    }
+}

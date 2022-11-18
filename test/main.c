@@ -27,6 +27,7 @@
 #include "../Commands/moves.h"
 
 /* *** Operasi-operasi *** */
+
 void Catalog()
 {
     ListMakanan ans = READMAKANAN("./makanan_test.txt");
@@ -219,7 +220,14 @@ void processCommand(string command, Simulator *S, Matrix *Peta, ListMakanan LM)
         }
         if (cmpStrType2(command.content, buy_cmd.content))
         {
-            buy(S, LM);
+            if(checkAdjacent('T', *Peta, Posisi(*S))){
+                addUndo(*S);
+                buy(S, LM);
+                NextMenit(S->waktu);
+            } else {
+                printf("%d, %d", S->posisi.X,S->posisi.Y);
+                printf("%s tidak berada di area telepon!\n", Nama(*S));
+            }
         }
         if (cmpStrType2(command.content, delivery_cmd.content))
         {
@@ -229,47 +237,62 @@ void processCommand(string command, Simulator *S, Matrix *Peta, ListMakanan LM)
         if (cmpStrType2(command.content, move_north_cmd.content))
         {
             Move(&S->posisi, command, Peta, S);
-            addUndo(*S);
         }
         if (cmpStrType2(command.content, move_east_cmd.content))
         {
             Move(&S->posisi, command, Peta, S);
-            addUndo(*S);
         }
         if (cmpStrType2(command.content, move_west_cmd.content))
         {
             Move(&S->posisi, command, Peta, S);
-            addUndo(*S);
         }
         if (cmpStrType2(command.content, move_south_cmd.content))
         {
             Move(&S->posisi, command, Peta, S);
-            addUndo(*S);
-
         }
         if (cmpStrType2(command.content, mix_cmd.content))
         {
             ListResep l_resep = READRESEP("./resep_test.txt");
-
-            // mix(S, l_resep, LM);
+            if(checkAdjacent('M', *Peta, Posisi(*S))){
+                 addUndo(*S);
+                // mix(S, l_resep, LM);
+                NextMenit(S->waktu);
+            } else {
+                printf("%s tidak berada di area mixer!\n", Nama(*S));
+            }
         }
         if (cmpStrType2(command.content, chop_cmd.content))
         {
             ListResep l_resep = READRESEP("./resep_test.txt");
 
-            // chop(S, l_resep, LM);
+            if(checkAdjacent('C', *Peta, Posisi(*S))){
+                addUndo(*S);
+                // chop(S, l_resep, LM);
+            } else {
+                printf("%s tidak berada di area choper!\n", Nama(*S));
+            }
         }
         if (cmpStrType2(command.content, fry_cmd.content))
         {
             ListResep l_resep = READRESEP("./resep_test.txt");
 
-            // fry(S, l_resep, LM);
+            if(checkAdjacent('F', *Peta, Posisi(*S))){
+                addUndo(*S);
+                // fry(S, l_resep, LM);
+            } else {
+                printf("%c tidak berada di area fryer!\n", Nama(*S));
+            }
         }
         if (cmpStrType2(command.content, boil_cmd.content))
         {
             ListResep l_resep = READRESEP("./resep_test.txt");
 
-            // boil(S, l_resep, LM);
+            if(checkAdjacent('B', *Peta, Posisi(*S))){
+                addUndo(*S);
+                // boil(S, l_resep, LM);
+            } else {
+                printf("%s tidak berada di area boiler!\n", Nama(*S));
+            }
         }
         if (cmpStrType2(command.content, undo_cmd.content))
         {
@@ -347,18 +370,19 @@ int main()
         string nama;
         printf("Nama simulator: ");
         scanWord(&nama);
-        printf("\n");
+        printf("%s\n", nama.content);
 
         // Init simulator
         Simulator S;
         createSimulator(&S);
-        S.nama = nama;
+        S.nama = copyString(nama);
 
         // Init peta
         Matrix peta;
         READPETA(&peta, "./peta_test.txt");
-        S.posisi = LocateS(peta);
 
+        S.posisi = LocateS(peta);
+        updatePeta(&peta, S);
         // Init stack undo redo
         CreateEmptyUndoRedo();
         addUndo(S);
@@ -370,9 +394,9 @@ int main()
         {
             // Validate every command
             printf("%s di posisi: (%d,%d)\n", nama.content, S.posisi.X, S.posisi.Y);
-            printf("Waktu : \n");
+            printf("Waktu : %d.%d\n", Waktu(S).HH, Waktu(S).MM);
             printf("Notifikasi : -\n");
-            displayMatrix(peta);
+            displayPeta(peta, S);
             printf("\n");
             do
             {

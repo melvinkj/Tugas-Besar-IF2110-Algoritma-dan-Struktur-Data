@@ -80,3 +80,15 @@ boolean hasSubstring (string sub, string str) {
     }
     return true;
 }
+
+string copyString(string input){
+    string container;
+    container.content = malloc ((input.Length)*sizeof(char));
+    char * ptr = container.content;
+    while (*input.content != '\0') {
+        *ptr++ = *input.content++;
+    }
+    *ptr++ = '\0';
+    container.Length = input.Length;
+    return container;
+}
