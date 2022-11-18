@@ -220,6 +220,7 @@ void processCommand(string command, Simulator *S, Matrix *Peta, ListMakanan LM)
         if (cmpStrType2(command.content, buy_cmd.content))
         {
             buy(S, LM);
+            addUndo(*S);
         }
         if (cmpStrType2(command.content, delivery_cmd.content))
         {
@@ -229,47 +230,50 @@ void processCommand(string command, Simulator *S, Matrix *Peta, ListMakanan LM)
         if (cmpStrType2(command.content, move_north_cmd.content))
         {
             Move(&S->posisi, command, Peta, S);
-            addUndo(*S);
         }
         if (cmpStrType2(command.content, move_east_cmd.content))
         {
             Move(&S->posisi, command, Peta, S);
-            addUndo(*S);
         }
         if (cmpStrType2(command.content, move_west_cmd.content))
         {
             Move(&S->posisi, command, Peta, S);
-            addUndo(*S);
         }
         if (cmpStrType2(command.content, move_south_cmd.content))
         {
             Move(&S->posisi, command, Peta, S);
-            addUndo(*S);
-
         }
         if (cmpStrType2(command.content, mix_cmd.content))
         {
             ListResep l_resep = READRESEP("./resep_test.txt");
 
             // mix(S, l_resep, LM);
+
+            // addUndo(*S);
         }
         if (cmpStrType2(command.content, chop_cmd.content))
         {
             ListResep l_resep = READRESEP("./resep_test.txt");
 
             // chop(S, l_resep, LM);
+
+            // addUndo(*S);
         }
         if (cmpStrType2(command.content, fry_cmd.content))
         {
             ListResep l_resep = READRESEP("./resep_test.txt");
 
             // fry(S, l_resep, LM);
+
+            // addUndo(*S);
         }
         if (cmpStrType2(command.content, boil_cmd.content))
         {
             ListResep l_resep = READRESEP("./resep_test.txt");
 
             // boil(S, l_resep, LM);
+
+            // addUndo(*S);
         }
         if (cmpStrType2(command.content, undo_cmd.content))
         {
