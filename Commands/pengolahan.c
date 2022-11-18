@@ -55,7 +55,7 @@ void mix(Simulator *s, ListStatikResep resep, ListMakanan listmakanan){
     string MIX;
     createString(&MIX);
     MIX.Length = 3;
-    MIX.content = "MIX";
+    MIX.content = "Mix";
     // iterasi lokasi aksi tiap resep
     for (int i = 0; i < listMakananLength(listmakanan); i++){
         m = listmakanan.arr[i];
@@ -73,14 +73,17 @@ void mix(Simulator *s, ListStatikResep resep, ListMakanan listmakanan){
         printf("List bahan makanan yang bisa dibuat: \n");
         for (int i = 0; i < listLength(pilihan); i++){
             m = SearchById(ELMTLIST(pilihan,i),listmakanan);
-            printf("%d. %d %s\n", i+1, ID_MAKANAN(m), NAMA_MAKANAN(m).content);
+            printf("%d. %s\n", i+1, NAMA_MAKANAN(m).content);
         }
         
         // pilih makanan
         int pil;
+        string inputs;
         printf("\n");
         printf("Enter command: ");
-        scanf("%d", &pil);
+        // scanf("%d", &pil);
+        scanWord(&inputs);
+        pil = ((int) inputs.content[0]) - 48;
         while (pil < 0 || pil > listLength(pilihan)){
             printf("\n");
             printf("Enter command: ");
@@ -167,7 +170,7 @@ void chop(Simulator *s, ListStatikResep resep, ListMakanan listmakanan){
     string CHOP;
     createString(&CHOP);
     CHOP.Length = 4;
-    CHOP.content = "CHOP";
+    CHOP.content = "Chop";
     // iterasi lokasi aksi tiap resep
     for (int i = 0; i < listMakananLength(listmakanan); i++){
         m = listmakanan.arr[i];
@@ -185,7 +188,7 @@ void chop(Simulator *s, ListStatikResep resep, ListMakanan listmakanan){
         printf("List bahan makanan yang bisa dibuat: \n");
         for (int i = 0; i < listLength(pilihan); i++){
             m = SearchById(ELMTLIST(pilihan,i),listmakanan);
-            printf("%d. %d %s\n", i+1, ID_MAKANAN(m), NAMA_MAKANAN(m).content);
+            printf("%d. %s\n", i+1, NAMA_MAKANAN(m).content);
         }
         
         // pilih makanan
@@ -278,7 +281,7 @@ void fry(Simulator *s, ListStatikResep resep, ListMakanan listmakanan){
     string FRY;
     createString(&FRY);
     FRY.Length = 3;
-    FRY.content = "FRY";
+    FRY.content = "Fry";
     // iterasi lokasi aksi tiap resep
     for (int i = 0; i < listMakananLength(listmakanan); i++){
         m = listmakanan.arr[i];
@@ -296,7 +299,7 @@ void fry(Simulator *s, ListStatikResep resep, ListMakanan listmakanan){
         printf("List bahan makanan yang bisa dibuat: \n");
         for (int i = 0; i < listLength(pilihan); i++){
             m = SearchById(ELMTLIST(pilihan,i),listmakanan);
-            printf("%d. %d %s\n", i+1, ID_MAKANAN(m), NAMA_MAKANAN(m).content);
+            printf("%d. %s\n", i+1, NAMA_MAKANAN(m).content);
         }
         
         // pilih makanan
@@ -388,8 +391,8 @@ void boil(Simulator *s, ListStatikResep resep, ListMakanan listmakanan){
 
     string BOIL;
     createString(&BOIL);
-    BOIL.Length = 3;
-    BOIL.content = "MIX";
+    BOIL.Length = 4;
+    BOIL.content = "Boil";
     // iterasi lokasi aksi tiap resep
     for (int i = 0; i < listMakananLength(listmakanan); i++){
         m = listmakanan.arr[i];
@@ -407,7 +410,7 @@ void boil(Simulator *s, ListStatikResep resep, ListMakanan listmakanan){
         printf("List bahan makanan yang bisa dibuat: \n");
         for (int i = 0; i < listLength(pilihan); i++){
             m = SearchById(ELMTLIST(pilihan,i),listmakanan);
-            printf("%d. %d %s\n", i+1, ID_MAKANAN(m), NAMA_MAKANAN(m).content);
+            printf("%d. %s\n", i+1, NAMA_MAKANAN(m).content);
         }
         
         // pilih makanan
