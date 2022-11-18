@@ -166,15 +166,6 @@ void CookBook()
 /* *** Command Reader *** */
 void processCommand(string command, Simulator *S, Matrix *Peta, ListMakanan LM)
 {
-    /* dummy list resep */
-    ListStatikResep dummy;
-    CreateListStatikResep(&dummy);
-    tree T;
-    createTree(&T);
-    insertFirstNode(&T, 1);
-    insertChild(&T,2);
-    insertChild(&T,3);
-    insertFirstResep(&dummy,T);
     // Pathway untuk ke fungsi lain
     
     // ALL COMMANDS
@@ -194,6 +185,7 @@ void processCommand(string command, Simulator *S, Matrix *Peta, ListMakanan LM)
     string redo_cmd = {.content = "REDO", .Length = 4};
     string catalog_cmd = {.content = "CATALOG", .Length = 7};
     string cookbook_cmd = {.content = "COOKBOOK", .Length = 8};
+    string inventory_cmd = {.content = "INVENTORY", .Length = 9};
     string wait_x_y_cmd = {.content = "WAIT", .Length = 4};
 
     // Start Processing
@@ -201,7 +193,23 @@ void processCommand(string command, Simulator *S, Matrix *Peta, ListMakanan LM)
     {
         int hour;
         int minute;
+        TIME T;
+        long T1;
+        int i;
         processWaitCommand(command, &hour, &minute);
+        
+        CreateTime(&T, 0, hour, minute);
+
+        T1 = TIMEToMenit(T);
+        addUndo(*S);
+        
+
+        for(i=0; i < (int)T1; i++){
+            S->waktu = NextMenit(S->waktu);
+            kurang_waktu_deliv(&Delivery(*S), &Inventory(*S));
+            kurang_waktu_inv(&Inventory(*S));
+        }
+
         printf("Extra Hour : %d\n", hour);
         printf("Extra Minute : %d\n", minute);
     }
@@ -216,6 +224,11 @@ void processCommand(string command, Simulator *S, Matrix *Peta, ListMakanan LM)
         {
             
             printf("The Program is Running!\n");
+        }
+        if (cmpStrType2(command.content, inventory_cmd.content))
+        {
+            PrintInventory(S->inventory);
+            return;
         }
         if (cmpStrType2(command.content, catalog_cmd.content))
         {
@@ -232,7 +245,6 @@ void processCommand(string command, Simulator *S, Matrix *Peta, ListMakanan LM)
             if(checkAdjacent('T', *Peta, Posisi(*S))){
                 buy(S, LM);
                 addUndo(*S);
-                NextMenit(S->waktu);
             } else {
                 printf("%d, %d", S->posisi.X,S->posisi.Y);
                 printf("%s tidak berada di area telepon!\n", Nama(*S));
@@ -241,6 +253,7 @@ void processCommand(string command, Simulator *S, Matrix *Peta, ListMakanan LM)
         if (cmpStrType2(command.content, delivery_cmd.content))
         {
             PrintDelivery(S->delivery);
+            return;
         }
         if (cmpStrType2(command.content, move_north_cmd.content))
         {
@@ -261,10 +274,13 @@ void processCommand(string command, Simulator *S, Matrix *Peta, ListMakanan LM)
         if (cmpStrType2(command.content, mix_cmd.content))
         {
             ListResep l_resep = READRESEP("./resep_test.txt");
+            ListStatikResep LSR;
+            CreateListStatikResep(&LSR);
+            toStatikResep(&LSR, l_resep);
             if(checkAdjacent('M', *Peta, Posisi(*S))){
-                 addUndo(*S);
-                // mix(S, l_resep, LM);
-                NextMenit(S->waktu);
+                mix(S, LSR, LM);
+                S->waktu = NextMenit(S->waktu);
+                addUndo(*S);
             } else {
                 printf("%s tidak berada di area mixer!\n", Nama(*S));
             }
@@ -274,8 +290,9 @@ void processCommand(string command, Simulator *S, Matrix *Peta, ListMakanan LM)
             ListResep l_resep = READRESEP("./resep_test.txt");
 
             if(checkAdjacent('C', *Peta, Posisi(*S))){
-                addUndo(*S);
                 // chop(S, l_resep, LM);
+                addUndo(*S);
+                S->waktu = NextMenit(S->waktu);
             } else {
                 printf("%s tidak berada di area choper!\n", Nama(*S));
             }
@@ -285,8 +302,9 @@ void processCommand(string command, Simulator *S, Matrix *Peta, ListMakanan LM)
             ListResep l_resep = READRESEP("./resep_test.txt");
 
             if(checkAdjacent('F', *Peta, Posisi(*S))){
-                addUndo(*S);
                 // fry(S, l_resep, LM);
+                S->waktu = NextMenit(S->waktu);
+                addUndo(*S);
             } else {
                 printf("%c tidak berada di area fryer!\n", Nama(*S));
             }
@@ -296,15 +314,16 @@ void processCommand(string command, Simulator *S, Matrix *Peta, ListMakanan LM)
             ListResep l_resep = READRESEP("./resep_test.txt");
 
             if(checkAdjacent('B', *Peta, Posisi(*S))){
-                addUndo(*S);
                 // boil(S, l_resep, LM);
+                S->waktu = NextMenit(S->waktu);
+                addUndo(*S);
             } else {
                 printf("%s tidak berada di area boiler!\n", Nama(*S));
             }
         }
         if (cmpStrType2(command.content, undo_cmd.content))
         {
-            undo(S,dummy);
+            undo(S);
             return;
         }
         if (cmpStrType2(command.content, redo_cmd.content))

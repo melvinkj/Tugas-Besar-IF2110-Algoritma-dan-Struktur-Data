@@ -25,6 +25,9 @@ int main(){
     CreateListStatikResep(&lr);
     toStatikResep(&lr,l_resep);
 
+    printTreeFin(ELMTR(lr,0));
+    printTreeFin(ELMTR(lr,1));
+
     tree t;
     printf("%d", listLengthResep(lr));
 

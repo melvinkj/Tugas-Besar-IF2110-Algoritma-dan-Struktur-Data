@@ -5,24 +5,19 @@
 int main(){
     tree t;
     createTree(&t);
-    type a = 0;
-    type b = 1;
-    type c = 2;
-    type d = 3;
 
-    insertFirstNode(&t, a);
-    insertChild(&t, b);
-    insertChild(&t, c);
-    insertChild(&t, a);
-    insertChild(&CHILDNODE(t),d);
-    insertChild(&CHILDNODE(t),d);
-    printf("%d\n", ROOT(addrSearch(t,4)));
+    insertFirstNode(&t, 0);
+    insertChild(&t, 1);
+    insertChild(&t, 2);
+    insertChild(&t, 3);
+    insertChild(&CHILDNODE(t),4);
+    insertChild(&CHILDNODE(t),5);
 
     printf("%d\n", height(t));
 
     printTreeFin(t);
 
-
+    printf("%d", ROOT(addrSearch(t,2)));
 
     return 0;
 }
