@@ -3,12 +3,12 @@
 #include <stdio.h>
 /* ********** KONSTRUKTOR ********** */
 /* Konstruktor : create List kosong  */
-void CreateListStatikResep(ListStatikResep *l){
-    int i;
-    for (i = 0; i < CAPACITY ; i++) {
-        ELMTR(*l, i) = newNode(MARKR);
-    }
-}
+// void CreateListStatikResep(ListStatikResep *l){
+//     int i;
+//     for (i = 0; i < CAPACITY ; i++) {
+//         ELMTR(*l, i) = newNode(MARKR);
+//     }
+// }
 /* I.S. l sembarang */
 /* F.S. Terbentuk List l kosong dengan kapasitas CAPACITY */
 /* Proses: Inisialisasi semua elemen List l dengan MARK */
@@ -63,15 +63,15 @@ boolean isFullResep(ListStatikResep l){
 
 /* ********** BACA dan TULIS dengan INPUT/OUTPUT device ********** */
 /* *** Mendefinisikan isi List dari pembacaan *** */
-void readListResep(ListStatikResep *l){
-    int n,i;
-    CreateListStatikResep(l);
-    do {scanf("%d",&n);
-    } while (n<0 || n>CAPACITY);
-    for (i = 0 ; i<n;i++){
-        scanf("%d",&ELMTR(*l,i));
-    }
-}
+// void readListResep(ListStatikResep *l){
+//     int n,i;
+//     CreateListStatikResep(l);
+//     do {scanf("%d",&n);
+//     } while (n<0 || n>CAPACITY);
+//     for (i = 0 ; i<n;i++){
+//         scanf("%d",&ELMTR(*l,i));
+//     }
+// }
 /* I.S. l sembarang */
 /* F.S. List l terdefinisi */
 /* Proses: membaca banyaknya elemen l dan mengisi nilainya */
@@ -81,17 +81,17 @@ void readListResep(ListStatikResep *l){
 /* 2. Jika 0 < n <= CAPACITY; Lakukan n kali: 
           Baca elemen mulai dari indeks 0 satu per satu diakhiri enter */
 /*    Jika n = 0; hanya terbentuk List kosong */
-void printListResep(ListStatikResep l){
-    int i;
-    printf("[");
-	for (i = 0; isIdxEffResep(l,i) ; i++) {
-		if (i != 0) {
-			printf(",");
-		}
-		printf("%d", ELMTR(l,i));
-	}
-	printf("]");
-}
+// void printListResep(ListStatikResep l){
+//     int i;
+//     printf("[");
+// 	for (i = 0; isIdxEffResep(l,i) ; i++) {
+// 		if (i != 0) {
+// 			printf(",");
+// 		}
+// 		printf("%d", ELMTR(l,i));
+// 	}
+// 	printf("]");
+// }
 /* Proses : Menuliskan isi List dengan traversal, List ditulis di antara kurung 
    siku; antara dua elemen dipisahkan dengan separator "koma", tanpa tambahan 
    karakter di depan, di tengah, atau di belakang, termasuk spasi dan enter */
