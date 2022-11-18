@@ -133,7 +133,7 @@ boolean searchNode(tree t, type x){
 AddressTree addrSearch(tree t, int x){
 /* Mengirimkan address node x di tree jika ada */
     boolean found = false;
-    AddressTree addr;
+    AddressTree addr = NULL;
 
     if ((CHILDNODE(t) == NIL) && NEXTNODE(t) == NIL && !found){ // tidak punya child dan tidak punya next
         if (ROOT(t) == x){
@@ -182,6 +182,10 @@ AddressTree addrSearch(tree t, int x){
         else{
             return addr;
         }
+    }
+
+    if (!found){
+        return NULL;
     }
 }
 

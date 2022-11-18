@@ -23,6 +23,9 @@ int isIn(ListStatikResep lr, int ID){
 }
 */
 
+char currentChar;
+boolean EOP;
+
 int locRes(ListStatikResep lr, int ID){
     int i = 0;
     boolean found = false;
@@ -57,6 +60,15 @@ AddressTree addrInRes(ListStatikResep lr, int ID){
             i++;
         }
     }
+
+    if(found){
+        printf("%d", ROOT(p));
+        printf("found\n");
+    }
+    else{
+        printf("not found\n");
+    }
+
     if (!found){
         return NULL;
     }
@@ -76,6 +88,7 @@ void toStatikResep(ListStatikResep *lr, ListResep ld){
         printf("i: %d\n",i);
         // ambil ID pertama
         ID = ld.arr[i].parent_ID;
+        printf("x : %d\n", ID);
 
         if (isEmptyResep(*lr)){
             printf("insert tree pertama\n");
@@ -85,9 +98,9 @@ void toStatikResep(ListStatikResep *lr, ListResep ld){
                 insertChild(&t, ld.arr[i].child_ID.buffer[j]);
             }
             insertLastResep(lr,t);
+            t = NULL;
         }
         else{
-            printf("alamat: %d\n", addrInRes(*lr,ID));
             if (addrInRes(*lr,ID) == NULL){
                 printf("makanan belum ada\n");
                 t = NULL;
@@ -96,19 +109,19 @@ void toStatikResep(ListStatikResep *lr, ListResep ld){
                     insertChild(&t, ld.arr[i].child_ID.buffer[j]);
                 }
                 insertLastResep(lr,t);
+                t = NULL;
             }
             else{
                 printf("makanan sudah ada\n");
-                printf(".\n");
+                printf("%d\n", addrInRes(*lr, ID));
                 t = NULL;
                 t = addrInRes(*lr,ID);
-                printf(".\n");
                 printf("parent : %d\n", ROOT(t));
-                printf(".\n");
                 for(int j = 0; j < ld.arr[i].child_ID.nEff; j++){
                     printf("child : %d\n", ld.arr[i].child_ID.buffer[j]);
                     insertChild(&t, ld.arr[i].child_ID.buffer[j]);
                 }
+                t = NULL;
             }
         }
         printf("\n");

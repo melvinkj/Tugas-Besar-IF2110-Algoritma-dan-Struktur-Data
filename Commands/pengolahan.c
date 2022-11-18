@@ -49,17 +49,18 @@ void mix(Simulator *s, ListStatikResep resep, ListMakanan listmakanan){
     int ID, IDsearch;
     Makanan m,mi;
     ListStatik pilihan;
-    AddressTree addr,p;
+    AddressTree addr;
     CreateListStatik(&pilihan);
 
     string MIX;
     createString(&MIX);
+    MIX.Length = 3;
     MIX.content = "MIX";
     // iterasi lokasi aksi tiap resep
-    for (int i = 0; i < listLengthResep(resep); i++){
-        ID = ROOT(ELMTR(resep,i));
-        m = SearchById(ID, listmakanan);
+    for (int i = 0; i < listMakananLength(listmakanan); i++){
+        m = listmakanan.arr[i];
         if (cmpStrType2(LOKASI_AKSI(m).content, MIX.content)){
+            printf("%s\n", NAMA_MAKANAN(m).content);
             insertLast(&pilihan, ID_MAKANAN(m)); // simpan ID makanan di pilihan
         }
     }
@@ -71,6 +72,7 @@ void mix(Simulator *s, ListStatikResep resep, ListMakanan listmakanan){
     else{
         printf("List bahan makanan yang bisa dibuat: \n");
         for (int i = 0; i < listLength(pilihan); i++){
+            m = SearchById(ELMTLIST(pilihan,i),listmakanan);
             printf("%d. %d %s\n", i+1, ID_MAKANAN(m), NAMA_MAKANAN(m).content);
         }
         
@@ -88,7 +90,6 @@ void mix(Simulator *s, ListStatikResep resep, ListMakanan listmakanan){
         if (pil != 0){
             // cek apakah bahan ada di inventory atau tidak
             IDsearch = ELMTLIST(pilihan,pil-1);
-            printf("%d", IDsearch);
             m = SearchById(IDsearch, listmakanan); // makanan
 
             // cari tree ID makanan di list resep
@@ -100,18 +101,24 @@ void mix(Simulator *s, ListStatikResep resep, ListMakanan listmakanan){
                 if (addr == NULL){
                     i++;
                 }
+                else{
+                    found = true;
+                }
             }
             // addr berisi address makanan yang ingin dibuat
 
-        
             ListDin kosong; // list bahan yang tidak ada
+            CreateListDin(&kosong,20);
 
             // iterasi semua bahan child makanan dan list makanan yang tidak ada
+            AddressTree p;
             p = CHILDNODE(addr);
-            while (p != NULL){
+            while (NEXTNODE(p) != NULL){
                 if (!inInventory(Inventory(*s),ROOT(p))){
-                    insertLastD(&kosong, ROOT(p));
-                }
+                        insertLastD(&kosong, ROOT(p));
+                        printf("tidak ada\n");
+                    }
+                p = NEXTNODE(p);
             }
 
             // print makanan yang tidak dapat dibuat

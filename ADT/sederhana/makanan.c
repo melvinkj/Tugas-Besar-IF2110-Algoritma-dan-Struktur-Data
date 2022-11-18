@@ -33,7 +33,7 @@ void CreateListMakanan(ListMakanan *l){
 int listMakananLength(ListMakanan l){
     int i = 0;
     int panjang = 0;
-    while (l.arr[i].id != -9999 && panjang < MAX_LISTMAKANAN_CAP){
+    while (l.arr[i].id != -9999 && i < MAX_LISTMAKANAN_CAP){
         panjang++;
         i++;
     }
