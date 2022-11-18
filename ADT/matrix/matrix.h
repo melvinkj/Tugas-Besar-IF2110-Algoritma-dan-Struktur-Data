@@ -39,26 +39,4 @@ void createMatrix(int nRows, int nCols, Matrix *m);
 void copyMatrix(Matrix mIn, Matrix *mOut);
 /* Melakukan assignment mOut <- mIn */
 
-void displayMatrix(Matrix m);
-/* I.S. m terdefinisi */
-/* F.S. Nilai m(i,j) ditulis ke layar per baris per kolom, masing-masing elemen per baris
-   dipisahkan sebuah spasi. Baris terakhir tidak diakhiri dengan newline */
-/* Proses: Menulis nilai setiap elemen m ke layar dengan traversal per baris dan per kolom */
-/* Contoh: menulis matriks 3x3 (ingat di akhir tiap baris, tidak ada spasi)
-1 2 3
-4 5 6
-8 9 10
-*/
-
-/* ********** Operasi lain ********** */
-int countElmt(Matrix m);
-/* Mengirimkan banyaknya elemen m */
-
-
-Matrix transpose(Matrix m);
-/* I.S. m terdefinisi dan IsSquare(m) */
-/* F.S. menghasilkan salinan transpose dari m, yaitu setiap elemen m(i,j) ditukar nilainya dengan elemen m(j,i) */
-void pTranspose(Matrix *m);
-/* I.S. m terdefinisi dan IsSquare(m) */
-/* F.S. m "di-transpose", yaitu setiap elemen m(i,j) ditukar nilainya dengan elemen m(j,i) */
 #endif
