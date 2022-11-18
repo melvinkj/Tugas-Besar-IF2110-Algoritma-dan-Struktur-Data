@@ -20,6 +20,10 @@ int main() {
     str_cmp1.content = "test";
     str_cmp2.content = "VALID";
 
+    string str1 = { .content = "Copy this", .Length = 9};
+    string str2 = copyString(str1);
+    printf("%s", str2.content);
+    printf("pass");
     // string appendArrToStrVar = appendArrToStr(str, arr, 10);
 
     // printf("word: %s\n", appendArrToStrVar.content);

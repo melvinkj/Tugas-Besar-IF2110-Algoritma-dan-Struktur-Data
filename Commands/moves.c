@@ -27,10 +27,11 @@ boolean checkAdjacent(char cc, Matrix Peta, POINT S)
     // Adjacent S
     // Result
     boolean found = false;
-    if (S.Y + 1 == cc) found = true;
-    if (S.Y - 1 == cc) found = true;
-    if (S.X + 1 == cc) found = true;
-    if (S.X - 1 == cc) found = true;
+    if (Peta.mem[S.Y + 1][S.X] == cc) found = true;
+    if (Peta.mem[S.Y - 1][S.X] == cc) found = true;
+    if (Peta.mem[S.Y][S.X + 1] == cc) found = true;
+    if (Peta.mem[S.Y][S.X - 1] == cc) found = true;
+
     // for (int i = S.Y - 1; i <= S.Y + 1; i++)
     // {
     //     for (int j = S.X - 1; j <= S.X + 1; j++)

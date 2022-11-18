@@ -225,7 +225,8 @@ void processCommand(string command, Simulator *S, Matrix *Peta, ListMakanan LM)
                 buy(S, LM);
                 NextMenit(S->waktu);
             } else {
-                printf("%c tidak berada di area telepon!\n", Nama(*S));
+                printf("%d, %d", S->posisi.X,S->posisi.Y);
+                printf("%s tidak berada di area telepon!\n", Nama(*S));
             }
         }
         if (cmpStrType2(command.content, delivery_cmd.content))
@@ -257,7 +258,7 @@ void processCommand(string command, Simulator *S, Matrix *Peta, ListMakanan LM)
                 // mix(S, l_resep, LM);
                 NextMenit(S->waktu);
             } else {
-                printf("%c tidak berada di area mixer!\n", Nama(*S));
+                printf("%s tidak berada di area mixer!\n", Nama(*S));
             }
         }
         if (cmpStrType2(command.content, chop_cmd.content))
@@ -268,7 +269,7 @@ void processCommand(string command, Simulator *S, Matrix *Peta, ListMakanan LM)
                 addUndo(*S);
                 // chop(S, l_resep, LM);
             } else {
-                printf("%c tidak berada di area choper!\n", Nama(*S));
+                printf("%s tidak berada di area choper!\n", Nama(*S));
             }
         }
         if (cmpStrType2(command.content, fry_cmd.content))
@@ -290,7 +291,7 @@ void processCommand(string command, Simulator *S, Matrix *Peta, ListMakanan LM)
                 addUndo(*S);
                 // boil(S, l_resep, LM);
             } else {
-                printf("%c tidak berada di area boiler!\n", Nama(*S));
+                printf("%s tidak berada di area boiler!\n", Nama(*S));
             }
         }
         if (cmpStrType2(command.content, undo_cmd.content))
@@ -369,12 +370,12 @@ int main()
         string nama;
         printf("Nama simulator: ");
         scanWord(&nama);
-        printf("\n");
+        printf("%s\n", nama.content);
 
         // Init simulator
         Simulator S;
         createSimulator(&S);
-        S.nama = nama;
+        S.nama = copyString(nama);
 
         // Init peta
         Matrix peta;
