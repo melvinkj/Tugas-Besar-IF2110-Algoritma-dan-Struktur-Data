@@ -24,12 +24,7 @@ boolean IsStackFull(Stack S){
 void Push(Stack * S, Simulator X){
     Simulator s;
     createSimulator(&s);
-    s.nama = X.nama;
-    s.posisi = X.posisi;
-    s.waktu = X.waktu;
-    copyPrioQueue(X.inventory,&s.inventory);
-    copyPrioQueue(X.delivery,&s.delivery);
-    s.kulkas = X.kulkas;
+    copySimulator(&s, X);
     Top(*S)++;
     InfoTop(*S) = s;
 }

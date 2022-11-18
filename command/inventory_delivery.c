@@ -85,6 +85,7 @@ void tidakjadibeli(PrioQueue sebelum, PrioQueue sekarang){
         }
         if (!found){
             printf("%s  tidak jadi dibeli :(\n", Elmt(temp2, j).nama.content);
+            // printf("id = %d  tidak jadi dibeli :(\n", Elmt(temp2, j).id);
         }
         found = false;
         i = Head(temp1);
@@ -114,6 +115,7 @@ void kembalikedelivery(PrioQueue sebelum, PrioQueue sekarang){
         }
         if (!found){
             printf("%s kembali ke delivery :(\n", Elmt(temp1, i).nama.content);
+            // printf("id = %d kembali ke delivery :(\n", Elmt(temp1, i).id);
         }
         found = false;
         j = Head(temp2);
@@ -159,9 +161,11 @@ void tidakjadipengolahan(PrioQueue sebelum, PrioQueue sekarang, ListStatikResep 
                 last = NEXTNODE(last);
             }
             printf("%s tidak jadi diproses di %s :(\n", Elmt(temp2, j).nama.content, Elmt(temp2,j).lokasi_aksi.content);   
+            // printf("id = %d tidak jadi diproses di %s :(\n", Elmt(temp2, j).id, Elmt(temp2,j).lokasi_aksi.content);   
         }
         j = (j+1)%MaxEl(temp2);
     }
+    kembalikeinventory(temp1, temp2);
 }
 
 void kembalikeinventory(PrioQueue sebelum, PrioQueue sekarang){
@@ -186,6 +190,7 @@ void kembalikeinventory(PrioQueue sebelum, PrioQueue sekarang){
         }
         if (!found){
             printf("%s tidak jadi expired :)\n", Elmt(temp1, i).nama.content);
+            // printf("id = %d tidak jadi expired :)\n", Elmt(temp1, i).id);
         }
         found = false;
         j = Head(temp2);

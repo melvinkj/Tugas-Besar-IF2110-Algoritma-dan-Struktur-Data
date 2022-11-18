@@ -19,9 +19,9 @@ void dealokasiSimulator(Simulator *s){
 
 void copySimulator(Simulator *s1, Simulator s2){
 /* Menyalin Simulator s2 ke s1 */
-    Nama(*s1) = Nama(s2);
-    Posisi(*s1) = Posisi(s2);
-    Waktu(*s1) = Waktu(s2);
+    (s1)->nama = Nama(s2);
+    (s1)->posisi = Posisi(s2);
+    (s1)->waktu = Waktu(s2);
     copyPrioQueue(Inventory(s2), &Inventory(*s1));
     copyPrioQueue(Delivery(s2), &Delivery(*s1));
     copyMatrix(Kulkas(s2), &Kulkas(*s1));

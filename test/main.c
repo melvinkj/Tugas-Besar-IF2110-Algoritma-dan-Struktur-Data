@@ -166,6 +166,14 @@ void CookBook()
 /* *** Command Reader *** */
 void processCommand(string command, Simulator *S, Matrix *Peta, ListMakanan LM)
 {
+    ListStatikResep resep;
+    CreateListStatikResep(&resep);
+    tree T;
+    createTree(&T);
+    insertFirstNode(&T, 1);
+    insertChild(&T,2);
+    insertChild(&T,3);
+    insertFirstResep(&resep,T);
     // Pathway untuk ke fungsi lain
     
     // ALL COMMANDS
@@ -323,7 +331,7 @@ void processCommand(string command, Simulator *S, Matrix *Peta, ListMakanan LM)
         }
         if (cmpStrType2(command.content, undo_cmd.content))
         {
-            undo(S);
+            undo(S, resep);
             return;
         }
         if (cmpStrType2(command.content, redo_cmd.content))
