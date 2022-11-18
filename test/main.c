@@ -336,7 +336,7 @@ void processCommand(string command, Simulator *S, Matrix *Peta, ListMakanan LM)
         }
         if (cmpStrType2(command.content, redo_cmd.content))
         {
-            redo(S);
+            redo(S, resep);
             return;
         }
     }

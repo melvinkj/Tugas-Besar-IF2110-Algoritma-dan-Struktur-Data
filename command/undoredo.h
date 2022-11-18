@@ -53,7 +53,7 @@ void undo(Simulator *S, ListStatikResep resep);
 /* I.S. UndoStack tidak kosong */
 /* F.S. UndoStack berkurang satu elemen, RedoStack bertambah satu elemen */
 
-void redo(Simulator *S);
+void redo(Simulator *S, ListStatikResep resep);
 /* Mengembalikan state selanjutnya */
 /* I.S. RedoStack tidak kosong */
 /* F.S. RedoStack berkurang satu elemen, UndoStack bertambah satu elemen */
@@ -61,7 +61,9 @@ void redo(Simulator *S);
 void printstackundo();
 /* Menampilkan stack undo */
 
-void notification(Simulator S, ListStatikResep resep);
+
+void notificationUndo(Simulator S, ListStatikResep resep);
+void notificationRedo(Simulator S, ListStatikResep resep);
 /* Menampilkan notifikasi perbandingan state sebelum dan sesudah */
 /* I.S. Semua stack terdefinisi */
 /* F.S. Semua stack tidak berubah */

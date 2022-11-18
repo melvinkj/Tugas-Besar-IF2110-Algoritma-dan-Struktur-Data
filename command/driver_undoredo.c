@@ -51,15 +51,12 @@ int main(){
     PrintPrioQueue(s.inventory);
     undo(&s,LSR);
     PrintPrioQueue(s.inventory);
-    redo(&s);
-    undo(&s,LSR);
-    PrintPrioQueue(s.inventory);
+    redo(&s,LSR);
     BacaPOINT(&p1);
     s.posisi = p1;
     TulisPOINT(s.posisi);
     addUndo(s);
     TulisPOINT(s.posisi);
-    redo(&s);
     TulisPOINT(s.posisi);
      /*
     gcc driver_undoredo.c inventory_delivery.c undoredo.c ../ADT/stack_queue/prioqueue.c ../ADT/stack_queue/stack.c ../ADT/sederhana/makanan.c ../ADT/sederhana/waktu.c ../ADT/sederhana/simulator.c ../ADT/sederhana/point.c ../ADT/matrix/matrix.c ../ADT/char_word_machine/string.c -o main
