@@ -39,17 +39,4 @@ void createMatrix(int nRows, int nCols, Matrix *m);
 void copyMatrix(Matrix mIn, Matrix *mOut);
 /* Melakukan assignment mOut <- mIn */
 
-
-
-/* ********** Operasi lain ********** */
-int countElmt(Matrix m);
-/* Mengirimkan banyaknya elemen m */
-
-
-Matrix transpose(Matrix m);
-/* I.S. m terdefinisi dan IsSquare(m) */
-/* F.S. menghasilkan salinan transpose dari m, yaitu setiap elemen m(i,j) ditukar nilainya dengan elemen m(j,i) */
-void pTranspose(Matrix *m);
-/* I.S. m terdefinisi dan IsSquare(m) */
-/* F.S. m "di-transpose", yaitu setiap elemen m(i,j) ditukar nilainya dengan elemen m(j,i) */
 #endif

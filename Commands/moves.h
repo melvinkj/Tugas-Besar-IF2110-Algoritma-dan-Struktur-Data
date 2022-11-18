@@ -11,6 +11,7 @@ POINT LocateS(Matrix Peta);
 // Memberikan lokasi Simulator sekarang
 
 void updatePeta(Matrix *Peta, Simulator S);
+// Mengupdate peta konfigurasi
 
 boolean checkAdjacent(char cc, Matrix Peta, POINT S);
 // Mengecek apakah ada 'cc' di sekitar Simulator
