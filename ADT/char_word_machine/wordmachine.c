@@ -209,6 +209,7 @@ char * commandOptions(string input)
     string redo = { .content = "REDO", .Length = 4 };
     string catalog = { .content = "CATALOG", .Length = 7 };
     string cookbook = { .content = "COOKBOOK", .Length = 8 };
+    string inventory = {.content = "INVENTORY", .Length = 9};
     string wait_x_y = { .content = "WAIT", .Length = 4 };
     // For Wait x y Command
     if (hasSubstring(wait_x_y, input)) {
@@ -251,6 +252,7 @@ char * commandOptions(string input)
     else if (cmpStrType2(input.content, redo.content)) return "VALID";
     else if (cmpStrType2(input.content, catalog.content)) return "VALID";
     else if (cmpStrType2(input.content, cookbook.content)) return "VALID";
+    else if (cmpStrType2(input.content, inventory.content)) return "VALID";
     else
     {
         return result = "INVALID";
