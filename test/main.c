@@ -27,6 +27,7 @@
 #include "../Commands/moves.h"
 
 /* *** Operasi-operasi *** */
+
 void Catalog()
 {
     ListMakanan ans = READMAKANAN("./makanan_test.txt");
@@ -219,8 +220,12 @@ void processCommand(string command, Simulator *S, Matrix *Peta, ListMakanan LM)
         }
         if (cmpStrType2(command.content, buy_cmd.content))
         {
-            buy(S, LM);
-            addUndo(*S);
+            if(checkAdjacent('T', *Peta, Posisi(*S))){
+                buy(S, LM);
+                addUndo(*S);
+            } else {
+                printf("%c tidak berada di area telepon!\n", Nama(*S));
+            }
         }
         if (cmpStrType2(command.content, delivery_cmd.content))
         {
@@ -246,34 +251,45 @@ void processCommand(string command, Simulator *S, Matrix *Peta, ListMakanan LM)
         if (cmpStrType2(command.content, mix_cmd.content))
         {
             ListResep l_resep = READRESEP("./resep_test.txt");
-
-            // mix(S, l_resep, LM);
-
-            // addUndo(*S);
+            if(checkAdjacent('M', *Peta, Posisi(*S))){
+                // mix(S, l_resep, LM);
+                addUndo(*S);
+            } else {
+                printf("%c tidak berada di area mixer!\n", Nama(*S));
+            }
         }
         if (cmpStrType2(command.content, chop_cmd.content))
         {
             ListResep l_resep = READRESEP("./resep_test.txt");
 
-            // chop(S, l_resep, LM);
-
-            // addUndo(*S);
+            if(checkAdjacent('C', *Peta, Posisi(*S))){
+                // chop(S, l_resep, LM);
+                addUndo(*S);
+            } else {
+                printf("%c tidak berada di area choper!\n", Nama(*S));
+            }
         }
         if (cmpStrType2(command.content, fry_cmd.content))
         {
             ListResep l_resep = READRESEP("./resep_test.txt");
 
-            // fry(S, l_resep, LM);
-
-            // addUndo(*S);
+            if(checkAdjacent('F', *Peta, Posisi(*S))){
+                // fry(S, l_resep, LM);
+                addUndo(*S);
+            } else {
+                printf("%c tidak berada di area fryer!\n", Nama(*S));
+            }
         }
         if (cmpStrType2(command.content, boil_cmd.content))
         {
             ListResep l_resep = READRESEP("./resep_test.txt");
 
-            // boil(S, l_resep, LM);
-
-            // addUndo(*S);
+            if(checkAdjacent('B', *Peta, Posisi(*S))){
+                // boil(S, l_resep, LM);
+                addUndo(*S);
+            } else {
+                printf("%c tidak berada di area boiler!\n", Nama(*S));
+            }
         }
         if (cmpStrType2(command.content, undo_cmd.content))
         {
