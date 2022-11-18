@@ -41,7 +41,7 @@ int main(){
     Enqueue(&delivery, makanan5);
     PrintPrioQueue(delivery);
 
-    tidakjadipengolahan(inventory, delivery, LSR);
+    jadipengolahan(inventory, delivery, LSR);
 }
 /*
 gcc driver_inventory_delivery.c ../ADT/sederhana/waktu.c ../ADT/sederhana/makanan.c inventory_delivery.c ../ADT/stack_queue/prioqueue.c ../ADT/char_word_machine/string.c -o main
