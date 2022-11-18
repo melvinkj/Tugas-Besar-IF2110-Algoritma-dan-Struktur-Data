@@ -7,7 +7,7 @@
 #include "../sederhana/boolean.h"
 
 // Init machinechar
-// char currentChar;
+//char currentChar;
 // boolean EOP;
 
 // Init machineword
