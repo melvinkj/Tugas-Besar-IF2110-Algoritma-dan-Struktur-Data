@@ -104,7 +104,7 @@ void Move(POINT *S, string direction, Matrix *Peta, Simulator *sim) {
             addUndo(*sim);
             kurang_waktu_deliv(&Delivery(*sim), &Inventory(*sim));
             kurang_waktu_inv(&Inventory(*sim));
-            NextMenit(sim->waktu);
+            sim->waktu = NextMenit(sim->waktu);
         }
         else {
             printf("Tidak bisa Move North (ada obstacle).\n");
@@ -121,7 +121,7 @@ void Move(POINT *S, string direction, Matrix *Peta, Simulator *sim) {
             addUndo(*sim);
             kurang_waktu_deliv(&Delivery(*sim), &Inventory(*sim));
             kurang_waktu_inv(&Inventory(*sim));
-            NextMenit(sim->waktu);
+            sim->waktu = NextMenit(sim->waktu);
         }
         else {
             printf("Tidak bisa Move East (ada obstacle).\n");
@@ -138,7 +138,7 @@ void Move(POINT *S, string direction, Matrix *Peta, Simulator *sim) {
             addUndo(*sim);
             kurang_waktu_deliv(&Delivery(*sim), &Inventory(*sim));
             kurang_waktu_inv(&Inventory(*sim));
-            NextMenit(sim->waktu);
+            sim->waktu = NextMenit(sim->waktu);
         }
         else {
             printf("Tidak bisa Move West (ada obstacle).\n");
@@ -155,7 +155,7 @@ void Move(POINT *S, string direction, Matrix *Peta, Simulator *sim) {
             addUndo(*sim);
             kurang_waktu_deliv(&Delivery(*sim), &Inventory(*sim));
             kurang_waktu_inv(&Inventory(*sim));
-            NextMenit(sim->waktu);
+            sim->waktu = NextMenit(sim->waktu);
         }
         else {
             printf("Tidak bisa Move South (ada obstacle).\n");
