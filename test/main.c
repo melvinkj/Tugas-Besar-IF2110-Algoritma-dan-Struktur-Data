@@ -237,8 +237,8 @@ void processCommand(string command, Simulator *S, Matrix *Peta, ListMakanan LM)
         if (cmpStrType2(command.content, buy_cmd.content))
         {
             if(checkAdjacent('T', *Peta, Posisi(*S))){
-                addUndo(*S);
                 buy(S, LM);
+                addUndo(*S);
             } else {
                 printf("%d, %d", S->posisi.X,S->posisi.Y);
                 printf("%s tidak berada di area telepon!\n", Nama(*S));
@@ -272,9 +272,9 @@ void processCommand(string command, Simulator *S, Matrix *Peta, ListMakanan LM)
             CreateListStatikResep(&LSR);
             toStatikResep(&LSR, l_resep);
             if(checkAdjacent('M', *Peta, Posisi(*S))){
-                addUndo(*S);
                 mix(S, LSR, LM);
                 S->waktu = NextMenit(S->waktu);
+                addUndo(*S);
             } else {
                 printf("%s tidak berada di area mixer!\n", Nama(*S));
             }
@@ -284,8 +284,8 @@ void processCommand(string command, Simulator *S, Matrix *Peta, ListMakanan LM)
             ListResep l_resep = READRESEP("./resep_test.txt");
 
             if(checkAdjacent('C', *Peta, Posisi(*S))){
-                addUndo(*S);
                 // chop(S, l_resep, LM);
+                addUndo(*S);
                 S->waktu = NextMenit(S->waktu);
             } else {
                 printf("%s tidak berada di area choper!\n", Nama(*S));
@@ -296,9 +296,9 @@ void processCommand(string command, Simulator *S, Matrix *Peta, ListMakanan LM)
             ListResep l_resep = READRESEP("./resep_test.txt");
 
             if(checkAdjacent('F', *Peta, Posisi(*S))){
-                addUndo(*S);
                 // fry(S, l_resep, LM);
                 S->waktu = NextMenit(S->waktu);
+                addUndo(*S);
             } else {
                 printf("%c tidak berada di area fryer!\n", Nama(*S));
             }
@@ -308,9 +308,9 @@ void processCommand(string command, Simulator *S, Matrix *Peta, ListMakanan LM)
             ListResep l_resep = READRESEP("./resep_test.txt");
 
             if(checkAdjacent('B', *Peta, Posisi(*S))){
-                addUndo(*S);
                 // boil(S, l_resep, LM);
                 S->waktu = NextMenit(S->waktu);
+                addUndo(*S);
             } else {
                 printf("%s tidak berada di area boiler!\n", Nama(*S));
             }
