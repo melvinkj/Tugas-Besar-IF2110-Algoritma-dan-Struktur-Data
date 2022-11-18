@@ -148,44 +148,45 @@ void mix(Simulator *s, ListStatikResep resep, ListMakanan listmakanan){
 }
 
 void chop(Simulator *s, ListStatikResep resep, ListMakanan listmakanan){
-/* Memotong satu bahan makanan menjadi makanan baru */
+/* Memotong makanan */
     // Mengecek bahan makanan yang dapat dichop
     int count = 0;
     int ID, IDsearch;
     Makanan m,mi;
-    ListDin pilihan;
-    AddressTree addr,p;
-    CreateListDin(&pilihan, 20);
+    ListStatik pilihan;
+    AddressTree addr;
+    CreateListStatik(&pilihan);
 
     string CHOP;
     createString(&CHOP);
+    CHOP.Length = 4;
     CHOP.content = "CHOP";
-
     // iterasi lokasi aksi tiap resep
-    for (int i = 0; i < listLengthResep(resep); i++){
-        ID = ROOT(ELMTR(resep,i));
-        m = SearchById(ID, listmakanan);
+    for (int i = 0; i < listMakananLength(listmakanan); i++){
+        m = listmakanan.arr[i];
         if (cmpStrType2(LOKASI_AKSI(m).content, CHOP.content)){
-            insertLastD(&pilihan, ID_MAKANAN(m)); // simpan ID makanan di pilihan
+            printf("%s\n", NAMA_MAKANAN(m).content);
+            insertLast(&pilihan, ID_MAKANAN(m)); // simpan ID makanan di pilihan
         }
     }
 
     // print list kemungkinan makanan
-    if (isEmptyD(pilihan)){
+    if (isEmpty(pilihan)){
         printf("Tidak ada makanan yang bisa dibuat.\n");
     }
     else{
         printf("List bahan makanan yang bisa dibuat: \n");
-        for (int i = 0; i < NEFF(pilihan); i++){
-            printf("%d. %s", i+1, NAMA_MAKANAN(m).content);
+        for (int i = 0; i < listLength(pilihan); i++){
+            m = SearchById(ELMTLIST(pilihan,i),listmakanan);
+            printf("%d. %d %s\n", i+1, ID_MAKANAN(m), NAMA_MAKANAN(m).content);
         }
-
+        
         // pilih makanan
         int pil;
         printf("\n");
         printf("Enter command: ");
         scanf("%d", &pil);
-        while (pil < 0 || pil > NEFF(pilihan)){
+        while (pil < 0 || pil > listLength(pilihan)){
             printf("\n");
             printf("Enter command: ");
         scanf("%d", &pil);
@@ -193,7 +194,7 @@ void chop(Simulator *s, ListStatikResep resep, ListMakanan listmakanan){
 
         if (pil != 0){
             // cek apakah bahan ada di inventory atau tidak
-            IDsearch = ELMT(pilihan,pil-1);
+            IDsearch = ELMTLIST(pilihan,pil-1);
             m = SearchById(IDsearch, listmakanan); // makanan
 
             // cari tree ID makanan di list resep
@@ -205,18 +206,24 @@ void chop(Simulator *s, ListStatikResep resep, ListMakanan listmakanan){
                 if (addr == NULL){
                     i++;
                 }
+                else{
+                    found = true;
+                }
             }
             // addr berisi address makanan yang ingin dibuat
 
-        
             ListDin kosong; // list bahan yang tidak ada
+            CreateListDin(&kosong,20);
 
             // iterasi semua bahan child makanan dan list makanan yang tidak ada
+            AddressTree p;
             p = CHILDNODE(addr);
-            while (p != NULL){
+            while (NEXTNODE(p) != NULL){
                 if (!inInventory(Inventory(*s),ROOT(p))){
-                    insertLastD(&kosong, ROOT(p));
-                }
+                        insertLastD(&kosong, ROOT(p));
+                        printf("tidak ada\n");
+                    }
+                p = NEXTNODE(p);
             }
 
             // print makanan yang tidak dapat dibuat
@@ -224,7 +231,7 @@ void chop(Simulator *s, ListStatikResep resep, ListMakanan listmakanan){
                 printf("Gagal membuat %s karena kamu tidak memiliki bahan berikut:\n", NAMA_MAKANAN(m).content);
                 for(i = 0; i < NEFF(kosong); i++){
                     mi = SearchById(ELMT(kosong,i), listmakanan);
-                    printf("%d. %s", i+1, NAMA_MAKANAN(mi).content);
+                    printf("%d. %s\n", i+1, NAMA_MAKANAN(mi).content);
                 }
             }
             // jika dapat dibuat, iterasi tiap childnode untuk dikurangkan di inventory
@@ -245,44 +252,45 @@ void chop(Simulator *s, ListStatikResep resep, ListMakanan listmakanan){
 }
 
 void fry(Simulator *s, ListStatikResep resep, ListMakanan listmakanan){
-/* Menggoreng satu atau lebih makanan menjadi makanan baru */
+/* Menggoreng makanan */
     // Mengecek bahan makanan yang dapat difry
     int count = 0;
     int ID, IDsearch;
     Makanan m,mi;
-    ListDin pilihan;
-    AddressTree addr,p;
-    CreateListDin(&pilihan, 20);
+    ListStatik pilihan;
+    AddressTree addr;
+    CreateListStatik(&pilihan);
 
     string FRY;
     createString(&FRY);
+    FRY.Length = 3;
     FRY.content = "FRY";
-
     // iterasi lokasi aksi tiap resep
-    for (int i = 0; i < listLengthResep(resep); i++){
-        ID = ROOT(ELMTR(resep,i));
-        m = SearchById(ID, listmakanan);
+    for (int i = 0; i < listMakananLength(listmakanan); i++){
+        m = listmakanan.arr[i];
         if (cmpStrType2(LOKASI_AKSI(m).content, FRY.content)){
-            insertLastD(&pilihan, ID_MAKANAN(m)); // simpan ID makanan di pilihan
+            printf("%s\n", NAMA_MAKANAN(m).content);
+            insertLast(&pilihan, ID_MAKANAN(m)); // simpan ID makanan di pilihan
         }
     }
 
     // print list kemungkinan makanan
-    if (isEmptyD(pilihan)){
+    if (isEmpty(pilihan)){
         printf("Tidak ada makanan yang bisa dibuat.\n");
     }
     else{
         printf("List bahan makanan yang bisa dibuat: \n");
-        for (int i = 0; i < NEFF(pilihan); i++){
-            printf("%d. %s", i+1, NAMA_MAKANAN(m).content);
+        for (int i = 0; i < listLength(pilihan); i++){
+            m = SearchById(ELMTLIST(pilihan,i),listmakanan);
+            printf("%d. %d %s\n", i+1, ID_MAKANAN(m), NAMA_MAKANAN(m).content);
         }
-
+        
         // pilih makanan
         int pil;
         printf("\n");
         printf("Enter command: ");
         scanf("%d", &pil);
-        while (pil < 0 || pil > NEFF(pilihan)){
+        while (pil < 0 || pil > listLength(pilihan)){
             printf("\n");
             printf("Enter command: ");
         scanf("%d", &pil);
@@ -290,7 +298,7 @@ void fry(Simulator *s, ListStatikResep resep, ListMakanan listmakanan){
 
         if (pil != 0){
             // cek apakah bahan ada di inventory atau tidak
-            IDsearch = ELMT(pilihan,pil-1);
+            IDsearch = ELMTLIST(pilihan,pil-1);
             m = SearchById(IDsearch, listmakanan); // makanan
 
             // cari tree ID makanan di list resep
@@ -302,18 +310,24 @@ void fry(Simulator *s, ListStatikResep resep, ListMakanan listmakanan){
                 if (addr == NULL){
                     i++;
                 }
+                else{
+                    found = true;
+                }
             }
             // addr berisi address makanan yang ingin dibuat
 
-        
             ListDin kosong; // list bahan yang tidak ada
+            CreateListDin(&kosong,20);
 
             // iterasi semua bahan child makanan dan list makanan yang tidak ada
+            AddressTree p;
             p = CHILDNODE(addr);
-            while (p != NULL){
+            while (NEXTNODE(p) != NULL){
                 if (!inInventory(Inventory(*s),ROOT(p))){
-                    insertLastD(&kosong, ROOT(p));
-                }
+                        insertLastD(&kosong, ROOT(p));
+                        printf("tidak ada\n");
+                    }
+                p = NEXTNODE(p);
             }
 
             // print makanan yang tidak dapat dibuat
@@ -321,7 +335,7 @@ void fry(Simulator *s, ListStatikResep resep, ListMakanan listmakanan){
                 printf("Gagal membuat %s karena kamu tidak memiliki bahan berikut:\n", NAMA_MAKANAN(m).content);
                 for(i = 0; i < NEFF(kosong); i++){
                     mi = SearchById(ELMT(kosong,i), listmakanan);
-                    printf("%d. %s", i+1, NAMA_MAKANAN(mi).content);
+                    printf("%d. %s\n", i+1, NAMA_MAKANAN(mi).content);
                 }
             }
             // jika dapat dibuat, iterasi tiap childnode untuk dikurangkan di inventory
@@ -342,44 +356,45 @@ void fry(Simulator *s, ListStatikResep resep, ListMakanan listmakanan){
 }
 
 void boil(Simulator *s, ListStatikResep resep, ListMakanan listmakanan){
-/* Merebus satu bahan makanan */
+/* Merebus makanan */
     // Mengecek bahan makanan yang dapat dimix
     int count = 0;
     int ID, IDsearch;
     Makanan m,mi;
-    ListDin pilihan;
-    AddressTree addr,p;
-    CreateListDin(&pilihan, 20);
+    ListStatik pilihan;
+    AddressTree addr;
+    CreateListStatik(&pilihan);
 
     string BOIL;
     createString(&BOIL);
-    BOIL.content = "BOIL";
-
+    BOIL.Length = 3;
+    BOIL.content = "MIX";
     // iterasi lokasi aksi tiap resep
-    for (int i = 0; i < listLengthResep(resep); i++){
-        ID = ROOT(ELMTR(resep,i));
-        m = SearchById(ID, listmakanan);
+    for (int i = 0; i < listMakananLength(listmakanan); i++){
+        m = listmakanan.arr[i];
         if (cmpStrType2(LOKASI_AKSI(m).content, BOIL.content)){
-            insertLastD(&pilihan, ID_MAKANAN(m)); // simpan ID makanan di pilihan
+            printf("%s\n", NAMA_MAKANAN(m).content);
+            insertLast(&pilihan, ID_MAKANAN(m)); // simpan ID makanan di pilihan
         }
     }
 
     // print list kemungkinan makanan
-    if (isEmptyD(pilihan)){
+    if (isEmpty(pilihan)){
         printf("Tidak ada makanan yang bisa dibuat.\n");
     }
     else{
         printf("List bahan makanan yang bisa dibuat: \n");
-        for (int i = 0; i < NEFF(pilihan); i++){
-            printf("%d. %s", i+1, NAMA_MAKANAN(m).content);
+        for (int i = 0; i < listLength(pilihan); i++){
+            m = SearchById(ELMTLIST(pilihan,i),listmakanan);
+            printf("%d. %d %s\n", i+1, ID_MAKANAN(m), NAMA_MAKANAN(m).content);
         }
-
+        
         // pilih makanan
         int pil;
         printf("\n");
         printf("Enter command: ");
         scanf("%d", &pil);
-        while (pil < 0 || pil > NEFF(pilihan)){
+        while (pil < 0 || pil > listLength(pilihan)){
             printf("\n");
             printf("Enter command: ");
         scanf("%d", &pil);
@@ -387,7 +402,7 @@ void boil(Simulator *s, ListStatikResep resep, ListMakanan listmakanan){
 
         if (pil != 0){
             // cek apakah bahan ada di inventory atau tidak
-            IDsearch = ELMT(pilihan,pil-1);
+            IDsearch = ELMTLIST(pilihan,pil-1);
             m = SearchById(IDsearch, listmakanan); // makanan
 
             // cari tree ID makanan di list resep
@@ -399,18 +414,24 @@ void boil(Simulator *s, ListStatikResep resep, ListMakanan listmakanan){
                 if (addr == NULL){
                     i++;
                 }
+                else{
+                    found = true;
+                }
             }
             // addr berisi address makanan yang ingin dibuat
 
-        
             ListDin kosong; // list bahan yang tidak ada
+            CreateListDin(&kosong,20);
 
             // iterasi semua bahan child makanan dan list makanan yang tidak ada
+            AddressTree p;
             p = CHILDNODE(addr);
-            while (p != NULL){
+            while (NEXTNODE(p) != NULL){
                 if (!inInventory(Inventory(*s),ROOT(p))){
-                    insertLastD(&kosong, ROOT(p));
-                }
+                        insertLastD(&kosong, ROOT(p));
+                        printf("tidak ada\n");
+                    }
+                p = NEXTNODE(p);
             }
 
             // print makanan yang tidak dapat dibuat
@@ -418,7 +439,7 @@ void boil(Simulator *s, ListStatikResep resep, ListMakanan listmakanan){
                 printf("Gagal membuat %s karena kamu tidak memiliki bahan berikut:\n", NAMA_MAKANAN(m).content);
                 for(i = 0; i < NEFF(kosong); i++){
                     mi = SearchById(ELMT(kosong,i), listmakanan);
-                    printf("%d. %s", i+1, NAMA_MAKANAN(mi).content);
+                    printf("%d. %s\n", i+1, NAMA_MAKANAN(mi).content);
                 }
             }
             // jika dapat dibuat, iterasi tiap childnode untuk dikurangkan di inventory

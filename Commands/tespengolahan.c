@@ -72,7 +72,7 @@ int main(){
     Enqueue(&Inventory(s), m_ayam);
     Enqueue(&Inventory(s), m_sambel);
 
-    mix(&s, lr, lm);
+    fry(&s, lr, lm);
     
     return 0;
 }

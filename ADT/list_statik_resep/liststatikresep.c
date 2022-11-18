@@ -3,12 +3,12 @@
 #include <stdio.h>
 /* ********** KONSTRUKTOR ********** */
 /* Konstruktor : create List kosong  */
-// void CreateListStatikResep(ListStatikResep *l){
-//     int i;
-//     for (i = 0; i < CAPACITY ; i++) {
-//         ELMTR(*l, i) = newNode(MARKR);
-//     }
-// }
+void CreateListStatikResep(ListStatikResep *l){
+    int i;
+    for (i = 0; i < CAPACITY ; i++) {
+     ELMTR(*l, i) = newNode(MARKR);
+    }
+}
 /* I.S. l sembarang */
 /* F.S. Terbentuk List l kosong dengan kapasitas CAPACITY */
 /* Proses: Inisialisasi semua elemen List l dengan MARK */
