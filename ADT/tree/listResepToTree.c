@@ -1,28 +1,5 @@
 #include "listResepToTree.h"
 
-/*
-int isIn(ListStatikResep lr, int ID){
-    boolean found = false;
-
-    int i = 0;
-    while(i < listLengthResep(lr) && !found){
-        if (ROOT(ELMTR(lr,i)) == ID && !found){
-            found = true;
-        }
-        else{
-            i++;
-        }
-    }
-
-    if (!found){
-        return -1;
-    }
-    else{
-        return i;
-    }
-}
-*/
-
 char currentChar;
 boolean EOP;
 
@@ -61,14 +38,6 @@ AddressTree addrInRes(ListStatikResep lr, int ID){
         }
     }
 
-    if(found){
-        printf("%d", ROOT(p));
-        printf("found\n");
-    }
-    else{
-        printf("not found\n");
-    }
-
     if (!found){
         return NULL;
     }
@@ -85,16 +54,13 @@ void toStatikResep(ListStatikResep *lr, ListResep ld){
     // iterasi semua resep
     int i = 0;
     while (ld.arr[i].parent_ID != -9999){
-        printf("i: %d\n",i);
         // ambil ID pertama
         ID = ld.arr[i].parent_ID;
-        printf("x : %d\n", ID);
 
         if (isEmptyResep(*lr)){
-            printf("insert tree pertama\n");
             t = NULL;
             t = newNode(ID);
-            for (int j = 0; j < 2 /*ld.arr[i].child_ID.nEff*/; j++){
+            for (int j = 0; j < ld.arr[i].child_ID.nEff; j++){
                 insertChild(&t, ld.arr[i].child_ID.buffer[j]);
             }
             insertLastResep(lr,t);
@@ -102,7 +68,6 @@ void toStatikResep(ListStatikResep *lr, ListResep ld){
         }
         else{
             if (addrInRes(*lr,ID) == NULL){
-                printf("makanan belum ada\n");
                 t = NULL;
                 t = newNode(ID);
                 for(int j = 0; j < ld.arr[i].child_ID.nEff; j++){
@@ -112,58 +77,14 @@ void toStatikResep(ListStatikResep *lr, ListResep ld){
                 t = NULL;
             }
             else{
-                printf("makanan sudah ada\n");
-                printf("%d\n", addrInRes(*lr, ID));
                 t = NULL;
                 t = addrInRes(*lr,ID);
-                printf("parent : %d\n", ROOT(t));
                 for(int j = 0; j < ld.arr[i].child_ID.nEff; j++){
-                    printf("child : %d\n", ld.arr[i].child_ID.buffer[j]);
                     insertChild(&t, ld.arr[i].child_ID.buffer[j]);
                 }
                 t = NULL;
             }
         }
-        printf("\n");
-        /*
-        ID = ld.arr[i].parent_ID; // ID int
-
-        if (listLengthResep(*lr) == 0){
-            t = newNode(ID);
-            for(int j = 0; j < ld.arr[i].child_ID.nEff; j++){
-                insertChild(&t, ld.arr[i].child_ID.buffer[j]);
-            }
-            insertLastResep(lr,t);
-        }
-
-        else{
-            for (int ii = 0; ii < listLengthResep(*lr); ii++){
-                // jika makanan belum ada di liststatik, buat tree baru
-                if (addrSearch(ELMTR(*lr,ii), ID) == NULL){
-                    t = newNode(ID);
-                    for(int j = 0; j < ld.arr[i].child_ID.nEff; j++){
-                        insertChild(&t, ld.arr[i].child_ID.buffer[j]);
-                    }
-                    insertLastResep(lr,t);
-                }
-                // jika makanan sudah ada di liststatik (baik sebagai root maupun sebagai child)
-                else{
-                    t = addrSearch(ELMTR(*lr,ii), ID);
-                    for(int j = 0; j < ld.arr[i].child_ID.nEff; j++){
-                        insertChild(&t, ld.arr[i].child_ID.buffer[j]);
-                    }
-                    //insertLastResep(lr,t);
-                }
-                printf("\n");
-            }
-        }*/
         i++;
     }
 }
-
-/*
-ListStatikResep lr
-CreateListStatikResep(&lr)
-
-ListResep (listdin) -> tree -> ListStatikResep elmt tree
-*/
