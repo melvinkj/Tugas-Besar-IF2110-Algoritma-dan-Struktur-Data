@@ -239,7 +239,6 @@ void processCommand(string command, Simulator *S, Matrix *Peta, ListMakanan LM)
             if(checkAdjacent('T', *Peta, Posisi(*S))){
                 addUndo(*S);
                 buy(S, LM);
-                S->waktu = NextMenit(S->waktu);
             } else {
                 printf("%d, %d", S->posisi.X,S->posisi.Y);
                 printf("%s tidak berada di area telepon!\n", Nama(*S));
@@ -269,9 +268,12 @@ void processCommand(string command, Simulator *S, Matrix *Peta, ListMakanan LM)
         if (cmpStrType2(command.content, mix_cmd.content))
         {
             ListResep l_resep = READRESEP("./resep_test.txt");
+            ListStatikResep LSR;
+            CreateListStatikResep(&LSR);
+            toStatikResep(&LSR, l_resep);
             if(checkAdjacent('M', *Peta, Posisi(*S))){
-                 addUndo(*S);
-                // mix(S, l_resep, LM);
+                addUndo(*S);
+                mix(S, LSR, LM);
                 S->waktu = NextMenit(S->waktu);
             } else {
                 printf("%s tidak berada di area mixer!\n", Nama(*S));
