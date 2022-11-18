@@ -141,6 +141,13 @@ void mix(Simulator *s, ListStatikResep resep, ListMakanan listmakanan){
                 }
 
                 printf("%s selesai dibuat dan sudah masuk ke inventory!", NAMA_MAKANAN(m).content);
+
+                long waktu = TIMEToMenit(LAMA_PENGIRIMAN(m));
+
+                for(int i = 0; i < (int) waktu; i++){
+                    kurang_waktu_deliv(&Delivery(*s), &Inventory(*s));
+                    kurang_waktu_inv(&Inventory(*s));
+                }
             }
         }
     }
@@ -246,6 +253,13 @@ void chop(Simulator *s, ListStatikResep resep, ListMakanan listmakanan){
                 }
 
                 printf("%s selesai dibuat dan sudah masuk ke inventory!", NAMA_MAKANAN(m).content);
+
+                long waktu = TIMEToMenit(LAMA_PENGIRIMAN(m));
+
+                for(int i = 0; i < (int) waktu; i++){
+                    kurang_waktu_deliv(&Delivery(*s), &Inventory(*s));
+                    kurang_waktu_inv(&Inventory(*s));
+                }
             }
         }
     }
@@ -350,6 +364,13 @@ void fry(Simulator *s, ListStatikResep resep, ListMakanan listmakanan){
                 }
 
                 printf("%s selesai dibuat dan sudah masuk ke inventory!", NAMA_MAKANAN(m).content);
+
+                long waktu = TIMEToMenit(LAMA_PENGIRIMAN(m));
+
+                for(int i = 0; i < (int) waktu; i++){
+                    kurang_waktu_deliv(&Delivery(*s), &Inventory(*s));
+                    kurang_waktu_inv(&Inventory(*s));
+                }
             }
         }
     }
@@ -454,6 +475,13 @@ void boil(Simulator *s, ListStatikResep resep, ListMakanan listmakanan){
                 }
 
                 printf("%s selesai dibuat dan sudah masuk ke inventory!", NAMA_MAKANAN(m).content);
+
+                long waktu = TIMEToMenit(LAMA_PENGIRIMAN(m));
+
+                for(int i = 0; i < (int) waktu; i++){
+                    kurang_waktu_deliv(&Delivery(*s), &Inventory(*s));
+                    kurang_waktu_inv(&Inventory(*s));
+                }
             }
         }
     }
