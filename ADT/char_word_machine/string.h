@@ -18,17 +18,11 @@ void createString (string * str);
 string createStringFromArr(char arr[], int arr_length);
 /* Membentuk string dari arr character & panjang arr yang diberikan */
 
-string appendArrToStr (string str, char arr[], int arr_length);
-/* Menambahkan isi dari arr di belakang str */
-
 string copyString(string input);
 /* Mencopy string input dan mengembalikan copynya */
 
 string appendCCtoStr(string str, char cc);
 /* Menambahkan cc ke str */
-
-boolean cmpStrType1(string str1 ,string str2);
-/* Membandingkan str1 dan str2 string type */
 
 boolean cmpStrType2(char * str1, char * str2);
 /* Membandingkan str1 dan str2 char pointer type */
