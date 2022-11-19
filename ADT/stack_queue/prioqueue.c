@@ -57,8 +57,8 @@ void Enqueue (PrioQueue * Q, infotype X){
 /* F.S. X disisipkan pada posisi yang tepat sesuai dengan prioritas,
         TAIL "maju" dengan mekanisme circular buffer; */
     if (IsPrioQueueEmpty(*Q)){
-        Head(*Q) = 0;
-        Tail(*Q) = 0;
+        Head(*Q) = 1;
+        Tail(*Q) = 1;
         InfoTail(*Q) = X;
     } else{
         int i = Tail(*Q);
@@ -67,6 +67,29 @@ void Enqueue (PrioQueue * Q, infotype X){
             i--;            
         }
         if (TGT(Time(X),Time(Elmt(*Q, i))) || TEQ(Time(X),Time(Elmt(*Q, i)))){
+            Elmt(*Q, (i + 1) % MaxEl(*Q)) = X;
+        } else{
+            Elmt(*Q, (i % MaxEl(*Q))) = X;
+        }
+        Tail(*Q) = (Tail(*Q) + 1) % MaxEl(*Q);
+    }
+}
+
+
+void Enqueue_Delivery (PrioQueue * Q, infotype X){
+/* Proses: Menambahkan X pada Q dengan aturan priority queue, terurut membesar berdasarkan time_delivery */
+/* I.S. Q mungkin kosong, tabel penampung elemen Q TIDAK penuh */
+    if (IsPrioQueueEmpty(*Q)){
+        Head(*Q) = 1;
+        Tail(*Q) = 1;
+        InfoTail(*Q) = X;
+    } else{
+        int i = Tail(*Q);
+        while (TLT(Time_Delivery(X),Time_Delivery(Elmt(*Q, i)))){
+            Elmt(*Q, (i + 1) % MaxEl(*Q)) = Elmt(*Q, i);
+            i--;            
+        }
+        if (TGT(Time_Delivery(X),Time_Delivery(Elmt(*Q, i))) || TEQ(Time_Delivery(X),Time_Delivery(Elmt(*Q, i)))){
             Elmt(*Q, (i + 1) % MaxEl(*Q)) = X;
         } else{
             Elmt(*Q, (i % MaxEl(*Q))) = X;
@@ -105,6 +128,7 @@ void PrintPrioQueue (PrioQueue Q){
         Dequeue(&Q, &X);
         TulisTIME(Time(X));
         printf(" %s\n", Info(X));
+        printf(" %d\n", X.id);
     }
     printf("#\n");
 }
@@ -134,6 +158,27 @@ void Remove (PrioQueue * Q, infotype X){
 /* Tail maju dengan mekanisme circular buffer */
 /* I.S. Q tidak mungkin kosong */
 /* F.S. Elemen X terhapus dari Queue Q dan Q mungkin kosong */
+
+void RemoveMakanan (PrioQueue * Q, infotype X){
+    int i = Head(*Q);
+    if(NBElmt(*Q) == 1 && (Info(Elmt(*Q, i)) == Info(X) )){
+        Head(*Q) = Nil;
+        Tail(*Q) = Nil;
+    } else{
+        while (i != Tail(*Q)){
+            if (Info(Elmt(*Q, i)) == Info(X)){
+                while (i != Tail(*Q)){
+                    Elmt(*Q, i) = Elmt(*Q, (i + 1) % MaxEl(*Q));
+                    i = (i + 1) % MaxEl(*Q);
+                }
+                Tail(*Q) = (Tail(*Q) - 1) % MaxEl(*Q);
+                break;
+            }
+            i = (i + 1) % MaxEl(*Q);
+        }
+    }
+}
+
 
 /* Operasi Tambahan */
 void PrintInventory (PrioQueue Q){

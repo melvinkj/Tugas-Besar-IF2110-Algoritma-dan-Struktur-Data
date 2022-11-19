@@ -68,6 +68,13 @@ void Enqueue (PrioQueue * Q, infotype X);
 /* I.S. Q mungkin kosong, tabel penampung elemen Q TIDAK penuh */
 /* F.S. X disisipkan pada posisi yang tepat sesuai dengan prioritas,
         TAIL "maju" dengan mekanisme circular buffer; */
+
+void Enqueue_Delivery (PrioQueue * Q, infotype X);
+/* Proses: Menambahkan X pada Q dengan aturan priority queue, terurut membesar berdasarkan time delivery */
+/* I.S. Q mungkin kosong, tabel penampung elemen Q TIDAK penuh */
+/* F.S. X disisipkan pada posisi yang tepat sesuai dengan prioritas,
+        TAIL "maju" dengan mekanisme circular buffer; */
+
 void Dequeue (PrioQueue * Q, infotype * X);
 /* Proses: Menghapus X pada Q dengan aturan FIFO */
 /* I.S. Q tidak mungkin kosong */
@@ -91,6 +98,11 @@ void Remove (PrioQueue * Q, infotype X);
 /* I.S. Q tidak mungkin kosong */
 /* F.S. Elemen X terhapus dari Queue Q dan Q mungkin kosong */
 /* */
+
+void RemoveMakanan (PrioQueue * Q, infotype X);
+/* Proses: Menghapus X pada Q dengan aturan priority queue, terurut membesar berdasarkan time */
+/* I.S. Q tidak mungkin kosong */
+/* F.S. Elemen X terhapus dari Queue Q dan Q mungkin kosong */
 
 /* Operasi Tambahan */
 void PrintInventory (PrioQueue Q);
