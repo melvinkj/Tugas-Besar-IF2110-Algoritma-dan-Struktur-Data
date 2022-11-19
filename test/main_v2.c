@@ -355,6 +355,7 @@ int main()
 
     // Splash Screen
     // -------------
+    printf("\n");
     printf("$$$$$$$\\  $$\\   $$\\ $$\\      $$\\  $$$$$$\\  \n");
     printf("$$  __$$\\ $$$\\  $$ |$$$\\    $$$ |$$  __$$\\ \n");
     printf("$$ |  $$ |$$$$\\ $$ |$$$$\\  $$$$ |$$ /  $$ |\n");
@@ -364,7 +365,6 @@ int main()
     printf("$$$$$$$  |$$ | \\$$ |$$ | \\_/ $$ | $$$$$$  |\n");
     printf("\\_______/ \\__|  \\__|\\__|     \\__| \\______/ \n");
     printf("\n");
-
     printf("Successfully initialized program!\n");
     printf("\n");
     // INISIASI

@@ -1,12 +1,38 @@
 #include <stdio.h>
 #include "charmachine.h"
 #include "wordmachine.h"
-#include "../../command/moves.h"
+#include "../sederhana/simulator.h"
 // Driver ADT Mesin Karakter & Kata
 
 // Run path : gcc wordmachine.c charmachine.c driverCharWordMachine.c -o a
 char currentChar;
 boolean EOP;
+
+void displayPeta(Matrix m, Simulator S)
+{
+    /* I.S. m terdefinisi */
+    /* F.S. Nilai m(i,j) ditulis ke layar per baris per kolom, masing-masing elemen per baris
+       dipisahkan sebuah spasi. Baris terakhir tidak diakhiri dengan newline */
+    /* Proses: Menulis nilai setiap elemen m ke layar dengan traversal per baris dan per kolom */
+    int i, j;
+    POINT currS = { .X = S.posisi.X , .Y = S.posisi.Y};
+    for (i = 0; i < m.rowEff+2; i++)
+    {
+        for (j = 0; j < m.colEff+2; j++)
+        {
+            if (i == currS.Y && j == currS.X) {
+                printf("S ");    
+            } else {
+                printf("%c", m.mem[i][j]);
+                if (j != (m.colEff + 1))
+                {
+                    printf(" ");
+                }
+            }
+        }
+        printf("\n");
+    }
+}
 
 int main () {
     Matrix m;    
