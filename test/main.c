@@ -249,7 +249,7 @@ void processCommand(string command, Simulator *S, Matrix *Peta, ListMakanan LM, 
                 buy(S, LM, listKedaluwarsa, listDiterima);
                 addUndo(*S);
             } else {
-                printf("%s tidak berada di area telepon!\n", Nama(*S));
+                printf("%s tidak berada di area telepon!\n", S->nama.content);
             }
         }
         if (cmpStrType2(command.content, delivery_cmd.content))
@@ -285,7 +285,7 @@ void processCommand(string command, Simulator *S, Matrix *Peta, ListMakanan LM, 
                 S->waktu = NextMenit(S->waktu);
                 addUndo(*S);
             } else {
-                printf("%s tidak berada di area mixer!\n", Nama(*S));
+                printf("%s tidak berada di area mixer!\n", S->nama.content);
             }
         }
         if (cmpStrType2(command.content, chop_cmd.content))
@@ -300,7 +300,7 @@ void processCommand(string command, Simulator *S, Matrix *Peta, ListMakanan LM, 
                 addUndo(*S);
                 S->waktu = NextMenit(S->waktu);
             } else {
-                printf("%s tidak berada di area choper!\n", Nama(*S));
+                printf("%s tidak berada di area choper!\n", S->nama.content);
             }
         }
         if (cmpStrType2(command.content, fry_cmd.content))
@@ -315,7 +315,7 @@ void processCommand(string command, Simulator *S, Matrix *Peta, ListMakanan LM, 
                 S->waktu = NextMenit(S->waktu);
                 addUndo(*S);
             } else {
-                printf("%c tidak berada di area fryer!\n", Nama(*S));
+                printf("%s tidak berada di area fryer!\n", S->nama.content);
             }
         }
         if (cmpStrType2(command.content, boil_cmd.content))
@@ -330,7 +330,7 @@ void processCommand(string command, Simulator *S, Matrix *Peta, ListMakanan LM, 
                 S->waktu = NextMenit(S->waktu);
                 addUndo(*S);
             } else {
-                printf("%s tidak berada di area boiler!\n", Nama(*S));
+                printf("%s tidak berada di area boiler!\n", S->nama.content);
             }
         }
         if (cmpStrType2(command.content, undo_cmd.content))
