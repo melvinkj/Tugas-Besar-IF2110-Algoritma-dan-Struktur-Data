@@ -1,0 +1,85 @@
+12
+1
+Ayam Mentah
+1 0 0
+0 0 3
+Buy
+2
+3
+2
+Ayam Potong
+0 2 0
+0 0 0
+Chop
+3
+3
+3
+Tepung
+0 2 0
+0 0 2
+Buy
+2
+2
+4
+Ayam Gulai
+1 0 0
+0 0 15
+Mix
+4
+4
+5
+Minyak Goreng
+0 3 0
+0 0 5
+Buy
+3
+5
+6
+Ayam Goreng
+1 0 0
+0 0 10
+Fry
+3
+5
+7
+Air Putih
+2 0 0
+0 0 2
+Buy
+2
+2
+8
+Bumbu Gulai
+1 0 0
+0 1 0
+Mix
+4
+4
+9
+Rempah
+1 0 0
+0 0 3
+Buy
+3
+5
+10
+Kecap
+2 0 0
+0 0 3
+Buy
+1
+2
+11
+Ayam Kecap
+0 8 0
+0 0 30
+Mix
+3
+4
+12
+Ayam Tepung
+0 9 0
+0 0 15
+Mix
+3
+3

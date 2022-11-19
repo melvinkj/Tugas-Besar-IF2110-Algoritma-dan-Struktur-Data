@@ -28,7 +28,7 @@
 
 void Catalog()
 {
-    ListMakanan ans = READMAKANAN("./makanan_test.txt");
+    ListMakanan ans = READMAKANAN("./makanan_test_2.txt");
     int i = 0;
     char *buy = "Buy";
     printf("List Makanan\n(nama - durasi kedaluwarsa - aksi yang diperlukan - delivery time)\n");
@@ -107,7 +107,7 @@ void Catalog()
 
 string findFood(int id)
 {
-    ListMakanan l_makanan = READMAKANAN("./makanan_test.txt");
+    ListMakanan l_makanan = READMAKANAN("./makanan_test_2.txt");
     int i = 0;
     string res;
     while (l_makanan.arr[i].id != -9999)
@@ -124,7 +124,7 @@ string findFood(int id)
 
 string findAksi(int id)
 {
-    ListMakanan l_makanan = READMAKANAN("./makanan_test.txt");
+    ListMakanan l_makanan = READMAKANAN("./makanan_test_2.txt");
     int i = 0;
     string res;
     while (l_makanan.arr[i].id != -9999)
@@ -141,7 +141,7 @@ string findAksi(int id)
 
 void CookBook()
 {
-    ListResep l_resep = READRESEP("./resep_test.txt");
+    ListResep l_resep = READRESEP("./resep_test_2.txt");
     printf("List Resep\n");
     printf("(aksi yang diperlukan - bahan...)\n");
     int i = 0;
@@ -278,7 +278,7 @@ void processCommand(string command, Simulator *S, Matrix *Peta, ListMakanan LM)
         }
         if (cmpStrType2(command.content, mix_cmd.content))
         {
-            ListResep l_resep = READRESEP("./resep_test.txt");
+            ListResep l_resep = READRESEP("./resep_test_2.txt");
             ListStatikResep LSR;
             CreateListStatikResep(&LSR);
             toStatikResep(&LSR, l_resep);
@@ -293,7 +293,7 @@ void processCommand(string command, Simulator *S, Matrix *Peta, ListMakanan LM)
         }
         if (cmpStrType2(command.content, chop_cmd.content))
         {
-            ListResep l_resep = READRESEP("./resep_test.txt");
+            ListResep l_resep = READRESEP("./resep_test_2.txt");
             ListStatikResep LSR;
             CreateListStatikResep(&LSR);
             toStatikResep(&LSR, l_resep);
@@ -308,7 +308,7 @@ void processCommand(string command, Simulator *S, Matrix *Peta, ListMakanan LM)
         }
         if (cmpStrType2(command.content, fry_cmd.content))
         {
-            ListResep l_resep = READRESEP("./resep_test.txt");
+            ListResep l_resep = READRESEP("./resep_test_2.txt");
             ListStatikResep LSR;
             CreateListStatikResep(&LSR);
             toStatikResep(&LSR, l_resep);
@@ -323,7 +323,7 @@ void processCommand(string command, Simulator *S, Matrix *Peta, ListMakanan LM)
         }
         if (cmpStrType2(command.content, boil_cmd.content))
         {
-            ListResep l_resep = READRESEP("./resep_test.txt");
+            ListResep l_resep = READRESEP("./resep_test_2.txt");
             ListStatikResep LSR;
             CreateListStatikResep(&LSR);
             toStatikResep(&LSR, l_resep);
@@ -411,7 +411,6 @@ int main()
     if (validate)
     {
         printf("Starting Program...\n");
-        printf("\n");
         boolean running_state = true;
         string nama;
         printf("Nama simulator: ");
@@ -424,7 +423,7 @@ int main()
 
         // Init peta
         Matrix peta;
-        READPETA(&peta, "./peta_test.txt");
+        READPETA(&peta, "./peta_test_2.txt");
 
         S.posisi = LocateS(peta);
         updatePeta(&peta, S);
@@ -433,7 +432,7 @@ int main()
         addUndo(S);
 
         // Init list makanan
-        ListMakanan LM = READMAKANAN("./makanan_test.txt");
+        ListMakanan LM = READMAKANAN("./makanan_test_2.txt");
 
         while (running_state)
         {

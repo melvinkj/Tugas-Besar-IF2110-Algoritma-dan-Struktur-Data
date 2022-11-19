@@ -114,7 +114,6 @@ void Move(POINT *S, string direction, Matrix *Peta, Simulator *sim) {
         }
         else {
             printf("Tidak bisa Move North (ada obstacle).\n");
-            printf("Posisi S: (%d, %d).\n", S->X, S->Y);
         }
     }
     if (cmpStrType2(move_east_cmd.content, direction.content)){
@@ -130,7 +129,6 @@ void Move(POINT *S, string direction, Matrix *Peta, Simulator *sim) {
         }
         else {
             printf("Tidak bisa Move East (ada obstacle).\n");
-            printf("Posisi S: (%d, %d).\n", S->X, S->Y);
         }
     }
     if (cmpStrType2(move_west_cmd.content, direction.content)){
@@ -147,7 +145,6 @@ void Move(POINT *S, string direction, Matrix *Peta, Simulator *sim) {
         }
         else {
             printf("Tidak bisa Move West (ada obstacle).\n");
-            printf("Posisi S: (%d, %d).\n", S->X, S->Y);
         }
     }
     if (cmpStrType2(move_south_cmd.content, direction.content)){
@@ -164,7 +161,6 @@ void Move(POINT *S, string direction, Matrix *Peta, Simulator *sim) {
         }
         else {
             printf("Tidak bisa Move South (ada obstacle).\n");
-            printf("Posisi S: (%d, %d).\n", S->X, S->Y);
         }
     }
 }
