@@ -1,1 +1,1 @@
-gcc wordmachine.c ../sederhana/waktu.c ../sederhana/simulator.c  ../sederhana/makanan.c ../sederhana/point.c ../matrix/matrix.c charmachine.c string.c driverCharWordMachine.c -o a
+gcc wordmachine.c ../sederhana/waktu.c ../sederhana/simulator.c  ../sederhana/makanan.c ../sederhana/point.c ../matrix/matrix.c ../stack_queue/prioqueue.c charmachine.c string.c driverCharWordMachine.c -o a
