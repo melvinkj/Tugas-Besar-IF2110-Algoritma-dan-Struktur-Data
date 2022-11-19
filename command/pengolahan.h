@@ -20,16 +20,16 @@ boolean inInventory(PrioQueue q, int ID);
 void use(Simulator *s, int ID);
 /* Mengurangkan makanan yang digunakan */
 
-void mix(Simulator *s, ListStatikResep resep, ListMakanan listmakanan);
+void mix(Simulator *s, ListStatikResep resep, ListMakanan listmakanan, ListMakanan *listKedaluwarsa, ListMakanan *listDiterima);
 /* Mencampurkan beberapa bahan menjadi makanan baru */
 
-void chop(Simulator *s, ListStatikResep resep, ListMakanan listmakanan);
+void chop(Simulator *s, ListStatikResep resep, ListMakanan listmakanan, ListMakanan *listKedaluwarsa, ListMakanan *listDiterima);
 /* Memotong satu bahan makanan menjadi makanan baru */
 
-void fry(Simulator *s, ListStatikResep resep, ListMakanan listmakanan);
+void fry(Simulator *s, ListStatikResep resep, ListMakanan listmakanan, ListMakanan *listKedaluwarsa, ListMakanan *listDiterima);
 /* Menggoreng satu atau lebih makanan menjadi makanan baru */
 
-void boil(Simulator *s, ListStatikResep resep, ListMakanan listmakanan);
+void boil(Simulator *s, ListStatikResep resep, ListMakanan listmakanan, ListMakanan *listKedaluwarsa, ListMakanan *listDiterima);
 /* Merebus satu bahan makanan */
 
 

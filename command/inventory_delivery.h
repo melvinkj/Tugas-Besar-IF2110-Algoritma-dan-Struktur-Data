@@ -4,15 +4,16 @@
 #include "../ADT/tree/tree.h"
 #include "../ADT/char_word_machine/charmachine.h"
 #include "../ADT/list_statik_resep/liststatikresep.h"
+#include "../ADT/sederhana/makanan.h"
 
 /* *** Operasi Inventory *** */
-void kurang_waktu_inv(PrioQueue *inventory);
+void kurang_waktu_inv(PrioQueue *inventory, ListMakanan *listKedaluwarsa);
 /* Mengurangi waktu inventory */
 /* I.S. inventory terdefinisi */
 /* F.S. waktu inventory dikurangi 1 dan jika waktu 0 akan diremove */
 
 /* *** Operasi Delivery *** */
-void kurang_waktu_deliv(PrioQueue *delivery,PrioQueue *inventory);
+void kurang_waktu_deliv(PrioQueue *delivery,PrioQueue *inventory, ListMakanan *listDiterima);
 /* Mengurangi waktu delivery */
 /* I.S. delivery terdefinisi */
 /* F.S. waktu delivery dikurangi 1 dan jika waktu 0 akan dipindahkan ke inventory */

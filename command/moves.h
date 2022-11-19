@@ -19,7 +19,7 @@ boolean checkAdjacent(char cc, Matrix Peta, POINT S);
 boolean validateMove(POINT S, Matrix Peta ,boolean West, boolean North, boolean East, boolean South);
 // Memvalidasi move Simulator tiap dipanggil
 
-void Move(POINT *S, string direction, Matrix *Peta, Simulator *sim);
+void Move(POINT *S, string direction, Matrix *Peta, Simulator *sim, ListMakanan *listKedaluwarsa, ListMakanan *listDiterima);
 // Prosedur Move Simulator
 
 void displayPeta(Matrix m, Simulator S);

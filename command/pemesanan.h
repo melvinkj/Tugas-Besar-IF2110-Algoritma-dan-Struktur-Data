@@ -12,7 +12,7 @@
 #define PEMESANAN_H
 
 
-void buy (Simulator *s, ListMakanan LM);
+void buy (Simulator *s, ListMakanan LM, ListMakanan *listKedaluwarsa, ListMakanan *listDiterima);
 /* Membeli makanan dan memasukannya ke dalam delivery queue*/
 
 #endif

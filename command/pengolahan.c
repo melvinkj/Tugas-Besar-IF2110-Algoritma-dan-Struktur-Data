@@ -42,7 +42,7 @@ void use(Simulator *s, int ID){
     }
 }
 
-void mix(Simulator *s, ListStatikResep resep, ListMakanan listmakanan){
+void mix(Simulator *s, ListStatikResep resep, ListMakanan listmakanan, ListMakanan *listKedaluwarsa, ListMakanan *listDiterima){
 /* Mencampurkan beberapa bahan menjadi makanan baru */
     // Mengecek bahan makanan yang dapat dimix
     int count = 0;
@@ -159,8 +159,8 @@ void mix(Simulator *s, ListStatikResep resep, ListMakanan listmakanan){
                 long waktu = TIMEToMenit(LAMA_PENGIRIMAN(m));
 
                 for(int i = 0; i < (int) waktu; i++){
-                    kurang_waktu_deliv(&Delivery(*s), &Inventory(*s));
-                    kurang_waktu_inv(&Inventory(*s));
+                    kurang_waktu_deliv(&Delivery(*s), &Inventory(*s), listDiterima);
+                    kurang_waktu_inv(&Inventory(*s), listKedaluwarsa);
                 }
             }
         }
@@ -168,7 +168,7 @@ void mix(Simulator *s, ListStatikResep resep, ListMakanan listmakanan){
 
 }
 
-void chop(Simulator *s, ListStatikResep resep, ListMakanan listmakanan){
+void chop(Simulator *s, ListStatikResep resep, ListMakanan listmakanan, ListMakanan *listKedaluwarsa, ListMakanan *listDiterima){
 /* Memotong makanan */
     // Mengecek bahan makanan yang dapat dichop
     int count = 0;
@@ -283,15 +283,15 @@ void chop(Simulator *s, ListStatikResep resep, ListMakanan listmakanan){
                 long waktu = TIMEToMenit(LAMA_PENGIRIMAN(m));
 
                 for(int i = 0; i < (int) waktu; i++){
-                    kurang_waktu_deliv(&Delivery(*s), &Inventory(*s));
-                    kurang_waktu_inv(&Inventory(*s));
+                    kurang_waktu_deliv(&Delivery(*s), &Inventory(*s), listDiterima);
+                    kurang_waktu_inv(&Inventory(*s), listKedaluwarsa);
                 }
             }
         }
     }
 }
 
-void fry(Simulator *s, ListStatikResep resep, ListMakanan listmakanan){
+void fry(Simulator *s, ListStatikResep resep, ListMakanan listmakanan, ListMakanan *listKedaluwarsa, ListMakanan *listDiterima){
 /* Menggoreng makanan */
     // Mengecek bahan makanan yang dapat difry
     int count = 0;
@@ -406,15 +406,15 @@ void fry(Simulator *s, ListStatikResep resep, ListMakanan listmakanan){
                 long waktu = TIMEToMenit(LAMA_PENGIRIMAN(m));
 
                 for(int i = 0; i < (int) waktu; i++){
-                    kurang_waktu_deliv(&Delivery(*s), &Inventory(*s));
-                    kurang_waktu_inv(&Inventory(*s));
+                    kurang_waktu_deliv(&Delivery(*s), &Inventory(*s), listDiterima);
+                    kurang_waktu_inv(&Inventory(*s), listKedaluwarsa);
                 }
             }
         }
     }
 }
 
-void boil(Simulator *s, ListStatikResep resep, ListMakanan listmakanan){
+void boil(Simulator *s, ListStatikResep resep, ListMakanan listmakanan, ListMakanan *listKedaluwarsa, ListMakanan *listDiterima){
 /* Merebus makanan */
     // Mengecek bahan makanan yang dapat dimix
     int count = 0;
@@ -529,8 +529,8 @@ void boil(Simulator *s, ListStatikResep resep, ListMakanan listmakanan){
                 long waktu = TIMEToMenit(LAMA_PENGIRIMAN(m));
 
                 for(int i = 0; i < (int) waktu; i++){
-                    kurang_waktu_deliv(&Delivery(*s), &Inventory(*s));
-                    kurang_waktu_inv(&Inventory(*s));
+                    kurang_waktu_deliv(&Delivery(*s), &Inventory(*s), listDiterima);
+                    kurang_waktu_inv(&Inventory(*s), listKedaluwarsa);
                 }
             }
         }

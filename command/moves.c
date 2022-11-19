@@ -88,7 +88,7 @@ boolean validateMove(POINT S, Matrix Peta ,boolean West, boolean North, boolean 
     return valid;
 }
 
-void Move(POINT *S, string direction, Matrix *Peta, Simulator *sim) {
+void Move(POINT *S, string direction, Matrix *Peta, Simulator *sim, ListMakanan *listKedaluwarsa, ListMakanan *listDiterima) {
     POINT dummyS;
     // Move commands
     string move_north_cmd = {.content = "MOVE NORTH", .Length = 10};
@@ -107,8 +107,8 @@ void Move(POINT *S, string direction, Matrix *Peta, Simulator *sim) {
             (S->Y)--;
             // x = S->Y;
             // Peta->mem[x][y] = 'S';
-            kurang_waktu_deliv(&Delivery(*sim), &Inventory(*sim));
-            kurang_waktu_inv(&Inventory(*sim));
+            kurang_waktu_deliv(&Delivery(*sim), &Inventory(*sim), listDiterima);
+            kurang_waktu_inv(&Inventory(*sim), listKedaluwarsa);
             sim->waktu = NextMenit(sim->waktu);
             addUndo(*sim);
         }
@@ -123,8 +123,8 @@ void Move(POINT *S, string direction, Matrix *Peta, Simulator *sim) {
             (S->X)++;
             // y = S->X;
             // Peta->mem[x][y] = 'S';
-            kurang_waktu_deliv(&Delivery(*sim), &Inventory(*sim));
-            kurang_waktu_inv(&Inventory(*sim));
+            kurang_waktu_deliv(&Delivery(*sim), &Inventory(*sim), listDiterima);
+            kurang_waktu_inv(&Inventory(*sim), listKedaluwarsa);
             sim->waktu = NextMenit(sim->waktu);
         }
         else {
@@ -138,8 +138,8 @@ void Move(POINT *S, string direction, Matrix *Peta, Simulator *sim) {
             (S->X)--;
             // y = S->X;
             // Peta->mem[x][y] = 'S';
-            kurang_waktu_deliv(&Delivery(*sim), &Inventory(*sim));
-            kurang_waktu_inv(&Inventory(*sim));
+            kurang_waktu_deliv(&Delivery(*sim), &Inventory(*sim), listDiterima);
+            kurang_waktu_inv(&Inventory(*sim), listKedaluwarsa);
             sim->waktu = NextMenit(sim->waktu);
             addUndo(*sim);
         }
@@ -154,8 +154,8 @@ void Move(POINT *S, string direction, Matrix *Peta, Simulator *sim) {
             (S->Y)++;
             // x = S->Y;
             // Peta->mem[x][y] = 'S';
-            kurang_waktu_deliv(&Delivery(*sim), &Inventory(*sim));
-            kurang_waktu_inv(&Inventory(*sim));
+            kurang_waktu_deliv(&Delivery(*sim), &Inventory(*sim), listDiterima);
+            kurang_waktu_inv(&Inventory(*sim), listKedaluwarsa);
             sim->waktu = NextMenit(sim->waktu);
             addUndo(*sim);
         }

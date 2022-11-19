@@ -23,6 +23,8 @@
 #include "../command/pemesanan.h"
 #include "../command/pengolahan.h"
 #include "../command/moves.h"
+#include "../command/notifikasi.h"
+
 
 /* *** Operasi-operasi *** */
 
@@ -162,7 +164,7 @@ void CookBook()
 }
 
 /* *** Command Reader *** */
-void processCommand(string command, Simulator *S, Matrix *Peta, ListMakanan LM)
+void processCommand(string command, Simulator *S, Matrix *Peta, ListMakanan LM, ListMakanan *listKedaluwarsa, ListMakanan *listDiterima)
 {
     ListStatikResep resep;
     CreateListStatikResep(&resep);
@@ -212,8 +214,8 @@ void processCommand(string command, Simulator *S, Matrix *Peta, ListMakanan LM)
 
         for(i=0; i < (int)T1; i++){
             S->waktu = NextMenit(S->waktu);
-            kurang_waktu_deliv(&Delivery(*S), &Inventory(*S));
-            kurang_waktu_inv(&Inventory(*S));
+            kurang_waktu_deliv(&Delivery(*S), &Inventory(*S), listDiterima);
+            kurang_waktu_inv(&Inventory(*S), listKedaluwarsa);
         }
 
         printf("Extra Hour : %d\n", hour);
@@ -249,7 +251,7 @@ void processCommand(string command, Simulator *S, Matrix *Peta, ListMakanan LM)
         if (cmpStrType2(command.content, buy_cmd.content))
         {
             if(checkAdjacent('T', *Peta, Posisi(*S))){
-                buy(S, LM);
+                buy(S, LM, listKedaluwarsa, listDiterima);
                 addUndo(*S);
             } else {
                 printf("%s tidak berada di area telepon!\n", Nama(*S));
@@ -262,19 +264,19 @@ void processCommand(string command, Simulator *S, Matrix *Peta, ListMakanan LM)
         }
         if (cmpStrType2(command.content, move_north_cmd.content))
         {
-            Move(&S->posisi, command, Peta, S);
+            Move(&S->posisi, command, Peta, S, listKedaluwarsa, listDiterima);
         }
         if (cmpStrType2(command.content, move_east_cmd.content))
         {
-            Move(&S->posisi, command, Peta, S);
+            Move(&S->posisi, command, Peta, S, listKedaluwarsa, listDiterima);
         }
         if (cmpStrType2(command.content, move_west_cmd.content))
         {
-            Move(&S->posisi, command, Peta, S);
+            Move(&S->posisi, command, Peta, S, listKedaluwarsa, listDiterima);
         }
         if (cmpStrType2(command.content, move_south_cmd.content))
         {
-            Move(&S->posisi, command, Peta, S);
+            Move(&S->posisi, command, Peta, S, listKedaluwarsa, listDiterima);
         }
         if (cmpStrType2(command.content, mix_cmd.content))
         {
@@ -284,7 +286,7 @@ void processCommand(string command, Simulator *S, Matrix *Peta, ListMakanan LM)
             toStatikResep(&LSR, l_resep);
 
             if(checkAdjacent('M', *Peta, Posisi(*S))){
-                mix(S, LSR, LM);
+                mix(S, LSR, LM, listKedaluwarsa, listDiterima);
                 S->waktu = NextMenit(S->waktu);
                 addUndo(*S);
             } else {
@@ -299,7 +301,7 @@ void processCommand(string command, Simulator *S, Matrix *Peta, ListMakanan LM)
             toStatikResep(&LSR, l_resep);
 
             if(checkAdjacent('C', *Peta, Posisi(*S))){
-                chop(S, LSR, LM);
+                chop(S, LSR, LM, listKedaluwarsa, listDiterima);
                 addUndo(*S);
                 S->waktu = NextMenit(S->waktu);
             } else {
@@ -314,7 +316,7 @@ void processCommand(string command, Simulator *S, Matrix *Peta, ListMakanan LM)
             toStatikResep(&LSR, l_resep);
 
             if(checkAdjacent('F', *Peta, Posisi(*S))){
-                fry(S, LSR, LM);
+                fry(S, LSR, LM, listKedaluwarsa, listDiterima);
                 S->waktu = NextMenit(S->waktu);
                 addUndo(*S);
             } else {
@@ -329,7 +331,7 @@ void processCommand(string command, Simulator *S, Matrix *Peta, ListMakanan LM)
             toStatikResep(&LSR, l_resep);
 
             if(checkAdjacent('B', *Peta, Posisi(*S))){
-                boil(S, LSR, LM);
+                boil(S, LSR, LM, listKedaluwarsa, listDiterima);
                 S->waktu = NextMenit(S->waktu);
                 addUndo(*S);
             } else {
@@ -434,13 +436,17 @@ int main()
 
         // Init list makanan
         ListMakanan LM = READMAKANAN("./makanan_test.txt");
+        ListMakanan listKedaluwarsa;
+        ListMakanan listDiterima;
+        CreateListMakanan(&listKedaluwarsa);
+        CreateListMakanan(&listDiterima);
 
         while (running_state)
         {
             // Validate every command
             printf("%s di posisi: (%d,%d)\n", nama.content, S.posisi.X, S.posisi.Y);
             printf("Waktu : %d.%d\n", Waktu(S).HH, Waktu(S).MM);
-            printf("Notifikasi : -\n");
+            notifikasi(&listKedaluwarsa, &listDiterima);
             displayPeta(peta, S);
             printf("\n");
             do
@@ -463,7 +469,7 @@ int main()
                 }
             } while (cmpStrType2(checker.content, invalid.content));
             // input valid
-            processCommand(input, &S, &peta, LM);
+            processCommand(input, &S, &peta, LM, &listKedaluwarsa, &listDiterima);
             printf("\n");
             // Passing input to functions / procedures
             

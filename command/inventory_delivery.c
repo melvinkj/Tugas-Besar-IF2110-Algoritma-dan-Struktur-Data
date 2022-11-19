@@ -7,7 +7,7 @@ boolean isEmptyPriorityQueue(PrioQueue Q){
     return (Head(Q) == Nil && Tail(Q) == Nil);
 }
 
-void kurang_waktu_inv(PrioQueue *inventory){
+void kurang_waktu_inv(PrioQueue *inventory, ListMakanan *listKedaluwarsa){
     if (!isEmptyPriorityQueue(*inventory)){
         int i = Head(*inventory);
         while (i != Tail(*inventory)){
@@ -19,7 +19,8 @@ void kurang_waktu_inv(PrioQueue *inventory){
         int j = 1;
         while (i != Tail(*inventory)){
             if (Elmt(*inventory, i).waktu_kedaluwarsa.DD == 0 && Elmt(*inventory, i).waktu_kedaluwarsa.HH == 0 && Elmt(*inventory, i).waktu_kedaluwarsa.MM == 0){
-                printf("%d. %s kedaluwarsa.. :(\n", j, Elmt(*inventory, i).nama.content);
+                // printf("%d. %s kedaluwarsa.. :(\n", j, Elmt(*inventory, i).nama.content);
+                appendListMakanan(listKedaluwarsa, Elmt(*inventory, i));
                 j++;
                 Remove(inventory, Elmt(*inventory, i));
                 i = Head(*inventory);
@@ -29,14 +30,15 @@ void kurang_waktu_inv(PrioQueue *inventory){
         }
         /* i = tail*/
         if (Elmt(*inventory, i).waktu_kedaluwarsa.DD == 0 && Elmt(*inventory, i).waktu_kedaluwarsa.HH == 0 && Elmt(*inventory, i).waktu_kedaluwarsa.MM == 0){
-            printf("%d. %s kedaluwarsa.. :(\n", j, Elmt(*inventory, i).nama.content);
+            // printf("%d. %s kedaluwarsa.. :(\n", j, Elmt(*inventory, i).nama.content);
+            appendListMakanan(listKedaluwarsa, Elmt(*inventory, i));
             j++;
             Remove(inventory, Elmt(*inventory, i));
         }
     } 
 }
 
-void kurang_waktu_deliv(PrioQueue *delivery,PrioQueue *inventory){
+void kurang_waktu_deliv(PrioQueue *delivery,PrioQueue *inventory, ListMakanan *listDiterima){
     if (!isEmptyPriorityQueue(*delivery)){
         int i = Head(*delivery);
         while (i != Tail(*delivery)){
@@ -47,7 +49,8 @@ void kurang_waktu_deliv(PrioQueue *delivery,PrioQueue *inventory){
         i = Head(*delivery);
         while (i != Tail(*delivery)){
             if (Elmt(*delivery, i).lama_pengiriman.DD == 0 && Elmt(*delivery, i).lama_pengiriman.HH == 0 && Elmt(*delivery, i).lama_pengiriman.MM == 0){
-                printf("%s sudah diterima oleh BNMO!\n", Elmt(*delivery, i).nama.content);
+                // printf("%s sudah diterima oleh BNMO!\n", Elmt(*delivery, i).nama.content);
+                appendListMakanan(listDiterima, Elmt(*delivery, i));
                 Enqueue(inventory, Elmt(*delivery, i));
                 Remove(delivery, Elmt(*delivery, i));
                 i = Head(*delivery);
@@ -57,6 +60,7 @@ void kurang_waktu_deliv(PrioQueue *delivery,PrioQueue *inventory){
         }
         /* i = tail */
         if (Elmt(*delivery, i).lama_pengiriman.DD == 0 && Elmt(*delivery, i).lama_pengiriman.HH == 0 && Elmt(*delivery, i).lama_pengiriman.MM == 0){
+            appendListMakanan(listDiterima, Elmt(*delivery, i));
             Enqueue(inventory, Elmt(*delivery, i));
             Remove(delivery, Elmt(*delivery, i));
         }
@@ -84,7 +88,7 @@ void tidakjadibeli(PrioQueue sebelum, PrioQueue sekarang){
             i = (i+1)%MaxEl(temp1);
         }
         if (!found){
-            printf("%s  tidak jadi dibeli :(\n", Elmt(temp2, j).nama.content);
+            printf("%s tidak jadi dibeli :(\n", Elmt(temp2, j).nama.content);
             // printf("id = %d  tidak jadi dibeli :(\n", Elmt(temp2, j).id);
         }
         found = false;

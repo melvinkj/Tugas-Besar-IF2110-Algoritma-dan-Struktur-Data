@@ -39,6 +39,11 @@ int listMakananLength(ListMakanan l){
     }
     return panjang;
 }
+void appendListMakanan(ListMakanan *l, Makanan m){
+    int length = listMakananLength(*l);
+
+    (*l).arr[length] = m;
+}
 
 Makanan SearchById(int id, ListMakanan l){
     int i = 0;
