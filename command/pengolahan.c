@@ -77,19 +77,21 @@ void mix(Simulator *s, ListStatikResep resep, ListMakanan listmakanan){
         }
         
         // pilih makanan
+        boolean valid  = false;
         int pil;
         string inputs;
-        printf("\n");
-        printf("Enter command: ");
-        // scanf("%d", &pil);
-        scanWord(&inputs);
-        pil = ((int) inputs.content[0]) - 48;
-        while (pil < 0 || pil > listLength(pilihan)){
-            printf("\n");
-            printf("Enter command: ");
-        scanf("%d", &pil);
-        }
-
+        do {
+            printf("Kirim 0 untuk exit.\n");
+            printf("Enter Command: ");
+            scanWord(&inputs);
+            pil = ((int) inputs.content[0]) - 48;
+            if(pil < 0 || pil > listLength(pilihan)){
+                printf("Input tidak valid. Silakan ulangi.\n");
+            } else {
+                valid = true;
+            }
+        } while(valid==false);
+        
         if (pil != 0){
             // cek apakah bahan ada di inventory atau tidak
             IDsearch = ELMTLIST(pilihan,pil-1);
@@ -200,15 +202,20 @@ void chop(Simulator *s, ListStatikResep resep, ListMakanan listmakanan){
         }
         
         // pilih makanan
+        boolean valid  = false;
         int pil;
-        printf("\n");
-        printf("Enter command: ");
-        scanf("%d", &pil);
-        while (pil < 0 || pil > listLength(pilihan)){
-            printf("\n");
-            printf("Enter command: ");
-        scanf("%d", &pil);
-        }
+        string inputs;
+        do {
+            printf("Kirim 0 untuk exit.\n");
+            printf("Enter Command: ");
+            scanWord(&inputs);
+            pil = ((int) inputs.content[0]) - 48;
+            if(pil < 0 || pil > listLength(pilihan)){
+                printf("Input tidak valid. Silakan ulangi.\n");
+            } else {
+                valid = true;
+            }
+        } while(valid==false);
 
         if (pil != 0){
             // cek apakah bahan ada di inventory atau tidak
@@ -318,15 +325,20 @@ void fry(Simulator *s, ListStatikResep resep, ListMakanan listmakanan){
         }
         
         // pilih makanan
+        boolean valid  = false;
         int pil;
-        printf("\n");
-        printf("Enter command: ");
-        scanf("%d", &pil);
-        while (pil < 0 || pil > listLength(pilihan)){
-            printf("\n");
-            printf("Enter command: ");
-        scanf("%d", &pil);
-        }
+        string inputs;
+        do {
+            printf("Kirim 0 untuk exit.\n");
+            printf("Enter Command: ");
+            scanWord(&inputs);
+            pil = ((int) inputs.content[0]) - 48;
+            if(pil < 0 || pil > listLength(pilihan)){
+                printf("Input tidak valid. Silakan ulangi.\n");
+            } else {
+                valid = true;
+            }
+        } while(valid==false);
 
         if (pil != 0){
             // cek apakah bahan ada di inventory atau tidak
@@ -436,15 +448,20 @@ void boil(Simulator *s, ListStatikResep resep, ListMakanan listmakanan){
         }
         
         // pilih makanan
+        boolean valid  = false;
         int pil;
-        printf("\n");
-        printf("Enter command: ");
-        scanf("%d", &pil);
-        while (pil < 0 || pil > listLength(pilihan)){
-            printf("\n");
-            printf("Enter command: ");
-        scanf("%d", &pil);
-        }
+        string inputs;
+        do {
+            printf("Kirim 0 untuk exit.\n");
+            printf("Enter Command: ");
+            scanWord(&inputs);
+            pil = ((int) inputs.content[0]) - 48;
+            if(pil < 0 || pil > listLength(pilihan)){
+                printf("Input tidak valid. Silakan ulangi.\n");
+            } else {
+                valid = true;
+            }
+        } while(valid==false);
 
         if (pil != 0){
             // cek apakah bahan ada di inventory atau tidak

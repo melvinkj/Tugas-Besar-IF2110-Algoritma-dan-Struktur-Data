@@ -24,15 +24,7 @@ int main() {
     string str2 = copyString(str1);
     printf("%s", str2.content);
     printf("pass");
-    // string appendArrToStrVar = appendArrToStr(str, arr, 10);
-
-    // printf("word: %s\n", appendArrToStrVar.content);
-
-    // if (cmpStrType1(str_cmp1, str_cmp2)){
-    //     printf("same\n");
-    // } else {
-    //     printf("not same");
-    // }
+    
 
     return 0;
 }

@@ -63,29 +63,6 @@ void CopyWord()
     currentWord.Length = i;
 }
 
-void LowerCase()
-{
-    int i;
-    for (i = 0; i < currentWord.Length; i++)
-    {
-        if (currentWord.TabWord[i] <= 90 && currentWord.TabWord[i] >= 65)
-        {
-            currentWord.TabWord[i] = currentWord.TabWord[i] + 32;
-        }
-    }
-}
-
-void concatWord(Word *new_word, Word word)
-{
-    int i = 0;
-    while (i < word.Length)
-    {
-        new_word->TabWord[i + new_word->Length] = word.TabWord[i];
-        i++;
-    }
-    new_word->Length += word.Length;
-}
-
 void displayWord(Word word)
 {
     for (int i = 0; i < word.Length; i++)
@@ -111,57 +88,6 @@ void scanWord(string * input)
     new_str.content[new_str.Length-1] = '\0';
     new_str.Length--;
     *input = new_str;
-}
-
-void clearTabWord (Word * word){
-    for (int i = 0; i < word->Length; i++) {
-        word->TabWord[i] = '\0';
-    }
-    word->Length = 0;
-}
-
-boolean IsWordSame(Word word_1, Word word_2)
-{
-    boolean same = true;
-    if (word_1.Length != word_2.Length)
-    {
-        return !same;
-    }
-    else
-    {
-        int i = 0;
-        while (i < word_1.Length && same)
-        {
-            if (word_1.TabWord[i] != word_2.TabWord[i])
-            {
-                same = false;
-            }
-            i++;
-        }
-        return same;
-    }
-}
-
-boolean cmpWord(Word word, string commands)
-{
-    if (word.Length != commands.Length)
-    {
-        return false;
-    }
-    else
-    {
-        int i = 0;
-        boolean same = true;
-        while (i < commands.Length)
-        {
-            if (word.TabWord[i] != commands.content[i])
-            {
-                same = false;
-            }
-            i++;
-        }
-        return same;
-    }
 }
 
 void processWaitCommand(string wait_cmd ,int * extra_h, int * extra_m) {
