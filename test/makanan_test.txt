@@ -2,7 +2,7 @@
 11
 Ayam Mentah
 1 0 0
-0 0 15
+0 0 3
 Buy
 12
 12
@@ -16,14 +16,14 @@ Chop
 10
 Tepung
 0 1 0
-0 0 30
+0 0 3
 Buy
 15
 10
 12
 Minyak Goreng
 0 1 30
-0 1 0
+0 0 3
 Buy
 11
 3

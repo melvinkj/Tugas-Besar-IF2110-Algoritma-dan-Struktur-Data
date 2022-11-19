@@ -47,7 +47,7 @@ void mix(Simulator *s, ListStatikResep resep, ListMakanan listmakanan){
     // Mengecek bahan makanan yang dapat dimix
     int count = 0;
     int ID, IDsearch;
-    Makanan m,mi;
+    Makanan m,mi,mn;
     ListStatik pilihan;
     AddressTree addr;
     CreateListStatik(&pilihan);
@@ -77,19 +77,21 @@ void mix(Simulator *s, ListStatikResep resep, ListMakanan listmakanan){
         }
         
         // pilih makanan
+        boolean valid  = false;
         int pil;
         string inputs;
-        printf("\n");
-        printf("Enter command: ");
-        // scanf("%d", &pil);
-        scanWord(&inputs);
-        pil = ((int) inputs.content[0]) - 48;
-        while (pil < 0 || pil > listLength(pilihan)){
-            printf("\n");
-            printf("Enter command: ");
-        scanf("%d", &pil);
-        }
-
+        do {
+            printf("Kirim 0 untuk exit.\n");
+            printf("Enter Command: ");
+            scanWord(&inputs);
+            pil = ((int) inputs.content[0]) - 48;
+            if(pil < 0 || pil > listLength(pilihan)){
+                printf("Input tidak valid. Silakan ulangi.\n");
+            } else {
+                valid = true;
+            }
+        } while(valid==false);
+        
         if (pil != 0){
             // cek apakah bahan ada di inventory atau tidak
             IDsearch = ELMTLIST(pilihan,pil-1);
@@ -119,7 +121,6 @@ void mix(Simulator *s, ListStatikResep resep, ListMakanan listmakanan){
             while (NEXTNODE(p) != NULL){
                 if (!inInventory(Inventory(*s),ROOT(p))){
                         insertLastD(&kosong, ROOT(p));
-                        printf("tidak ada\n");
                     }
                 p = NEXTNODE(p);
             }
@@ -134,6 +135,14 @@ void mix(Simulator *s, ListStatikResep resep, ListMakanan listmakanan){
             }
             // jika dapat dibuat, iterasi tiap childnode untuk dikurangkan di inventory
             else{
+                // hapus elemen pada inventory
+                p = CHILDNODE(addr);
+                while (NEXTNODE(p) != NULL){
+                    mn = SearchById(ROOT(p), listmakanan);
+                    Remove(&Inventory(*s),mn);
+                    p = NEXTNODE(p);
+                }
+
                 int x;
                 int i = 0;
                 p = CHILDNODE(addr);
@@ -144,6 +153,7 @@ void mix(Simulator *s, ListStatikResep resep, ListMakanan listmakanan){
                 }
 
                 printf("%s selesai dibuat dan sudah masuk ke inventory!", NAMA_MAKANAN(m).content);
+                Enqueue(&Inventory(*s),m);
 
                 long waktu = TIMEToMenit(LAMA_PENGIRIMAN(m));
 
@@ -162,7 +172,7 @@ void chop(Simulator *s, ListStatikResep resep, ListMakanan listmakanan){
     // Mengecek bahan makanan yang dapat dichop
     int count = 0;
     int ID, IDsearch;
-    Makanan m,mi;
+    Makanan m,mi,mn;
     ListStatik pilihan;
     AddressTree addr;
     CreateListStatik(&pilihan);
@@ -192,15 +202,20 @@ void chop(Simulator *s, ListStatikResep resep, ListMakanan listmakanan){
         }
         
         // pilih makanan
+        boolean valid  = false;
         int pil;
-        printf("\n");
-        printf("Enter command: ");
-        scanf("%d", &pil);
-        while (pil < 0 || pil > listLength(pilihan)){
-            printf("\n");
-            printf("Enter command: ");
-        scanf("%d", &pil);
-        }
+        string inputs;
+        do {
+            printf("Kirim 0 untuk exit.\n");
+            printf("Enter Command: ");
+            scanWord(&inputs);
+            pil = ((int) inputs.content[0]) - 48;
+            if(pil < 0 || pil > listLength(pilihan)){
+                printf("Input tidak valid. Silakan ulangi.\n");
+            } else {
+                valid = true;
+            }
+        } while(valid==false);
 
         if (pil != 0){
             // cek apakah bahan ada di inventory atau tidak
@@ -231,7 +246,6 @@ void chop(Simulator *s, ListStatikResep resep, ListMakanan listmakanan){
             while (NEXTNODE(p) != NULL){
                 if (!inInventory(Inventory(*s),ROOT(p))){
                         insertLastD(&kosong, ROOT(p));
-                        printf("tidak ada\n");
                     }
                 p = NEXTNODE(p);
             }
@@ -246,6 +260,13 @@ void chop(Simulator *s, ListStatikResep resep, ListMakanan listmakanan){
             }
             // jika dapat dibuat, iterasi tiap childnode untuk dikurangkan di inventory
             else{
+                // hapus elemen pada inventory
+                p = CHILDNODE(addr);
+                while (NEXTNODE(p) != NULL){
+                    mn = SearchById(ROOT(p), listmakanan);
+                    Remove(&Inventory(*s),mn);
+                    p = NEXTNODE(p);
+                }
                 int x;
                 int i = 0;
                 p = CHILDNODE(addr);
@@ -256,6 +277,7 @@ void chop(Simulator *s, ListStatikResep resep, ListMakanan listmakanan){
                 }
 
                 printf("%s selesai dibuat dan sudah masuk ke inventory!", NAMA_MAKANAN(m).content);
+                Enqueue(&Inventory(*s),m);
 
                 long waktu = TIMEToMenit(LAMA_PENGIRIMAN(m));
 
@@ -273,7 +295,7 @@ void fry(Simulator *s, ListStatikResep resep, ListMakanan listmakanan){
     // Mengecek bahan makanan yang dapat difry
     int count = 0;
     int ID, IDsearch;
-    Makanan m,mi;
+    Makanan m,mi,mn;
     ListStatik pilihan;
     AddressTree addr;
     CreateListStatik(&pilihan);
@@ -303,15 +325,20 @@ void fry(Simulator *s, ListStatikResep resep, ListMakanan listmakanan){
         }
         
         // pilih makanan
+        boolean valid  = false;
         int pil;
-        printf("\n");
-        printf("Enter command: ");
-        scanf("%d", &pil);
-        while (pil < 0 || pil > listLength(pilihan)){
-            printf("\n");
-            printf("Enter command: ");
-        scanf("%d", &pil);
-        }
+        string inputs;
+        do {
+            printf("Kirim 0 untuk exit.\n");
+            printf("Enter Command: ");
+            scanWord(&inputs);
+            pil = ((int) inputs.content[0]) - 48;
+            if(pil < 0 || pil > listLength(pilihan)){
+                printf("Input tidak valid. Silakan ulangi.\n");
+            } else {
+                valid = true;
+            }
+        } while(valid==false);
 
         if (pil != 0){
             // cek apakah bahan ada di inventory atau tidak
@@ -342,7 +369,6 @@ void fry(Simulator *s, ListStatikResep resep, ListMakanan listmakanan){
             while (NEXTNODE(p) != NULL){
                 if (!inInventory(Inventory(*s),ROOT(p))){
                         insertLastD(&kosong, ROOT(p));
-                        printf("tidak ada\n");
                     }
                 p = NEXTNODE(p);
             }
@@ -357,6 +383,13 @@ void fry(Simulator *s, ListStatikResep resep, ListMakanan listmakanan){
             }
             // jika dapat dibuat, iterasi tiap childnode untuk dikurangkan di inventory
             else{
+                // hapus elemen pada inventory
+                p = CHILDNODE(addr);
+                while (NEXTNODE(p) != NULL){
+                    mn = SearchById(ROOT(p), listmakanan);
+                    Remove(&Inventory(*s),mn);
+                    p = NEXTNODE(p);
+                }
                 int x;
                 int i = 0;
                 p = CHILDNODE(addr);
@@ -367,6 +400,7 @@ void fry(Simulator *s, ListStatikResep resep, ListMakanan listmakanan){
                 }
 
                 printf("%s selesai dibuat dan sudah masuk ke inventory!", NAMA_MAKANAN(m).content);
+                Enqueue(&Inventory(*s),m);
 
                 long waktu = TIMEToMenit(LAMA_PENGIRIMAN(m));
 
@@ -384,7 +418,7 @@ void boil(Simulator *s, ListStatikResep resep, ListMakanan listmakanan){
     // Mengecek bahan makanan yang dapat dimix
     int count = 0;
     int ID, IDsearch;
-    Makanan m,mi;
+    Makanan m,mi,mn;
     ListStatik pilihan;
     AddressTree addr;
     CreateListStatik(&pilihan);
@@ -414,15 +448,20 @@ void boil(Simulator *s, ListStatikResep resep, ListMakanan listmakanan){
         }
         
         // pilih makanan
+        boolean valid  = false;
         int pil;
-        printf("\n");
-        printf("Enter command: ");
-        scanf("%d", &pil);
-        while (pil < 0 || pil > listLength(pilihan)){
-            printf("\n");
-            printf("Enter command: ");
-        scanf("%d", &pil);
-        }
+        string inputs;
+        do {
+            printf("Kirim 0 untuk exit.\n");
+            printf("Enter Command: ");
+            scanWord(&inputs);
+            pil = ((int) inputs.content[0]) - 48;
+            if(pil < 0 || pil > listLength(pilihan)){
+                printf("Input tidak valid. Silakan ulangi.\n");
+            } else {
+                valid = true;
+            }
+        } while(valid==false);
 
         if (pil != 0){
             // cek apakah bahan ada di inventory atau tidak
@@ -453,7 +492,6 @@ void boil(Simulator *s, ListStatikResep resep, ListMakanan listmakanan){
             while (NEXTNODE(p) != NULL){
                 if (!inInventory(Inventory(*s),ROOT(p))){
                         insertLastD(&kosong, ROOT(p));
-                        printf("tidak ada\n");
                     }
                 p = NEXTNODE(p);
             }
@@ -468,6 +506,13 @@ void boil(Simulator *s, ListStatikResep resep, ListMakanan listmakanan){
             }
             // jika dapat dibuat, iterasi tiap childnode untuk dikurangkan di inventory
             else{
+                // hapus elemen pada inventory
+                p = CHILDNODE(addr);
+                while (NEXTNODE(p) != NULL){
+                    mn = SearchById(ROOT(p), listmakanan);
+                    Remove(&Inventory(*s),mn);
+                    p = NEXTNODE(p);
+                }
                 int x;
                 int i = 0;
                 p = CHILDNODE(addr);
@@ -478,6 +523,7 @@ void boil(Simulator *s, ListStatikResep resep, ListMakanan listmakanan){
                 }
 
                 printf("%s selesai dibuat dan sudah masuk ke inventory!", NAMA_MAKANAN(m).content);
+                Enqueue(&Inventory(*s),m);
 
                 long waktu = TIMEToMenit(LAMA_PENGIRIMAN(m));
 

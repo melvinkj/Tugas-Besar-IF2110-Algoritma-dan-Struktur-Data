@@ -16,21 +16,13 @@ void createMatrix(int nRows, int nCols, Matrix *m)
     COL_EFF(*m) = nCols;
 }
 /* ********** Assignment  Matrix ********** */
-void copyMatrix(Matrix mIn, Matrix *mOut)
-/* Melakukan assignment mOut <- mIn */
-{
-    int i;
-    int j;
-
-
-    createMatrix(ROW_EFF(mIn), COL_EFF(mIn), mOut);
-    *mOut = mIn;
-
-    for (i =0; i< ROW_EFF(mIn); i++){
-        for (j=0; i< COL_EFF(mIn); j++){
-            ELMTX(*mOut, i, j) = ELMTX(mIn, i, j);
-        }
-    }
+void copyMatrix(Matrix mIn, Matrix *mOut){
     ROW_EFF(*mOut) = ROW_EFF(mIn);
     COL_EFF(*mOut) = COL_EFF(mIn);
+    int i,j;
+    for (i=0;i<ROW_EFF(mIn);i++){
+        for (j=0;j<COL_EFF(mIn);j++){
+            ELMTX(*mOut,i,j) = ELMTX(mIn,i,j);
+        }
+    }
 }

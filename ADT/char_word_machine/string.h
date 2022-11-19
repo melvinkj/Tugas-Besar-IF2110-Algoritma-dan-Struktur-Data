@@ -1,8 +1,8 @@
 #ifndef __STRING_H__
 #define __STRING_H__
 
-// #include "D:\OneDrive - Institut Teknologi Bandung\File Jimly\College Files\Semester 3\Algoritma & Struktur Data\Tubes\Tugas-Besar-IF2110-Algoritma-dan-Struktur-Data\ADT\sederhana\boolean.h"
-#include "../sederhana/boolean.h"
+#include "D:\OneDrive - Institut Teknologi Bandung\File Jimly\College Files\Semester 3\Algoritma & Struktur Data\Tubes\Tugas-Besar-IF2110-Algoritma-dan-Struktur-Data\ADT\sederhana\boolean.h"
+// #include "../sederhana/boolean.h"
 
 typedef struct
 {
@@ -10,24 +10,24 @@ typedef struct
     int Length;
 } string;
 
-/* Initializing empty string */
 void createString (string * str);
+/* Menginisialisasi string kosong
+   I.S. : str sembarang 
+   F.S. : terbentuk string kosong dengan panjang 0 */
 
-/* Convert Array of char to string */
 string createStringFromArr(char arr[], int arr_length);
-
-string appendArrToStr (string str, char arr[], int arr_length);
+/* Membentuk string dari arr character & panjang arr yang diberikan */
 
 string copyString(string input);
+/* Mencopy string input dan mengembalikan copynya */
 
-/* Append char to given string */
 string appendCCtoStr(string str, char cc);
-
-boolean cmpStrType1(string str1 ,string str2);
+/* Menambahkan cc ke str */
 
 boolean cmpStrType2(char * str1, char * str2);
+/* Membandingkan str1 dan str2 char pointer type */
 
 boolean hasSubstring (string sub, string str);
-
+/* Mengecek apakah sub ada di dalam str */
 
 #endif

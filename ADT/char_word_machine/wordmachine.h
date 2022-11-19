@@ -47,30 +47,18 @@ void CopyWord();
           currentChar = BLANK atau currentChar = MARK;
           currentChar adalah karakter sesudah karakter terakhir yang diakuisisi.
           Jika panjang kata melebihi NMax, maka sisa kata "dipotong" */
-void LowerCase();
-/* Mengakuisisi kata, menyimpan dalam currentWord
-   I.S. : currentChar adalah karakter pertama dari kata
-   F.S. : currentWord berisi kata yang sudah diakuisisi;
-          currentChar = BLANK atau currentChar = MARK;
-          currentChar adalah karakter sesudah karakter terakhir yang diakuisisi.
-          Jika panjang kata melebihi NMax, maka sisa kata "dipotong" */
-
-void concatWord(Word* new_word, Word word);
 
 void scanWord(string * input);
-
-void clearTabWord (Word * word);
-
-void displayWord (Word word);
-
-boolean IsWordSame (Word word_1, Word word_2);
-
-boolean cmpWord(Word word, string commands);
+/* Menerima input dari stdin
+   I.S. : input sembarang
+   F.S. : input menjadi kata/commands yang diberikan */
 
 char * commandOptions(string input);
-
-string convertWordToStr(Word word);
+/* Menerima input dan memvalidasi (Valid jika ada di daftar commands dan sebaliknya) */
 
 void processWaitCommand(string wait_cmd ,int * extra_h, int * extra_m);
+/* Menerima input command wait x y
+   I.S. : extra_h dan extra_m sembarang
+   F.S. : extra_h terdefinisi menjadi x pada commands wait dan extra_m terdefinisi menjadi y pada commands wait */
 
 #endif

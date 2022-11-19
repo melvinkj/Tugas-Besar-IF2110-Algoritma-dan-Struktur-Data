@@ -138,6 +138,9 @@ void Remove (PrioQueue * Q, infotype X){
 /* Operasi Tambahan */
 void PrintInventory (PrioQueue Q){
     int i=1;
+    if (IsPrioQueueEmpty(Q)){
+        printf("Inventory kosong\n");
+    }
     while (!IsPrioQueueEmpty(Q)){
         infotype X;
         Dequeue(&Q, &X);

@@ -8,8 +8,6 @@
 #include "../ADT/sederhana/point.h"
 #include "../ADT/sederhana/boolean.h"
 #include "../ADT/stack_queue/stack.h"
-#include "../Commands/pengolahan.h"
-#include "../Commands/pemesanan.h"
 #include "../command/undoredo.h"
 #include "../ADT/list_statik/liststatik.h"
 #include "../ADT/list_statik_resep/liststatikresep.h"
@@ -22,9 +20,9 @@
 #include "../ADT/tree/tree.h"
 #include "../command/inventory_delivery.h"
 #include "../command/undoredo.h"
-#include "../Commands/pemesanan.h"
-#include "../Commands/pengolahan.h"
-#include "../Commands/moves.h"
+#include "../command/pemesanan.h"
+#include "../command/pengolahan.h"
+#include "../command/moves.h"
 
 /* *** Operasi-operasi *** */
 
@@ -166,6 +164,14 @@ void CookBook()
 /* *** Command Reader *** */
 void processCommand(string command, Simulator *S, Matrix *Peta, ListMakanan LM)
 {
+    ListStatikResep resep;
+    CreateListStatikResep(&resep);
+    tree T;
+    createTree(&T);
+    insertFirstNode(&T, 1);
+    insertChild(&T,2);
+    insertChild(&T,3);
+    insertFirstResep(&resep,T);
     // Pathway untuk ke fungsi lain
     
     // ALL COMMANDS
@@ -246,7 +252,6 @@ void processCommand(string command, Simulator *S, Matrix *Peta, ListMakanan LM)
                 buy(S, LM);
                 addUndo(*S);
             } else {
-                printf("%d, %d", S->posisi.X,S->posisi.Y);
                 printf("%s tidak berada di area telepon!\n", Nama(*S));
             }
         }
@@ -277,6 +282,7 @@ void processCommand(string command, Simulator *S, Matrix *Peta, ListMakanan LM)
             ListStatikResep LSR;
             CreateListStatikResep(&LSR);
             toStatikResep(&LSR, l_resep);
+
             if(checkAdjacent('M', *Peta, Posisi(*S))){
                 mix(S, LSR, LM);
                 S->waktu = NextMenit(S->waktu);
@@ -288,9 +294,12 @@ void processCommand(string command, Simulator *S, Matrix *Peta, ListMakanan LM)
         if (cmpStrType2(command.content, chop_cmd.content))
         {
             ListResep l_resep = READRESEP("./resep_test.txt");
+            ListStatikResep LSR;
+            CreateListStatikResep(&LSR);
+            toStatikResep(&LSR, l_resep);
 
             if(checkAdjacent('C', *Peta, Posisi(*S))){
-                // chop(S, l_resep, LM);
+                chop(S, LSR, LM);
                 addUndo(*S);
                 S->waktu = NextMenit(S->waktu);
             } else {
@@ -300,9 +309,12 @@ void processCommand(string command, Simulator *S, Matrix *Peta, ListMakanan LM)
         if (cmpStrType2(command.content, fry_cmd.content))
         {
             ListResep l_resep = READRESEP("./resep_test.txt");
+            ListStatikResep LSR;
+            CreateListStatikResep(&LSR);
+            toStatikResep(&LSR, l_resep);
 
             if(checkAdjacent('F', *Peta, Posisi(*S))){
-                // fry(S, l_resep, LM);
+                fry(S, LSR, LM);
                 S->waktu = NextMenit(S->waktu);
                 addUndo(*S);
             } else {
@@ -312,9 +324,12 @@ void processCommand(string command, Simulator *S, Matrix *Peta, ListMakanan LM)
         if (cmpStrType2(command.content, boil_cmd.content))
         {
             ListResep l_resep = READRESEP("./resep_test.txt");
+            ListStatikResep LSR;
+            CreateListStatikResep(&LSR);
+            toStatikResep(&LSR, l_resep);
 
             if(checkAdjacent('B', *Peta, Posisi(*S))){
-                // boil(S, l_resep, LM);
+                boil(S, LSR, LM);
                 S->waktu = NextMenit(S->waktu);
                 addUndo(*S);
             } else {
@@ -323,12 +338,12 @@ void processCommand(string command, Simulator *S, Matrix *Peta, ListMakanan LM)
         }
         if (cmpStrType2(command.content, undo_cmd.content))
         {
-            undo(S);
+            undo(S, resep);
             return;
         }
         if (cmpStrType2(command.content, redo_cmd.content))
         {
-            redo(S);
+            redo(S, resep);
             return;
         }
     }
@@ -397,7 +412,6 @@ int main()
         string nama;
         printf("Nama simulator: ");
         scanWord(&nama);
-        printf("%s\n", nama.content);
 
         // Init simulator
         Simulator S;

@@ -22,20 +22,28 @@ void tidakjadibeli(PrioQueue sebelum, PrioQueue sekarang);
 /* I.S. sebelum dan sesudah terdefinisi */
 /* F.S. makanan yang tidak jadi dibeli akan ditampilkan */
 
+void jadibeli(PrioQueue sebelum, PrioQueue sekarang);
+
 void kembalikedelivery(PrioQueue sebelum, PrioQueue sekarang);
 /* Mengembalikan makanan yang tidak jadi masuk ke inventory */
 /* I.S. sebelum dan sesudah terdefinisi */
 /* F.S. makanan yang tidak jadi masuk ke inventory akan ditampilkan */
+
+void keluardelivery(PrioQueue sebelum, PrioQueue sekarang);
 
 void tidakjadipengolahan(PrioQueue sebelum, PrioQueue sekarang, ListStatikResep resep);
 /* Mengeluarkan makanan yang tidak jadi diproses */
 /* I.S. sebelum dan sesudah terdefinisi */
 /* F.S. makanan yang tidak jadi diproses akan ditampilkan */
 
+void jadipengolahan(PrioQueue sebelum, PrioQueue sekarang, ListStatikResep resep);
+
 void kembalikeinventory(PrioQueue sebelum, PrioQueue sekarang);
 /* Mengembalikan makanan yang tidak jadi expired */
 /* I.S. sebelum dan sesudah terdefinisi */
 /* F.S. makanan yang tidak jadi expired akan ditampilkan */
+
+void keluarinventory(PrioQueue sebelum, PrioQueue sekarang);
 
 boolean isEmptyPriorityQueue(PrioQueue P);
 /* Mengembalikan true jika PrioQueue kosong */

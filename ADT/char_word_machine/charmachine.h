@@ -58,14 +58,24 @@ void READPETA(Matrix *m, char * filename);
 
 
 ListMakanan READMAKANAN(char * filename);
+/* Membaca file konfigurasi dan mengembalikan list makanan */
 
 ListResep READRESEP(char * filename);
+/* Membaca file konfigurasi dan mengembalikan list resep */
 
 void createResepParser(Resep * resep, int cap);
+/* Menginisialisasi resep dengan sebuah list dinamik dengan capacity max = cap
+   I.S. : resep sembarang
+   F.S. : terbentuk list dinamik kosong pada resep */
 
 void CreateListDinParser(ListDinParser *l, int capacity);
+/* Menginisialisasi list dinamik kosong
+   I.S. : l sembarang
+   F.S. : l terdefinisi, l menjadi kosong dengan capacity = capacity */
 
 void insertLastParser(ListDinParser *l, int child_ID);
-
+/* Menambahkan elemen pada bagian terakhir list. List dinamik mungkin kosong
+   I.S. : l terdefinisi
+   F.S. : l terdefinisi, child_ID menjadi elemen terakhir pada list */
 
 #endif

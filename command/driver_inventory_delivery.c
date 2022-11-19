@@ -2,6 +2,15 @@
 #include <stdio.h>
 
 int main(){
+    ListStatikResep LSR;
+    CreateListStatikResep(&LSR);
+    tree T;
+    createTree(&T);
+    insertFirstNode(&T, 1);
+    insertChild(&T,2);
+    insertChild(&T,3);
+    insertFirstResep(&LSR,T);
+
     PrioQueue inventory;
     PrioQueue delivery;
     MakeEmpty(&inventory, 10);
@@ -16,25 +25,24 @@ int main(){
     s2 = appendCCtoStr(s2, 'b');
 
     Makanan makanan1 = CreateMakanan(1, s1, t1, s2, t2, 2, 2);
-    Makanan makanan2 = CreateMakanan(3, s1, t1, s2, t2, 2, 2);
+    Makanan makanan2 = CreateMakanan(2, s1, t1, s2, t2, 2, 2);
     Makanan makanan3 = CreateMakanan(3, s1, t1, s2, t2, 2, 2);
     Makanan makanan6 = CreateMakanan(4, s1, t1, s2, t2, 2, 2);
 
-    Enqueue(&inventory, makanan1);
     Enqueue(&inventory, makanan2);
     Enqueue(&inventory, makanan3);
     Enqueue(&inventory, makanan6);
     PrintPrioQueue(inventory);
 
     Makanan makanan4 = CreateMakanan(1, s1, t1, s2, t2, 2, 2);
-    Makanan makanan5 = CreateMakanan(3, s1, t1, s2, t2, 2, 2);
+    Makanan makanan5 = CreateMakanan(4, s1, t1, s2, t2, 2, 2);
 
     Enqueue(&delivery, makanan4);
     Enqueue(&delivery, makanan5);
     PrintPrioQueue(delivery);
 
-    kembalikeinventory(inventory, delivery);
+    jadipengolahan(inventory, delivery, LSR);
 }
 /*
-gcc driver_inventory_delivery.c ../ADT/sederhana/waktu.c ../ADT/sederhana/makanan.c inventory_delivery.c ../ADT/stack_queue/prioqueue.c ../ADT/char_word_machine/string.c -o main
+gcc driver_inventory_delivery.c ../ADT/sederhana/waktu.c ../ADT/sederhana/makanan.c inventory_delivery.c ../ADT/stack_queue/prioqueue.c ../ADT/char_word_machine/string.c ../ADT/list_statik_resep/liststatikresep.c ../ADT/tree/tree.c -o main
 */

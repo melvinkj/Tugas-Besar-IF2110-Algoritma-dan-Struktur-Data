@@ -1,6 +1,6 @@
 #include "moves.h"
-#include "../command/inventory_delivery.h"
-#include "../command/undoredo.h"
+#include "inventory_delivery.h"
+#include "undoredo.h"
 
 /* ********** Operasi MOVE ********** */
 POINT LocateS(Matrix Peta)

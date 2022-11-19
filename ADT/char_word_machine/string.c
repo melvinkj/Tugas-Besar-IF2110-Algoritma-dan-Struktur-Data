@@ -18,17 +18,6 @@ string createStringFromArr(char arr[], int arr_length) {
     return result;
 }
 
-string appendArrToStr (string str, char arr[], int arr_length){
-    string result;
-    string new_str = str;
-    // createString(&new_str);
-    for (int i = 0; i < arr_length; i++){
-        new_str = appendCCtoStr(new_str, arr[i]);
-    }
-        result = new_str;
-    return result;
-}
-
 string appendCCtoStr(string str, char cc) {
     int extra_size = 1;
     int current_len = str.Length;
@@ -48,10 +37,6 @@ string appendCCtoStr(string str, char cc) {
     new_str.content = container;
     new_str.Length = str.Length + 1;
     return new_str;
-}
-// Compare direct string
-boolean cmpStrType1(string str1 ,string str2) {
-    return (str1.content == str2.content);
 }
 
 //Compare string of char * type
