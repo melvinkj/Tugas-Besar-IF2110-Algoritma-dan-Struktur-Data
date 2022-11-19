@@ -53,9 +53,6 @@ void scanWord(string * input);
    I.S. : input sembarang
    F.S. : input menjadi kata/commands yang diberikan */
 
-void displayWord (Word word);
-/* Menampilkan kata ke layar */
-
 char * commandOptions(string input);
 /* Menerima input dan memvalidasi (Valid jika ada di daftar commands dan sebaliknya) */
 

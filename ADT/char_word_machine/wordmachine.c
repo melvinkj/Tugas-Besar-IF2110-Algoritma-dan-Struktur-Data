@@ -63,14 +63,6 @@ void CopyWord()
     currentWord.Length = i;
 }
 
-void displayWord(Word word)
-{
-    for (int i = 0; i < word.Length; i++)
-    {
-        printf("%c", word.TabWord[i]);
-    }
-}
-
 void scanWord(string * input)
 {
     string new_str;
