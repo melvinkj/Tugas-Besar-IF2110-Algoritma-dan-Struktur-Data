@@ -7,8 +7,8 @@
 #include "point.h"
 #include "waktu.h"
 #include <stdio.h>
-#include "D:\OneDrive - Institut Teknologi Bandung\File Jimly\College Files\Semester 3\Algoritma & Struktur Data\Tubes\Tugas-Besar-IF2110-Algoritma-dan-Struktur-Data\ADT\char_word_machine\string.h"
-// #include "../char_word_machine/string.h"
+// #include "D:\OneDrive - Institut Teknologi Bandung\File Jimly\College Files\Semester 3\Algoritma & Struktur Data\Tubes\Tugas-Besar-IF2110-Algoritma-dan-Struktur-Data\ADT\char_word_machine\string.h"
+#include "../char_word_machine/string.h"
 
 #define UNDEF_WAKTU -1
 #define MAX_LISTMAKANAN_CAP 101
@@ -53,6 +53,8 @@ Makanan CreateMakanan(int id, string nama, TIME kedaluwarsa, string lokasi, TIME
 void CreateListMakanan(ListMakanan *l);
 
 int listMakananLength(ListMakanan l);
+
+void appendListMakanan(ListMakanan *l, Makanan m);
 
 Makanan SearchById(int id, ListMakanan makanan);
 
