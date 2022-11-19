@@ -1,5 +1,3 @@
-/* ADT Pengolahan makanan */
-
 #include <stdio.h>
 #include "../ADT/sederhana/makanan.h"
 #include "../ADT/sederhana/simulator.h"
@@ -8,6 +6,7 @@
 #include "../ADT/listdin/listdin.h"
 #include "../ADT/list_statik/liststatik.h"
 #include "../ADT/char_word_machine/wordmachine.h"
+#include "inventory_delivery.h"
 
 #ifndef PEMESANAN_H
 #define PEMESANAN_H

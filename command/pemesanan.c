@@ -77,6 +77,8 @@ void buy (Simulator *s, ListMakanan LM){
         TIME deliveryMakanan = makanan.lama_pengiriman;
         string namaMakanan= {.content = makanan.nama.content, .Length = makanan.nama.Length};
         s->waktu = NextMenit(s->waktu);
+        kurang_waktu_deliv(&Delivery(*s), &Inventory(*s));
+        kurang_waktu_inv(&Inventory(*s));
         Enqueue_Delivery(&Delivery(*s), makanan);
 
         printf("Berhasil memesan %s. %s akan diantar dalam ", namaMakanan.content, namaMakanan.content);
