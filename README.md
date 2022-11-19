@@ -1,4 +1,4 @@
-# BINOMO
+# BNMO
 Disusun untuk Tugas Besar IF2110 Algoritma dan Struktur Data
 
 ## Daftar Isi
