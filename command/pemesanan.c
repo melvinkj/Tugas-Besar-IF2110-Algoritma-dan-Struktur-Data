@@ -62,7 +62,11 @@ void buy (Simulator *s, ListMakanan LM){
         printf("Kirim 0 untuk exit.\n");
         printf("Enter Command: ");
         scanWord(&inputs);
-        c = ((int) inputs.content[0]) - 48;
+        if (inputs.Length == 2){
+            c = (((int) inputs.content[0])*10 + (int) inputs.content[1]) - 48;    
+        } else {
+            c = ((int) inputs.content[0]) - 48;
+        }
         if(c>listLength(idContainer)){
             printf("Input tidak valid. Silakan ulangi.\n");
         } else {

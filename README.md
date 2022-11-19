@@ -11,12 +11,12 @@ Disusun untuk Tugas Besar IF2110 Algoritma dan Struktur Data
 * [Pembagian Tugas](#pembagian-tugas)
 
 ## Penjelasan Ringkas Program
-BINOMO adalah .... 
+BNMO adalah .... 
 
 ## Cara Kompilasi Program
-1. Pastikan Anda sedang berada pada directory `test` dengan `cd test`.
-2. Jalankan command `main.bat` pada command prompt untuk melakukan kompilasi pada program.
-3. Jika berhasil dikompilasi, maka akan terdapat `main.exe` pada directory `test`.
+1. Pastikan Anda sedang berada pada directory `test` dengan `cd ./test`.
+2. Jalankan command `./main.bat` pada command prompt untuk melakukan kompilasi pada program.
+3. Jika berhasil dikompilasi, maka akan terdapat `./main.exe` pada directory `test`.
 
 ## Cara Menjalankan Program
 1. Pastikan Anda telah melakukan kompilasi pada program.

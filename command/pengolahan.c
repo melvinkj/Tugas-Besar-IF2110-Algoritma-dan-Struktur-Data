@@ -84,6 +84,11 @@ void mix(Simulator *s, ListStatikResep resep, ListMakanan listmakanan){
             printf("Kirim 0 untuk exit.\n");
             printf("Enter Command: ");
             scanWord(&inputs);
+            if (inputs.Length == 2){
+                pil = (((int) inputs.content[0])*10 + (int) inputs.content[1]) - 48;    
+            } else {
+                pil = ((int) inputs.content[0]) - 48;
+            }
             pil = ((int) inputs.content[0]) - 48;
             if(pil < 0 || pil > listLength(pilihan)){
                 printf("Input tidak valid. Silakan ulangi.\n");
@@ -210,7 +215,11 @@ void chop(Simulator *s, ListStatikResep resep, ListMakanan listmakanan){
             printf("Kirim 0 untuk exit.\n");
             printf("Enter Command: ");
             scanWord(&inputs);
-            pil = ((int) inputs.content[0]) - 48;
+            if (inputs.Length == 2){
+                pil = (((int) inputs.content[0])*10 + (int) inputs.content[1]) - 48;    
+            } else {
+                pil = ((int) inputs.content[0]) - 48;
+            }
             if(pil < 0 || pil > listLength(pilihan)){
                 printf("Input tidak valid. Silakan ulangi.\n");
             } else {
@@ -333,7 +342,11 @@ void fry(Simulator *s, ListStatikResep resep, ListMakanan listmakanan){
             printf("Kirim 0 untuk exit.\n");
             printf("Enter Command: ");
             scanWord(&inputs);
-            pil = ((int) inputs.content[0]) - 48;
+            if (inputs.Length == 2){
+                pil = (((int) inputs.content[0])*10 + (int) inputs.content[1]) - 48;    
+            } else {
+                pil = ((int) inputs.content[0]) - 48;
+            }
             if(pil < 0 || pil > listLength(pilihan)){
                 printf("Input tidak valid. Silakan ulangi.\n");
             } else {
@@ -456,7 +469,11 @@ void boil(Simulator *s, ListStatikResep resep, ListMakanan listmakanan){
             printf("Kirim 0 untuk exit.\n");
             printf("Enter Command: ");
             scanWord(&inputs);
-            pil = ((int) inputs.content[0]) - 48;
+            if (inputs.Length == 2){
+                pil = (((int) inputs.content[0])*10 + (int) inputs.content[1]) - 48;    
+            } else {
+                pil = ((int) inputs.content[0]) - 48;
+            }
             if(pil < 0 || pil > listLength(pilihan)){
                 printf("Input tidak valid. Silakan ulangi.\n");
             } else {

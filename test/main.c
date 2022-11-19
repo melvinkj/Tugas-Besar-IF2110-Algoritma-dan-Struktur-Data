@@ -25,7 +25,6 @@
 #include "../command/moves.h"
 
 /* *** Operasi-operasi *** */
-
 void Catalog()
 {
     ListMakanan ans = READMAKANAN("./makanan_test.txt");
@@ -209,15 +208,11 @@ void processCommand(string command, Simulator *S, Matrix *Peta, ListMakanan LM)
         T1 = TIMEToMenit(T);
         addUndo(*S);
         
-
         for(i=0; i < (int)T1; i++){
             S->waktu = NextMenit(S->waktu);
             kurang_waktu_deliv(&Delivery(*S), &Inventory(*S));
             kurang_waktu_inv(&Inventory(*S));
         }
-
-        printf("Extra Hour : %d\n", hour);
-        printf("Extra Minute : %d\n", minute);
     }
     else
     {
@@ -355,22 +350,15 @@ int main()
 
     // Splash Screen
     // -------------
-    printf("░▄░░░░█▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀█░░░░░░\n");
-    printf("░█░░░░█░▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄░█░░░░▄░\n");
-    printf("░█░░░░█░█░░░░░░░░░░░░░░█░█░░░░█░\n");
-    printf("░█░░░░█░█░░░▀░░░░░░▀░░░█░█░░░░█░\n");
-    printf("░▀█░░░█░█░░░░▄▄▄▄▄▄░░░░█░█░░░░█░\n");
-    printf("░░█▄░░█░█░░░░█▄░░▄█░░░░█░█░░▄█▀░\n");
-    printf("░░░▀█░█░█░░░░░▀▀▀▀░░░░░█░█▄█▀░░░\n");
-    printf("░░░░░▀█░▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀░█▀░░░░░\n");
-    printf("░░░░░░█░████████░░░▄░░▀░░█░░░░░░\n");
-    printf("░░░░░░█░░░▄░░░░░░▄███▄░░░█░░░░░░\n");
-    printf("░░░░░░█░▄▄█▄▄░░░░░░░░░▄▄░█░░░░░░\n");
-    printf("░░░░░░█░░░█░░░░░░░░░▄░▀▀░█░░░░░░\n");
-    printf("░░░░░░█░░░░░░░░░░░▄███▄░░█░░░░░░\n");
-    printf("░░░░░░█░███░███░░░░▀█▀░░░█░░░░░░\n");
-    printf("░░░░░░█▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄█░░░░░░\n");
-    printf("░░░░░░░░░░░░█░░░░░░█░░░░░░░░░░░░\n");
+    printf("\n");
+    printf("$$$$$$$\\  $$\\   $$\\ $$\\      $$\\  $$$$$$\\  \n");
+    printf("$$  __$$\\ $$$\\  $$ |$$$\\    $$$ |$$  __$$\\ \n");
+    printf("$$ |  $$ |$$$$\\ $$ |$$$$\\  $$$$ |$$ /  $$ |\n");
+    printf("$$$$$$$\\ |$$ $$\\$$ |$$\\$$\\$$ $$ |$$ |  $$ |\n");
+    printf("$$  __$$\\ $$ \\$$$$ |$$ \\$$$  $$ |$$ |  $$ |\n");
+    printf("$$ |  $$ |$$ |\\$$$ |$$ |\\$  /$$ |$$ |  $$ |\n");
+    printf("$$$$$$$  |$$ | \\$$ |$$ | \\_/ $$ | $$$$$$  |\n");
+    printf("\\_______/ \\__|  \\__|\\__|     \\__| \\______/ \n");
     printf("\n");
     printf("Successfully initialized program!\n");
     printf("\n");
@@ -448,7 +436,7 @@ int main()
                 printf("Enter COMMAND : ");
                 scanWord(&input);
                 checker.content = commandOptions(input);
-                if (cmpStrType2(checker.content, valid.content))
+                if (cmpStrType2(checker.content, valid.content) && input.content[0] != '\n')
                 {
                     validate = true;
                     if (cmpStrType2(input.content, exit_cmd.content))
