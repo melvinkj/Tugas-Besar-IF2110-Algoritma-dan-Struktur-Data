@@ -11,21 +11,34 @@ Disusun untuk Tugas Besar IF2110 Algoritma dan Struktur Data
 * [Pembagian Tugas](#pembagian-tugas)
 
 ## Penjelasan Ringkas Program
-BNMO adalah .... 
+BNMO secara garis besar merupakan simulator yang berfungsi utama pada pengolahan makanan. Simulator akan memiliki peta untuk menyimulasikan lokasi BNMO. Inventory untuk menyimulasikan tempat penyimpanan makanan. Di dalam simulator dapat melakukan aksi-aksi tertentu sesuai tempat adjacent-nya yang bertujuan untuk mengolah makanan. Aksi-aksi yang dapat dilakukan terhadap simulator berupa aksi pada pemesanan makanan, aksi pada pengolahan makanan, aksi untuk berpindah tempat, dan aksi untuk undo redo simulator.
 
 ## Cara Kompilasi Program
-1. Pastikan Anda sedang berada pada directory `test` dengan `cd ./test`.
-2. Jalankan command `./main.bat` pada command prompt untuk melakukan kompilasi pada program.
-3. Jika berhasil dikompilasi, maka akan terdapat `./main.exe` pada directory `test`.
+1. Pastikan Anda sedang berada pada directory `build` dengan : 
+```shell
+`cd ./build`.
+```
+2. Selanjutnya, untuk kompilasi pada program, jalankan :
+```shell
+`./main.bat`
+```
+3. Jika berhasil dikompilasi, maka akan terdapat `./main.exe` pada directory `build`.
 
 ## Cara Menjalankan Program
 1. Pastikan Anda telah melakukan kompilasi pada program.
-2. Jalankan command `./main` untuk run program.
+2. Untuk menjalankan program, jalankan :
+```shell
+`./main.exe`
+```
 3. Jika berhasil run, maka Anda akan tiba pada Tampilan Utama program.
 
 ## Screenshot Program
-### Tampilan Main Menu
-![Main Menu](./Screenshot/dummy.jpg)
+### Tampilan Utama Program
+![Main Menu](./screenshot/1.jpg)
+### Tampilan Setelah `START`
+![Main Menu](./screenshot/2.jpg)
+### Tampilan Setelah `EXIT`
+![Main Menu](./screenshot/3.jpg)
 
 ## Daftar Fitur
 1. Inisiasi
