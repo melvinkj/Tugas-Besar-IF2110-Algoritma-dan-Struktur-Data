@@ -137,20 +137,21 @@ void mix(Simulator *s, ListStatikResep resep, ListMakanan listmakanan){
             else{
                 // hapus elemen pada inventory
                 p = CHILDNODE(addr);
-                while (NEXTNODE(p) != NULL){
+                while (p != NULL){
                     mn = SearchById(ROOT(p), listmakanan);
-                    Remove(&Inventory(*s),mn);
+                    RemoveMakanan(&Inventory(*s),mn);
                     p = NEXTNODE(p);
                 }
 
-                int x;
-                int i = 0;
-                p = CHILDNODE(addr);
-                while (p != NULL){
-                    x = ROOT(p); // ID makanan yang akan dikurangkan
-                    use(s,x);
-                    p = NEXTNODE(p);
-                }
+                // int x;
+                // int i = 0;
+                // p = CHILDNODE(addr);
+                // while (NEXTNODE(p) != NULL){
+                //     x = ROOT(p); // ID makanan yang akan dikurangkan
+                //     use(s,x);
+                //     printf("%s dikurangkan\n", NAMA_MAKANAN(SearchById(x,listmakanan)).content);
+                //     p = NEXTNODE(p);
+                // }
 
                 printf("%s selesai dibuat dan sudah masuk ke inventory!", NAMA_MAKANAN(m).content);
                 Enqueue(&Inventory(*s),m);
@@ -264,17 +265,17 @@ void chop(Simulator *s, ListStatikResep resep, ListMakanan listmakanan){
                 p = CHILDNODE(addr);
                 while (NEXTNODE(p) != NULL){
                     mn = SearchById(ROOT(p), listmakanan);
-                    Remove(&Inventory(*s),mn);
+                    RemoveMakanan(&Inventory(*s),mn);
                     p = NEXTNODE(p);
                 }
-                int x;
-                int i = 0;
-                p = CHILDNODE(addr);
-                while (p != NULL){
-                    x = ROOT(p); // ID makanan yang akan dikurangkan
-                    use(s,x);
-                    p = NEXTNODE(p);
-                }
+                // int x;
+                // int i = 0;
+                // p = CHILDNODE(addr);
+                // while (p != NULL){
+                //     x = ROOT(p); // ID makanan yang akan dikurangkan
+                //     use(s,x);
+                //     p = NEXTNODE(p);
+                // }
 
                 printf("%s selesai dibuat dan sudah masuk ke inventory!", NAMA_MAKANAN(m).content);
                 Enqueue(&Inventory(*s),m);
@@ -387,17 +388,17 @@ void fry(Simulator *s, ListStatikResep resep, ListMakanan listmakanan){
                 p = CHILDNODE(addr);
                 while (NEXTNODE(p) != NULL){
                     mn = SearchById(ROOT(p), listmakanan);
-                    Remove(&Inventory(*s),mn);
+                    RemoveMakanan(&Inventory(*s),mn);
                     p = NEXTNODE(p);
                 }
-                int x;
-                int i = 0;
-                p = CHILDNODE(addr);
-                while (p != NULL){
-                    x = ROOT(p); // ID makanan yang akan dikurangkan
-                    use(s,x);
-                    p = NEXTNODE(p);
-                }
+                // int x;
+                // int i = 0;
+                // p = CHILDNODE(addr);
+                // while (p != NULL){
+                //     x = ROOT(p); // ID makanan yang akan dikurangkan
+                //     use(s,x);
+                //     p = NEXTNODE(p);
+                // }
 
                 printf("%s selesai dibuat dan sudah masuk ke inventory!", NAMA_MAKANAN(m).content);
                 Enqueue(&Inventory(*s),m);
@@ -510,17 +511,17 @@ void boil(Simulator *s, ListStatikResep resep, ListMakanan listmakanan){
                 p = CHILDNODE(addr);
                 while (NEXTNODE(p) != NULL){
                     mn = SearchById(ROOT(p), listmakanan);
-                    Remove(&Inventory(*s),mn);
+                    RemoveMakanan(&Inventory(*s),mn);
                     p = NEXTNODE(p);
                 }
-                int x;
-                int i = 0;
-                p = CHILDNODE(addr);
-                while (p != NULL){
-                    x = ROOT(p); // ID makanan yang akan dikurangkan
-                    use(s,x);
-                    p = NEXTNODE(p);
-                }
+                // int x;
+                // int i = 0;
+                // p = CHILDNODE(addr);
+                // while (p != NULL){
+                //     x = ROOT(p); // ID makanan yang akan dikurangkan
+                //     use(s,x);
+                //     p = NEXTNODE(p);
+                // }
 
                 printf("%s selesai dibuat dan sudah masuk ke inventory!", NAMA_MAKANAN(m).content);
                 Enqueue(&Inventory(*s),m);
