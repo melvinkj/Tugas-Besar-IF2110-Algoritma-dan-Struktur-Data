@@ -18,33 +18,33 @@ void kurang_waktu_deliv(PrioQueue *delivery,PrioQueue *inventory, ListMakanan *l
 /* I.S. delivery terdefinisi */
 /* F.S. waktu delivery dikurangi 1 dan jika waktu 0 akan dipindahkan ke inventory */
 
-void tidakjadibeli(PrioQueue sebelum, PrioQueue sekarang);
+void tidakjadibeli(PrioQueue sebelum, PrioQueue sekarang, ListMakanan *listBatalBeli);
 /* Mengeluarkan makanan yang tidak jadi dibeli */
 /* I.S. sebelum dan sesudah terdefinisi */
 /* F.S. makanan yang tidak jadi dibeli akan ditampilkan */
 
-void jadibeli(PrioQueue sebelum, PrioQueue sekarang);
+void jadibeli(PrioQueue sebelum, PrioQueue sekarang, ListMakanan *listJadiBeli);
 
-void kembalikedelivery(PrioQueue sebelum, PrioQueue sekarang);
+void kembalikedelivery(PrioQueue sebelum, PrioQueue sekarang, ListMakanan *listKembaliDelivery);
 /* Mengembalikan makanan yang tidak jadi masuk ke inventory */
 /* I.S. sebelum dan sesudah terdefinisi */
 /* F.S. makanan yang tidak jadi masuk ke inventory akan ditampilkan */
 
-void keluardelivery(PrioQueue sebelum, PrioQueue sekarang);
+void keluardelivery(PrioQueue sebelum, PrioQueue sekarang, ListMakanan *listKeluarDelivery);
 
-void tidakjadipengolahan(PrioQueue sebelum, PrioQueue sekarang, ListStatikResep resep);
+void tidakjadipengolahan(PrioQueue sebelum, PrioQueue sekarang, ListStatikResep resep, ListMakanan *listBatalPengolahan, ListMakanan *listKembaliInventory);
 /* Mengeluarkan makanan yang tidak jadi diproses */
 /* I.S. sebelum dan sesudah terdefinisi */
 /* F.S. makanan yang tidak jadi diproses akan ditampilkan */
 
-void jadipengolahan(PrioQueue sebelum, PrioQueue sekarang, ListStatikResep resep);
+void jadipengolahan(PrioQueue sebelum, PrioQueue sekarang, ListStatikResep resep, ListMakanan *listJadiPengolahan, ListMakanan *listKeluarInventory);
 
-void kembalikeinventory(PrioQueue sebelum, PrioQueue sekarang);
+void kembalikeinventory(PrioQueue sebelum, PrioQueue sekarang, ListMakanan *listKembaliInventory);
 /* Mengembalikan makanan yang tidak jadi expired */
 /* I.S. sebelum dan sesudah terdefinisi */
 /* F.S. makanan yang tidak jadi expired akan ditampilkan */
 
-void keluarinventory(PrioQueue sebelum, PrioQueue sekarang);
+void keluarinventory(PrioQueue sebelum, PrioQueue sekarang, ListMakanan *listKeluarInventory);
 
 boolean isEmptyPriorityQueue(PrioQueue P);
 /* Mengembalikan true jika PrioQueue kosong */

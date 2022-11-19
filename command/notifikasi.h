@@ -12,6 +12,6 @@
 #define NOTIFIKASI_H
 
 
-void notifikasi(ListMakanan *listKedaluwarsa, ListMakanan *listDiterima);
+void notifikasi(ListMakanan *listKedaluwarsa, ListMakanan *listDiterima, ListMakanan *listBatalBeli, ListMakanan *listJadiBeli, ListMakanan *listKembaliDelivery, ListMakanan *listKeluarDelivery, ListMakanan *listBatalPengolahan, ListMakanan *listJadiPengolahan, ListMakanan *listKembaliInventory, ListMakanan *listKeluarInventory);
 
 #endif
