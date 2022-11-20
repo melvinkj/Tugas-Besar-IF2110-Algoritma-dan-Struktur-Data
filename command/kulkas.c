@@ -65,9 +65,9 @@ void masukKulkas(Matrix * m_tampilan_kulkas, ListStatikKulkas * l_isi_kulkas, Pr
 
     // Masukin ke dalam matrix
     int i = 0;
-    int j = 0;
     while(!isAvailable && i<=10-size_y){
-        while(!isAvailable && j<=20-size_y){
+        int j = 0;
+        while(!isAvailable && j<=20-size_x){
             isAvailable = checkKulkasEmptyAtSpot(i,j,size_x,size_y,*m_tampilan_kulkas);
 
             if (isAvailable) {
@@ -95,8 +95,8 @@ void masukKulkas(Matrix * m_tampilan_kulkas, ListStatikKulkas * l_isi_kulkas, Pr
 }
 
 boolean checkKulkasEmptyAtSpot(int x, int y, int size_x, int size_y, Matrix M){
-    for (int i=x; i<x+size_x; i++){
-        for (int j=y; j<y+size_y; j++){
+    for (int i=x; i<x+size_y; i++){
+        for (int j=y; j<y+size_x; j++){
             if (ELMTX(M, i, j) != 'X'){
                 return false;
             }
