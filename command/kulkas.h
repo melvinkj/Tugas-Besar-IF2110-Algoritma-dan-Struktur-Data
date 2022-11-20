@@ -25,8 +25,6 @@ typedef struct {
    ElTypeListKulkas contents[CAPACITY]; 
 } ListStatikKulkas;
 
-Matrix kulkas();
-
 /* ********** SELEKTOR ********** */
 #define MAKANAN(e) (e).makanan
 #define POSISI_X(e) (e).posisi_x
@@ -34,6 +32,10 @@ Matrix kulkas();
 #define ELMTLIST(l, i) (l).contents[(i)]
 
 /* ********** FUNCTION ********** */
+Matrix inisialisasiTampilanKulkas();
+
+ListStatikKulkas inisialisasiListKulkas();
+
 int listLengthListKulkas(ListStatikKulkas l);
 
 void deleteFirstListKulkas(ListStatikKulkas *l, ElTypeListKulkas *val);
@@ -46,7 +48,7 @@ void masukKulkas(Matrix * m_tampilan_kulkas, ListStatikKulkas * l_isi_kulkas, Pr
 
 void keluarKulkas(Matrix * m_tampilan_kulkas,  ListStatikKulkas * l_isi_kulkas, PrioQueue * pq);
 
-void tampilKulkas(Matrix m_tampilan_kulkas);
+void printTampilanKulkas(Matrix m_tampilan_kulkas);
 
 void printListKulkas(ListStatikKulkas l);
 

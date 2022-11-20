@@ -2,10 +2,22 @@
 #include <stdlib.h>
 #include "kulkas.h"
 
-Matrix tampilanKulkas() {
+Matrix inisialisasiTampilanKulkas() {
     Matrix m;
     createMatrix(10, 20, &m);
+    for(int i = 0; i < 10; i++) {
+        for(int j = 0; j < 20; j++) {
+            ELMTX(m, i, j) = 'X';
+            
+        }
+    }
     return m;
+}
+
+ListStatikKulkas inisialisasiListKulkas() {
+    ListStatikKulkas l;
+    ELMTLIST(l, 0).posisi_x  = -1;
+    return l;
 }
 
 element_kulkas createElementKulkas(Makanan makanan, int posisi_x, int posisi_y) {
@@ -18,13 +30,14 @@ element_kulkas createElementKulkas(Makanan makanan, int posisi_x, int posisi_y) 
 
 int listLengthKulkas(ListStatikKulkas l){
     int panjang = 0;
-    while (ELMTLIST(l,panjang).posisi_x == -1 && panjang < CAPACITY){
+    while (ELMTLIST(l,panjang).posisi_x != -1 && panjang < CAPACITY){
         panjang++;
     }
     return panjang;
 }
 
 void insertLastListKulkas(ListStatikKulkas *l, ElTypeListKulkas val){
+    ELMTLIST(*l,listLengthKulkas(*l)+1).posisi_x = -1;
     ELMTLIST(*l,listLengthKulkas(*l))=val;
 }
 
@@ -38,23 +51,27 @@ void deleteFirstListKulkas(ListStatikKulkas *l, ElTypeListKulkas *val){
     ELMTLIST(*l,listLengthKulkas(*l)-1).posisi_x = -1;
 }
 void masukKulkas(Matrix * m_tampilan_kulkas, ListStatikKulkas * l_isi_kulkas, PrioQueue * pq) {
+    printf("Memasukkan makanan ke dalam kulkas\n");
+
     // Keluarin dari pq
     Makanan makanan;
-    Dequeue(&pq, &makanan);
-    int size_x = makanan.size_x;
-    int size_y = makanan.size_y;
-    boolean isAvailable = true;
+    Dequeue(pq, &makanan);
+    int size_x = SIZE_X(makanan);
+    int size_y = SIZE_Y(makanan);
+    boolean isAvailable = false;
 
     // Masukin ke dalam matrix
-    for (int i=0; i<=10-size_y; i++) {
-        for (int j=0; j<=20-size_x; j++) {
+    int i = 0;
+    int j = 0;
+    while(!isAvailable && i<=10-size_y){
+        while(!isAvailable && j<=20-size_y){
             isAvailable = true;
 
             int k=0;
             while (isAvailable && k<size_y){
                 int l=0;
                 while (isAvailable && l<size_x){
-                    if (ELMTX(*m_tampilan_kulkas, i+k, j+l) != ' ') {
+                    if (ELMTX(*m_tampilan_kulkas, i+k, j+l) != 'X') {
                         isAvailable = false;
                     }
                     l++;
@@ -63,18 +80,21 @@ void masukKulkas(Matrix * m_tampilan_kulkas, ListStatikKulkas * l_isi_kulkas, Pr
             }
 
             if (isAvailable) {
-                for (int k=0; k<size_y; k++){
-                    for (int l=0; l<size_x; l++) {
-                        ELMTX(*m_tampilan_kulkas, i+k, j+l) = makanan.nama.content[0];
+                for (int x=0; x<size_y; x++){
+                    for (int y=0; y<size_x; y++) {
+                        ELMTX(*m_tampilan_kulkas, i+x, j+y) = Info(makanan)[0];
                     }
                 }
 
                 // Masukin ke dalam list statik
                 element_kulkas e = createElementKulkas(makanan, i, j);
-                insertLast(&l_isi_kulkas, e);
+                insertLastListKulkas(l_isi_kulkas, e);
                 break;
             }
+
+            j++;
         }
+        i++;
     }
 
     if (!isAvailable) {
@@ -83,22 +103,24 @@ void masukKulkas(Matrix * m_tampilan_kulkas, ListStatikKulkas * l_isi_kulkas, Pr
 }
 
 void keluarKulkas(Matrix * m_tampilan_kulkas,  ListStatikKulkas * l_isi_kulkas, PrioQueue * pq) {
+printf("Mengeluarkan makanan dari kulkas\n");
+
     // Keluarin dari list statik
     element_kulkas e;
-    deleteFirst(&l_isi_kulkas, &e);
+    deleteFirstListKulkas(l_isi_kulkas, &e);
 
     // Hilangin dari matriks
-    for (int i=&e.posisi_y; i<e.posisi_y+e.makanan.size_y; i++) {
-        for (int j=&e.posisi_x; j<e.posisi_x+e.makanan.size_x; j++) {
-            ELMTX(*m_tampilan_kulkas, i, j) = ' ';
+    for (int i=e.posisi_y; i<e.posisi_y+e.makanan.size_y; i++) {
+        for (int j=e.posisi_x; j<e.posisi_x+e.makanan.size_x; j++) {
+            ELMTX(*m_tampilan_kulkas, i, j) = 'X';
         }
     }
 
     // Masukin ke prio queue
-    Enqueue(&pq, e.makanan);
+    Enqueue(pq, e.makanan);
 }
 
-void tampilKulkas(Matrix m_tampilan_kulkas) {
+void printTampilanKulkas(Matrix m_tampilan_kulkas) {
     printf("Tampilan kulkas:\n");
     for (int i=0; i<10; i++) {
         for (int j=0; j<20; j++) {
@@ -109,14 +131,17 @@ void tampilKulkas(Matrix m_tampilan_kulkas) {
 }
 
 void printListKulkas(ListStatikKulkas l){
-    printf("Isi kulkas:\n");
-    int i;
-    printf("[");
-	for (i = 0; isIdxEffList(l,i) ; i++) {
-		if (i != 0) {
-			printf(",");
-		}
-		printf("%d", ELMTLIST(l,i));
-	}
-	printf("]");
+    if (listLengthKulkas(l) == 0){
+        printf("Isi kulkas: kosong\n");
+    }
+    else{
+        printf("Isi kulkas:\n");
+        int i;
+        for (i = 0; i<listLengthKulkas(l) ; i++) {
+            printf("%d. %s - ", i, Info(ELMTLIST(l,i).makanan));
+            TulisTIME(Time(ELMTLIST(l,i).makanan));
+            printf("\n");
+        }
+        printf("\n");
+    }
 }
