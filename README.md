@@ -16,20 +16,20 @@ BNMO secara garis besar merupakan simulator yang berfungsi utama pada pengolahan
 ## Cara Kompilasi Program
 1. Pastikan Anda sedang berada pada directory `build` dengan : 
 ```shell
-`cd ./build`.
+cd ./build
 ```
 2. Selanjutnya, untuk kompilasi pada program, jalankan :
 ```shell
-`./main.bat`
+./main.bat
 ```
 3. Jika berhasil dikompilasi, maka akan terdapat `./main.exe` pada directory `build`.
 
 ## Cara Menjalankan Program
 1. Pastikan Anda telah melakukan kompilasi pada program.
-2. Jika ingin mengubah file konfigurasi, silahkan lansung mengubah melalui file text konfigurasi.
+2. Jika ingin mengubah file konfigurasi, silahkan lansung mengubah melalui file text konfigurasi pada folder `build`.
 3. Untuk menjalankan program, jalankan :
 ```shell
-`./main.exe`
+./main.exe
 ```
 4. Jika berhasil run, maka Anda akan tiba pada Tampilan Utama program.
 
