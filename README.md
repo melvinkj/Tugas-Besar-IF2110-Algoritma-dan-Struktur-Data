@@ -172,9 +172,9 @@ cd ./build
 * Main Program
 
 3. Yobel Dean Christopher / (13521067)
-* 
-* 
-* 
+* ADT Matriks
+* Move
+* Kulkas
 4. Fajar Maulana Herawan / (13521080)
 * ADT Stack / Prioqueue
 * Undo/Redo
