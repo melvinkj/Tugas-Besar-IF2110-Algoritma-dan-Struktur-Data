@@ -16,7 +16,10 @@ Matrix inisialisasiTampilanKulkas() {
 
 ListStatikKulkas inisialisasiListKulkas() {
     ListStatikKulkas l;
-    ELMTLIST(l, 0).posisi_x  = -1;
+    for (int i=0; i<CAPACITY; i++){
+        POSISI_X(ELMTLIST(l, 0))  = IDX_UNDEF;
+        POSISI_X(ELMTLIST(l, 0))  = IDX_UNDEF;
+    }
     return l;
 }
 
@@ -37,7 +40,7 @@ int listLengthKulkas(ListStatikKulkas l){
 }
 
 void insertLastListKulkas(ListStatikKulkas *l, ElTypeListKulkas val){
-    ELMTLIST(*l,listLengthKulkas(*l)+1).posisi_x = -1;
+    POSISI_X(ELMTLIST(*l,listLengthKulkas(*l)+1)) = IDX_UNDEF;
     ELMTLIST(*l,listLengthKulkas(*l))=val;
 }
 
@@ -48,7 +51,7 @@ void deleteFirstListKulkas(ListStatikKulkas *l, ElTypeListKulkas *val){
     for(i=0;i<listLengthKulkas(*l)-1;i++){
         ELMTLIST(*l,i)=ELMTLIST(*l,i+1);
     }
-    ELMTLIST(*l,listLengthKulkas(*l)-1).posisi_x = -1;
+    POSISI_X(ELMTLIST(*l,listLengthKulkas(*l)-1)) = -1;
 }
 void masukKulkas(Matrix * m_tampilan_kulkas, ListStatikKulkas * l_isi_kulkas, PrioQueue * pq) {
     printf("Memasukkan makanan ke dalam kulkas\n");
@@ -65,21 +68,10 @@ void masukKulkas(Matrix * m_tampilan_kulkas, ListStatikKulkas * l_isi_kulkas, Pr
     int j = 0;
     while(!isAvailable && i<=10-size_y){
         while(!isAvailable && j<=20-size_y){
-            isAvailable = true;
-
-            int k=0;
-            while (isAvailable && k<size_y){
-                int l=0;
-                while (isAvailable && l<size_x){
-                    if (ELMTX(*m_tampilan_kulkas, i+k, j+l) != 'X') {
-                        isAvailable = false;
-                    }
-                    l++;
-                }
-                k++;
-            }
+            isAvailable = checkKulkasEmptyAtSpot(i,j,size_x,size_y,*m_tampilan_kulkas);
 
             if (isAvailable) {
+                // Perbaruin tampilan dari kulkas
                 for (int x=0; x<size_y; x++){
                     for (int y=0; y<size_x; y++) {
                         ELMTX(*m_tampilan_kulkas, i+x, j+y) = Info(makanan)[0];
@@ -100,6 +92,17 @@ void masukKulkas(Matrix * m_tampilan_kulkas, ListStatikKulkas * l_isi_kulkas, Pr
     if (!isAvailable) {
         printf("Kulkas penuh.\n");
     }
+}
+
+boolean checkKulkasEmptyAtSpot(int x, int y, int size_x, int size_y, Matrix M){
+    for (int i=x; i<x+size_x; i++){
+        for (int j=y; j<y+size_y; j++){
+            if (ELMTX(M, i, j) != 'X'){
+                return false;
+            }
+        }
+    }
+    return true;
 }
 
 void keluarKulkas(Matrix * m_tampilan_kulkas,  ListStatikKulkas * l_isi_kulkas, PrioQueue * pq) {
@@ -138,7 +141,7 @@ void printListKulkas(ListStatikKulkas l){
         printf("Isi kulkas:\n");
         int i;
         for (i = 0; i<listLengthKulkas(l) ; i++) {
-            printf("%d. %s - ", i, Info(ELMTLIST(l,i).makanan));
+            printf("%d. %s - ", i+1, Info(ELMTLIST(l,i).makanan));
             TulisTIME(Time(ELMTLIST(l,i).makanan));
             printf("\n");
         }

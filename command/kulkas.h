@@ -46,6 +46,8 @@ element_kulkas createElementKulkas(Makanan makanan, int posisi_x, int posisi_y);
 
 void masukKulkas(Matrix * m_tampilan_kulkas, ListStatikKulkas * l_isi_kulkas, PrioQueue * pq);
 
+boolean checkKulkasEmptyAtSpot(int x, int y, int size_x, int size_y, Matrix M);
+
 void keluarKulkas(Matrix * m_tampilan_kulkas,  ListStatikKulkas * l_isi_kulkas, PrioQueue * pq);
 
 void printTampilanKulkas(Matrix m_tampilan_kulkas);
