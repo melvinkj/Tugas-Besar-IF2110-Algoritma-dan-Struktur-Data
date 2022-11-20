@@ -26,11 +26,12 @@ BNMO secara garis besar merupakan simulator yang berfungsi utama pada pengolahan
 
 ## Cara Menjalankan Program
 1. Pastikan Anda telah melakukan kompilasi pada program.
-2. Untuk menjalankan program, jalankan :
+2. Jika ingin mengubah file konfigurasi, silahkan lansung mengubah melalui file text konfigurasi.
+3. Untuk menjalankan program, jalankan :
 ```shell
 `./main.exe`
 ```
-3. Jika berhasil run, maka Anda akan tiba pada Tampilan Utama program.
+4. Jika berhasil run, maka Anda akan tiba pada Tampilan Utama program.
 
 ## Screenshot Program
 ### Tampilan Utama Program
