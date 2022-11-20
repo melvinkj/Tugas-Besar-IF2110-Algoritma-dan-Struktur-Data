@@ -47,4 +47,8 @@ void masukKulkas(Matrix * m_tampilan_kulkas, ListStatik * l_isi_kulkas, PrioQueu
 
 void keluarKulkas(Matrix * m_tampilan_kulkas,  ListStatik * l_isi_kulkas, PrioQueue * pq);
 
+void tampilKulkas(Matrix m_tampilan_kulkas);
+
+void printListKulkas(ListStatikKulkas l);
+
 #endif
