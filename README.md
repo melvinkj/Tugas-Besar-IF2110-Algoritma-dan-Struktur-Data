@@ -16,20 +16,20 @@ BNMO secara garis besar merupakan simulator yang berfungsi utama pada pengolahan
 ## Cara Kompilasi Program
 1. Pastikan Anda sedang berada pada directory `build` dengan : 
 ```shell
-`cd ./build`.
+cd ./build
 ```
 2. Selanjutnya, untuk kompilasi pada program, jalankan :
 ```shell
-`./main.bat`
+./main.bat
 ```
 3. Jika berhasil dikompilasi, maka akan terdapat `./main.exe` pada directory `build`.
 
 ## Cara Menjalankan Program
 1. Pastikan Anda telah melakukan kompilasi pada program.
-2. Jika ingin mengubah file konfigurasi, silahkan lansung mengubah melalui file text konfigurasi.
+2. Jika ingin mengubah file konfigurasi, silahkan lansung mengubah melalui file text konfigurasi pada folder `build`.
 3. Untuk menjalankan program, jalankan :
 ```shell
-`./main.exe`
+./main.exe
 ```
 4. Jika berhasil run, maka Anda akan tiba pada Tampilan Utama program.
 
@@ -66,6 +66,8 @@ BNMO secara garis besar merupakan simulator yang berfungsi utama pada pengolahan
 * COOKBOOK
 11. Validasi dan Error Handling
 12. Notifikasi
+13. Kulkas
+#### Semua fitur selesai
 
 ## Struktur Program
 ```bash
@@ -160,16 +162,19 @@ BNMO secara garis besar merupakan simulator yang berfungsi utama pada pengolahan
 
 ## Pembagian Tugas
 1. Manuella Ivana Uli Sianipar / (13521051)
-* 
-* 
+* ADT Tree
+* Pengolahan (Mix, Chop, Fry, Boil)
 2. Melvin Kent Jonathan / (13521052)
-* 
-* 
-* 
+* ADT Sederhana (Point, Waktu, Makanan, Simulator)
+* ADT List Statik
+* Pemesanan (Buy)
+* Notification
+* Main Program
+
 3. Yobel Dean Christopher / (13521067)
-* 
-* 
-* 
+* ADT Matriks
+* Move
+* Kulkas
 4. Fajar Maulana Herawan / (13521080)
 * ADT Stack / Prioqueue
 * Undo/Redo
