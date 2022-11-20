@@ -23,7 +23,7 @@ typedef struct {
 typedef element_kulkas ElTypeListKulkas;  
 typedef int IdxType;
 typedef struct {
-   ElTypeList contents[CAPACITY]; 
+   ElTypeListKulkas contents[CAPACITY]; 
 } ListStatikKulkas;
 
 Matrix kulkas();
@@ -43,9 +43,9 @@ void insertLastListKulkas(ListStatikKulkas *l, ElTypeListKulkas val);
 
 element_kulkas createElementKulkas(Makanan makanan, int posisi_x, int posisi_y);
 
-void masukKulkas(Matrix * m_tampilan_kulkas, ListStatik * l_isi_kulkas, PrioQueue * pq);
+void masukKulkas(Matrix * m_tampilan_kulkas, ListStatikKulkas * l_isi_kulkas, PrioQueue * pq);
 
-void keluarKulkas(Matrix * m_tampilan_kulkas,  ListStatik * l_isi_kulkas, PrioQueue * pq);
+void keluarKulkas(Matrix * m_tampilan_kulkas,  ListStatikKulkas * l_isi_kulkas, PrioQueue * pq);
 
 void tampilKulkas(Matrix m_tampilan_kulkas);
 
