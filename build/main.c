@@ -24,6 +24,7 @@
 #include "../command/pengolahan.h"
 #include "../command/moves.h"
 #include "../command/notifikasi.h"
+#include "../command/kulkas.h"
 
 
 /* *** Operasi-operasi *** */
@@ -163,7 +164,7 @@ void CookBook()
 }
 
 /* *** Command Reader *** */
-void processCommand(string command, Simulator *S, Matrix *Peta, ListMakanan LM, ListMakanan *listKedaluwarsa, ListMakanan *listDiterima, ListMakanan *listBatalBeli, ListMakanan *listJadiBeli, ListMakanan *listKembaliDelivery, ListMakanan *listKeluarDelivery, ListMakanan *listBatalPengolahan, ListMakanan *listJadiPengolahan, ListMakanan *listKembaliInventory, ListMakanan *listKeluarInventory)
+void processCommand(string command, Simulator *S, Matrix *Peta, ListMakanan LM, ListMakanan *listKedaluwarsa, ListMakanan *listDiterima, ListMakanan *listBatalBeli, ListMakanan *listJadiBeli, ListMakanan *listKembaliDelivery, ListMakanan *listKeluarDelivery, ListMakanan *listBatalPengolahan, ListMakanan *listJadiPengolahan, ListMakanan *listKembaliInventory, ListMakanan *listKeluarInventory, ListStatikKulkas *listKulkas)
 {
     ListStatikResep resep;
     CreateListStatikResep(&resep);
@@ -344,7 +345,9 @@ void processCommand(string command, Simulator *S, Matrix *Peta, ListMakanan LM, 
             return;
         }
         if (cmpStrType2(command.content, kulkas_cmd.content))
-        {
+        {   
+            commandKulkas(S, listKulkas);
+
             printf("Succeed\n");
             return;
         }
@@ -450,6 +453,10 @@ int main()
         CreateListMakanan(&listKembaliInventory);
         CreateListMakanan(&listKeluarInventory);
 
+        ListStatikKulkas listKulkas = inisialisasiListKulkas();
+        
+
+
         while (running_state)
         {
             // Validate every command
@@ -478,7 +485,7 @@ int main()
                 }
             } while (cmpStrType2(checker.content, invalid.content));
             // input valid
-            processCommand(input, &S, &peta, LM, &listKedaluwarsa, &listDiterima, &listBatalBeli, &listJadiBeli, &listKembaliDelivery, &listKeluarDelivery, &listBatalPengolahan, &listJadiPengolahan, &listKembaliInventory, &listKeluarInventory);
+            processCommand(input, &S, &peta, LM, &listKedaluwarsa, &listDiterima, &listBatalBeli, &listJadiBeli, &listKembaliDelivery, &listKeluarDelivery, &listBatalPengolahan, &listJadiPengolahan, &listKembaliInventory, &listKeluarInventory, &listKulkas);
             printf("\n");
             // Passing input to functions / procedures
             
