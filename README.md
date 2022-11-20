@@ -165,7 +165,7 @@ cd ./build
 * ADT Tree
 * Pengolahan (Mix, Chop, Fry, Boil)
 2. Melvin Kent Jonathan / (13521052)
-* ADT Sederhana (Point, Wakut, Makanan, Simulator)
+* ADT Sederhana (Point, Waktu, Makanan, Simulator)
 * ADT List Statik
 * Pemesanan (Buy)
 * Notification
