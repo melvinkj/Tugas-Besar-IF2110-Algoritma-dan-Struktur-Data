@@ -128,8 +128,8 @@ char * commandOptions(string input)
     string catalog = { .content = "CATALOG", .Length = 7 };
     string cookbook = { .content = "COOKBOOK", .Length = 8 };
     string inventory = {.content = "INVENTORY", .Length = 9};
-    string wait_x_y = { .content = "WAIT", .Length = 4 };
     string kulkas = { .content = "KULKAS", .Length = 6 };
+    string wait_x_y = { .content = "WAIT", .Length = 4 };
     // For Wait x y Command
     if (hasSubstring(wait_x_y, input)) {
         int h = 0;

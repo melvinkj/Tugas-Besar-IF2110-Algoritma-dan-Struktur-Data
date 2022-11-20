@@ -2,6 +2,7 @@
 #define __STRING_H__
 
 #include "../sederhana/boolean.h"
+// #include "D:\OneDrive - Institut Teknologi Bandung\File Jimly\College Files\Semester 3\Algoritma & Struktur Data\Tubes\Tugas-Besar-IF2110-Algoritma-dan-Struktur-Data\ADT\sederhana\boolean.h"
 
 typedef struct
 {

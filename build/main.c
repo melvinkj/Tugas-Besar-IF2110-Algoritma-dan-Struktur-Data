@@ -343,11 +343,11 @@ void processCommand(string command, Simulator *S, Matrix *Peta, ListMakanan LM, 
             redo(S, resep, listJadiBeli, listKeluarDelivery, listJadiPengolahan, listKeluarInventory);
             return;
         }
-        // if (cmpStrType2(command.content, kulkas_cmd.content))
-        // {
-        //     printf("Succeed\n");
-        //     return;
-        // }
+        if (cmpStrType2(command.content, kulkas_cmd.content))
+        {
+            printf("Succeed\n");
+            return;
+        }
     }
 }
 
