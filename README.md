@@ -162,8 +162,8 @@ cd ./build
 
 ## Pembagian Tugas
 1. Manuella Ivana Uli Sianipar / (13521051)
-* 
-* 
+* ADT Tree
+* Pengolahan (Mix, Chop, Fry, Boil)
 2. Melvin Kent Jonathan / (13521052)
 * ADT Sederhana (Point, Wakut, Makanan, Simulator)
 * ADT List Statik
