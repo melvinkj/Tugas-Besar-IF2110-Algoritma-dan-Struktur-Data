@@ -40,7 +40,7 @@ void deleteFirstListKulkas(ListStatikKulkas *l, ElTypeListKulkas *val){
 void masukKulkas(Matrix * m_tampilan_kulkas, ListStatikKulkas * l_isi_kulkas, PrioQueue * pq) {
     // Keluarin dari pq
     Makanan makanan;
-    Dequeue(&pq, &makanan);
+    Dequeue(pq, &makanan);
     int size_x = makanan.size_x;
     int size_y = makanan.size_y;
     boolean isAvailable = true;
@@ -71,7 +71,7 @@ void masukKulkas(Matrix * m_tampilan_kulkas, ListStatikKulkas * l_isi_kulkas, Pr
 
                 // Masukin ke dalam list statik
                 element_kulkas e = createElementKulkas(makanan, i, j);
-                insertLast(&l_isi_kulkas, e);
+                insertLastListKulkas(l_isi_kulkas, e);
                 break;
             }
         }
@@ -85,17 +85,17 @@ void masukKulkas(Matrix * m_tampilan_kulkas, ListStatikKulkas * l_isi_kulkas, Pr
 void keluarKulkas(Matrix * m_tampilan_kulkas,  ListStatikKulkas * l_isi_kulkas, PrioQueue * pq) {
     // Keluarin dari list statik
     element_kulkas e;
-    deleteFirst(&l_isi_kulkas, &e);
+    deleteFirstListKulkas(l_isi_kulkas, &e);
 
     // Hilangin dari matriks
-    for (int i=&e.posisi_y; i<e.posisi_y+e.makanan.size_y; i++) {
-        for (int j=&e.posisi_x; j<e.posisi_x+e.makanan.size_x; j++) {
+    for (int i= e.posisi_y; i<e.posisi_y+e.makanan.size_y; i++) {
+        for (int j= e.posisi_x; j<e.posisi_x+e.makanan.size_x; j++) {
             ELMTX(*m_tampilan_kulkas, i, j) = ' ';
         }
     }
 
     // Masukin ke prio queue
-    Enqueue(&pq, e.makanan);
+    Enqueue(pq, e.makanan);
 }
 
 void tampilKulkas(Matrix m_tampilan_kulkas) {
@@ -112,11 +112,11 @@ void printListKulkas(ListStatikKulkas l){
     printf("Isi kulkas:\n");
     int i;
     printf("[");
-	for (i = 0; isIdxEffList(l,i) ; i++) {
-		if (i != 0) {
+	for (i = 0; i < listLengthListKulkas(l) ; i++) {
+		printf("%d", ELMTLIST(l,i));
+        if (i != 0) {
 			printf(",");
 		}
-		printf("%d", ELMTLIST(l,i));
 	}
 	printf("]");
 }
