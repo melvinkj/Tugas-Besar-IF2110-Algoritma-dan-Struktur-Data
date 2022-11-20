@@ -55,13 +55,13 @@ boolean isRedoOneElmt(){
     }
 }
 
-void undo(Simulator *S, ListStatikResep resep){
+void undo(Simulator *S, ListStatikResep resep, ListMakanan *listBatalBeli, ListMakanan *listKembaliDelivery, ListMakanan *listBatalPengolahan, ListMakanan *listKembaliInventory){
     if(!isUndoOneElmt()){
         Simulator temp;
         Pop(&UndoStack, &temp);
         Push(&RedoStack, temp);
         *S = InfoTop(UndoStack);
-        notificationUndo(temp, resep);
+        notificationUndo(temp, resep, listBatalBeli, listKembaliDelivery, listBatalPengolahan, listKembaliInventory);
     }else{
         printf("Undo tidak bisa dilakukan karena tidak ada perintah yang bisa diundo\n");
     }
@@ -71,7 +71,7 @@ void printstackundo(){
     printstack(UndoStack);
 }
 
-void redo(Simulator *S, ListStatikResep resep){
+void redo(Simulator *S, ListStatikResep resep, ListMakanan *listJadiBeli, ListMakanan *listKeluarDelivery, ListMakanan *listJadiPengolahan, ListMakanan *listKeluarInventory){
     if(!isRedoEmpty()){
         Simulator temp;
         Simulator temp2;
@@ -79,13 +79,13 @@ void redo(Simulator *S, ListStatikResep resep){
         Pop(&RedoStack, &temp);
         Push(&UndoStack, temp);
         *S = InfoTop(UndoStack);
-        notificationRedo(temp2,resep);
+        notificationRedo(temp2,resep, listJadiBeli, listKeluarDelivery, listJadiPengolahan, listKeluarInventory);
     }else{
         printf("Redo tidak bisa dilakukan karena tidak ada perintah yang bisa diredo\n");
     }
 }
 
-void notificationUndo(Simulator S, ListStatikResep resep){
+void notificationUndo(Simulator S, ListStatikResep resep, ListMakanan *listBatalBeli, ListMakanan *listKembaliDelivery, ListMakanan *listBatalPengolahan, ListMakanan *listKembaliInventory){
     Simulator sekarang,sebelum;
     createSimulator(&sekarang);
     createSimulator(&sebelum);
@@ -101,18 +101,18 @@ void notificationUndo(Simulator S, ListStatikResep resep){
 
     /* *** Cek Delivery **** */
     if(NBElmt(sekarang.delivery) > NBElmt(sebelum.delivery)){
-        tidakjadibeli(sebelum.delivery,sekarang.delivery);
+        tidakjadibeli(sebelum.delivery,sekarang.delivery, listBatalBeli);
         /* delivery sekarang lebih besar, setelah melakukan buy */
         /* cari elemen yang tidak jadi dibeli */
     }else if (NBElmt(sekarang.delivery) < NBElmt(sebelum.delivery)){
-        kembalikedelivery(sebelum.delivery,sekarang.delivery);
+        kembalikedelivery(sebelum.delivery,sekarang.delivery, listKembaliDelivery);
         /* delivery sekarang lebih kecil, waktu habis berpindah ke inventory */
         /* cari elemen yang tidak jadi dimasukan ke inventory */
         }
     /* cek inventory */
     if(NBElmt(sekarang.inventory) <= NBElmt(sebelum.inventory)){
         // tidakjadipengolahan(sebelum.inventory,sekarang.inventory,resep);
-        tidakjadipengolahan(sebelum.inventory,sekarang.inventory,resep);
+        tidakjadipengolahan(sebelum.inventory,sekarang.inventory,resep, listBatalPengolahan, listKembaliInventory);
         /* inventory sekarang lebih kecil, setelah melakukan pengolahan atau expired */
         /* cari elemen yang tidak jadi diolah atau expired */
         /* *** abstraksi *** */
@@ -124,7 +124,7 @@ void notificationUndo(Simulator S, ListStatikResep resep){
 
 }
 
-void notificationRedo(Simulator S, ListStatikResep resep){
+void notificationRedo(Simulator S, ListStatikResep resep, ListMakanan *listJadiBeli, ListMakanan *listKeluarDelivery, ListMakanan *listJadiPengolahan, ListMakanan *listKeluarInventory){
     Simulator sekarang,sebelum;
     createSimulator(&sekarang);
     createSimulator(&sebelum);
@@ -140,18 +140,18 @@ void notificationRedo(Simulator S, ListStatikResep resep){
 
     /* *** Cek Delivery **** */
     if(NBElmt(sekarang.delivery) < NBElmt(sebelum.delivery)){
-        jadibeli(sekarang.delivery,sebelum.delivery);
+        jadibeli(sekarang.delivery,sebelum.delivery, listJadiBeli);
         /* delivery sekarang lebih besar, setelah melakukan buy */
         /* cari elemen yang tidak jadi dibeli */
     }else if (NBElmt(sekarang.delivery) > NBElmt(sebelum.delivery)){
-        keluardelivery(sekarang.delivery,sebelum.delivery);
+        keluardelivery(sekarang.delivery,sebelum.delivery, listKeluarDelivery);
         /* delivery sekarang lebih kecil, waktu habis berpindah ke inventory */
         /* cari elemen yang tidak jadi dimasukan ke inventory */
         }
     /* cek inventory */
     if(NBElmt(sekarang.inventory) >= NBElmt(sebelum.inventory)){
         // tidakjadipengolahan(sebelum.inventory,sekarang.inventory,resep);
-        jadipengolahan(sekarang.inventory,sebelum.inventory,resep);
+        jadipengolahan(sekarang.inventory,sebelum.inventory,resep, listJadiPengolahan, listKeluarInventory);
         /* inventory sekarang lebih kecil, setelah melakukan pengolahan atau expired */
         /* cari elemen yang tidak jadi diolah atau expired */
         /* *** abstraksi *** */

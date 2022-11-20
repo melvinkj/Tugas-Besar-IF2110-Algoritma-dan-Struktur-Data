@@ -191,7 +191,25 @@ void PrintInventory (PrioQueue Q){
         Dequeue(&Q, &X);
         printf("%d. %s - ", i, Info(X));
         i++;
-        TulisTIME(Time(X));
+        if (X.waktu_kedaluwarsa.DD != 0)
+        {
+            printf("%d hari ", X.waktu_kedaluwarsa.DD);
+        }
+        if (X.waktu_kedaluwarsa.HH != 0)
+        {
+            if (X.waktu_kedaluwarsa.MM != 0)
+            {
+                printf("%d jam ", X.waktu_kedaluwarsa.HH);
+            }
+            else
+            {
+                printf("%d jam", X.waktu_kedaluwarsa.HH);
+            }
+        }
+        if (X.waktu_kedaluwarsa.MM != 0)
+        {
+                printf("%d menit", X.waktu_kedaluwarsa.MM);
+        }
         printf("\n");
     }
 }
@@ -213,7 +231,25 @@ void PrintDelivery(PrioQueue Q){
         Dequeue(&Q, &X);
         printf("%d. %s - ", i, Info(X));
         i++;
-        TulisTIME(Time_Delivery(X));
+                if (X.lama_pengiriman.DD != 0)
+        {
+            printf("%d hari ", X.lama_pengiriman.DD);
+        }
+        if (X.lama_pengiriman.HH != 0)
+        {
+            if (X.lama_pengiriman.MM != 0)
+            {
+                printf("%d jam ", X.lama_pengiriman.HH);
+            }
+            else
+            {
+                printf("%d jam", X.lama_pengiriman.HH);
+            }
+        }
+        if (X.lama_pengiriman.MM != 0)
+        {
+                printf("%d menit", X.lama_pengiriman.MM);
+        }
         printf("\n");
     }
 }

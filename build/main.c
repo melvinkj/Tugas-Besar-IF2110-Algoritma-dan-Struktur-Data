@@ -163,7 +163,7 @@ void CookBook()
 }
 
 /* *** Command Reader *** */
-void processCommand(string command, Simulator *S, Matrix *Peta, ListMakanan LM, ListMakanan *listKedaluwarsa, ListMakanan *listDiterima)
+void processCommand(string command, Simulator *S, Matrix *Peta, ListMakanan LM, ListMakanan *listKedaluwarsa, ListMakanan *listDiterima, ListMakanan *listBatalBeli, ListMakanan *listJadiBeli, ListMakanan *listKembaliDelivery, ListMakanan *listKeluarDelivery, ListMakanan *listBatalPengolahan, ListMakanan *listJadiPengolahan, ListMakanan *listKembaliInventory, ListMakanan *listKeluarInventory)
 {
     ListStatikResep resep;
     CreateListStatikResep(&resep);
@@ -249,7 +249,7 @@ void processCommand(string command, Simulator *S, Matrix *Peta, ListMakanan LM, 
                 buy(S, LM, listKedaluwarsa, listDiterima);
                 addUndo(*S);
             } else {
-                printf("%s tidak berada di area telepon!\n", Nama(*S));
+                printf("%s tidak berada di area telepon!\n", S->nama.content);
             }
         }
         if (cmpStrType2(command.content, delivery_cmd.content))
@@ -285,7 +285,7 @@ void processCommand(string command, Simulator *S, Matrix *Peta, ListMakanan LM, 
                 S->waktu = NextMenit(S->waktu);
                 addUndo(*S);
             } else {
-                printf("%s tidak berada di area mixer!\n", Nama(*S));
+                printf("%s tidak berada di area mixer!\n", S->nama.content);
             }
         }
         if (cmpStrType2(command.content, chop_cmd.content))
@@ -300,7 +300,7 @@ void processCommand(string command, Simulator *S, Matrix *Peta, ListMakanan LM, 
                 addUndo(*S);
                 S->waktu = NextMenit(S->waktu);
             } else {
-                printf("%s tidak berada di area choper!\n", Nama(*S));
+                printf("%s tidak berada di area choper!\n", S->nama.content);
             }
         }
         if (cmpStrType2(command.content, fry_cmd.content))
@@ -315,7 +315,7 @@ void processCommand(string command, Simulator *S, Matrix *Peta, ListMakanan LM, 
                 S->waktu = NextMenit(S->waktu);
                 addUndo(*S);
             } else {
-                printf("%c tidak berada di area fryer!\n", Nama(*S));
+                printf("%s tidak berada di area fryer!\n", S->nama.content);
             }
         }
         if (cmpStrType2(command.content, boil_cmd.content))
@@ -330,17 +330,17 @@ void processCommand(string command, Simulator *S, Matrix *Peta, ListMakanan LM, 
                 S->waktu = NextMenit(S->waktu);
                 addUndo(*S);
             } else {
-                printf("%s tidak berada di area boiler!\n", Nama(*S));
+                printf("%s tidak berada di area boiler!\n", S->nama.content);
             }
         }
         if (cmpStrType2(command.content, undo_cmd.content))
         {
-            undo(S, resep);
+            undo(S, resep, listBatalBeli, listKembaliDelivery, listBatalPengolahan, listKembaliInventory);
             return;
         }
         if (cmpStrType2(command.content, redo_cmd.content))
         {
-            redo(S, resep);
+            redo(S, resep, listJadiBeli, listKeluarDelivery, listJadiPengolahan, listKeluarInventory);
             return;
         }
     }
@@ -426,15 +426,31 @@ int main()
         ListMakanan LM = READMAKANAN("./makanan_test.txt");
         ListMakanan listKedaluwarsa;
         ListMakanan listDiterima;
+        ListMakanan listBatalBeli;
+        ListMakanan listJadiBeli;
+        ListMakanan listKembaliDelivery;
+        ListMakanan listKeluarDelivery;
+        ListMakanan listBatalPengolahan;
+        ListMakanan listJadiPengolahan;
+        ListMakanan listKembaliInventory;
+        ListMakanan listKeluarInventory;
         CreateListMakanan(&listKedaluwarsa);
         CreateListMakanan(&listDiterima);
+        CreateListMakanan(&listBatalBeli);
+        CreateListMakanan(&listJadiBeli);
+        CreateListMakanan(&listKembaliDelivery);
+        CreateListMakanan(&listKeluarDelivery);
+        CreateListMakanan(&listBatalPengolahan);
+        CreateListMakanan(&listJadiPengolahan);
+        CreateListMakanan(&listKembaliInventory);
+        CreateListMakanan(&listKeluarInventory);
 
         while (running_state)
         {
             // Validate every command
             printf("%s di posisi: (%d,%d)\n", nama.content, S.posisi.X, S.posisi.Y);
             printf("Waktu : %d.%d\n", Waktu(S).HH, Waktu(S).MM);
-            notifikasi(&listKedaluwarsa, &listDiterima);
+            notifikasi(&listKedaluwarsa, &listDiterima, &listBatalBeli, &listJadiBeli, &listKembaliDelivery, &listKeluarDelivery, &listBatalPengolahan, &listJadiPengolahan, &listKembaliInventory, &listKeluarInventory);
             displayPeta(peta, S);
             printf("\n");
             do
@@ -457,7 +473,7 @@ int main()
                 }
             } while (cmpStrType2(checker.content, invalid.content));
             // input valid
-            processCommand(input, &S, &peta, LM, &listKedaluwarsa, &listDiterima);
+            processCommand(input, &S, &peta, LM, &listKedaluwarsa, &listDiterima, &listBatalBeli, &listJadiBeli, &listKembaliDelivery, &listKeluarDelivery, &listBatalPengolahan, &listJadiPengolahan, &listKembaliInventory, &listKeluarInventory);
             printf("\n");
             // Passing input to functions / procedures
             

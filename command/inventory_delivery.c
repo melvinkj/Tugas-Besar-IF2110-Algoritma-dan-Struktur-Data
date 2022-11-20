@@ -67,7 +67,7 @@ void kurang_waktu_deliv(PrioQueue *delivery,PrioQueue *inventory, ListMakanan *l
     }   
 }
 
-void tidakjadibeli(PrioQueue sebelum, PrioQueue sekarang){
+void tidakjadibeli(PrioQueue sebelum, PrioQueue sekarang, ListMakanan *listBatalBeli){
     /* NBELMT sebelum < NBElmt sekarang */
     PrioQueue temp1,temp2;
     MakeEmpty(&temp1, MaxEl(sebelum));
@@ -88,7 +88,8 @@ void tidakjadibeli(PrioQueue sebelum, PrioQueue sekarang){
             i = (i+1)%MaxEl(temp1);
         }
         if (!found){
-            printf("%s tidak jadi dibeli :(\n", Elmt(temp2, j).nama.content);
+            // printf("%s tidak jadi dibeli :(\n", Elmt(temp2, j).nama.content);
+            appendListMakanan(listBatalBeli, Elmt(temp2, j));
             // printf("id = %d  tidak jadi dibeli :(\n", Elmt(temp2, j).id);
         }
         found = false;
@@ -97,7 +98,7 @@ void tidakjadibeli(PrioQueue sebelum, PrioQueue sekarang){
     }
 }
 
-void jadibeli(PrioQueue sebelum, PrioQueue sekarang){
+void jadibeli(PrioQueue sebelum, PrioQueue sekarang, ListMakanan *listJadiBeli){
     /* NBELMT sebelum < NBElmt sekarang */
     PrioQueue temp1,temp2;
     MakeEmpty(&temp1, MaxEl(sebelum));
@@ -118,7 +119,8 @@ void jadibeli(PrioQueue sebelum, PrioQueue sekarang){
             i = (i+1)%MaxEl(temp1);
         }
         if (!found){
-            printf("%s  dibeli \n", Elmt(temp2, j).nama.content);
+            // printf("%s  dibeli \n", Elmt(temp2, j).nama.content);
+            appendListMakanan(listJadiBeli, Elmt(temp2, j));
             // printf("id = %d  jadi dibeli :(\n", Elmt(temp2, j).id);
         }
         found = false;
@@ -127,7 +129,7 @@ void jadibeli(PrioQueue sebelum, PrioQueue sekarang){
     }
 }
 
-void kembalikedelivery(PrioQueue sebelum, PrioQueue sekarang){
+void kembalikedelivery(PrioQueue sebelum, PrioQueue sekarang, ListMakanan *listKembaliDelivery){
     /* NBElmt sebelum > NBELMT sekarang */
     PrioQueue temp1,temp2;
     MakeEmpty(&temp1, MaxEl(sebelum));
@@ -148,7 +150,8 @@ void kembalikedelivery(PrioQueue sebelum, PrioQueue sekarang){
             j = (j+1)%MaxEl(temp2);
         }
         if (!found){
-            printf("%s kembali ke delivery :(\n", Elmt(temp1, i).nama.content);
+            // printf("%s kembali ke delivery :(\n", Elmt(temp1, i).nama.content);
+            appendListMakanan(listKembaliDelivery, Elmt(temp1, i));
             // printf("id = %d kembali ke delivery :(\n", Elmt(temp1, i).id);
         }
         found = false;
@@ -157,7 +160,7 @@ void kembalikedelivery(PrioQueue sebelum, PrioQueue sekarang){
     }
 }
 
-void keluardelivery(PrioQueue sebelum, PrioQueue sekarang){
+void keluardelivery(PrioQueue sebelum, PrioQueue sekarang, ListMakanan *listKeluarDelivery){
     /* NBElmt sebelum > NBELMT sekarang */
     PrioQueue temp1,temp2;
     MakeEmpty(&temp1, MaxEl(sebelum));
@@ -178,7 +181,8 @@ void keluardelivery(PrioQueue sebelum, PrioQueue sekarang){
             j = (j+1)%MaxEl(temp2);
         }
         if (!found){
-            printf("%s masuk ke inventory\n", Elmt(temp1, i).nama.content);
+            // printf("%s masuk ke inventory\n", Elmt(temp1, i).nama.content);
+            appendListMakanan(listKeluarDelivery, Elmt(temp1, i));
             // printf("id = %d masuk ke inventory :(\n", Elmt(temp1, i).id);
         }
         found = false;
@@ -187,7 +191,7 @@ void keluardelivery(PrioQueue sebelum, PrioQueue sekarang){
     }
 }
 
-void tidakjadipengolahan(PrioQueue sebelum, PrioQueue sekarang, ListStatikResep resep){
+void tidakjadipengolahan(PrioQueue sebelum, PrioQueue sekarang, ListStatikResep resep, ListMakanan *listBatalPengolahan, ListMakanan *listKembaliInventory){
     /* NBELMT sebelum > NBElmt sekarang */
 
     PrioQueue temp1,temp2;
@@ -224,15 +228,16 @@ void tidakjadipengolahan(PrioQueue sebelum, PrioQueue sekarang, ListStatikResep 
                 }
                 last = NEXTNODE(last);
             }
-            printf("%s tidak jadi diproses di %s :(\n", Elmt(temp2, j).nama.content, Elmt(temp2,j).lokasi_aksi.content);   
+            // printf("%s tidak jadi diproses di %s :(\n", Elmt(temp2, j).nama.content, Elmt(temp2,j).lokasi_aksi.content); 
+            appendListMakanan(listBatalPengolahan, Elmt(temp2, j));
             // printf("id = %d tidak jadi diproses di %s :(\n", Elmt(temp2, j).id, Elmt(temp2,j).lokasi_aksi.content);   
         }
         j = (j+1)%MaxEl(temp2);
     }
-    kembalikeinventory(temp1, temp2);
+    kembalikeinventory(temp1, temp2, listKembaliInventory);
 }
 
-void jadipengolahan(PrioQueue sebelum, PrioQueue sekarang, ListStatikResep resep){
+void jadipengolahan(PrioQueue sebelum, PrioQueue sekarang, ListStatikResep resep, ListMakanan *listJadiPengolahan, ListMakanan *listKeluarInventory){
     /* NBELMT sebelum > NBElmt sekarang */
 
     PrioQueue temp1,temp2;
@@ -269,15 +274,16 @@ void jadipengolahan(PrioQueue sebelum, PrioQueue sekarang, ListStatikResep resep
                 }
                 last = NEXTNODE(last);
             }
-            printf("%s diproses di %s :(\n", Elmt(temp2, j).nama.content, Elmt(temp2,j).lokasi_aksi.content);   
+            // printf("%s diproses di %s :(\n", Elmt(temp2, j).nama.content, Elmt(temp2,j).lokasi_aksi.content);   
+            appendListMakanan(listJadiPengolahan, Elmt(temp2, j));
             // printf("id = %d jadi diproses di %s :(\n", Elmt(temp2, j).id, Elmt(temp2,j).lokasi_aksi.content);   
         }
         j = (j+1)%MaxEl(temp2);
     }
-    keluarinventory(temp1, temp2);
+    keluarinventory(temp1, temp2, listKeluarInventory);
 }
 
-void kembalikeinventory(PrioQueue sebelum, PrioQueue sekarang){
+void kembalikeinventory(PrioQueue sebelum, PrioQueue sekarang, ListMakanan *listKembaliInventory){
     /* NBElmt sebelum > NBELMT sekarang */
     PrioQueue temp1,temp2;
     MakeEmpty(&temp1, MaxEl(sebelum));
@@ -298,7 +304,8 @@ void kembalikeinventory(PrioQueue sebelum, PrioQueue sekarang){
             j = (j+1)%MaxEl(temp2);
         }
         if (!found){
-            printf("%s tidak jadi expired :)\n", Elmt(temp1, i).nama.content);
+            // printf("%s tidak jadi expired :)\n", Elmt(temp1, i).nama.content);
+            appendListMakanan(listKembaliInventory, Elmt(temp1, i));
             // printf("id = %d tidak jadi expired :)\n", Elmt(temp1, i).id);
         }
         found = false;
@@ -307,7 +314,7 @@ void kembalikeinventory(PrioQueue sebelum, PrioQueue sekarang){
     }
 }
 
-void keluarinventory(PrioQueue sebelum, PrioQueue sekarang){
+void keluarinventory(PrioQueue sebelum, PrioQueue sekarang, ListMakanan *listKeluarInventory){
     /* NBElmt sebelum > NBELMT sekarang */
     PrioQueue temp1,temp2;
     MakeEmpty(&temp1, MaxEl(sebelum));
@@ -328,7 +335,8 @@ void keluarinventory(PrioQueue sebelum, PrioQueue sekarang){
             j = (j+1)%MaxEl(temp2);
         }
         if (!found){
-            printf("%s expired :(\n", Elmt(temp1, i).nama.content);
+            // printf("%s expired :(\n", Elmt(temp1, i).nama.content);
+            appendListMakanan(listKeluarInventory, Elmt(temp1, i));
             // printf("id = %d expired :)\n", Elmt(temp1, i).id);
         }
         found = false;

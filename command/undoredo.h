@@ -48,12 +48,12 @@ boolean isUndoRedoEmpty();
 /* I.S. Semua stack terdefinisi */
 /* F.S. Semua stack tidak berubah */
 
-void undo(Simulator *S, ListStatikResep resep);
+void undo(Simulator *S, ListStatikResep resep, ListMakanan *listBatalBeli, ListMakanan *listKembaliDelivery, ListMakanan *listBatalPengolahan, ListMakanan *listKembaliInventory);
 /* Mengembalikan state sebelumnya */
 /* I.S. UndoStack tidak kosong */
 /* F.S. UndoStack berkurang satu elemen, RedoStack bertambah satu elemen */
 
-void redo(Simulator *S, ListStatikResep resep);
+void redo(Simulator *S, ListStatikResep resep, ListMakanan *listJadiBeli, ListMakanan *listKeluarDelivery, ListMakanan *listJadiPengolahan, ListMakanan *listKeluarInventory);
 /* Mengembalikan state selanjutnya */
 /* I.S. RedoStack tidak kosong */
 /* F.S. RedoStack berkurang satu elemen, UndoStack bertambah satu elemen */
@@ -62,8 +62,8 @@ void printstackundo();
 /* Menampilkan stack undo */
 
 
-void notificationUndo(Simulator S, ListStatikResep resep);
-void notificationRedo(Simulator S, ListStatikResep resep);
+void notificationUndo(Simulator S, ListStatikResep resep, ListMakanan *listBatalBeli, ListMakanan *listKembaliDelivery, ListMakanan *listBatalPengolahan, ListMakanan *listKembaliInventory);
+void notificationRedo(Simulator S, ListStatikResep resep, ListMakanan *listJadiBeli, ListMakanan *listKeluarDelivery, ListMakanan *listJadiPengolahan, ListMakanan *listKeluarInventory);
 /* Menampilkan notifikasi perbandingan state sebelum dan sesudah */
 /* I.S. Semua stack terdefinisi */
 /* F.S. Semua stack tidak berubah */
