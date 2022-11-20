@@ -7,7 +7,7 @@
 
 /* *** Definisi TYPE TIME <HH:MM:SS> *** */
 typedef struct { 
-   int DD; /* integer [0..30]*/
+   int DD; /* integer [0..29]*/
 	int HH; /* integer [0..23] */
 	int MM; /* integer [0..59] */
 } TIME;
