@@ -67,7 +67,7 @@ BNMO secara garis besar merupakan simulator yang berfungsi utama pada pengolahan
 11. Validasi dan Error Handling
 12. Notifikasi
 13. Kulkas
-## Semua fitur selesai
+#### Semua fitur selesai
 
 ## Struktur Program
 ```bash
