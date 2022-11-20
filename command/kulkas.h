@@ -11,7 +11,6 @@
 #define CAPACITY 100
 #define IDX_MIN 0
 #define IDX_UNDEF -1
-#define MARK -9999
 
 /* Definisi elemen dan koleksi objek */
 typedef struct {

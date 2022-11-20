@@ -18,24 +18,24 @@ element_kulkas createElementKulkas(Makanan makanan, int posisi_x, int posisi_y) 
 
 int listLengthKulkas(ListStatikKulkas l){
     int panjang = 0;
-    while (ELMTLIST(l,panjang) != MARK && panjang < CAPACITY){
+    while (ELMTLIST(l,panjang).posisi_x == -1 && panjang < CAPACITY){
         panjang++;
     }
     return panjang;
 }
 
 void insertLastListKulkas(ListStatikKulkas *l, ElTypeListKulkas val){
-    ELMTLIST(*l,listLength(*l))=val;
+    ELMTLIST(*l,listLengthKulkas(*l))=val;
 }
 
 void deleteFirstListKulkas(ListStatikKulkas *l, ElTypeListKulkas *val){
     *val=ELMTLIST(*l,0);
     int i;
 
-    for(i=0;i<listLength(*l)-1;i++){
+    for(i=0;i<listLengthKulkas(*l)-1;i++){
         ELMTLIST(*l,i)=ELMTLIST(*l,i+1);
     }
-    ELMTLIST(*l,listLength(*l)-1)=MARK;
+    ELMTLIST(*l,listLengthKulkas(*l)-1).posisi_x = -1;
 }
 void masukKulkas(Matrix * m_tampilan_kulkas, ListStatikKulkas * l_isi_kulkas, PrioQueue * pq) {
     // Keluarin dari pq

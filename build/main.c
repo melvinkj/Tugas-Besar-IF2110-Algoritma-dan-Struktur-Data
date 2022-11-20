@@ -194,7 +194,7 @@ void processCommand(string command, Simulator *S, Matrix *Peta, ListMakanan LM, 
     string cookbook_cmd = {.content = "COOKBOOK", .Length = 8};
     string inventory_cmd = {.content = "INVENTORY", .Length = 9};
     string wait_x_y_cmd = {.content = "WAIT", .Length = 4};
-
+    string kulkas_cmd = {.content = "KULKAS", .Length = 6};
     // Start Processing
     if (hasSubstring(wait_x_y_cmd, command))
     {
@@ -343,6 +343,11 @@ void processCommand(string command, Simulator *S, Matrix *Peta, ListMakanan LM, 
             redo(S, resep, listJadiBeli, listKeluarDelivery, listJadiPengolahan, listKeluarInventory);
             return;
         }
+        // if (cmpStrType2(command.content, kulkas_cmd.content))
+        // {
+        //     printf("Succeed\n");
+        //     return;
+        // }
     }
 }
 
