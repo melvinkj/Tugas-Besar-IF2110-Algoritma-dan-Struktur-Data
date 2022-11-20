@@ -52,9 +52,7 @@ int main(){
     TulisPOINT(s.posisi);
     addUndo(s);
     PrintPrioQueue(s.inventory);
-    undo(&s,LSR);
     PrintPrioQueue(s.inventory);
-    redo(&s,LSR);
     BacaPOINT(&p1);
     s.posisi = p1;
     TulisPOINT(s.posisi);
