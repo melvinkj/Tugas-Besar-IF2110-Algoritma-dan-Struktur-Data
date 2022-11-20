@@ -26,3 +26,15 @@ void copyMatrix(Matrix mIn, Matrix *mOut){
         }
     }
 }
+
+Matrix inisialisasiTampilanKulkas() {
+    Matrix m;
+    createMatrix(10, 20, &m);
+    for(int i = 0; i < 10; i++) {
+        for(int j = 0; j < 20; j++) {
+            ELMTX(m, i, j) = 'X';
+            
+        }
+    }
+    return m;
+}

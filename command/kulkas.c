@@ -2,17 +2,17 @@
 #include <stdlib.h>
 #include "kulkas.h"
 
-Matrix inisialisasiTampilanKulkas() {
-    Matrix m;
-    createMatrix(10, 20, &m);
-    for(int i = 0; i < 10; i++) {
-        for(int j = 0; j < 20; j++) {
-            ELMTX(m, i, j) = 'X';
+// Matrix inisialisasiTampilanKulkas() {
+//     Matrix m;
+//     createMatrix(10, 20, &m);
+//     for(int i = 0; i < 10; i++) {
+//         for(int j = 0; j < 20; j++) {
+//             ELMTX(m, i, j) = ' ';
             
-        }
-    }
-    return m;
-}
+//         }
+//     }
+//     return m;
+// }
 
 ListStatikKulkas inisialisasiListKulkas() {
     ListStatikKulkas l;
@@ -146,5 +146,44 @@ void printListKulkas(ListStatikKulkas l){
             printf("\n");
         }
         printf("\n");
+    }
+}
+
+void commandKulkas(Simulator *s, ListStatikKulkas *listKulkas){
+    int c;
+    string inputs;
+    boolean valid  = false;
+
+    printf("==================\n");
+    printf("=     KULKAS     =\n");
+    printf("==================\n");
+    printf("Menu:\n");
+    printf("0. Exit\n");
+    printf("1. Masukkan makanan ke dalam kulkas\n");
+    printf("2. Keluarkan makanan dari kulkas\n");
+    
+    do {
+        printf("Enter Command: ");
+        scanWord(&inputs);
+        if (inputs.Length == 2){
+            c = (((int) inputs.content[0])*10 + (int) inputs.content[1]) - 48;    
+        } else {
+            c = ((int) inputs.content[0]) - 48;
+        }
+        if(c>2){
+            printf("Input tidak valid. Silakan ulangi.\n");
+        } else {
+            valid = true;
+        }
+    } while(valid==false);
+
+    if (c == 1) {
+        masukKulkas(&((s)->kulkas), listKulkas, &((s)->inventory));
+        printTampilanKulkas((s)->kulkas);
+        printListKulkas(*listKulkas);
+    } else if (c == 2) {
+        keluarKulkas(&((s)->kulkas), listKulkas, &((s)->inventory));
+        printTampilanKulkas((s)->kulkas);
+        printListKulkas(*listKulkas);
     }
 }

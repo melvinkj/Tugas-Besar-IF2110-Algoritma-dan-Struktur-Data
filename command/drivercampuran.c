@@ -1,3 +1,7 @@
+// DRIVER INI UNTUK BEBERAPA ADT DAN FUNGSI : makanan, liststatikresep, listmakanan 
+
+
+
 #include <stdio.h>
 #include "pengolahan.h"
 // gcc tespengolahan.c pengolahan.c ../ADT/tree/tree.c ../ADT/sederhana/makanan.c ../ADT/sederhana/simulator.c ../ADT/stack_queue/prioqueue.c ../ADT/list_statik_resep/liststatikresep.c ../ADT/listdin/listdin.c ../ADT/list_statik/liststatik.c ../ADT/matrix/matrix.c ../ADT/char_word_machine/string.c ../ADT/sederhana/waktu.c ../ADT/sederhana/point.c -o a
@@ -72,7 +76,7 @@ int main(){
     Enqueue(&Inventory(s), m_ayam);
     Enqueue(&Inventory(s), m_sambel);
 
-    fry(&s, lr, lm);
+    // fry(&s, lr, lm);
     
     return 0;
 }

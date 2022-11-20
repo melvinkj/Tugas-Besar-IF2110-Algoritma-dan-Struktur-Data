@@ -347,8 +347,6 @@ void processCommand(string command, Simulator *S, Matrix *Peta, ListMakanan LM, 
         if (cmpStrType2(command.content, kulkas_cmd.content))
         {   
             commandKulkas(S, listKulkas);
-
-            printf("Succeed\n");
             return;
         }
     }

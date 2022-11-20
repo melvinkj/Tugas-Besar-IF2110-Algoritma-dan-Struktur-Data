@@ -6,6 +6,8 @@
 #include "../ADT/matrix/matrix.h"
 #include "../ADT/sederhana/makanan.h"
 #include "../ADT/stack_queue/prioqueue.h"
+#include "../ADT/sederhana/simulator.h"
+#include "../ADT/char_word_machine/wordmachine.h"
 
 /*  Kamus Umum */
 #define CAPACITY 100
@@ -32,7 +34,7 @@ typedef struct {
 #define ELMTLIST(l, i) (l).contents[(i)]
 
 /* ********** FUNCTION ********** */
-Matrix inisialisasiTampilanKulkas();
+// Matrix inisialisasiTampilanKulkas();
 
 ListStatikKulkas inisialisasiListKulkas();
 
@@ -53,5 +55,7 @@ void keluarKulkas(Matrix * m_tampilan_kulkas,  ListStatikKulkas * l_isi_kulkas, 
 void printTampilanKulkas(Matrix m_tampilan_kulkas);
 
 void printListKulkas(ListStatikKulkas l);
+
+void commandKulkas(Simulator *s, ListStatikKulkas *listKulkas);
 
 #endif
