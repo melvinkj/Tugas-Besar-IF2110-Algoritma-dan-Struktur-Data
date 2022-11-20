@@ -165,9 +165,12 @@ cd ./build
 * 
 * 
 2. Melvin Kent Jonathan / (13521052)
-* 
-* 
-* 
+* ADT Sederhana (Point, Wakut, Makanan, Simulator)
+* ADT List Statik
+* Pemesanan (Buy)
+* Notification
+* Main Program
+
 3. Yobel Dean Christopher / (13521067)
 * 
 * 
