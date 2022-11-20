@@ -8,7 +8,7 @@ void createSimulator(Simulator *s){
     CreateTime(&Waktu(*s), 0, 0, 0);
     MakeEmpty(&Inventory(*s), 100);
     MakeEmpty(&Delivery(*s), 100);
-    createMatrix(10, 20, &Kulkas(*s));
+    Kulkas(*s)=inisialisasiTampilanKulkas();
     }
 
 void dealokasiSimulator(Simulator *s){

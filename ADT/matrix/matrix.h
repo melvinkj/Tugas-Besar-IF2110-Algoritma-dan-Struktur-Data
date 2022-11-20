@@ -39,4 +39,5 @@ void createMatrix(int nRows, int nCols, Matrix *m);
 void copyMatrix(Matrix mIn, Matrix *mOut);
 /* Melakukan assignment mOut <- mIn */
 
+Matrix inisialisasiTampilanKulkas();
 #endif
