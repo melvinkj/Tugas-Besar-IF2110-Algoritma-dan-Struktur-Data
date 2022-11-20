@@ -171,9 +171,11 @@ BNMO secara garis besar merupakan simulator yang berfungsi utama pada pengolahan
 * 
 * 
 4. Fajar Maulana Herawan / (13521080)
-* 
-* 
-* 
+* ADT Stack / Prioqueue
+* Undo/Redo
+* Notification
+* Inventory
+* Delivery
 5. Jimly Firdaus / (13521102)
 * ADT Mesin Kata & Karakter
 * Parser Program
